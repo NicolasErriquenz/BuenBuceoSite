@@ -57,15 +57,16 @@ https://buenbuceo.ar
 BackOffice
 https://buenbuceo.ar/_AdminBuenBuceo_/
 
-```
 RECAPTCHA KEYS:
+
 LOCAL:
+```
 Public:
 Secret
 ```
 
-```
 PROD:
+```
 Public:
 Secret:
 ```
@@ -87,15 +88,19 @@ Link: https://auth-db1194.hstgr.io/index.php?db=u229759960_buenbuceo
 ```
 
 MAIL:
+```
 mail: info@buenbuceo.ar
 pass: 1CholoKapo!
+```
 
 - Aliases:
     - hola@buenbuceo.ar
 
 
 FTP:
+```
 Server: ftp://195.35.41.187
 Port: 21
 User: u229759960 
 Pass: Rosario278
+```
