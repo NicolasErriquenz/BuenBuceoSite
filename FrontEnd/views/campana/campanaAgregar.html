@@ -1,0 +1,165 @@
+﻿<div cg-busy="campanaAgregarCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">CREACIÓN DE CAMPAÑAS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">creación de campañas</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Datos de la nueva campaña</h3>
+                </div>
+                <br />
+                <div class="card-body">
+                    <div class="offset-md-1 col-md-10">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align" for="fechaInicio">
+                                    Fecha de inicio de campaña
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="date" class="form-control" ng-model="campanaAgregarCtrl.query.FechaInicio">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align" for="fechaFin">
+                                    Fecha de finalización de campaña
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="date" class="form-control" ng-model="campanaAgregarCtrl.query.FechaFinalizacion">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align">Año de inicio carrera</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <select class="form-control"
+                                            ng-model="campanaAgregarCtrl.query.AnioCampana">
+                                        <option ng-repeat="Anio in campanaAgregarCtrl.Anios"
+                                                ng-value="{{Anio}}"
+                                                ng-selected="campanaAgregarCtrl.query.AnioCampana == Anio ? 'selected' : ''">
+                                            {{Anio}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align">Carrera</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <select ng-change="campanaAgregarCtrl.GetEscalafones()"
+                                            class="form-control"
+                                            ng-model="campanaAgregarCtrl.query.CarrerasId">
+                                        <option ng-repeat="Carrera in campanaAgregarCtrl.Carreras"
+                                                ng-value="{{Carrera.Id}}"
+                                                ng-selected="campanaAgregarCtrl.query.CarrerasId == Carrera.Id ? 'selected' : ''">
+                                            {{Carrera.Descripcion | uppercase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-show="campanaAgregarCtrl.query.CarrerasId != null">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align">Escalafón</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <select ng-change="campanaAgregarCtrl.GetSubescalafones()"
+                                            class="form-control"
+                                            ng-model="campanaAgregarCtrl.query.EscalafonId">
+                                        <option ng-repeat="Escalafon in campanaAgregarCtrl.Escalafones"
+                                                ng-value="{{Escalafon.Id}}"
+                                                ng-selected="campanaAgregarCtrl.query.EscalafonId == Escalafon.Id ? 'selected' : ''">
+                                            {{Escalafon.Descripcion | uppercase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-show="campanaAgregarCtrl.SubEscalafones.length != 0">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align">Subescalafón</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <select class="form-control"
+                                            ng-change="campanaAgregarCtrl.resetHabilitarCargarAmbasCarreras()"
+                                            ng-model="campanaAgregarCtrl.query.SubEscalafonId">
+                                        <option ng-repeat="SubEscalafon in campanaAgregarCtrl.SubEscalafones"
+                                                ng-value="{{SubEscalafon.Id}}"
+                                                ng-selected="campanaAgregarCtrl.query.SubEscalafonId == SubEscalafon.Id ? 'selected' : ''">
+                                            {{SubEscalafon.Descripcion | uppercase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="Nombre">
+                                    Nombre de la campaña
+                                </label>
+                                <div class="col-md-5 col-sm-5">
+                                    <input type="text" class="form-control" ng-model="campanaAgregarCtrl.query.Nombre">
+                                </div>
+                            </div>-->
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-5 col-sm-4 label-align" for="Descripción">
+                                    Descripción (opcional)
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <textarea class="form-control" ng-model="campanaAgregarCtrl.query.Descripcion"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary float-right" ng-click="campanaAgregarCtrl.ValidarDatosFormulario()">Crear</button>
+                    <button class="btn btn-default float-right" style="margin-right: 5px;" type="reset" ng-click="campanaAgregarCtrl.inicializarQuery()">Limpiar campos</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-show="campanaAgregarCtrl.Postulantes.length > 0">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-users"></i> Postulantes preseleccionados <small>podrá editar la lista de postulantes en el detalle de la campaña</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <table class="table table-striped table-hover jambo_table bulk_action">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th>DNI</th>
+                                <th>POSTULANTE</th>
+                                <th>EMAIL</th>
+                                <th>PROVINCIA</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center;">
+                            <tr ng-repeat="postulante in campanaAgregarCtrl.postulantePage.Items">
+                                <th scope="row">{{ postulante.Documento }}</th>
+                                <td>{{ postulante.Apellido }}, {{ postulante.Nombres }}</td>
+                                <td>{{ postulante.Email }}</td>
+                                <td>{{ postulante.Provincia.Descripcion }}</td>
+                                <td><button class="btn btn-primary btn-sm" ng-click="campanaAgregarCtrl.agregarEnLista(postulante.Id)"><i class="fa fa-user-plus"></i> Postular</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

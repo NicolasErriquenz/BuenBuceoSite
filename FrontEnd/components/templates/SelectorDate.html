@@ -1,0 +1,37 @@
+﻿<div layout="row" flex layout-xs="column" layout-align="start start">
+    <md-input-container class="md-block" flex="25" flex-xs="100">
+        <label>{{$ctrl.labelDetail}}</label>
+        <input disabled ng-model="$ctrl.labelDate"  name="fecha">
+        <
+    </md-input-container>
+    <div layout="row" flex flex-xs="100">
+        <md-input-container class="md-block" flex="25">
+            <label>Día</label>
+            <md-select ng-model="$ctrl.dia"name="dia" ng-change="$ctrl.onSelectDate()">
+                <md-option ng-repeat="item in $ctrl.dias" value="{{item}}">
+                    {{item}}
+                </md-option>
+            </md-select>
+            
+        </md-input-container>
+        <md-input-container class="md-block" flex="40">
+            <label>Mes</label>
+            <md-select ng-model="$ctrl.mes"  name="mes" ng-change="$ctrl.onSelectDate()">
+                <md-option ng-repeat="item in $ctrl.meses" value="{{item.Valor}}">
+                    {{item.Descripcion}}
+                </md-option>
+            </md-select>
+          
+        </md-input-container>
+        <md-input-container class="md-block" flex="35">
+            <label>Año</label>
+            <md-select ng-model="$ctrl.anio" ng-required="$ctrl.isRequired" name="anio" ng-change="$ctrl.onSelectDate()">
+                <md-option ng-repeat="item in $ctrl.anios | orderBy:'-'" value="{{item}}">
+                    {{item}}
+                </md-option>
+            </md-select>
+           
+        </md-input-container>
+    </div>
+
+</div>

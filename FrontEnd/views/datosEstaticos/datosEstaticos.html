@@ -1,0 +1,115 @@
+﻿<div cg-busy="datosEstaticosCtrl.busy" class="homeClass">
+
+    <md-content layout-padding-buttom="0px">
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="alert alert-primary">
+                    <ul class="fa-ul">
+                        <li>
+                            <i class="fa fa-info-circle fa-lg fa-li"></i>
+                            <h2>ADMINISTRACIÓN DE DATOS ESTÁTICOS</h2>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h5>Valores: Tipo de documento</h5>
+                    </div>
+                    <div class="x_content">
+                        <table class="table table-hover jambo_table bulk_action">
+                            <thead>
+                                <tr style="text-align:center;">
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align:center;">
+                                <tr ng-repeat="tipo in datosEstaticosCtrl.tipos">
+                                    <td>
+                                        <input type="text" class="form-control content-input" value="{{tipo.Descripcion | uppercase}}" ng-disabled="!flag1" />
+                                    </td>
+                                    <td style="padding-left:4px; padding-right:4px;">
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flag1" ng-click="flag1 = true;">Editar</button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-eliminar" ng-show="!flag1" ng-click="flag1 = true;">Borrar</button>
+                                        <div ng-style="{'visibility' : flag1 ? 'visible' : 'hidden'}">
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flag1" ng-click=""><i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flag1" ng-click="flag1 = !flag1"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control content-input" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde">Agregar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="x_title">
+                        <h5>Valores: Sexo</h5>
+                    </div>
+                    <div class="x_content">
+                        <table class="table table-hover jambo_table bulk_action">
+                            <thead>
+                                <tr style="text-align:center;">
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align:center;">
+                                <tr ng-repeat="sexo in datosEstaticosCtrl.sexos">
+                                    <td>
+                                        <input type="text" class="form-control content-input" value="{{sexo.Descripcion | uppercase}}" ng-disabled="!flag2" />
+                                    </td>
+                                    <td style="padding-left:4px; padding-right:4px;">
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flag2" ng-click="flag2 = true;">Editar</button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-eliminar" ng-show="!flag2" ng-click="flag2 = true;">Borrar</button>
+                                        <div ng-style="{'visibility' : flag2 ? 'visible' : 'hidden'}">
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flag2" ng-click=""><i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flag2" ng-click="flag2 = !flag2"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control content-input"/>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde">Agregar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="x_content">
+                        <form class="form-label-left input_mask">
+                            <div class="form-group row float-right">
+                                <div class="col-md-12 mt-3">
+                                    <button class="btn btn-outline-primary btn-md" type="reset" ng-click="buscarPostulantesCtrl.clearFormularios()">Limpiar parámetros</button>
+                                    <button type="submit" class="btn btn-primary btn-md" ng-click="buscarPostulantesCtrl.getPostulantes(1);">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </md-content>
+</div>
+
+
+
+

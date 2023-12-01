@@ -1,0 +1,261 @@
+﻿<div cg-busy="reporteEnvioCorreoPorDniCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">REPORTE DE CORREOS ENVIADOS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Reporte de correos enviados</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de correos</h3>
+                </div>
+                <div class="card-body">
+                    <table class="display nowrap dataTable" style="width: 100%; border-radius: 0px; border: 0px;" datatable="ng" ng-jq="$" dt-options="reporteEnvioCorreoPorDniCtrl.dtOptions">
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th>ID</th>
+                                <th>CODIGO</th>
+                                <th>FECHA</th>
+                                <th>AGENTE</th>
+                                <th>#DNI</th>
+                                <th>ASUNTO</th>
+                                <th>VER</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:left;">
+                            <tr ng-repeat="nm in reporteEnvioCorreoPorDniCtrl.ResumenEnvioMails">
+                                <td>{{ nm.Id }}</td>
+                                <td>{{ nm.Codigo }}</td>
+                                <td>{{ nm.Fecha | date : 'dd/MM/yyyy'}}</td>
+                                <td>{{ nm.Credencial }} {{ nm.Agente }}</td>
+                                <td>{{ nm.Mails }}</td>
+                                <td>{{ nm.Asunto }}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" ng-click="reporteEnvioCorreoPorDniCtrl.seleccionarElemento(nm)"><i class="fa fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header" ng-if="reporteEnvioCorreoPorDniCtrl.EnvioActual != null">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Detalles del envío <small>({{reporteEnvioCorreoPorDniCtrl.EnvioActual.Mails}} DNI procesado(s))</small></h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <form class="form-horizontal ng-pristine ng-valid">
+                        <div class="offset-md-1 col-md-10">
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Codigo</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Codigo">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Fecha envio</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Fecha | date : 'dd/MM/yyyy HH:mm'">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Credencial</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Credencial">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Agente</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Agente">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Asunto</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Asunto">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Listado de DNI</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <textarea disabled class="form-control">{{reporteEnvioCorreoPorDniCtrl.EnvioActual.ListadoDni}}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-4 label-align">Cant. Dnis</label>
+                                <div class="col-md-9 col-sm-5">
+                                    <input type="text"
+                                           disabled
+                                           class="form-control"
+                                           ng-value="reporteEnvioCorreoPorDniCtrl.EnvioActual.Mails">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" style="text-align: right;">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr style="text-align:left;">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>ESTADO</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:left;">
+                                    <tr ng-repeat="n in reporteEnvioCorreoPorDniCtrl.EnvioActual.Notificados">
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="reporteEnvioCorreoPorDniCtrl.seleccionarRuta('postulanteBuscarPorDni/' + n.Documento)">
+                                                {{n.Documento}}
+                                            </a>
+                                        </td>
+                                        <td>{{ n.Estado }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header" ng-if="reporteEnvioCorreoPorDniCtrl.EnvioActual != null">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Vista previa</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div style="
+                                font-family: Arial, sans-serif;
+                                min-height: 37px;
+                                font-weight: bold;
+                                font-size: 16pt;
+                                margin-bottom: 19px;
+                                margin-top: 1px;
+                                margin-left: 7px;">
+                        {{reporteEnvioCorreoPorDniCtrl.EnvioActual.Asunto | uppercase}}
+                    </div>
+                    <div style="margin: -8px; font-family: Arial, sans-serif;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; background: #d3f2ff; margin: 0; padding: 0">
+                            <tbody>
+                                <tr>
+                                    <td style="padding-top: 10px">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 600px; margin: auto; margin-top: 20px; background: #fff; border-top: #ccc 1px solid; text-align: justify;">
+                                            <tbody>
+                                                <tr style="background-color: #5083ae;">
+                                                    <td style="padding-left: 50px; border-left: #ccc 1px solid; border-collapse: collapse">
+                                                        &nbsp;
+                                                    </td>
+                                                    <td style="padding: 5px 0 20px 0">
+                                                        <img alt="Argentina.gob.ar" title="Argentina.gob.ar/servicio-penitenciario-federal" style="width: 200px; margin: 0; padding-top: 20px; display: block; line-height: 100%; border: none; outline: none; text-decoration: none; height: auto" src="https://incorporaciones.spf.gob.ar/images/mailing_img/SPF_iso_blanco-01.png" class="CToWUd">
+                                                    </td>
+                                                    <td style="padding-right: 50px; border-right: #ccc 1px solid; border-collapse: collapse">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border-left: #ccc 1px solid">&nbsp;</td>
+                                                    <td style="padding: 40px 0 20px 0; color: #333">
+                                                        <p ng-bind-html="reporteEnvioCorreoPorDniCtrl.EnvioActual.Mensaje" style="margin: 0; display: block; text-align: left; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px; margin-bottom: 20px; font-weight: normal">
+
+                                                        </p>
+                                                        <p>
+                                                            Con el afecto de siempre,<br>
+                                                            <strong>Equipo de argentina.gob.ar/spf</strong>
+                                                        </p>
+                                                    </td>
+
+                                                    <td style="border-right: #ccc 1px solid">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; border-left: #ccc 1px solid">
+                                                        &nbsp;
+                                                    </td>
+                                                    <td align="center" style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; padding: 15px 0">
+                                                        <img alt="Servicio Penitenciario Federal - Argentina Unida" title="Servicio Penitenciario Federal - Argentina Unida" width="500" style="width: 350px; height: auto; display: block; line-height: 100%; border: none; outline: none; text-decoration: none" src="https://incorporaciones.spf.gob.ar/images/mailing_img/Pie-de-firma-mail.png" class="CToWUd">
+                                                    </td>
+                                                    <td style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; border-right: #ccc 1px solid">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#d3f2ff">
+                                                    <td>&nbsp;</td>
+                                                    <td style="padding: 15px 0 30px 0">
+                                                        <p style="margin: 0; display: block; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px">
+                                                            El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14, inciso
+                                                            3 de la ley N° 25.326. LEY 25.326 - ART. 27. - INC. 3. El titular podrá en cualquier momento solicitar el retiro o bloqueo de su nombre de los bancos de datos a los que se refiere el presente artículo. DECRETO 1558/01 - ART. 27. - 3er. PÁRRAFO. En toda comunicación
+                                                            con fines de publicidad que se realice por correo, teléfono, correo electrónico, Internet u otro medio a distancia a conocer, se deberá indicar, en forma expresa y destacada, la posibilidad del titular del dato de solicitar el retiro o bloqueo, total o parcial,
+                                                            de su nombre de la base de datos. A pedido del interesado, se deberá informar el nombre del responsable o usuario del banco de datos que proveyó la información.
+                                                        </p>
+                                                        <p style="margin: 0; display: block; text-align: left; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px; margin-top: 10px">
+                                                            ¿Querés dejar de recibir estos mensajes? Accedé a tu cuenta en
+                                                            <a href="#" style="font-weight: bold; text-decoration: none; color: #333" target="_blank" data-saferedirecturl="">
+                                                                incorporaciones.spf.gob.ar
+                                                            </a>
+                                                            y hacé click en "Desactivar perfil"
+                                                        </p>
+                                                        <p style="margin: 0; display: block; text-align: left; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px; margin-top: 10px">
+                                                            Dirección Nacional del Servicio Penitenciario Federal | Lavalle 2705 | Ciudad Autónoma de Buenos Aires | C1190AAA
+                                                        </p>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+</div>

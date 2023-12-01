@@ -1,0 +1,307 @@
+﻿<div cg-busy="homeCtrl.busy">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">SISTEMA DE INCORPORACIONES</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Inicio</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Acerca de INCORPORACIONES</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--<h5 class="card-title">Acerca de INCORPORACIONES</h5>-->
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <p class="card-text" style="text-align: justify;">
+                                        El sistema de <b>INCORPORACIONES</b> permite gestionar el proceso de inscripción para los postulantes de la Escuela de oficiales y la Escuela de suboficiales agilizando la carga de datos por parte de los postulantes y la validación por parte de los agentes.
+                                        <br />
+
+                                        <a ng-show="!mostrar" ng-click="mostrar=!mostrar" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                            <p style="text-align: center;">Ver más</p>
+                                        </a>
+                                        <div class="collapse" id="collapseExample">
+
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+
+                                            <br />
+                                            <br />
+                                            <a href="javascript:void(0)" ng-click="mostrar=!mostrar" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                <p style="text-align: center;">Ver menos</p>
+                                            </a>
+                                        </div>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-3 align-self-center" style="text-align:center">
+                                    <img src="https://unicredito.com.ar/imagenes/SPF.png" alt="SPF" width="150" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h5>Los números de INCORPORACIONES</h5>
+                </div>
+                <div class="col-sm-6">
+                    <span style="float:right">
+                        Fecha estadisticas: {{homeCtrl.Stats.FechaReporte | date:'dd/MM/yyyy HH:mm:ss'}}
+                        <i class="fa fa-refresh" ng-click="homeCtrl.SetStats()"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <p> Total postulantes</p>
+                            <h3>{{homeCtrl.Stats.TotalRegistrados}}</h3>
+                            <span class="count_bottom"><i class="green">100% </i> Habilitados</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <p> Carrera Oficial</p>
+                            <h3>{{homeCtrl.Stats.TotalCarreraOficial}}</h3>
+                            <span class="count_bottom"><i class="green">{{homeCtrl.Stats.TotalCarreraOficialPorcentaje}}% </i> del total</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <p> Carrera Suboficial</p>
+                            <h3>{{homeCtrl.Stats.TotalCarreraSuboficial}}</h3>
+                            <span class="count_bottom"><i class="green">{{homeCtrl.Stats.TotalCarreraSuboficialPorcentaje}}% </i> del total</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <p>Sin decidir</p>
+                            <h3>{{homeCtrl.Stats.TotalSinDecidirPorcentaje}}</h3>
+                            <span class="count_bottom"><i class="blue">{{homeCtrl.Stats.TotalSinDecidirPorcentaje}}% </i> del total</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <p>Total Mujeres</p>
+                            <h3>{{homeCtrl.Stats.TotalMujeres}}</h3>
+                            <span class="count_bottom"><i class="green">{{homeCtrl.Stats.TotalMujeresPorcentaje}}% </i> Llenaron Datos Basicos</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <p>Total Hombres</p>
+                            <h3>{{homeCtrl.Stats.TotalHombres}}</h3>
+                            <span class="count_bottom"><i class="green">{{homeCtrl.Stats.TotalHombresPorcentaje}}% </i> Llenaron Datos Basicos</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Más info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Inscriptos EPN <small>(Acumulado)</small></h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body text-center">
+                            <canvas id="DetalleTotalesPorEscalafonOficiales"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Inscriptos ES <small>(Acumulado)</small></h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body text-center">
+                            <canvas id="DetalleTotalesPorEscalafonSuboficiales"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Postulantes perfil completo</h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body text-center">
+                            <canvas id="DetalleTotalesPerfilesCompletados"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Provincias <small>(Postulantes con el domicilio del DNI cargado)</small></h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body text-center p-0">
+                            <div class="table-responsive">
+                                <table class="table table-striped mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>PROVINCIA</th>
+                                            <th>REGISTRADOS</th>
+                                            <th>MUJERES</th>
+                                            <th>HOMBRES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="provincia in homeCtrl.Stats.PostulantesPorProvincias.Items | orderBy: '-Cantidad'">
+                                            <td>{{provincia.Descripcion}}</td>
+                                            <td style="text-align: center;">{{provincia.Cantidad}}</td>
+                                            <td style="text-align: center;">{{provincia.Femeninos}}</td>
+                                            <td style="text-align: center;">{{provincia.Masculinos}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Inscripciones EPN <small>(por sexo)</small></h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body">
+                            <div class="position-relative">                                
+                                <canvas id="bar_chart_InscriptosPorSexoEPN"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-dark">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Inscripciones ES <small>(por sexo)</small></h3>
+                            <!--<div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
+                        </div>
+                        <div class="card-body text-center">
+                            <canvas id="bar_chart_InscriptosPorSexoES"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+

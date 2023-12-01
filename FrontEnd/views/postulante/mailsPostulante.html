@@ -1,0 +1,200 @@
+﻿<div cg-busy="mailsPostulanteCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">MAILS DEL POSTULANTE</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Historial de mails</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header" >
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Datos del postulante</h3>
+                    <div class="card-tools">
+                        <button type="button"
+                                class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;"
+                                ng-click="mailsPostulanteCtrl.Volver()">
+                            Volver
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body box-profile">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img class="profile-user-img img-fluid img-circle" style="margin: auto; width: 220px; height: 220px;" src="images/NoImageUser.jpg" alt="Avatar">
+                            <p class="profile-username text-center mt-3" style="font-size: 18px; margin-bottom: -5px;">{{mailsPostulanteCtrl.postulanteData.Apellido | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{mailsPostulanteCtrl.postulanteData.Nombres | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{mailsPostulanteCtrl.postulanteData.Documento}}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Carrera</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.Carrera.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Escalafón</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.Escalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item" ng-if="mailsPostulanteCtrl.postulanteData.SubEscalafon != null">
+                                    <b>Subescalafón</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.SubEscalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de registro</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.FechaRegistro | date: "dd/MM/yyyy"}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de nacimiento</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.FechaNacimiento | date: "dd/MM/yyyy"}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Edad</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.Edad }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Estado de postulacion</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.EstadoPostulacion.Descripcion | uppercase }}</a>
+                                </li>
+                                <li class="list-group-item" style="border-bottom:0px" ng-if="mailsPostulanteCtrl.postulanteData.CodigoInscripcion != null">
+                                    <b>Código de inscripción</b> <a class="float-right">{{mailsPostulanteCtrl.postulanteData.CodigoInscripcion }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de mails</h3>
+                </div>
+                <div class="card-body" ng-if="mailsPostulanteCtrl.ResumenEnvioMails.length == 0">
+                    <h3>EL POSTULANTE NO TINE MAILS</h3>
+                </div>
+                <div class="card-body" ng-if="mailsPostulanteCtrl.ResumenEnvioMails.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr style="text-align:left;">
+                                    <th>ID</th>
+                                    <th>CODIGO</th>
+                                    <th>FECHA</th>
+                                    <th>AGENTE</th>
+                                    <th>ASUNTO</th>
+                                    <th>VER</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align:left;">
+                                <tr ng-repeat="nm in mailsPostulanteCtrl.ResumenEnvioMails">
+                                    <th scope="row">{{ nm.NotificacionesMail.Id }}</th>
+                                    <td>{{ nm.NotificacionesMail.Codigo }}</td>
+                                    <td>{{ nm.NotificacionesMail.Fecha | date : 'dd/MM/yyyy'}}</td>
+                                    <td>{{ nm.NotificacionesMail.Credencial }} {{ nm.NotificacionesMail.Agente }}</td>
+                                    <td>{{ nm.NotificacionesMail.Asunto }}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" ng-click="mailsPostulanteCtrl.seleccionarElemento(nm.NotificacionesMail)"><i class="fa fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="x_panel" ng-if="mailsPostulanteCtrl.EnvioActual != null">
+                        <div class="x_title">
+                            <h4>Vista previa</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <div>
+                                <p><b>Asunto del mail: </b>{{mailsPostulanteCtrl.EnvioActual.Asunto | uppercase}}</p>
+                            </div>
+
+                            <div style="margin: -8px; font-family: Arial, sans-serif;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; background: #d3f2ff; margin: 0; padding: 0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-top: 10px">
+                                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 600px; margin: auto; margin-top: 20px; background: #fff; border-top: #ccc 1px solid; text-align: justify;">
+                                                    <tbody>
+                                                        <tr style="background-color: #5083ae;">
+                                                            <td style="padding-left: 50px; border-left: #ccc 1px solid; border-collapse: collapse">
+                                                                &nbsp;
+                                                            </td>
+                                                            <td style="padding: 5px 0 20px 0">
+                                                                <img alt="Argentina.gob.ar" title="Argentina.gob.ar/servicio-penitenciario-federal" style="width: 200px; margin: 0; padding-top: 20px; display: block; line-height: 100%; border: none; outline: none; text-decoration: none; height: auto" src="https://incorporaciones.spf.gob.ar/images/mailing_img/SPF_iso_blanco-01.png" class="CToWUd">
+                                                            </td>
+                                                            <td style="padding-right: 50px; border-right: #ccc 1px solid; border-collapse: collapse">
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="border-left: #ccc 1px solid">&nbsp;</td>
+                                                            <td style="padding: 40px 0 20px 0; color: #333">
+                                                                <p ng-bind-html="mailsPostulanteCtrl.EnvioActual.Mensaje" style="margin: 0; display: block; text-align: left; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px; margin-bottom: 20px; font-weight: normal">
+
+                                                                </p>
+                                                                <p>
+                                                                    Con el afecto de siempre,<br>
+                                                                    <strong>Equipo de argentina.gob.ar/spf</strong>
+                                                                </p>
+                                                            </td>
+
+                                                            <td style="border-right: #ccc 1px solid">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; border-left: #ccc 1px solid">
+                                                                &nbsp;
+                                                            </td>
+                                                            <td align="center" style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; padding: 15px 0">
+                                                                <img alt="Servicio Penitenciario Federal - Argentina Unida" title="Servicio Penitenciario Federal - Argentina Unida" width="500" style="width: 350px; height: auto; display: block; line-height: 100%; border: none; outline: none; text-decoration: none" src="https://incorporaciones.spf.gob.ar/images/mailing_img/Pie-de-firma-mail.png" class="CToWUd">
+                                                            </td>
+                                                            <td style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid; border-right: #ccc 1px solid">
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr bgcolor="#d3f2ff">
+                                                            <td>&nbsp;</td>
+                                                            <td style="padding: 15px 0 30px 0">
+                                                                <p style="margin: 0; display: block; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px">
+                                                                    El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14, inciso
+                                                                    3 de la ley N° 25.326. LEY 25.326 - ART. 27. - INC. 3. El titular podrá en cualquier momento solicitar el retiro o bloqueo de su nombre de los bancos de datos a los que se refiere el presente artículo. DECRETO 1558/01 - ART. 27. - 3er. PÁRRAFO. En toda comunicación
+                                                                    con fines de publicidad que se realice por correo, teléfono, correo electrónico, Internet u otro medio a distancia a conocer, se deberá indicar, en forma expresa y destacada, la posibilidad del titular del dato de solicitar el retiro o bloqueo, total o parcial,
+                                                                    de su nombre de la base de datos. A pedido del interesado, se deberá informar el nombre del responsable o usuario del banco de datos que proveyó la información.
+                                                                </p>
+                                                                <p style="margin: 0; display: block; text-align: left; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px; margin-top: 10px">
+                                                                    ¿Querés dejar de recibir estos mensajes? Accedé a tu cuenta en
+                                                                    <a href="#" style="font-weight: bold; text-decoration: none; color: #333" target="_blank" data-saferedirecturl="">
+                                                                        incorporaciones.spf.gob.ar
+                                                                    </a>
+                                                                    y hacé click en "Desactivar perfil"
+                                                                </p>
+                                                                <p style="margin: 0; display: block; text-align: left; color: #707070; font-family: Arial, sans-serif; font-size: 8px; line-height: 12px; margin-top: 10px">
+                                                                    Dirección Nacional del Servicio Penitenciario Federal | Lavalle 2705 | Ciudad Autónoma de Buenos Aires | C1190AAA
+                                                                </p>
+                                                            </td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+</div>
