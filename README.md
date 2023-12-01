@@ -57,26 +57,34 @@ https://buenbuceo.ar
 BackOffice
 https://buenbuceo.ar/_AdminBuenBuceo_/
 
+```
 RECAPTCHA KEYS:
 LOCAL:
 Public:
 Secret
+```
 
+```
 PROD:
 Public:
 Secret:
+```
 
 Maps Api KEY 
 
 DNS:
+```
 ns1.dns-parking.com
 ns2.dns-parking.com 
+```
 
 DDBB
+```
 base: u229759960_buenbuceo
 User: u229759960_buceo
 Pass: Rosario440
 Link: https://auth-db1194.hstgr.io/index.php?db=u229759960_buenbuceo 
+```
 
 MAIL:
 mail: info@buenbuceo.ar
