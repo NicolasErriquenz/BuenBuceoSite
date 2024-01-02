@@ -43,8 +43,9 @@ gulp.task('copyFiles', function () {
     //copia las fuentes de fontAwesome y Bootstrap
     gulp.src('./node_modules/font-awesome/fonts/**/*.{woff2,ttf,woff,eof,svg}')
         .pipe(gulp.dest(deployDirectory + 'fonts/'));
-    //gulp.src('./node_modules/bootstrap/fonts/**/*.{woff2,ttf,woff,eof,svg}')
-    //    .pipe(gulp.dest(deployDirectory + 'fonts/'));
+        
+    gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*.{woff2,ttf,woff,eof,svg}')
+        .pipe(gulp.dest(deployDirectory + 'webfonts/'));
 
 });
 
