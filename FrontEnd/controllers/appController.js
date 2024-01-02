@@ -5,20 +5,6 @@
 function controladorPrincipal(homeService, $location, $rootScope, $scope, ngOidcClient, urls, $timeout) {
     var vm = this;
 
-    //$(document).ready(function () {
-    //    console.log("Ejecuta cuando carga sitio");
-    //    $('.maximized-card').remove();
-    //    $('body').removeClass('modal-open');
-    //    $('.modal-backdrop').remove();
-    //});
-
-    vm.MostrarMenu = true;
-    vm.openMenu = false;
-
-    vm.abrirMenu = function () {
-        //$mdSidenav("left").toggle();
-    };
-
     vm.seleccionarRuta = function (ruta, elem) {
         
         document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -28,16 +14,7 @@ function controladorPrincipal(homeService, $location, $rootScope, $scope, ngOidc
         $location.url(ruta);
     };
 
-    vm.gotoPdt = function () {
-        window.open(urls.rutaPdt, "_blank");
-    };
-    vm.gotoPdt2 = function () {
-        window.open(urls.rutaPdt2, "_blank");
-    };
-
     ngOidcClient.getUser();
-
-    
 
     $scope.$on("ng-oidc-client.userInfoChanged", function () { console.log("ng-oidc-client.userInfoChanged"); });
     $scope.$on("ng-oidc-client.userLoaded", function (e, u) { console.log("ng-oidc-client.userLoaded"); console.log(u); });
@@ -118,19 +95,6 @@ function controladorPrincipal(homeService, $location, $rootScope, $scope, ngOidc
         Motivo: "Contacto"
     };
 
-    vm.abrirContacto = function () {
-
-        vm.consulta.Credencial = vm.user().data.profile.credencial;
-        vm.consulta.Givenname = vm.user().data.profile.givenname;
-
-        $mdDialog.show({
-            contentElement: '#contactoDialog',
-            parent: angular.element(document.body),
-            escapeToClose: true,
-            clickOutsideToClose: true
-        });
-    };
-
     vm.apiKey = urls.recaptcha_key;
 
     vm.setResponse = function (response) {
@@ -167,8 +131,6 @@ function controladorPrincipal(homeService, $location, $rootScope, $scope, ngOidc
         }
         return formato.replace(/dd|mm|yyyy/gi, matched => map[matched])
     }
-
-
 
     vm.checkKey = function ($event) {
         $event.keyCode == 13 ? vm.buscarAgente() : null;

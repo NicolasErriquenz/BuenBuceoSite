@@ -26,6 +26,10 @@ gulp.task('copyFiles', function () {
     //copia todas las vistas
     gulp.src('views/**/*.html')
         .pipe(gulp.dest(buildDirectory + 'views/'));
+
+    gulp.src('media/*.mp4')
+        .pipe(gulp.dest(buildDirectory + 'media/'));
+
     //copia templates de components
     gulp.src('components/templates/**/*.html')
        .pipe(gulp.dest(deployDirectory + 'components/templates/'));
@@ -43,7 +47,7 @@ gulp.task('copyFiles', function () {
     //copia las fuentes de fontAwesome y Bootstrap
     gulp.src('./node_modules/font-awesome/fonts/**/*.{woff2,ttf,woff,eof,svg}')
         .pipe(gulp.dest(deployDirectory + 'fonts/'));
-        
+
     gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*.{woff2,ttf,woff,eof,svg}')
         .pipe(gulp.dest(deployDirectory + 'webfonts/'));
 
@@ -58,20 +62,6 @@ gulp.task('copyRelease', function () {
 
 });
 
-//publica
-gulp.task('publishTesting', ['copyFiles','copyRelease'], function () {
-
-    
-
-    gulp.src('./*.html')
-      .pipe(usemin({
-          cssmin: minifyCss(),
-          htmlmin: minifyHtml(),
-          jsmin: uglify()
-      }))
-      .pipe(gulp.dest(buildDirectory));
-});
-
 gulp.task('publishRelease', ['copyFiles', 'copyRelease'], function () {
     gulp.src('./*.html')
         .pipe(usemin({
@@ -80,7 +70,6 @@ gulp.task('publishRelease', ['copyFiles', 'copyRelease'], function () {
             jsmin: uglify()
         }))
         .pipe(gulp.dest(buildDirectory));
-
 });
 
 var gutil = require('gulp-util');
@@ -116,8 +105,11 @@ gulp.task('minifyDeploy', function () {
 
     gulp.src(buildDirectory + '**/*.html')
         //.pipe(htmlmin({ collapseWhitespace: true }))
-        .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
         .pipe(gulp.dest(deployDirectory));
+
+    //copia contenido multimedia
+    gulp.src('media/*.*')
+        .pipe(gulp.dest(deployDirectory + 'media/'));
 
     //copia contenido
     gulp.src('images/**/*.*')
