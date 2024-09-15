@@ -35,8 +35,8 @@ function controladorPrincipal(homeService, $location, $rootScope, $scope, ngOidc
 
     //console.log(vm.user());
 
-    vm.openMenu = function ($mdOpenMenu, ev) {
-        $mdOpenMenu(ev);
+    vm.gotContacto = function () {
+        console.log("ir a contacto");
     };
 
     $scope.$on("ng-oidc-client.accessTokenExpired", function () {

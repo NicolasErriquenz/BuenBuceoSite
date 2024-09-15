@@ -10,7 +10,7 @@
         showErrorDetail: true,
         busyModalExceptionList: [],
         googleMapsApiKey: "AIzaSyCYlcn2JXWWHwUGPiZpa2gk4rTsgJJKYx0",
-        serverUrl: "https://localhost/IncorporacionesAPI/",
+        serverUrl: "http://localhost/api/",
         _recursos: "https://localhost/IncorporacionesAPI/_recursos/",
         _recursosCalificaciones: "https://localhost/IncorporacionesAPI/_recursos/",
         _recursosFotosPerfil: "https://localhost/IncorporacionesAPI/_recursos/fotos_perfil/",

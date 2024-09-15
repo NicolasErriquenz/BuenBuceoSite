@@ -10,7 +10,7 @@
         showErrorDetail: true,
         busyModalExceptionList: [],
         googleMapsApiKey: "AIzaSyCYlcn2JXWWHwUGPiZpa2gk4rTsgJJKYx0",
-        serverUrl: "https://apis.spf.gob.ar/incorporaciones/",
+        serverUrl: "https://buenbuceo.ar/api/",
         _recursos: "https://apis.spf.gob.ar/incorporaciones/_recursos/",
         _recursosCalificaciones: "https://apis.spf.gob.ar/incorporaciones/_recursos/calificaciones/",
         _recursosFotosPerfil: "https://apis.spf.gob.ar/incorporaciones/_recursos/fotos_perfil/",

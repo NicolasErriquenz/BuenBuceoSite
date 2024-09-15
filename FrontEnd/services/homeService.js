@@ -6,12 +6,16 @@
                 urls.serverUrl + "api/home/",
                 { id: "@id" },
                 {
-                    GetEstadisticasHome: {
-                        method: "GET",
+                    sendMsg: {
+                        method: "POST",
                         isArray: false,
-                        url: urls.serverUrl + "api/estadisticas/GetEstadisticasHome",
-                        transformResponse: function (data) {
-                            return { data: angular.fromJson(data) };
+                        url: urls.serverUrl + "sendMsg.php",
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        transformRequest: function(obj) {
+                            var str = [];
+                            for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                            return str.join("&");
                         }
                     },
                     SetEstadisticasHome: {
