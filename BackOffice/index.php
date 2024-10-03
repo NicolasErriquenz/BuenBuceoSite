@@ -26,26 +26,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="_nK">
-    
-    <title><?php echo SITE_TITLE; ?></title>
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="bower_components/nanoscroller/bin/css/nanoscroller.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/material-design-icons/css/material-design-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/weather-icons/css/weather-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/_con/css/con-base.min.css">
-    
-    <link rel="icon" href="<?=$FAVICON_32?> " sizes="32x32">
-    <link rel="icon" href="<?=$FAVICON_196?>" sizes="192x192">
-    <link rel="apple-touch-icon" href="<?=$FAVICON_180?>">
-</head>
+
+    <?php include("includes/head.php"); ?>
+
 <body>
     <section id="sign-in">
         <canvas id="bubble-canvas"></canvas>

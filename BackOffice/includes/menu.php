@@ -23,17 +23,11 @@
                             <div class="yay-user-location"><i class="fa fa-gear"></i> Administrador</div>
                         </a>
                     </li>
-                    <li class="label">Menu</li>
-                    <li class="open"><a href="dashboard.html" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-dashboard"></i> Dashboards <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
-                        <ul>
-                            <li><a href="dashboard.html" class="waves-effect waves-blue">Dashboard</a>
-                            </li>
-                            <li class="active"><a href="dashboard-v1.html" class="waves-effect waves-blue">Dashboard v1</a>
-                            </li>
-                        </ul>
+                    <li class="label">Info estática</li>
+                    <li>
+                        <a href="pagos_rubros.php" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Rubros de pago</a>
                     </li>
-                    <li><a href="widgets.html" class="waves-effect waves-blue"><i class="fa fa-magic"></i> Widgets</a>
-                    </li>
+                    <li><a href="widgets.html" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Sububros de pago</a></li>
                     <li><a href="layouts.html" class="waves-effect waves-blue"><i class="mdi mdi-av-web"></i> Layouts <span class="badge new">new</span></a>
                     </li>
                     <li class="label">Elements</li>
