@@ -24,67 +24,21 @@
                         </a>
                     </li>
                     <li class="label">Info estática</li>
-                    <li>
-                        <a href="pagos_rubros.php" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Rubros de pago</a>
-                    </li>
-                    <li><a href="widgets.html" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Sububros de pago</a></li>
-                    <li><a href="layouts.html" class="waves-effect waves-blue"><i class="mdi mdi-av-web"></i> Layouts <span class="badge new">new</span></a>
-                    </li>
-                    <li class="label">Elements</li>
-                    <li><a href="css-alerts.html" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-css3"></i> CSS <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
+                    <li><a href="pagos_rubros.php" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Rubros de pago</a></li>
+                    <li><a href="pagos_subrubros.php" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Subrubros de pago</a></li>
+                    <li><a href="deudaTipo_listado.php" class="waves-effect waves-blue"><i class="fa fa-edit"></i> Tipo deuda <!--<span class="badge new">new</span>--></a></li>
+
+                    <li class="label">PRINCIPAL</li>
+                    <li><a href="#" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-users"></i> Usuarios <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
                         <ul>
-                            <li><a href="css-alerts.html" class="waves-effect waves-blue"><i class="mdi-alert-warning"></i> Alerts</a>
-                            </li>
-                            <li><a href="css-badges.html" class="waves-effect waves-blue"><i class="mdi-action-stars"></i> Badges</a>
-                            </li>
-                            <li><a href="css-colors.html" class="waves-effect waves-blue"><i class="mdi-image-palette"></i> Colors</a>
-                            </li>
-                            <li><a href="css-grid.html" class="waves-effect waves-blue"><i class="mdi-action-dashboard"></i> Grid</a>
-                            </li>
-                            <li><a href="css-helpers.html" class="waves-effect waves-blue"><i class="mdi-action-help"></i> Helpers</a>
-                            </li>
-                            <li><a href="css-icons.html" class="waves-effect waves-blue"><i class="mdi-communication-invert-colors-on"></i> Icons</a>
-                            </li>
-                            <li><a href="css-shadow.html" class="waves-effect waves-blue"><i class="mdi-maps-layers"></i> Shadow</a>
-                            </li>
-                            <li><a href="css-typography.html" class="waves-effect waves-blue"><i class="fa fa-font"></i> Typography</a>
-                            </li>
+                            <li><a href="usuarios.php" class="waves-effect waves-blue"><i class="fa fa-bars"></i> Listado</a></li>
+                            <li><a href="usuarios_alta.php" class="waves-effect waves-blue"><i class="fa fa-plus"></i> Alta </a></li>
                         </ul>
                     </li>
-                    <li><a href="ui-buttons.html" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-cubes"></i> UI Elements <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
+                    <li><a href="ui-buttons.html" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-credit-card"></i> Pagos <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
                         <ul>
-                            <li><a href="ui-buttons.html" class="waves-effect waves-blue"><i class="fa fa-square"></i> Buttons</a>
-                            </li>
-                            <li><a href="ui-cards.html" class="waves-effect waves-blue"><i class="mdi-av-web"></i> Cards</a>
-                            </li>
-                            <li><a href="ui-chips.html" class="waves-effect waves-blue"><i class="fa fa-tag"></i> Chips <span class="badge new">new</span></a>
-                            </li>
-                            <li><a href="ui-collapsible.html" class="waves-effect waves-blue"><i class="mdi-action-view-day"></i> Collapsible</a>
-                            </li>
-                            <li><a href="ui-collections.html" class="waves-effect waves-blue"><i class="fa fa-server"></i> Collections</a>
-                            </li>
-                            <li><a href="ui-dropdown.html" class="waves-effect waves-blue"><i class="mdi-navigation-arrow-drop-down-circle"></i> Dropdown</a>
-                            </li>
-                            <li><a href="ui-modals.html" class="waves-effect waves-blue"><i class="fa fa-external-link"></i> Modals</a>
-                            </li>
-                            <li><a href="ui-nestable.html" class="waves-effect waves-blue"><i class="fa fa-list"></i> Nestable <span class="badge new">new</span></a>
-                            </li>
-                            <li><a href="ui-pagination.html" class="waves-effect waves-blue"><i class="mdi mdi-navigation-more-horiz"></i> Pagination</a>
-                            </li>
-                            <li><a href="ui-progress-bars.html" class="waves-effect waves-blue"><i class="fa fa-tasks"></i> Progress Bars</a>
-                            </li>
-                            <li><a href="ui-tabs.html" class="waves-effect waves-blue"><i class="mdi-action-tab-unselected"></i> Tabs</a>
-                            </li>
-                            <li><a href="ui-toasts.html" class="waves-effect waves-blue"><i class="mdi-action-announcement"></i> Toasts</a>
-                            </li>
-                            <li><a href="ui-tooltips.html" class="waves-effect waves-blue"><i class="fa fa-comment-o"></i> Tooltips</a>
-                            </li>
-                            <li><a href="ui-tree-view.html" class="waves-effect waves-blue"><i class="fa fa-list"></i> Tree View <span class="badge new">new</span></a>
-                            </li>
-                            <li><a href="ui-waves.html" class="waves-effect waves-blue"><i class="mdi-image-blur-on"></i> Waves</a>
-                            </li>
-                            <li><a href="ui-search-bar.html" class="waves-effect waves-blue"><i class="mdi-action-search"></i> Search Bar</a>
-                            </li>
+                            <li><a href="pagos.php" class="waves-effect waves-blue"><i class="fa fa-bars"></i> Listado </a></li>
+                            <li><a href="pagos_alta.php" class="waves-effect waves-blue"><i class="fa fa-plus"></i> Alta </a></li>
                         </ul>
                     </li>
                     <li><a href="media-hover-effects.html" class="yay-sub-toggle waves-effect waves-blue"><i class="mdi mdi-image-panorama"></i> Media <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>

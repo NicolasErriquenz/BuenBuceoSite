@@ -7,10 +7,10 @@
 
     require_once ("servicios/servicio.php");
 
-    $tabla = "pagos_rubros";
-    $idNombre = "pagosRubroId";
-    $rubros = getRubrosPagos();
-    $title = "RUBROS";
+    $tabla = "pagos_subrubros";
+    $idNombre = "pagosSubrubroId";
+    $subrubros = getSubrubrosPagos();
+    $title = "SUBRUBROS";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -35,10 +35,10 @@
          <div class="page-title">
             <div class="row">
                <div class="col s12 m9 l10">
-                  <h1>Rubros de pagos</h1>
+                  <h1>Subrubros de pagos</h1>
                   <ul>
                      <li><a href="dashboard.php"><i class="fa fa-home"></i> Home </a> /</li>
-                     <li><a href="#">Rubros</a></li>
+                     <li><a href="#">Subrubros</a></li>
                   </ul>
                </div>
                <!-- <div class="col s12 m3 l2 right-align"><a href="#!" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle"><i class="fa fa-comments"></i></a></div> -->
@@ -46,7 +46,7 @@
          </div>
          <!-- /Breadcrumb -->
          <div class="card-panel">
-          Podés administrar los rubros de pagos desde aquí
+          Podés administrar los subrubros de pagos desde aquí
          </div>
          <br>
         <form>
@@ -57,52 +57,54 @@
                         
                         <h5 class="center-align custom-title"><?php echo $title ?></h5>
 
-                        <!-- Botón para agregar rubro (alineado a la derecha) -->
+                        <!-- Botón para agregar subrubro y limpiar consulta (alineado a la derecha) -->
                         <div class="right-align mb-4">
-                            <a href="pagos_rubro_editar.php" class="btn red lighten-1 custom-button">
-                                <i class="fa fa-plus custom-icon"></i> Agregar Rubro
+                            <?php if (isset($_GET['pagosRubrosId'])): ?>
+                            <a href="pagos_subrubros.php" class="btn grey darken-1 custom-button">
+                                <i class="fa fa-trash custom-icon"></i> Limpiar filtro de rubro
                             </a>
+                            <?php endif; ?>
+                            <a href="pagos_subrubro_editar.php<?php echo isset($_GET['pagosRubrosId']) ? '?pagosRubrosId=' . $_GET['pagosRubrosId'] : ''; ?>" class="btn red lighten-1 custom-button">
+                                <i class="fa fa-plus custom-icon"></i> Agregar Subrubro
+                            </a>
+                            
                         </div>
+
+                        <!-- Espacio entre botón y tabla -->
+                        <div class="mb-3"></div>
 
                         <!-- Tabla estilo Bootstrap -->
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
+                                    <th>Subrubro</th>
                                     <th>Rubro</th>
-                                    <th>Comentario</th>
-                                    <th class="text-center">Subrubros</th>
                                     <th>Habilitado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($rubros as $rubro): ?>
+                                <?php foreach ($subrubros as $subrubro): ?>
                                 <tr>
-                                    <td class="text-center text-underline"><?php echo $rubro["pagosRubroId"] ?></td>
-                                    <td><strong><?php echo $rubro["rubro"] ?></strong></td>
+                                    <td class="text-center text-underline"><?php echo $subrubro["pagosSubrubroId"] ?></td>
+                                    <td><strong><?php echo $subrubro["subrubro"] ?></strong></td>
                                     <td>
-                                        <!-- Comentario con ancho fijo y tooltip -->
-                                        <span class="comment-tooltip" title="<?php echo $rubro["comentario"] ?>">
-                                            <?php echo strlen($rubro["comentario"]) > 20 ? substr($rubro["comentario"], 0, 20) . '...' : $rubro["comentario"]; ?>
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="pagos_subrubros.php?pagosRubrosId=<?php echo $rubro['pagosRubroId']; ?>">
-                                            <u><?php echo $rubro["total_subrubros"] ?></u> (<?php echo $rubro["subrubros_no_habilitados"] ?>)
+                                        <a href="pagos_rubro_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
+                                            <strong><?php echo $subrubro["rubro"] ?></strong>
                                         </a>
                                     </td>
                                     <td>
                                         <!-- Switch de habilitado (MaterializeCSS) -->
                                         <div class="switch">
                                             <label>
-                                                <input type="checkbox" class="habilitado-checkbox" <?php echo $rubro["habilitado_sys"] == 1 ? "checked" : "" ?> data-id="<?php echo $rubro['pagosRubroId']; ?>">
+                                                <input type="checkbox" class="habilitado-checkbox" <?php echo $subrubro["habilitado_sys"] == 1 ? "checked" : "" ?> data-id="<?php echo $subrubro['pagosSubrubroId']; ?>">
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="pagos_rubro_editar.php?pagosRubroId=<?php echo $rubro["pagosRubroId"] ?>" class="btn btn-danger custom-edit-button">
+                                        <a href="pagos_subrubro_editar.php?pagosSubrubroId=<?php echo $subrubro["pagosSubrubroId"] ?>" class="btn btn-danger custom-edit-button">
                                             <i class="fas fa-pencil-alt"></i> Editar
                                         </a>
                                     </td>
@@ -110,6 +112,13 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
+
+                        <!-- Card footer con botón "Ir a rubros" -->
+                        <div class="card-footer" style="background-color: #f5f5f5; padding: 0.5rem; border-top: 1px solid #ddd; text-align: right;">
+                            <a href="pagos_rubros.php" class="btn btn-primary">
+                                Ir a rubros
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,50 +158,57 @@
       </script>
 
       <style type="text/css">
-          .custom-card-panel {
-                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 20px;
-                border-radius: 4px;
-            }
 
-            .custom-title {
-                margin-bottom: 30px;
-                font-weight: 500;
-            }
+        .card-footer {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+        .custom-card-panel {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 4px;
+        }
 
-            .custom-button {
-                padding: 10px 16px;
-                border-radius: 8px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 10px;
-            }
+        .custom-title {
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
 
-            .custom-icon {
-                font-size: 1em;
-                margin-right: 8px;
-            }
+        .custom-button {
+            padding: 10px 16px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
 
-            .text-center {
-                text-align: center;
-            }
+        .custom-icon {
+            font-size: 1em;
+            margin-right: 8px;
+        }
 
-            .text-underline {
-                text-decoration: underline;
-            }
+        .text-center {
+            text-align: center;
+        }
 
-            .comment-tooltip {
-                max-width: 150px;
-                display: inline-block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+        .text-underline {
+            text-decoration: underline;
+        }
 
-            .custom-edit-button {
-                border-radius: 8px;
-            }
+        .comment-tooltip {
+            max-width: 150px;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .custom-edit-button {
+            border-radius: 8px;
+        }
 
       </style>
    </body>

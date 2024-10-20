@@ -7,10 +7,10 @@
 
     require_once ("servicios/servicio.php");
 
-    $tabla = "pagos_rubros";
-    $idNombre = "pagosRubroId";
-    $rubros = getRubrosPagos();
-    $title = "RUBROS";
+    $tabla = "deuda_tipo";
+    $idNombre = "deudaTipoId";
+    $deudasTipos = getDeudaTipos();
+    $title = "TIPOS DE DEUDA";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -35,10 +35,10 @@
          <div class="page-title">
             <div class="row">
                <div class="col s12 m9 l10">
-                  <h1>Rubros de pagos</h1>
+                  <h1>Tipos de deuda</h1>
                   <ul>
                      <li><a href="dashboard.php"><i class="fa fa-home"></i> Home </a> /</li>
-                     <li><a href="#">Rubros</a></li>
+                     <li><a href="#">Tipos de deuda</a></li>
                   </ul>
                </div>
                <!-- <div class="col s12 m3 l2 right-align"><a href="#!" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle"><i class="fa fa-comments"></i></a></div> -->
@@ -46,7 +46,7 @@
          </div>
          <!-- /Breadcrumb -->
          <div class="card-panel">
-          Podés administrar los rubros de pagos desde aquí
+          Podés administrar los tipos de deuda desde aquí
          </div>
          <br>
         <form>
@@ -59,8 +59,8 @@
 
                         <!-- Botón para agregar rubro (alineado a la derecha) -->
                         <div class="right-align mb-4">
-                            <a href="pagos_rubro_editar.php" class="btn red lighten-1 custom-button">
-                                <i class="fa fa-plus custom-icon"></i> Agregar Rubro
+                            <a href="deudaTipo_listado_editar.php" class="btn red lighten-1 custom-button">
+                                <i class="fa fa-plus custom-icon"></i> Agregar tipo de deuda
                             </a>
                         </div>
 
@@ -69,40 +69,34 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th>Rubro</th>
+                                    <th>Tipo deuda</th>
                                     <th>Comentario</th>
-                                    <th class="text-center">Subrubros</th>
                                     <th>Habilitado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($rubros as $rubro): ?>
+                                <?php foreach ($deudasTipos as $deudasTipo): ?>
                                 <tr>
-                                    <td class="text-center text-underline"><?php echo $rubro["pagosRubroId"] ?></td>
-                                    <td><strong><?php echo $rubro["rubro"] ?></strong></td>
+                                    <td class="text-center text-underline"><?php echo $deudasTipo[$idNombre] ?></td>
+                                    <td><strong><?php echo $deudasTipo["deuda"] ?></strong></td>
                                     <td>
                                         <!-- Comentario con ancho fijo y tooltip -->
-                                        <span class="comment-tooltip" title="<?php echo $rubro["comentario"] ?>">
-                                            <?php echo strlen($rubro["comentario"]) > 20 ? substr($rubro["comentario"], 0, 20) . '...' : $rubro["comentario"]; ?>
+                                        <span class="comment-tooltip" title="<?php echo $deudasTipo["comentario"] ?>">
+                                            <?php echo strlen($deudasTipo["comentario"]) > 20 ? substr($deudasTipo["comentario"], 0, 20) . '...' : $deudasTipo["comentario"]; ?>
                                         </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="pagos_subrubros.php?pagosRubrosId=<?php echo $rubro['pagosRubroId']; ?>">
-                                            <u><?php echo $rubro["total_subrubros"] ?></u> (<?php echo $rubro["subrubros_no_habilitados"] ?>)
-                                        </a>
                                     </td>
                                     <td>
                                         <!-- Switch de habilitado (MaterializeCSS) -->
                                         <div class="switch">
                                             <label>
-                                                <input type="checkbox" class="habilitado-checkbox" <?php echo $rubro["habilitado_sys"] == 1 ? "checked" : "" ?> data-id="<?php echo $rubro['pagosRubroId']; ?>">
+                                                <input type="checkbox" class="habilitado-checkbox" <?php echo $deudasTipo["habilitado_sys"] == 1 ? "checked" : "" ?> data-id="<?php echo $deudasTipo[$idNombre]; ?>">
                                                 <span class="lever"></span>
                                             </label>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="pagos_rubro_editar.php?pagosRubroId=<?php echo $rubro["pagosRubroId"] ?>" class="btn btn-danger custom-edit-button">
+                                        <a href="deudaTipo_listado_editar.php?<?php echo $idNombre ?>=<?php echo $deudasTipo[$idNombre] ?>" class="btn btn-danger custom-edit-button">
                                             <i class="fas fa-pencil-alt"></i> Editar
                                         </a>
                                     </td>
