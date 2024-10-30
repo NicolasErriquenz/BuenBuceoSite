@@ -66,13 +66,13 @@
 	            $totalSubrubros = $mysqli->query("SELECT COUNT(*) 
 	                                              FROM pagos_subrubros 
 	                                              WHERE pagosRubrosId = " . $row['pagosRubroId'])->fetch_assoc()['COUNT(*)'];
-	            $subrubrosNoHabilitados = $mysqli->query("SELECT COUNT(*) 
+	            $subrubrosHabilitados = $mysqli->query("SELECT COUNT(*) 
 	                                                      FROM pagos_subrubros 
 	                                                      WHERE pagosRubrosId = " . $row['pagosRubroId'] . 
-	                                                      " AND habilitado_sys = 0")->fetch_assoc()['COUNT(*)'];
+	                                                      " AND habilitado_sys = 1")->fetch_assoc()['COUNT(*)'];
 
 	            $row['total_subrubros'] = $totalSubrubros;
-	            $row['subrubros_no_habilitados'] = $subrubrosNoHabilitados;
+	            $row['subrubros_habilitados'] = $subrubrosHabilitados;
 
 	            $resultArray[] = $row;
 	        }
@@ -110,6 +110,29 @@
 	    return $resultArray;
 	}
 
+	function getMediosDePago() {
+	    global $mysqli;
+
+	    // Consulta SQL
+	    $sql = "SELECT * FROM medios_de_pago";
+
+	    // Ejecutar consulta
+	    $result = $mysqli->query($sql);
+
+	    // Verificar resultado
+	    if ($result->num_rows > 0) {
+	        // Devolver arreglo de medios de pago
+	        $mediosDePago = array();
+	        while($row = $result->fetch_assoc()) {
+	            $mediosDePago[] = $row;
+	        }
+	        return $mediosDePago;
+	    } else {
+	        // Devolver mensaje de error
+	        return "No se encontraron medios de pago";
+	    }
+	}
+
 	function getSubrubrosPagos($orderByAlfabetico = false, $pagosRubrosId = null, $returnJson = false) {
 	    global $mysqli;
 
@@ -126,7 +149,6 @@
 	                  FROM pagos_subrubros ps 
 	                  INNER JOIN pagos_rubros pr ON ps.pagosRubrosId = pr.pagosRubroId";
 	    }
-
 	    // Agregar ordenamiento alfabético si se especifica
 	    if ($orderByAlfabetico) {
 	        $query .= " ORDER BY ps.subrubro ASC";
@@ -185,11 +207,11 @@
 	    }
 	}
 
-	function getItem($tabla, $idName, $pagosRubroId) {
+	function getItem($tabla, $idName, $id) {
 		global $mysqli;
 
-	    $query = "SELECT * FROM $tabla WHERE $idName=".$pagosRubroId;
-
+	    $query = "SELECT * FROM $tabla WHERE $idName=".$id;
+	    
 	    if ($result = $mysqli->query($query)) {
 	        $row = $result->fetch_assoc();
 	        $result->free();
@@ -222,6 +244,28 @@
 	    return $resultArray;
 	}
 
+
+	function altaPago($POST) {
+	    global $mysqli;
+
+	    // Preparamos la consulta utilizando ? como placeholders
+	    $query = "INSERT INTO pagos_rubros (rubro, comentario, habilitado_sys) VALUES (?, ?, ?)";
+	    
+	    $POST['habilitado_sys'] = 1;
+
+	    // Preparamos la consulta
+	    if ($stmt = $mysqli->prepare($query)) {
+	        $stmt->bind_param('ssi', $POST['rubro'], $POST['comentario'], $POST['habilitado_sys']);
+	        if(!$stmt->execute()) 
+	            die("Error al insertar el registro: " . $stmt->error);
+	        $stmt->close();
+	    } else {
+	        echo "Error al preparar la consulta: " . $mysqli->error;
+	    }
+
+	    header("location:pagos_rubros.php");
+	}
+	
 	function altaRubroPago($POST) {
 	    global $mysqli;
 

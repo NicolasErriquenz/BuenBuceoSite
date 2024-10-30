@@ -33,5 +33,6 @@
 	$FAVICON_180 = "images/icon/bb_favicon_180x180.png";
 	$redirect_uri = 'index.php';
 	
-
+	$TOKEN_BCRA = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjE2MDg0ODQsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJuZXJyaXF1ZW56QGdtYWlsLmNvbSJ9.TSyyPz0oicx_RAi_6NQp8058TA6ZIbN5e_9R6rrO1VqeYPgdeTW9r9TwN-xonrAMmJxanKBqDTPY3JTqW_nUXQ";
 	
+	$AUTH_BEARER = "Authorization: BEARER eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjE2MDg0ODQsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJuZXJyaXF1ZW56QGdtYWlsLmNvbSJ9.TSyyPz0oicx_RAi_6NQp8058TA6ZIbN5e_9R6rrO1VqeYPgdeTW9r9TwN-xonrAMmJxanKBqDTPY3JTqW_nUXQ";

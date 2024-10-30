@@ -7,11 +7,21 @@
 
     require_once ("servicios/servicio.php");
 
+    $alfabeticos = false;
     $tabla = "pagos_subrubros";
     $idNombre = "pagosSubrubroId";
-    $subrubros = getSubrubrosPagos();
+    $rubroId = null;
+    
     $title = "SUBRUBROS";
 
+    if(isset($_GET["pagosRubrosId"]) && $_GET["pagosRubrosId"] != null){
+        $rubroId = $_GET["pagosRubrosId"];
+        $rubro = getItem("pagos_rubros", "pagosRubroId", $rubroId);
+        $title .= " (".$rubro["rubro"].")";
+    }
+
+    $subrubros = getSubrubrosPagos($alfabeticos, $rubroId);
+    
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
     }

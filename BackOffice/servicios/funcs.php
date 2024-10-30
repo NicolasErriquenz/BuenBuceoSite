@@ -14,29 +14,30 @@
 	
 
 	function getCotizacion(){
+		
+		global $TOKEN_BCRA;
 
-		//BNA gratis
-		// $url = 'https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp';
-		// $html = file_get_contents($url);
-		// $dom = new DOMDocument();
-		// $dom->loadHTML($html);
-		// $xpath = new DOMXPath($dom);
-		// $cotizacion = $xpath->query('//td[contains(text(), "Dólar MEP")]/following-sibling::td');
-		// return $cotizacion->item(0)->nodeValue;
+		$url = "https://api.estadisticasbcra.com/usd";
 
+		$headers = array(
+		    "Authorization: Bearer $TOKEN_BCRA"
+		);
 
-		// $url = 'https://api.ambito.com/v1/cotizaciones/dolar-mep';
-		// $json = file_get_contents($url);
-		// $data = json_decode($json, true);
-		// var_dump($data['cotizacion']);
-		// die();
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		$response = curl_exec($ch);
+		curl_close($ch);
 
-		$url = 'https://api.invertirenargentina.com/v1/cotizaciones/dolar-mep';
-		$json = file_get_contents($url);
-		$data = json_decode($json, true);
-		var_dump($data['cotizacion']);
-		die();
-		return $data['cotizacion'];
+		$data = json_decode($response, true);
+
+		$cotizacion_mas_actual = end($data);
+
+		$resultado["fecha"] = $cotizacion_mas_actual["d"];
+		$resultado["cotizacion"] = $cotizacion_mas_actual["v"];
+
+		//header('Content-Type: application/json');
+		return ($resultado);
 
 	}
 ?>

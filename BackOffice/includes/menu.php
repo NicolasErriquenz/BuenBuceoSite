@@ -35,10 +35,10 @@
                             <li><a href="usuarios_alta.php" class="waves-effect waves-blue"><i class="fa fa-plus"></i> Alta </a></li>
                         </ul>
                     </li>
-                    <li><a href="ui-buttons.html" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-credit-card"></i> Pagos <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
+                    <li><a href="#" class="yay-sub-toggle waves-effect waves-blue"><i class="fa fa-credit-card"></i> Pagos <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>
                         <ul>
                             <li><a href="pagos.php" class="waves-effect waves-blue"><i class="fa fa-bars"></i> Listado </a></li>
-                            <li><a href="pagos_alta.php" class="waves-effect waves-blue"><i class="fa fa-plus"></i> Alta </a></li>
+                            <li><a href="pagos_editar.php" class="waves-effect waves-blue"><i class="fa fa-plus"></i> Alta </a></li>
                         </ul>
                     </li>
                     <li><a href="media-hover-effects.html" class="yay-sub-toggle waves-effect waves-blue"><i class="mdi mdi-image-panorama"></i> Media <span class="yay-collapse-icon mdi-navigation-expand-more"></span></a>

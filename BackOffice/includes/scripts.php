@@ -1,5 +1,6 @@
-    <script type="text/javascript" src="assets/_con/js/_demo.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/_con/js/_demo.js"></script>
+    
     <script type="text/javascript" src="bower_components/jquery-requestAnimationFrame/dist/jquery.requestAnimationFrame.min.js"></script>
     <script type="text/javascript" src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
     <script type="text/javascript" src="bower_components/materialize/bin/materialize.js"></script>
@@ -100,46 +101,7 @@
                    ...
 
             */
-            d3.json('assets/_con/nvd3/stackedAreaData.json', function(data) {
-                nv.addGraph(function() {
-                    var chart = nv.models.stackedAreaChart()
-                        .margin({
-                            bottom: 20
-                        })
-                        .color(["#E27272", "#64B5F6", "#FFD83C", "#81C784"])
-                        .margin({
-                            right: 40,
-                            left: 40
-                        })
-                        .x(function(d) {
-                            return d[0]
-                        }) //We can modify the data accessor functions...
-                        .y(function(d) {
-                            return d[1]
-                        }) //...in case your data is formatted differently.
-                        .useInteractiveGuideline(true) //Tooltips which show all data points. Very nice!
-                        .rightAlignYAxis(true) //Let's move the y-axis to the right side.
-                        .showControls(true) //Allow user to choose 'Stacked', 'Stream', 'Expanded' mode.
-                        .clipEdge(true);
-
-                    //Format x-axis labels with custom function.
-                    chart.xAxis
-                        .tickFormat(function(d) {
-                            return d3.time.format('%x')(new Date(d))
-                        });
-
-                    chart.yAxis
-                        .tickFormat(d3.format(',.2f'));
-
-                    d3.select('#chart2').append('svg')
-                        .datum(data)
-                        .call(chart);
-
-                    nv.utils.windowResize(chart.update);
-
-                    return chart;
-                });
-            })
+            
         }());
 
 

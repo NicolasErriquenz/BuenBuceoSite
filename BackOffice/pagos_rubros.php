@@ -1,5 +1,6 @@
 <?php 
-
+    
+    
     require_once ("Connections/ssi_seguridad.php");
 
     require_once ("Connections/config.php");
@@ -71,7 +72,7 @@
                                     <th class="text-center">ID</th>
                                     <th>Rubro</th>
                                     <th>Comentario</th>
-                                    <th class="text-center">Subrubros</th>
+                                    <th class="text-center">Subrubros (T/H)</th>
                                     <th>Habilitado</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -89,7 +90,7 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="pagos_subrubros.php?pagosRubrosId=<?php echo $rubro['pagosRubroId']; ?>">
-                                            <u><?php echo $rubro["total_subrubros"] ?></u> (<?php echo $rubro["subrubros_no_habilitados"] ?>)
+                                            <u><?php echo $rubro["total_subrubros"] ?></u> (<?php echo $rubro["subrubros_habilitados"] ?>)
                                         </a>
                                     </td>
                                     <td>
