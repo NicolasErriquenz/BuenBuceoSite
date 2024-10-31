@@ -7,37 +7,37 @@
 
   require_once ("servicios/servicio.php");
 
-  $tabla = "deuda_tipo";
-  $idNombre = "deudaTipoId";
+  $tabla = "pagos_rubros";
+  $idNombre = "pagosRubroId";
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "editar" ) {
-    editarTipoDeuda($_POST, $_GET);
+    editarRubroPago($_POST, $_GET);
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "alta" ) {
-    altaTipoDeuda($_POST);
+    altaRubroPago($_POST);
   }
 
-  if( isset($_GET[$idNombre]) ){
-    $title = "Editar tipo de deuda";
-    $subtitle = "Podés editar el tipo de deuda desde aquí";
+  if( isset($_GET["pagosRubroId"]) ){
+    $title = "Editar rubro";
+    $subtitle = "Podés editar el rubro de pagos desde aquí";
     $action = "editar";
-    $tipoDeuda = getItem($tabla, $idNombre, $_GET[$idNombre]);
+    $rubro = getItem($tabla, $idNombre, $_GET["pagosRubroId"]);
   }else{
-    $title = "Alta tipo de deuda";
-    $subtitle = "Podés dar de alta un tipo de deuda desde aquí";
+    $title = "Alta rubro";
+    $subtitle = "Podés dar de alta un rubro de pagos desde aquí";
     $action = "alta";
   }
 
-  $goBackLink = "deudaTipo_listado.php";
+  $goBackLink = "pagos_rubros.php";
   
-  // if(isset($_GET["ref"])){
-  //   $goBackLink = "pagos_subrubros.php";
-  // }
+  if(isset($_GET["ref"])){
+    $goBackLink = "pagos_subrubros.php";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -69,24 +69,24 @@
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-body">
-                        <?php if(isset($tipoDeuda[$idNombre])){ ?>
+                        <?php if(isset($rubro['pagosRubroId'])){ ?>
                         <div class="form-group">
-                          <label for="pagosRubroId">Tipo deuda ID</label>
+                          <label for="pagosRubroId">Pagos Rubro ID</label>
                           <input type="text" id="pagosRubroId" name="pagosRubroId" class="form-control" 
-                                 value="<?php echo isset($tipoDeuda[$idNombre]) ? $tipoDeuda[$idNombre] : ''; ?>" 
+                                 value="<?php echo isset($rubro['pagosRubroId']) ? $rubro['pagosRubroId'] : ''; ?>" 
                                  disabled>
                         </div>
                         <?php } ?>
                         
                         <div class="form-group">
-                          <label for="deuda">Descripción</label>
-                          <input type="text" id="deuda" name="deuda" class="form-control" 
-                                 value="<?php echo isset($tipoDeuda['deuda']) ? $tipoDeuda['deuda'] : ''; ?>">
+                          <label for="rubro">Rubro</label>
+                          <input type="text" id="rubro" name="rubro" class="form-control" 
+                                 value="<?php echo isset($rubro['rubro']) ? $rubro['rubro'] : ''; ?>">
                         </div>
                         
                         <div class="form-group">
                           <label for="comentario">Comentario</label>
-                          <textarea id="comentario" name="comentario" class="form-control"><?php echo isset($tipoDeuda['comentario']) ? $tipoDeuda['comentario'] : ''; ?></textarea>
+                          <textarea id="comentario" name="comentario" class="form-control"><?php echo isset($rubro['comentario']) ? $rubro['comentario'] : ''; ?></textarea>
                         </div>
                         
                         <div class="form-check form-switch">
@@ -94,8 +94,8 @@
                             <input class="form-check-input" type="checkbox" 
                                class="habilitado-checkbox"
                                name="habilitado_sys"
-                               data-id="<?php echo isset($tipoDeuda[$idNombre]) ? $tipoDeuda[$idNombre] : ''; ?>"
-                               <?php echo $tipoDeuda["habilitado_sys"] == 1 ? "checked" : "" ?>
+                               data-id="<?php echo isset($rubro['pagosRubroId']) ? $rubro['pagosRubroId'] : ''; ?>"
+                               <?php echo $rubro["habilitado_sys"] == 1 ? "checked" : "" ?>
                                onclick="habilitadoCheckboxChange(this)">
                             Habilitado
                           </label>

@@ -26,200 +26,144 @@
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
     }
 
+    $goBackLink = "pagos_rubros.php";
+
 ?>
 <!DOCTYPE html>
-<html lang="es">
-   
-   <?php include("includes/head.php"); ?>
+<html lang="<?php echo $lang ?>">
 
-   <body>
-      
-      <?php include("includes/navbar.php"); ?>
+<?php include("includes/head.php"); ?>
 
-      <?php include("includes/menu.php"); ?>
+<body class="g-sidenav-show   bg-gray-100">
+  
+  <?php echo $HEADER_IMAGEN ?>
+  
+  <?php include("includes/menu.php"); ?>
 
-      <section class="content-wrap">
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    
+    <?php include("includes/navbar.php"); ?>
 
-
-         <!-- Breadcrumb -->
-         <div class="page-title">
-            <div class="row">
-               <div class="col s12 m9 l10">
-                  <h1>Subrubros de pagos</h1>
-                  <ul>
-                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home </a> /</li>
-                     <li><a href="#">Subrubros</a></li>
-                  </ul>
-               </div>
-               <!-- <div class="col s12 m3 l2 right-align"><a href="#!" class="btn grey lighten-3 grey-text z-depth-0 chat-toggle"><i class="fa fa-comments"></i></a></div> -->
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6 class="float-start">Listado</h6>
+              <div class="float-end">
+                <?php if (isset($_GET['pagosRubrosId'])): ?>
+                <a href="pagos_subrubros.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
+                  <i class="fa fa-trash"></i> Limpiar filtro de rubro
+                </a>
+                <?php endif; ?>
+                <a href="pagos_subrubros_editar.php<?php echo isset($_GET['pagosRubrosId']) ? '?pagosRubrosId=' . $_GET['pagosRubrosId'] : ''; ?>">
+                  <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-toggle="tooltip" data-original-title="Agregar rubro">
+                      <i class="ni ni-fat-add"></i> AGREGAR SUBRUBRO
+                  </button>
+                </a>
+              </div>
             </div>
-         </div>
-         <!-- /Breadcrumb -->
-         <div class="card-panel">
-          Podés administrar los subrubros de pagos desde aquí
-         </div>
-         <br>
-        <form>
-            <div class="row">
-                <div class="col s12">
-                    <!-- Card-panel con botón y tabla -->
-                    <div class="card-panel custom-card-panel">
-                        
-                        <h5 class="center-align custom-title"><?php echo $title ?></h5>
-
-                        <!-- Botón para agregar subrubro y limpiar consulta (alineado a la derecha) -->
-                        <div class="right-align mb-4">
-                            <?php if (isset($_GET['pagosRubrosId'])): ?>
-                            <a href="pagos_subrubros.php" class="btn grey darken-1 custom-button">
-                                <i class="fa fa-trash custom-icon"></i> Limpiar filtro de rubro
-                            </a>
-                            <?php endif; ?>
-                            <a href="pagos_subrubro_editar.php<?php echo isset($_GET['pagosRubrosId']) ? '?pagosRubrosId=' . $_GET['pagosRubrosId'] : ''; ?>" class="btn red lighten-1 custom-button">
-                                <i class="fa fa-plus custom-icon"></i> Agregar Subrubro
-                            </a>
-                            
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rubro</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($subrubros as $subrubro): ?>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <?php echo $subrubro[$idNombre] ?>
                         </div>
-
-                        <!-- Espacio entre botón y tabla -->
-                        <div class="mb-3"></div>
-
-                        <!-- Tabla estilo Bootstrap -->
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">ID</th>
-                                    <th>Subrubro</th>
-                                    <th>Rubro</th>
-                                    <th>Habilitado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($subrubros as $subrubro): ?>
-                                <tr>
-                                    <td class="text-center text-underline"><?php echo $subrubro["pagosSubrubroId"] ?></td>
-                                    <td><strong><?php echo $subrubro["subrubro"] ?></strong></td>
-                                    <td>
-                                        <a href="pagos_rubro_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
-                                            <strong><?php echo $subrubro["rubro"] ?></strong>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <!-- Switch de habilitado (MaterializeCSS) -->
-                                        <div class="switch">
-                                            <label>
-                                                <input type="checkbox" class="habilitado-checkbox" <?php echo $subrubro["habilitado_sys"] == 1 ? "checked" : "" ?> data-id="<?php echo $subrubro['pagosSubrubroId']; ?>">
-                                                <span class="lever"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="pagos_subrubro_editar.php?pagosSubrubroId=<?php echo $subrubro["pagosSubrubroId"] ?>" class="btn btn-danger custom-edit-button">
-                                            <i class="fas fa-pencil-alt"></i> Editar
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
-                        <!-- Card footer con botón "Ir a rubros" -->
-                        <div class="card-footer" style="background-color: #f5f5f5; padding: 0.5rem; border-top: 1px solid #ddd; text-align: right;">
-                            <a href="pagos_rubros.php" class="btn btn-primary">
-                                Ir a rubros
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo $subrubro["subrubro"] ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">
+                          <a href="pagos_rubros_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
+                              <strong><?php echo $subrubro["rubro"] ?></strong>
+                          </a>
+                        </span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span id="badge-<?php echo $subrubro[$idNombre]; ?>" class="badge badge-sm habilitado-checkbox 
+                            <?php echo ($subrubro["habilitado_sys"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
+                            <?php echo ($subrubro["habilitado_sys"] == 1) ? 'Online' : 'Offline'; ?>
+                        </span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="pagos_subrubros_editar.php?<?php echo $idNombre ?>=<?php echo $subrubro[$idNombre] ?>">
+                          <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0" type="button">
+                            <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
-        </form>
-
-      </section>
+            <div class="card-footer d-flex justify-content-between">
+              <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
+                <i class="ni ni-bold-left"></i> Volver
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <?php include("includes/footer.php") ?>
 
-      <?php include("includes/scripts.php") ?>
+    </div>
+  </main>
+  
+  <?php include("includes/scripts.php") ?>
 
-      <script>
-        $(document).ready(function() {
-            $('.habilitado-checkbox').change(function() {
-                var id = $(this).data('id');
-                var habilitado = $(this).is(':checked') ? 1 : 0;
-                console.log(id);
-                $.ajax({
-                    url: '', // URL del mismo archivo PHP
-                    type: 'POST',
-                    data: {
-                        action: "actualizar",
-                        id: id,
-                        habilitado: habilitado,
-                        tabla: "<?php echo $tabla ?>"
-                    },
-                    success: function(response) {
+  <script>
+    $(document).ready(function() {
+        $('.habilitado-checkbox').click(function() {
+            var id = $(this).attr('id').split('-')[1]; // Obtenemos el ID desde el atributo ID del span
+            var habilitado = $(this).hasClass('bg-gradient-success') ? 0 : 1; // Toggle habilitado/deshabilitado
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error al actualizar:', error);
-                    }
-                });
+            $.ajax({
+                url: '', 
+                type: 'POST',
+                data: {
+                    action: "actualizar",
+                    id: id,
+                    habilitado: habilitado,
+                    tabla: "<?php echo $tabla ?>"
+                },
+                success: function(response) {
+                    $(`#badge-${id}`).removeClass('bg-gradient-success bg-gradient-secondary')
+                                     .addClass(habilitado == 1 ? 'bg-gradient-success' : 'bg-gradient-secondary')
+                                     .text(habilitado == 1 ? 'Online' : 'Offline');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al actualizar:', error);
+                }
             });
         });
+    });
 
-      </script>
+  </script>
 
-      <style type="text/css">
+  <style type="text/css">
+    .habilitado-checkbox {
+        cursor: pointer;
+    }
+  </style>
+</body>
 
-        .card-footer {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-top: 1px solid #ddd;
-            text-align: right;
-        }
-        .custom-card-panel {
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 4px;
-        }
-
-        .custom-title {
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-
-        .custom-button {
-            padding: 10px 16px;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .custom-icon {
-            font-size: 1em;
-            margin-right: 8px;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-underline {
-            text-decoration: underline;
-        }
-
-        .comment-tooltip {
-            max-width: 150px;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .custom-edit-button {
-            border-radius: 8px;
-        }
-
-      </style>
-   </body>
 </html>

@@ -7,37 +7,42 @@
 
   require_once ("servicios/servicio.php");
 
-  $tabla = "deuda_tipo";
-  $idNombre = "deudaTipoId";
+  $tabla = "pagos_subrubros";
+  $idNombre = "pagosSubrubroId";
+
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "editar" ) {
-    editarTipoDeuda($_POST, $_GET);
+    editarSubrubroPago($_POST, $_GET);
   }
+
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "alta" ) {
-    altaTipoDeuda($_POST);
+    altaSubrubroPago($_POST, $_GET);
   }
-
-  if( isset($_GET[$idNombre]) ){
-    $title = "Editar tipo de deuda";
-    $subtitle = "Podés editar el tipo de deuda desde aquí";
+  
+  if( isset($_GET["pagosSubrubroId"]) ){
+    $title = "Editar subrubro";
+    $subtitle = "Podés editar el subrubro desde aquí";
     $action = "editar";
-    $tipoDeuda = getItem($tabla, $idNombre, $_GET[$idNombre]);
+    $subrubro = getItem($tabla, $idNombre, $_GET[$idNombre]);
+
   }else{
-    $title = "Alta tipo de deuda";
-    $subtitle = "Podés dar de alta un tipo de deuda desde aquí";
+    $title = "Alta subrubro";
+    $subtitle = "Podés dar de alta un subrubro desde aquí";
     $action = "alta";
   }
 
-  $goBackLink = "deudaTipo_listado.php";
-  
-  // if(isset($_GET["ref"])){
-  //   $goBackLink = "pagos_subrubros.php";
-  // }
+  $rubrosAlfabeticos = true;
+  $rubros = getRubrosPagos($rubrosAlfabeticos);
+  $goBackLink = "pagos_subrubros.php";
+
+  if(isset($_GET)){
+    $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -69,33 +74,50 @@
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-body">
-                        <?php if(isset($tipoDeuda[$idNombre])){ ?>
+                        <?php if(isset($subrubro[$idNombre])){ ?>
                         <div class="form-group">
-                          <label for="pagosRubroId">Tipo deuda ID</label>
-                          <input type="text" id="pagosRubroId" name="pagosRubroId" class="form-control" 
-                                 value="<?php echo isset($tipoDeuda[$idNombre]) ? $tipoDeuda[$idNombre] : ''; ?>" 
-                                 disabled>
+                          <label for="<?php echo $idNombre ?>" class="form-control-label"><?php echo $idNombre ?></label>
+                          <input id="<?php echo $idNombre ?>" name="<?php echo $idNombre ?>" type="text" 
+                                 value="<?php echo isset($subrubro[$idNombre]) ? $subrubro[$idNombre] : ''; ?>" 
+                                 disabled class="form-control">
                         </div>
                         <?php } ?>
                         
                         <div class="form-group">
-                          <label for="deuda">Descripción</label>
-                          <input type="text" id="deuda" name="deuda" class="form-control" 
-                                 value="<?php echo isset($tipoDeuda['deuda']) ? $tipoDeuda['deuda'] : ''; ?>">
+                          <label for="rubro" class="form-control-label">Rubro</label>
+                          <select id="rubro" name="pagosRubrosId" class="form-control">
+                            <option value="" selected disabled>Seleccione un rubro</option>
+                            <?php foreach ($rubros as $rubro): ?>
+                            <option value="<?php echo $rubro['pagosRubroId']; ?>" 
+                                    <?php echo (isset($subrubro['pagosRubrosId']) && $subrubro['pagosRubrosId'] == $rubro['pagosRubroId']) || 
+                                           (isset($_GET['pagosRubrosId']) && $_GET['pagosRubrosId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
+                              <?php echo $rubro['rubro']; ?>
+                            </option>
+                            <?php endforeach; ?>
+                          </select>
                         </div>
                         
                         <div class="form-group">
-                          <label for="comentario">Comentario</label>
-                          <textarea id="comentario" name="comentario" class="form-control"><?php echo isset($tipoDeuda['comentario']) ? $tipoDeuda['comentario'] : ''; ?></textarea>
+                          <label for="subrubro" class="form-control-label">Subrubro</label>
+                          <input id="subrubro" name="subrubro" type="text" 
+                                 value="<?php echo isset($subrubro['subrubro']) ? $subrubro['subrubro'] : ''; ?>" 
+                                 class="form-control">
                         </div>
+                        
+                        <!-- 
+                        <div class="form-group">
+                          <label for="comentario" class="form-control-label">Comentario</label>
+                          <textarea id="comentario" name="comentario"><?php echo isset($subrubro['comentario']) ? $subrubro['comentario'] : ''; ?></textarea>
+                        </div>
+                        -->
                         
                         <div class="form-check form-switch">
                           <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" 
                                class="habilitado-checkbox"
                                name="habilitado_sys"
-                               data-id="<?php echo isset($tipoDeuda[$idNombre]) ? $tipoDeuda[$idNombre] : ''; ?>"
-                               <?php echo $tipoDeuda["habilitado_sys"] == 1 ? "checked" : "" ?>
+                               data-id="<?php echo isset($subrubro['pagosRubroId']) ? $subrubro['pagosRubroId'] : ''; ?>"
+                               <?php echo $subrubro["habilitado_sys"] == 1 ? "checked" : "" ?>
                                onclick="habilitadoCheckboxChange(this)">
                             Habilitado
                           </label>

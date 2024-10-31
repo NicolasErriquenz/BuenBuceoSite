@@ -40,4 +40,38 @@
 		return ($resultado);
 
 	}
+
+	function obtenerOracionInspiradora() {
+		$oraciones = [
+			[
+			  'titulo' => "La atención es la nueva moneda.",
+			  'descripcion' => "La creatividad es la llave que abre puertas al éxito.",
+			  'imagen' => 'images/insp1.jpg'
+			],
+			[
+			  'titulo' => "El esfuerzo silencioso es el que más rinde frutos.",
+			  'descripcion' => "Cuanto más fácil parece, más esfuerzo hay detrás.",
+			  'imagen' => 'images/insp2.jpg'
+			],
+			[
+			  'titulo' => "La simplicidad es la nueva sofisticación.",
+			  'descripcion' => "La pasión es el combustible que impulsa tus sueños.",
+			  'imagen' => 'images/insp3.jpg'
+			],
+			[
+			  'titulo' => "La claridad es la llave del éxito.",
+			  'descripcion' => "La resiliencia es el escudo que protege tus objetivos.",
+			  'imagen' => 'images/insp4.jpg'
+			],
+			[
+			  'titulo' => "La profundidad es la que da valor a tus palabras.",
+			  'descripcion' => "La imaginación es el puente que conecta tus sueños con la realidad.",
+			  'imagen' => 'images/insp5.jpg'
+			],
+			// Agrega más oraciones aquí...
+		];
+
+		$indiceAleatorio = array_rand($oraciones);
+		return $oraciones[$indiceAleatorio];
+    }
 ?>

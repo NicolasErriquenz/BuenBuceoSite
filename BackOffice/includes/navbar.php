@@ -1,61 +1,69 @@
-<nav class="navbar-top">
-        <div class="nav-wrapper">
-            <!-- Sidebar toggle -->
-            <a href="#" class="yay-toggle">
-                <div class="burg1"></div>
-                <div class="burg2"></div>
-                <div class="burg3"></div>
-            </a>
-            <!-- Sidebar toggle -->
-            <!-- Logo -->
-            <a  href="dashboard.php"
-                style="padding:0 !important" 
-                class="brand-logo"><img src="images/logos/LogoBB_03.png" alt="Con">
-            </a>
-            <!-- /Logo -->
-            <!-- Menu -->
-            <ul>
-                <!-- <li><a href="#!" class="search-bar-toggle"><i class="mdi-action-search"></i></a>
-                </li> -->
-                <!-- <li><a class="dropdown-button" data-activates="test-dropdown" href="#!"><i class="mdi-communication-email"></i> <span class="badge new">2</span></a>
-                    <div id="test-dropdown" class="dropdown-content dropdown-media">
-                        <div class="card-panel">
-                            <div class="media-heading">Messages <a href="mail-compose.html"><i class="mdi-content-add-circle-outline"></i></a>
-                            </div>
-                            <div class="media-footer"><a href="mail-inbox.html"><i class="mdi-hardware-keyboard-control"></i></a>
-                            </div>
-                            <div class="row mt-0">
-                                <div class="col s2"><img src="assets/_con/images/user2.jpg" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col s10"><span class="media-date">9:02 AM</span> <a href="#" class="media-title">Dianne Chambers</a> <span>Ut feugiat tempus felis, sit amet mattis dolor accumsan quis...</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s2"><img src="assets/_con/images/user3.jpg" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col s10"><span class="media-date">Dec 19</span> <a href="#" class="media-title">Joanne Stephens</a> <span>Proin suscipit lobortis porta. Interdum et malesuada fames ac ante ipsum primis in faucibus...</span>
-                                </div>
-                            </div>
-                        </div>
+
+
+<!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;"><?php echo MARCA ?></a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?php echo $title ?></li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0"><?php echo $title ?></h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <!-- <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Type here...">
+            </div> -->
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <!-- <li class="nav-item d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sign In</span>
+              </a>
+            </li> -->
+            <!-- <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li> -->
+            <!-- <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li> -->
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="ni ni-circle-08 cursor-pointer"></i> Bienvenido <?php echo $_SESSION["admin"]["nombre"] ?>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="">
+                  <a class="dropdown-item border-radius-md" href="logout.php">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <!-- <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 "> -->
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Logout</span> 
+                        </h6>
+                        <!-- <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p> -->
+                      </div>
                     </div>
-                </li> -->
-                <li class="user">
-                    <a class="dropdown-button" data-activates="user-dropdown" href="#!">
-                        <img src="_recursos/images/<?php echo $_SESSION["admin"]["foto"] ?>" alt="John Doe" class="circle"> <?php echo $_SESSION["admin"]["nombre"] ?> <i class="mdi-navigation-expand-more right"></i>
-                    </a>
-                    <ul id="user-dropdown" class="dropdown-content">
-                        <li><a href="page-profile.html"><i class="fa fa-user"></i> Profile</a>
-                        </li>
-                        <li><a href="mail-inbox.html"><i class="fa fa-envelope"></i> Messages <span class="badge new">2 new</span></a>
-                        </li>
-                        <li><a href="#!"><i class="fa fa-cogs"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
-                        </li>
-                    </ul>
+                  </a>
                 </li>
-            </ul>
-            <!-- /Menu -->
+              </ul>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
