@@ -349,7 +349,7 @@
 
 	    // Verificar si se insertó correctamente
 	    if (mysqli_stmt_affected_rows($stmt) > 0) {
-	        echo 'Pago insertado correctamente';
+	        echo 'ok';
 	    } else {
 	        echo 'Error al insertar pago';
 	    }
@@ -399,34 +399,34 @@
 	}
 
 	function editarRubroPago($POST, $GET) {
-	    global $mysqli;
-
-	    // Verificar si se está intentando editar un rubro
-	    if ($POST['action'] == 'editar' && isset($GET['pagosRubroId'])) {
-	        // Preparamos la consulta utilizando ? como placeholders
-	        $query = "UPDATE pagos_rubros SET rubro = ?, comentario = ?, habilitado_sys = ? WHERE pagosRubroId = ?";
-
-	        // Preparamos la consulta
-	        if ($stmt = $mysqli->prepare($query)) {
-	            $habilitado_sys = $POST['habilitado_sys'] ?? 1; // Si no se envía habilitado_sys, se considera 1
-	            $stmt->bind_param('sssi', $POST['rubro'], $POST['comentario'], $habilitado_sys, $GET['pagosRubroId']);
-	            if (!$stmt->execute()) 
-	                die("Error al editar el registro: " . $stmt->error);
-	            $stmt->close();
-	        } else {
-	            echo "Error al preparar la consulta: " . $mysqli->error;
-	        }
-
-	        // Redireccionamos con el parámetro pagosRubroId si está establecido
-	        $redirectUrl = "pagos_rubros.php";
-	        if (isset($POST['pagosRubroId'])) {
-	            $redirectUrl .= "?pagosRubroId=" . $POST['pagosRubroId'];
-	        }
-
-	        header("location: $redirectUrl");
-	    } else {
-	        echo "Error: No se proporcionaron los parámetros necesarios.";
-	    }
+		global $mysqli;
+	
+		// Verificar si se está intentando editar un rubro
+		if ($POST['action'] == 'editar' && isset($GET['pagosRubroId'])) {
+			// Preparamos la consulta utilizando ? como placeholders
+			$query = "UPDATE pagos_rubros SET rubro = ?, comentario = ?, habilitado_sys = ? WHERE pagosRubroId = ?";
+	
+			// Preparamos la consulta
+			if ($stmt = $mysqli->prepare($query)) {
+				$habilitado_sys = ($POST['habilitado_sys'] === 'on') ? 1 : 0;
+				$stmt->bind_param('sssi', $POST['rubro'], $POST['comentario'], $habilitado_sys, $GET['pagosRubroId']);
+				if (!$stmt->execute()) 
+					die("Error al editar el registro: " . $stmt->error);
+				$stmt->close();
+			} else {
+				echo "Error al preparar la consulta: " . $mysqli->error;
+			}
+	
+			// Redireccionamos con el parámetro pagosRubroId si está establecido
+			$redirectUrl = "pagos_rubros.php";
+			if (isset($POST['pagosRubroId'])) {
+				$redirectUrl .= "?pagosRubroId=" . $POST['pagosRubroId'];
+			}
+	
+			header("location: $redirectUrl");
+		} else {
+			echo "Error: No se proporcionaron los parámetros necesarios.";
+		}
 	}
 
 	function editarTipoDeuda($POST, $GET) {
@@ -519,9 +519,9 @@
 	}
 
 	function getPagos() {
-    global $mysqli;
+    	global $mysqli;
 	    $query = "
-	        SELECT p.*, ps.subrubro, pt.transaccion AS transaccion_tipo, m.moneda, mp.medioPago,
+	        SELECT p.*, ps.subrubro, pt.transaccion AS transaccion_tipo, m.simbolo, mp.medioPago,
 	               u.nombre AS usuario_nombre, d.deuda, pr.rubro
 	        FROM pagos p
 	        INNER JOIN pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId

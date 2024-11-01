@@ -24,7 +24,39 @@
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
             </li> -->
-            <!-- <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+            
+            <!-- <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li> -->
+            <li class="nav-item dropdown pe-2 d-flex align-items-center d-none d-md-block">
+                <a href="javascript:;" class="me-3 nav-link text-white p-0 d-flex align-items-center" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="gap: 10px;">
+                  <i class="ni ni-circle-08 cursor-pointer"></i> Bienvenido <?php echo $_SESSION["admin"]["nombre"] ?>
+                </a>
+                <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                  <li class="">
+                    <a class="dropdown-item border-radius-md" href="logout.php">
+                      <div class="d-flex py-1">
+                        <div class="my-auto">
+                          <!-- <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 "> -->
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold">Logout</span> 
+                          </h6>
+                          <!-- <p class="text-xs text-secondary mb-0">
+                            <i class="fa fa-clock me-1"></i>
+                            13 minutes ago
+                          </p> -->
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+            </li>
+
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line bg-white"></i>
@@ -32,36 +64,6 @@
                   <i class="sidenav-toggler-line bg-white"></i>
                 </div>
               </a>
-            </li> -->
-            <!-- <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li> -->
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ni ni-circle-08 cursor-pointer"></i> Bienvenido <?php echo $_SESSION["admin"]["nombre"] ?>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="">
-                  <a class="dropdown-item border-radius-md" href="logout.php">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <!-- <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 "> -->
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">Logout</span> 
-                        </h6>
-                        <!-- <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
-                        </p> -->
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

@@ -10,6 +10,7 @@
   $tabla = "pagos";
   $idNombre = "pagoId";
   $errores = array();
+  $redirect = "pagos.php";
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && ($_POST['action'] == "editar" || $_POST['action'] == "alta")) {
       // Validación de campos
@@ -34,7 +35,7 @@
       if(isset($respuesta["errores"]) && count($respuesta["errores"]) > 0)
         echo json_encode($respuesta);
       else
-        altaPago($_POST);
+        echo altaPago($_POST);
 
       die();
   }
@@ -275,7 +276,7 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="comentario">Agregar comentario</label>
+                          <label for="comentario">Comentario</label>
                           <textarea id="comentario" name="comentario" class="form-control"><?php echo isset($pago['comentario']) ? $pago['comentario'] : ''; ?></textarea>
                         </div>
                         
@@ -499,10 +500,6 @@
             data: datos,
             dataType: 'json',
             success: function(respuesta) {
-              if (respuesta.estado === 'ok') {
-                // Formulario válido, puedes continuar
-                
-              } else {
                 // Formulario inválido, muestra errores en modal
                 var errores = respuesta.errores;
                 $('#ul_errores').empty();
@@ -510,7 +507,10 @@
                   $('#ul_errores').append('<li>' + error + '</li>');
                 });
                 $('#btn-modal-errores').click();
-              }
+            },
+            error: function(error){
+              if(error.responseText == "ok")
+                window.location.href = "<?php echo $redirect; ?>?success=true";
             }
           });
         });
