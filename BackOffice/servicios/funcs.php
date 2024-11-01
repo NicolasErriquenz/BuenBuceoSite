@@ -24,12 +24,23 @@
 		);
 
 		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		$response = curl_exec($ch);
-		curl_close($ch);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	    curl_setopt($ch, CURLOPT_HEADER, true); // Obtener encabezados de respuesta
+	    $response = curl_exec($ch);
+	    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	    curl_close($ch);
+
+	    if ($httpCode === 403) { // Código de estado para "Too Many Requests"
+	        return "Cantidad de peticiones máximas por día alcanzadas. Ingresa la cotización a mano.";
+	    }
 
 		$data = json_decode($response, true);
+
+		if ($data === null) {
+		    echo "Error al decodificar JSON: " . json_last_error_msg();
+		    exit;
+		}
 
 		$cotizacion_mas_actual = end($data);
 
@@ -37,7 +48,7 @@
 		$resultado["cotizacion"] = $cotizacion_mas_actual["v"];
 
 		//header('Content-Type: application/json');
-		return ($resultado);
+		return json_encode($resultado);
 
 	}
 

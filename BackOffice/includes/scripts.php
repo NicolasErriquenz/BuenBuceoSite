@@ -20,3 +20,4 @@
 <script src="assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 <script src="assets/js/plugins/chartjs.min.js"></script>
 
+<script src="assets/js/bootstrap5-toggle.ecmas.min.js"></script>

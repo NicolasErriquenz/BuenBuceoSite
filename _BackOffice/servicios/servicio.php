@@ -25,33 +25,6 @@
 	    exit; // Asegúrate de terminar el script aquí para no procesar más nada
 	}
 
-	function buscarUsuarios($query) {
-		global $mysqli;
-
-		$query = mysqli_real_escape_string($mysqli, $query);
-
-		$sql = "SELECT * FROM usuarios 
-		        WHERE nombre LIKE '%$query%' 
-		        OR apellido LIKE '%$query%' 
-		        OR apodo LIKE '%$query%' 
-		        OR comentario LIKE '%$query%' 
-		        OR imagen LIKE '%$query%'
-		        OR CAST(dni AS CHAR) LIKE '%$query%'";
-
-		$resultado = mysqli_query($mysqli, $sql);
-
-		$usuarios = array();
-		while ($row = mysqli_fetch_assoc($resultado)) {
-			$obj["usuarioId"] = $row["usuarioId"];
-			$obj["nombre"] = $row["nombre"]." ".$row["apellido"]." (".$row["apodo"].") - ".$row["dni"];
-			$usuarios[] = $obj;
-		}
-
-		// No es necesario cerrar la conexión aquí, ya que es global
-
-		return json_encode($usuarios);
-	}
-
 	function eliminarItem($id, $tabla, $idNombre){
 		global $mysqli;
 
@@ -272,89 +245,26 @@
 	}
 
 
-	function altaPago($datos) {
+	function altaPago($POST) {
 	    global $mysqli;
 
-	    $pago = array(
-	        'pagosSubrubroId' => $datos['pagosSubrubroId'],
-	        'pagoTransaccionTipoId' => $datos['pagoTransaccionTipoId'],
-	        'fecha' => $datos['fecha'],
-	        'monedaId' => $datos['monedaId'],
-	        'monto' => $datos['monto'],
-	        'medioPagoId' => $datos['medioPagoId'],
-	        'comentario' => $datos['comentario'] ?? null,
-	        'cotizacion' => $datos['cotizacion'] ?? null,
-	        'usuarioId' => isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : null,
-	        'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
-	        'deudaId' => $datos['deudaId'] ?? null,
-	    );
+	    // Preparamos la consulta utilizando ? como placeholders
+	    $query = "INSERT INTO pagos_rubros (rubro, comentario, habilitado_sys) VALUES (?, ?, ?)";
+	    
+	    $POST['habilitado_sys'] = 1;
 
-	    // Validaciones
-	    if (empty($pago['pagosSubrubroId']) || 
-	        empty($pago['pagoTransaccionTipoId']) || 
-	        empty($pago['fecha']) || 
-	        empty($pago['monedaId']) || 
-	        empty($pago['monto']) || 
-	        empty($pago['medioPagoId'])) {
-	        echo 'Faltan campos obligatorios';
-	        return;
-	    }
-
-	    // Sentencia SQL para insertar el pago
-	    $sql = "INSERT INTO pagos (pagosSubrubroId, pagoTransaccionTipoId, fecha, monedaId, monto, medioPagoId, comentario, cotizacion, habilitado_sys, usuarioId, deudaId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-	    $stmt = mysqli_prepare($mysqli, $sql);
-	    if (!$stmt) {
-	        echo "Error preparando la sentencia: " . mysqli_error($mysqli);
-	        return;
-	    }
-
-	    // Manejar usuarioId como NULL si es necesario
-	    $usuarioId = $pago['usuarioId'];
-	    if ($usuarioId === null) {
-	        mysqli_stmt_bind_param($stmt, 'iisddiiiddi', 
-	            $pago['pagosSubrubroId'], 
-	            $pago['pagoTransaccionTipoId'], 
-	            $pago['fecha'], 
-	            $pago['monedaId'], 
-	            $pago['monto'], 
-	            $pago['medioPagoId'], 
-	            $pago['comentario'], 
-	            $pago['cotizacion'], 
-	            $pago['habilitado_sys'], 
-	            $usuarioId, // PHP maneja null correctamente como NULL en la base de datos.
-	            $pago['deudaId']
-	        );
+	    // Preparamos la consulta
+	    if ($stmt = $mysqli->prepare($query)) {
+	        $stmt->bind_param('ssi', $POST['rubro'], $POST['comentario'], $POST['habilitado_sys']);
+	        if(!$stmt->execute()) 
+	            die("Error al insertar el registro: " . $stmt->error);
+	        $stmt->close();
 	    } else {
-	        mysqli_stmt_bind_param($stmt, 'iisddiiiddi', 
-	            $pago['pagosSubrubroId'], 
-	            $pago['pagoTransaccionTipoId'], 
-	            $pago['fecha'], 
-	            $pago['monedaId'], 
-	            $pago['monto'], 
-	            $pago['medioPagoId'], 
-	            $pago['comentario'], 
-	            $pago['cotizacion'], 
-	            $pago['habilitado_sys'], 
-	            $usuarioId,
-	            $pago['deudaId']
-	        );
+	        echo "Error al preparar la consulta: " . $mysqli->error;
 	    }
 
-	    // Ejecutar la sentencia
-	    if (!mysqli_stmt_execute($stmt)) {
-	        echo 'Error al insertar pago: ' . mysqli_stmt_error($stmt);
-	        return;
-	    }
-
-	    // Verificar si se insertó correctamente
-	    if (mysqli_stmt_affected_rows($stmt) > 0) {
-	        echo 'Pago insertado correctamente';
-	    } else {
-	        echo 'Error al insertar pago';
-	    }
+	    header("location:pagos_rubros.php");
 	}
-
 	
 	function altaRubroPago($POST) {
 	    global $mysqli;
@@ -519,13 +429,13 @@
 	}
 
 	function getPagos() {
-    global $mysqli;
+
+		global $mysqli;
 	    $query = "
 	        SELECT p.*, ps.subrubro, pt.transaccion AS transaccion_tipo, m.moneda, mp.medioPago,
-	               u.nombre AS usuario_nombre, d.deuda, pr.rubro
+	               u.nombre AS usuario_nombre, d.deuda
 	        FROM pagos p
 	        INNER JOIN pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
-	        INNER JOIN pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
 	        INNER JOIN pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
 	        INNER JOIN monedas m ON p.monedaId = m.monedaId
 	        INNER JOIN medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
@@ -545,5 +455,4 @@
 
 	    return $pagos;
 	}
-
 ?>
