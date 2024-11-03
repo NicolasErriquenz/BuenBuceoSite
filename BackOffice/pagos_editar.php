@@ -34,8 +34,12 @@
       
       if(isset($respuesta["errores"]) && count($respuesta["errores"]) > 0)
         echo json_encode($respuesta);
-      else
-        echo altaPago($_POST);
+      else{
+        if($_POST['action'] == "alta")
+          echo altaPago($_POST);
+        else
+          echo editarPago($_POST);
+      }
 
       die();
   }
@@ -63,13 +67,20 @@
   
   $pago = [];
   $pago["habilitado_sys"] = 1;
-  
+  $subrubro = null;
+  $subrubros = null;
+  $usuario = null;
+
   if( isset($_GET[$idNombre]) ){
     $title = "Editar pago";
     $subtitle = "Podés editar el pago desde aquí";
     $action = "editar";
     $pago = getItem($tabla, $idNombre, $_GET[$idNombre]);
+    $subrubro = getItem("pagos_subrubros", "pagosSubrubroId", $pago["pagosSubrubroId"]);
+    $subrubros = getSubrubrosPagos(true, $subrubro["pagosRubrosId"]);
 
+    if($pago["usuarioId"] != null)
+      $usuario = getItem("usuarios", "usuarioId", $pago["usuarioId"]);
   }else{
     $title = "Alta pago";
     $subtitle = "Podés dar de alta un pago desde aquí";
@@ -78,7 +89,7 @@
 
   $goBackLink = "pagos.php";
   $rubros = getRubrosPagos();
-  $subrubros = getSubrubrosPagos();
+  
   $transaccionTipos = getTransaccionTipos();
   $monedas = getMonedas();
   $cotizacion = "";
@@ -87,6 +98,8 @@
   // if(isset($_GET)){
   //   $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
   // }
+  // var_dump($usuario);
+  // die();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -138,8 +151,7 @@
                                 <option value="" selected disabled>Seleccione un rubro</option>
                                 <?php foreach ($rubros as $rubro): ?>
                                 <option value="<?php echo $rubro['pagosRubroId']; ?>" 
-                                        <?php echo (isset($subrubro['pagosRubrosId']) && $subrubro['pagosRubrosId'] == $rubro['pagosRubroId']) || 
-                                               (isset($_GET['pagosRubrosId']) && $_GET['pagosRubrosId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
+                                        <?php echo (isset($subrubro['pagosRubrosId']) && $subrubro['pagosRubrosId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
                                   <?php echo $rubro['rubro']; ?>
                                 </option>
                                 <?php endforeach; ?>
@@ -151,6 +163,14 @@
                               <label for="subrubro" class="form-control-label">Subrubro</label>
                               <select id="pagosSubrubroId" name="pagosSubrubroId" class="form-control">
                                 <option value="" selected disabled>Seleccione un subrubro</option>
+                                <?php if($subrubro != null): ?>
+                                  <?php foreach ($subrubros as $sub): ?>
+                                    <option value="<?php echo $sub['pagosSubrubroId']; ?>" 
+                                          <?php echo (isset($subrubro['pagosSubrubroId']) && $subrubro['pagosSubrubroId'] == $sub['pagosSubrubroId']) ? "selected" : ""; ?>>
+                                    <?php echo $sub['subrubro']; ?>
+                                  </option>
+                                  <?php endforeach; ?>
+                                <?php endif ?>
                               </select>
                             </div>
                           </div>
@@ -169,13 +189,14 @@
                                        id="pagoTransaccionTipoId"
                                        data-onvalue="2"
                                        data-offvalue="1"
-                                       checked
+                                       <?php echo isset($pago['pagoTransaccionTipoId']) && $pago['pagoTransaccionTipoId'] == 2 ? "checked" : ''; ?>
                                        data-toggle="toggle" 
                                        data-onlabel="Ingreso" 
                                        data-offlabel="Egreso" 
-                                       data-onstyle="success" 
+                                       data-onstyle="info" 
                                        data-offstyle="danger" 
-                                       data-style="android">
+                                       data-style="android"
+                                       >
                               </div>
                             </div>
                           </div>
@@ -217,7 +238,8 @@
                                 <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
                                 <input type="text" 
                                        id="cotizacion" name="cotizacion" 
-                                       value="" 
+                                       value="<?php echo isset($pago['cotizacion']) ? $pago['cotizacion'] : ''; ?>" 
+                                       <?php echo $action == "alta" || (isset($pago['monedaId']) && $pago['monedaId'] == 1) ? "disabled" : ""; ?>
                                        class="form-control" style="text-align: right;">
                               </div>
                             </div>
@@ -225,17 +247,18 @@
 
                           <div class="col-md-4">
                             <div class="form-group">
-                              <label class="form-control-label">Moneda</label>
-                              <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
+                              <label class="form-control-label" style="display: block;">Moneda</label>
+                              <div class="btn-group btn-group-toggle w-100" data-bs-toggle="buttons">
                                 <?php foreach ($monedas as $moneda): ?>
-                                <label class="btn <?php echo (isset($pago['monedaId']) && $pago['monedaId'] == $moneda['monedaId']) ? "active" : ""; ?>">
-                                  <input type="radio" name="monedaId" value="<?php echo $moneda['monedaId']; ?>" <?php echo (isset($pago['monedaId']) && $pago['monedaId'] == $moneda['monedaId']) ? "checked" : ""; ?>>
+                                <label class="btn w-100 <?php echo (isset($pago['monedaId']) && $pago['monedaId'] == $moneda['monedaId']) ? "active" : ($action == "editar" && $moneda['monedaId'] == 1 ? "active" : ""); ?>">
+                                  <input type="radio" name="monedaId" value="<?php echo $moneda['monedaId']; ?>" <?php echo (isset($pago['monedaId']) && $pago['monedaId'] == $moneda['monedaId']) ? "checked" : ($action == "alta" && $moneda['monedaId'] == 1 ? "checked" : ""); ?>>
                                   <?php echo $moneda['moneda']; ?>
                                 </label>
                                 <?php endforeach; ?>
                               </div>
                             </div>
                           </div>
+
                         </div>
 
 
@@ -263,10 +286,18 @@
                             <label class="form-control-label">Asignar pago al usuario</label>
                             <div class="row">
                               <div class="col-md-9">
-                                <input autocomplete="off" type="text" id="buscar" name="buscar" class="form-control" placeholder="Ingrese al menos 3 caracteres">
+                                <input autocomplete="off" 
+                                      type="text" 
+                                      id="buscar" 
+                                      name="buscar" 
+                                      class="form-control" 
+                                      value="<?php echo $usuario != null ? $usuario["nombre"]." ".$usuario["apellido"]." (".$usuario["apodo"].") - ".$usuario["dni"] : ''?>"
+                                      placeholder="Ingrese al menos 3 caracteres">
                               </div>
                               <div class="col-md-3">
-                                <button id="deseleccionar" class="btn btn-outline-secondary w-100" disabled>
+                                <button id="deseleccionar" 
+                                        class="btn btn-outline-secondary w-100" 
+                                        <?php echo isset($usuario['usuarioId']) ? "" : 'disabled'; ?>>
                                   <i class="fas fa-times"></i> Deseleccionar
                                 </button>
                               </div>
@@ -295,7 +326,7 @@
 
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
-                        <input type="hidden" name="usuarioId" id="usuarioId" value="">
+                        <input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $usuario != null ? $usuario["usuarioId"] : ''?>">
                         <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>

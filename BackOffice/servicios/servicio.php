@@ -111,6 +111,7 @@
 	    return $resultArray;
 	}
 
+
 	function getDeudaTipos($orderByAlfabetico = false) {
 	    global $mysqli;
 
@@ -141,7 +142,7 @@
 	    global $mysqli;
 
 	    // Consulta SQL
-	    $sql = "SELECT * FROM medios_de_pago";
+	    $sql = "SELECT * FROM medios_de_pago WHERE habilitado_sys=1";
 
 	    // Ejecutar consulta
 	    $result = $mysqli->query($sql);
@@ -355,6 +356,44 @@
 	    }
 	}
 
+	function editarPago($datos) {
+	    global $mysqli;
+
+		// Preparar datos
+		$pagoId = $_GET['pagoId'];
+		$usuarioId = isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : 'NULL';
+		$deudaId = $datos['deudaId'] ?? 'NULL';
+		$habilitado_sys = isset($datos['habilitado_sys']) ? 1 : 0;
+
+		// Sentencia SQL para actualizar el pago
+		$sql = "UPDATE pagos SET 
+		      pagosSubrubroId = ".$datos['pagosSubrubroId'].", 
+		      pagoTransaccionTipoId = ".$datos['pagoTransaccionTipoId'].", 
+		      fecha = '".$datos['fecha']."', 
+		      monedaId = ".$datos['monedaId'].", 
+		      monto = '".$datos['monto']."', 
+		      medioPagoId = ".$datos['medioPagoId'].", 
+		      comentario = '".($datos['comentario'] ?? '')."', 
+		      cotizacion = '".($datos['cotizacion'] ?? '')."', 
+		      habilitado_sys = ".$habilitado_sys.", 
+		      usuarioId = ".$usuarioId.", 
+		      deudaId = ".$deudaId."
+		  WHERE pagoId = $pagoId";
+
+		$stmt = mysqli_prepare($mysqli, $sql);
+		
+	    // Ejecutar la sentencia
+	    if (!mysqli_stmt_execute($stmt)) {
+	        echo 'Error al actualizar pago: ' . mysqli_stmt_error($stmt);
+	        return;
+	    }
+	    // Verificar si se actualizó correctamente
+	    if (mysqli_stmt_affected_rows($stmt) > 0 || mysqli_stmt_errno($stmt) == 0) {
+	        echo 'ok';
+	    } else {
+	        echo 'Error al actualizar pago';
+	    }
+	}
 	
 	function altaRubroPago($POST) {
 	    global $mysqli;
@@ -375,7 +414,73 @@
 	    }
 
 	    header("location:pagos_rubros.php");
+	}	
+
+	function altaDeuda($POST) {
+	  global $mysqli;
+
+	  // Preparamos la consulta utilizando ? como placeholders
+	  $query = "INSERT INTO deudas (deuda, monedaId, usuarioId, deudaTipoId, comentario, habilitado_sys) VALUES (?, ?, ?, ?, ?, ?)";
+
+	  $POST['habilitado_sys'] = 1;
+
+	  // Preparamos la consulta
+	  if ($stmt = $mysqli->prepare($query)) {
+
+	  	$comentario = empty($POST['comentario']) ? NULL : $POST['comentario'];
+
+	    $stmt->bind_param('diidsi', 
+		  $POST['deuda'], 
+		  $POST['monedaId'], 
+		  $POST['usuarioId'], 
+		  $POST['deudaTipoId'], 
+		  $comentario, 
+		  $POST['habilitado_sys']
+		);
+	    if(!$stmt->execute()) 
+	      die("Error al insertar el registro: " . $stmt->error);
+	  	else
+	  		echo "ok";
+
+	    $stmt->close();
+	  } else {
+	    echo "Error al preparar la consulta: " . $mysqli->error;
+	  }  
 	}
+
+	function editarDeuda($datos) {
+	  global $mysqli;
+
+	  // Preparar datos
+	  $deudaId = $_GET['deudaId'];
+	  $usuarioId = isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : 'NULL';
+	  $deudaTipoId = $datos['deudaTipoId'] ?? 'NULL';
+	  $habilitado_sys = isset($datos['habilitado_sys']) ? 1 : 0;
+
+	  // Sentencia SQL para actualizar la deuda
+	  $sql = "UPDATE deudas SET 
+	          deuda = '".$datos['deuda']."', 
+	          monedaId = ".$datos['monedaId'].", 
+	          usuarioId = ".$usuarioId.", 
+	          deudaTipoId = ".$deudaTipoId.", 
+	          comentario = '".($datos['comentario'] ?? '')."', 
+	          habilitado_sys = ".$habilitado_sys."
+	      WHERE deudaId = $deudaId";
+
+	  // Ejecutar la sentencia
+	  if (!mysqli_query($mysqli, $sql)) {
+	    echo 'Error al actualizar deuda: ' . mysqli_error($mysqli);
+	    return;
+	  }
+
+	  // Verificar si se actualizó correctamente
+	  if (mysqli_affected_rows($mysqli) > 0 || mysqli_errno($mysqli) == 0) {
+	    echo 'ok';
+	  } else {
+	    echo 'Error al actualizar deuda';
+	  }
+	}
+
 
 	function altaTipoDeuda($POST) {
 	    global $mysqli;
@@ -518,32 +623,636 @@
 	    }
 	}
 
-	function getPagos() {
-    	global $mysqli;
-	    $query = "
-	        SELECT p.*, ps.subrubro, pt.transaccion AS transaccion_tipo, m.simbolo, mp.medioPago,
-	               u.nombre AS usuario_nombre, d.deuda, pr.rubro
-	        FROM pagos p
-	        INNER JOIN pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
-	        INNER JOIN pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
-	        INNER JOIN pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
-	        INNER JOIN monedas m ON p.monedaId = m.monedaId
-	        INNER JOIN medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
-	        LEFT JOIN usuarios u ON p.usuarioId = u.usuarioId
-	        LEFT JOIN deudas d ON p.deudaId = d.deudaId
-	    ";
+	function getTipoDeudas() {
+		global $mysqli;
+		
+	  $query = "SELECT 
+	              deudaTipoId, 
+	              deuda, 
+	              comentario
+	            FROM 
+	              deuda_tipo
+	            WHERE 
+	              habilitado_sys = 1";
 
-	    $result = $mysqli->query($query);
-	    if (!$result) {
-	        die("Error al obtener pagos: " . $mysqli->error);
-	    }
+	  $resultado = mysqli_query($mysqli, $query);
+	  $tiposDeudas = array();
 
-	    $pagos = array();
-	    while ($row = $result->fetch_assoc()) {
-	        $pagos[] = $row;
-	    }
+	  while ($fila = mysqli_fetch_assoc($resultado)) {
+	    $tiposDeudas[] = $fila;
+	  }
 
-	    return $pagos;
+	  return $tiposDeudas;
 	}
 
+	function getDeudas($usuarioId = null) {
+
+	  global $mysqli;
+
+	  $query = "SELECT 
+	              d.*, 
+	              m.moneda, 
+	              m.simbolo, 
+	              u.nombre as usuario_nombre, 
+	              u.apellido as usuario_apellido, 
+	              u.apodo, 
+	              td.deuda AS tipo_deuda
+	            FROM 
+	              deudas d
+	            INNER JOIN 
+	              monedas m ON d.monedaId = m.monedaId
+	            INNER JOIN 
+	              usuarios u ON d.usuarioId = u.usuarioId
+	            INNER JOIN 
+	              deuda_tipo td ON d.deudaTipoId = td.deudaTipoId
+	            ";
+
+	  if ($usuarioId !== null) {
+	    $query .= " AND d.usuarioId = '$usuarioId'";
+	  }
+
+	  $resultado = mysqli_query($mysqli, $query);
+	  $deudas = array();
+
+	  while ($fila = mysqli_fetch_assoc($resultado)) {
+	    $deudas[] = $fila;
+	  }
+
+	  return $deudas;
+	}
+
+	function getPagos($usuarioId = null) {
+	  global $mysqli;
+	  
+	  $query = "
+	    SELECT p.*, ps.subrubro, pt.transaccion AS transaccion_tipo, m.simbolo, mp.medioPago,
+	           u.nombre AS usuario_nombre, d.deuda as deuda, pr.rubro
+	    FROM pagos p
+	    INNER JOIN pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
+	    INNER JOIN pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
+	    INNER JOIN pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
+	    INNER JOIN monedas m ON p.monedaId = m.monedaId
+	    INNER JOIN medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
+	    LEFT JOIN usuarios u ON p.usuarioId = u.usuarioId
+	    LEFT JOIN deudas d ON p.deudaId = d.deudaId
+	  ";
+
+	  if ($usuarioId !== null) {
+	    $query .= " WHERE p.usuarioId = '$usuarioId'";
+	  }
+	  $result = $mysqli->query($query);
+	  if (!$result) {
+	    die("Error al obtener pagos: " . $mysqli->error);
+	  }
+
+	  $pagos = array();
+	  while ($row = $result->fetch_assoc()) {
+	    $pagos[] = $row;
+	  }
+
+	  return $pagos;
+	}
+
+	function getUsuarios() {
+	    global $mysqli;
+
+	    // Consulta SQL para obtener datos de usuarios
+	    $sql = "
+	        SELECT 
+	          u.*, 
+	          p.pais, 
+	          s.sexo, 
+	          (SELECT COUNT(*) FROM pagos WHERE usuarioId = u.usuarioId) AS cantidad_pagos,
+	          (SELECT COUNT(*) FROM deudas WHERE usuarioId = u.usuarioId) AS cantidad_deudas
+	        FROM 
+	          usuarios u
+	        LEFT JOIN 
+	          paises p ON u.paisId = p.paisId
+	        LEFT JOIN 
+	          sexo s ON u.sexoId = s.sexoId
+	    ";
+
+	    // Ejecutar consulta
+	    $result = $mysqli->query($sql);
+
+	    // Verificar resultado
+	    if ($result->num_rows > 0) {
+	        // Devolver arreglo de usuarios
+	        $usuarios = array();
+	        while($row = $result->fetch_assoc()) {
+	            // Consulta SQL para obtener redes sociales del usuario
+	            $sqlRedes = "
+	                SELECT 
+	                  rs.red, 
+	                  urs.link, 
+	                  urs.username
+	                FROM 
+	                  usuarios_redes_sociales urs
+	                INNER JOIN 
+	                  redes_sociales rs ON urs.redId = rs.redSocialId
+	                WHERE 
+	                  urs.usuarioId = " . $row['usuarioId'] . "
+	            ";
+
+	            // Ejecutar consulta
+	            $resultRedes = $mysqli->query($sqlRedes);
+
+	            // Verificar resultado
+	            if ($resultRedes->num_rows > 0) {
+	                // Agregar redes sociales al arreglo de usuario
+	                $redes = array();
+	                while($rowRed = $resultRedes->fetch_assoc()) {
+	                    $redes[] = $rowRed;
+	                }
+	                $row['redes_sociales'] = $redes;
+	            } else {
+	                $row['redes_sociales'] = array();
+	            }
+
+	            $usuarios[] = $row;
+	        }
+	        return $usuarios;
+	    } else {
+	        // Devolver mensaje de error
+	        return "No se encontraron usuarios";
+	    }
+	}	
+
+	function getRedes() {
+	  global $mysqli;
+
+	  // Consulta SQL para obtener redes sociales
+	  $sql = "
+	    SELECT 
+	      redSocialId, 
+	      red
+	    FROM 
+	      redes_sociales
+	  ";
+
+	  // Ejecutar consulta
+	  $result = $mysqli->query($sql);
+
+	  // Verificar resultado
+	  if ($result->num_rows > 0) {
+	    // Devolver arreglo de redes sociales
+	    $redes = array();
+	    while($row = $result->fetch_assoc()) {
+	      $redes[] = $row;
+	    }
+	    return $redes;
+	  } else {
+	    // Devolver arreglo vacío
+	    return array();
+	  }
+	}
+
+	function guardarRedSocial($POST) {
+	  global $mysqli;
+
+	  // Consulta SQL para guardar red social
+	  $sql = "
+	    INSERT INTO usuarios_redes_sociales (usuarioId, redId, username, link)
+	    VALUES (" . $mysqli->real_escape_string($POST["usuarioId"]) . ", 
+	            " . $mysqli->real_escape_string($POST["redId"]) . ", 
+	            '" . $mysqli->real_escape_string($POST["username"]) . "', 
+	            '" . $mysqli->real_escape_string($POST["link"]) . "')
+	  ";
+
+	  // Ejecutar consulta
+	  if ($mysqli->query($sql) === true) {
+	    // Obtener todas las redes sociales del usuario
+	    $sqlRedes = "
+	      SELECT 
+	        rs.red, 
+	        urs.usuariosRedSocialId,
+	        urs.username,
+	        urs.link
+	      FROM 
+	        usuarios_redes_sociales urs
+	      INNER JOIN 
+	        redes_sociales rs ON urs.redId = rs.redSocialId
+	      WHERE 
+	        urs.usuarioId = " . $mysqli->real_escape_string($POST["usuarioId"]);
+	    $result = $mysqli->query($sqlRedes);
+	    $redes = array();
+	    while ($row = $result->fetch_assoc()) {
+	      $redes[] = $row;
+	    }
+
+	    return json_encode(array("estado" => "ok", "mensaje" => "Red social guardada con éxito", "redes" => $redes));
+	  } else {
+	    return json_encode(array("estado" => "error", "mensaje" => "Error al guardar red social: " . $mysqli->error));
+	  }
+	}
+
+	function getUsuarioRedes($usuarioID) {
+	    global $mysqli;
+
+	    // Consulta SQL para obtener redes sociales del usuario
+	    $sql = "
+	        SELECT 
+	          rs.red, 
+	          urs.link, 
+	          urs.username
+	        FROM 
+	          usuarios_redes_sociales urs
+	        INNER JOIN 
+	          redes_sociales rs ON urs.redId = rs.redSocialId
+	        WHERE 
+	          urs.usuarioId = " . $mysqli->real_escape_string($usuarioID) . "
+	    ";
+
+	    // Ejecutar consulta
+	    $result = $mysqli->query($sql);
+
+	    // Verificar resultado
+	    if ($result->num_rows > 0) {
+	        // Devolver arreglo de redes sociales
+	        $redes = array();
+	        while($row = $result->fetch_assoc()) {
+	            $redes[] = $row;
+	        }
+	        return $redes;
+	    } else {
+	        // Devolver arreglo vacío
+	        return array();
+	    }
+	}
+
+	function altaUsuario($datos) {
+	  global $mysqli;
+
+	  if ($_FILES['imagen']['size'] > 0) {
+		  $imagen = $_FILES['imagen'];
+		  $nombreArchivo = $datos['usuarioId'] . '.jpg';
+		  $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
+		  $rutaGuardarSmall = '_recursos/profile_pics/' . $datos['usuarioId'] . '_small.jpg';
+
+		  // Verificar tipo de archivo
+		  $tiposPermitidos = array('image/jpeg', 'image/png');
+		  if (!in_array($imagen['type'], $tiposPermitidos)) {
+		    echo 'Error: Solo se aceptan imágenes JPEG y PNG';
+		    return;
+		  }
+
+		  // Guardar imagen original
+		  move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
+
+		  // Crear versión pequeña de la imagen
+		  $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
+		  switch ($tipoImagen) {
+		    case 'jpg':
+		    case 'jpeg':
+		      $img = imagecreatefromjpeg($rutaGuardar);
+		      break;
+		    case 'png':
+		      $img = imagecreatefrompng($rutaGuardar);
+		      break;
+		  }
+
+		  if (!$img) {
+		    echo 'Error: No se pudo crear la imagen';
+		    return;
+		  }
+
+		  $exif = exif_read_data($rutaGuardar);
+		  $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
+
+		  switch ($orientacion) {
+		    case 3:
+		      // Rotar 180 grados
+		      $img = imagerotate($img, 180, 0);
+		      break;
+		    case 6:
+		      // Rotar 90 grados a la derecha
+		      $img = imagerotate($img, -90, 0);
+		      break;
+		    case 8:
+		      // Rotar 90 grados a la izquierda
+		      $img = imagerotate($img, 90, 0);
+		      break;
+		  }
+
+		  $ancho = 100;
+		  $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
+		  $imgSmall = imagecreatetruecolor($ancho, $alto);
+		  imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
+		  imagejpeg($imgSmall, $rutaGuardarSmall);
+
+		  // Actualizar campo imagen en la base de datos
+		  $datos['imagen'] = $datos['usuarioId'] . '_small.jpg';
+		} 
+
+	  $usuario = array(
+	    'nombre' => $datos['nombre'],
+	    'apellido' => $datos['apellido'] ?? null,
+	    'email' => $datos['email'],
+	    'dni' => $datos['dni'] ?? null,
+	    'apodo' => $datos['apodo'] ?? null,
+	    'comentario' => $datos['comentario'] ?? null,
+	    'direccion' => $datos['direccion'] ?? null,
+	    'ciudad' => $datos['ciudad'] ?? null,
+	    'fecha_registro' => date('Y-m-d'),
+	    'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? null,
+	    'imagen' => $datos['imagen'] ?? null,
+	    'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
+	    'paisId' => $datos['paisId'] ?? null,
+	    'sexoId' => $datos['sexoId'] ?? null,
+	  );
+
+	  // Validaciones
+	  if (empty($usuario['nombre']) || empty($usuario['email'])) {
+	    echo 'Faltan campos obligatorios (nombre y email)';
+	    return;
+	  }
+
+	  // Verificar formato email
+	  if (!filter_var($usuario['email'], FILTER_VALIDATE_EMAIL)) {
+	    echo 'Email inválido';
+	    return;
+	  }
+
+	  // Sentencia SQL para insertar el usuario
+	  $sql = "INSERT INTO usuarios (nombre, apellido, email, dni, apodo, comentario, direccion, ciudad, fecha_registro, fecha_nacimiento, imagen, habilitado_sys, paisId, sexoId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	  $stmt = mysqli_prepare($mysqli, $sql);
+	  if (!$stmt) {
+	    echo "Error preparando la sentencia: " . mysqli_error($mysqli);
+	    return;
+	  }
+
+	  // Manejar campos como NULL si es necesario
+	  $apellido = $usuario['apellido'];
+	  $dni = $usuario['dni'];
+	  $apodo = $usuario['apodo'];
+	  $comentario = $usuario['comentario'];
+	  $direccion = $usuario['direccion'];
+	  $ciudad = $usuario['ciudad'];
+	  $fecha_nacimiento = $usuario['fecha_nacimiento'];
+	  $imagen = $usuario['imagen'];
+	  $paisId = $usuario['paisId'];
+	  $sexoId = $usuario['sexoId'];
+
+	  mysqli_stmt_bind_param($stmt, 'sssisssssssiii', 
+	    $usuario['nombre'], 
+	    $apellido, 
+	    $usuario['email'], 
+	    $dni, 
+	    $apodo, 
+	    $comentario, 
+	    $direccion, 
+	    $ciudad, 
+	    $usuario['fecha_registro'], 
+	    $fecha_nacimiento, 
+	    $imagen, 
+	    $usuario['habilitado_sys'], 
+	    $paisId, 
+	    $sexoId
+	  );
+
+	  // Ejecutar la sentencia
+	  if (!mysqli_stmt_execute($stmt)) {
+	    echo 'Error al insertar usuario: ' . mysqli_stmt_error($stmt);
+	    return;
+	  }
+
+	  // Verificar si se insertó correctamente
+	  if (mysqli_stmt_affected_rows($stmt) > 0) {
+		  $usuarioId = mysqli_insert_id($mysqli);
+		  echo json_encode(array('estado' => 'ok', 'usuarioId' => $usuarioId));
+		} else {
+		  echo json_encode(array('estado' => 'error', 'mensaje' => 'Error al insertar usuario'));
+		}
+	}
+
+	function editarUsuario($datos) {
+	  global $mysqli;
+
+	  if ($_FILES['imagen']['size'] > 0) {
+		  $imagen = $_FILES['imagen'];
+		  $nombreArchivo = $datos['usuarioId'] . '.jpg';
+		  $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
+		  $rutaGuardarSmall = '_recursos/profile_pics/' . $datos['usuarioId'] . '_small.jpg';
+
+		  // Verificar tipo de archivo
+		  $tiposPermitidos = array('image/jpeg', 'image/png');
+		  if (!in_array($imagen['type'], $tiposPermitidos)) {
+		    echo 'Error: Solo se aceptan imágenes JPEG y PNG';
+		    return;
+		  }
+
+		  // Guardar imagen original
+		  move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
+
+		  // Crear versión pequeña de la imagen
+		  $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
+		  switch ($tipoImagen) {
+		    case 'jpg':
+		    case 'jpeg':
+		      $img = imagecreatefromjpeg($rutaGuardar);
+		      break;
+		    case 'png':
+		      $img = imagecreatefrompng($rutaGuardar);
+		      break;
+		  }
+
+		  if (!$img) {
+		    echo 'Error: No se pudo crear la imagen';
+		    return;
+		  }
+
+		  $exif = exif_read_data($rutaGuardar);
+		  $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
+
+		  switch ($orientacion) {
+		    case 3:
+		      // Rotar 180 grados
+		      $img = imagerotate($img, 180, 0);
+		      break;
+		    case 6:
+		      // Rotar 90 grados a la derecha
+		      $img = imagerotate($img, -90, 0);
+		      break;
+		    case 8:
+		      // Rotar 90 grados a la izquierda
+		      $img = imagerotate($img, 90, 0);
+		      break;
+		  }
+
+		  $ancho = 100;
+		  $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
+		  $imgSmall = imagecreatetruecolor($ancho, $alto);
+		  imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
+		  imagejpeg($imgSmall, $rutaGuardarSmall);
+
+		  // Actualizar campo imagen en la base de datos
+		  $datos['imagen'] = $datos['usuarioId'] . '_small.jpg';
+		} elseif (isset($datos['imagen'])) {
+		  // No se subió imagen, mantener la existente
+		  $datos['imagen'] = $datos['imagen'];
+		} else {
+		  // No se subió imagen, obtener la imagen existente desde la base de datos
+		  $sql = "SELECT imagen FROM usuarios WHERE usuarioId = ?";
+		  $stmt = mysqli_prepare($mysqli, $sql);
+		  mysqli_stmt_bind_param($stmt, 'i', $datos['usuarioId']);
+		  mysqli_stmt_execute($stmt);
+		  $resultado = mysqli_stmt_get_result($stmt);
+		  $fila = mysqli_fetch_assoc($resultado);
+		  $datos['imagen'] = $fila['imagen'];
+		}
+
+	  $usuario = array(
+	    'usuarioId' => $datos['usuarioId'],
+	    'nombre' => $datos['nombre'],
+	    'apellido' => $datos['apellido'] ?? null,
+	    'email' => $datos['email'],
+	    'dni' => $datos['dni'] ?? null,
+	    'apodo' => $datos['apodo'] ?? null,
+	    'comentario' => $datos['comentario'] ?? null,
+	    'direccion' => $datos['direccion'] ?? null,
+	    'ciudad' => $datos['ciudad'] ?? null,
+	    'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? null,
+	    'imagen' => $datos['imagen'] ?? null,
+	    'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
+	    'paisId' => $datos['paisId'] ?? null,
+	    'sexoId' => $datos['sexoId'] ?? null,
+	  );
+
+
+
+	  // Validaciones
+	  if (empty($usuario['nombre']) || empty($usuario['email'])) {
+	    echo 'Faltan campos obligatorios (nombre y email)';
+	    return;
+	  }
+
+	  // Verificar formato email
+	  if (!filter_var($usuario['email'], FILTER_VALIDATE_EMAIL)) {
+	    echo 'Email inválido';
+	    return;
+	  }
+
+	  // Sentencia SQL para actualizar el usuario
+	  $sql = "UPDATE usuarios SET 
+	            nombre = ?, 
+	            apellido = ?, 
+	            email = ?, 
+	            dni = ?, 
+	            apodo = ?, 
+	            comentario = ?, 
+	            direccion = ?, 
+	            ciudad = ?, 
+	            fecha_nacimiento = ?, 
+	            imagen = ?, 
+	            habilitado_sys = ?, 
+	            paisId = ?, 
+	            sexoId = ? 
+	          WHERE usuarioId = ?";
+
+	  $stmt = mysqli_prepare($mysqli, $sql);
+	  if (!$stmt) {
+	    echo "Error preparando la sentencia: " . mysqli_error($mysqli);
+	    return;
+	  }
+
+	  // Manejar campos como NULL si es necesario
+	  $apellido = $usuario['apellido'];
+	  $dni = $usuario['dni'];
+	  $apodo = $usuario['apodo'];
+	  $comentario = $usuario['comentario'];
+	  $direccion = $usuario['direccion'];
+	  $ciudad = $usuario['ciudad'];
+	  $fecha_nacimiento = $usuario['fecha_nacimiento'];
+	  $imagen = $usuario['imagen']; //ACA $usuario['imagen'] es null pero $imagen termina siendo "" cuando ingresa a la base
+	  $paisId = $usuario['paisId'];
+	  $sexoId = $usuario['sexoId'];
+
+	 	$fechaNacimiento = $fecha_nacimiento ?? '';
+		$imagen = $imagen === null ? null : $imagen;
+		$paisId = $paisId ?? 0; 
+		$sexoId = $sexoId ?? 0;
+		$usuarioId = $usuario['usuarioId'] ?? 0;
+
+		mysqli_stmt_bind_param($stmt, 'ssssssssssiiii', 
+		  $usuario['nombre'], 
+		  $apellido, 
+		  $usuario['email'], 
+		  $dni, 
+		  $apodo, 
+		  $comentario, 
+		  $direccion, 
+		  $ciudad, 
+		  $fechaNacimiento, 
+		  $imagen, 
+		  $usuario['habilitado_sys'], 
+		  $paisId, 
+		  $sexoId,
+		  $usuarioId
+		);
+
+
+		// Ejecutar la sentencia
+		if (!mysqli_stmt_execute($stmt)) {
+		}
+
+	  	// Verificar si se actualizó correctamente
+	  	if (mysqli_stmt_affected_rows($stmt) > 0 || mysqli_stmt_errno($stmt) == 0) {
+	    	echo json_encode(array('estado' => 'ok', 'usuarioId' => $usuarioId));
+		} else {
+		  	echo json_encode(
+		  		array(
+		  			'estado' => 'error', 
+		  			'mensaje' => 'Error al actualizar el usuario',
+		  			'msqlerror' => mysqli_error($mysqli),
+		  		)
+		  	);
+		}
+	}
+
+	function getPaises() {
+	  global $mysqli;
+
+	  // Consulta SQL
+	  $sql = "SELECT * FROM paises ORDER BY pais ASC";
+
+	  // Ejecutar consulta
+	  $result = $mysqli->query($sql);
+
+	  // Verificar resultado
+	  if ($result->num_rows > 0) {
+	    // Devolver arreglo de paises
+	    $paises = array();
+	    while($row = $result->fetch_assoc()) {
+	      $paises[] = $row;
+	    }
+	    return $paises;
+	  } else {
+	    // Devolver mensaje de error
+	    return "No se encontraron paises";
+	  }
+	}
+
+	function getSexos() {
+	  global $mysqli;
+
+	  // Consulta SQL
+	  $sql = "SELECT * FROM sexo ORDER BY sexo ASC";
+
+	  // Ejecutar consulta
+	  $result = $mysqli->query($sql);
+
+	  // Verificar resultado
+	  if ($result->num_rows > 0) {
+	    // Devolver arreglo de sexos
+	    $sexos = array();
+	    while($row = $result->fetch_assoc()) {
+	      $sexos[] = $row;
+	    }
+	    return $sexos;
+	  } else {
+	    // Devolver mensaje de error
+	    return "No se encontraron sexos";
+	  }
+	}
 ?>

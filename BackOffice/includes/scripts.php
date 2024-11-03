@@ -51,7 +51,10 @@
               "previous": "Anterior"
           }
       },
+      order: [[0, 'desc']]
     });
+
+    console.log($('#tableDataTables').DataTable().data().toArray());
 
   });
 </script>

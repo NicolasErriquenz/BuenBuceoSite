@@ -9,9 +9,10 @@
 
     $tabla = "pagos";
     $idNombre = "pagoId";
-    $subpagos = getPagos();
+    //$subpagos = getPagos();
     $title = "PAGOS";
-    $pagos = getPagos();
+    $usuarioId = isset($_GET["usuarioId"]) && !empty($_GET["usuarioId"]) ? $_GET["usuarioId"] : null;
+    $pagos = getPagos($usuarioId);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -40,12 +41,19 @@
         <div class="col-12">
           <div class="card mb-4" style="padding: 18px;">
             <div class="card-header pb-0">
-                <h6 class="float-start">Listado</h6>
+              <h6 class="float-start">Listado</h6>
+              <div class="float-end">
+                <?php if (isset($_GET['usuarioId'])): ?>
+                <a href="pagos.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
+                  <i class="fa fa-trash"></i> Limpiar filtro de usuario
+                </a>
+                <?php endif; ?>
                 <a href="pagos_editar.php">
                   <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-toggle="tooltip" data-original-title="Agregar pago">
                       <i class="ni ni-fat-add"></i> AGREGAR PAGO
                   </button>
                 </a>
+              </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="custom-scroll-container">
@@ -83,9 +91,9 @@
                         <td class="text-center">
                           <p class="text-sm mb-0">
                             <span class="badge 
-                              <?php if ($pago["pagoTransaccionTipoId"] == 1) echo 'bg-gradient-info'; 
-                                    elseif ($pago["pagoTransaccionTipoId"] == 2) echo 'bg-gradient-danger'; ?>">
-                              <?php echo ($pago["pagoTransaccionTipoId"] == 1) ? 'Ingreso' : 'Egreso'; ?>
+                              <?php if ($pago["pagoTransaccionTipoId"] == 2) echo 'bg-gradient-info'; 
+                                    elseif ($pago["pagoTransaccionTipoId"] == 1) echo 'bg-gradient-danger'; ?>">
+                              <?php echo ($pago["pagoTransaccionTipoId"] == 2) ? 'Ingreso' : 'Egreso'; ?>
                             </span>
                           </p>
                         </td>
