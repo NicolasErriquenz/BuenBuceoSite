@@ -40,10 +40,14 @@
 	
 	$AUTH_BEARER = "Authorization: BEARER eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjE2MDg0ODQsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJuZXJyaXF1ZW56QGdtYWlsLmNvbSJ9.TSyyPz0oicx_RAi_6NQp8058TA6ZIbN5e_9R6rrO1VqeYPgdeTW9r9TwN-xonrAMmJxanKBqDTPY3JTqW_nUXQ";
 
-	$HEADER_IMAGEN = '<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url(\'images/bg1.jpg\'); background-position-y: 50%;">
+	$imagenes = array("bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg", "bg5.jpg");
+	$imagen = $imagenes[array_rand($imagenes)];
+  	$HEADER_IMAGEN = '<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url(\'images/' . $imagen . '\'); background-position-y: 50%;">
     <span class="mask bg-primary opacity-6"></span>
   </div>';
 
   	$HEADER_PLANO = '<div class="min-height-300 bg-dark position-absolute w-100" ></div>';
 
   	$archivoActual = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
+
+  	define("RUTA_FILE_VIAJES", "_recursos/viajes__pdf/");

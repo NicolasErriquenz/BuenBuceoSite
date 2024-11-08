@@ -12,6 +12,14 @@
 	    }
 	}
 	
+	function limpiarNombreArchivo($nombre) {
+	  	$nombre = str_replace(
+		array('á', 'é', 'í', 'ó', 'ú', 'ñ', 'Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ', 'ü', 'Ü'),
+		array('a', 'e', 'i', 'o', 'u', 'n', 'A', 'E', 'I', 'O', 'U', 'N', 'u', 'U'),
+		$nombre
+		);
+		return preg_replace('/[^a-zA-Z0-9_-]/', '', $nombre);
+	}
 
 	function getCotizacion(){
 		

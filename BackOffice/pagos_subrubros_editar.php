@@ -9,7 +9,7 @@
 
   $tabla = "pagos_subrubros";
   $idNombre = "pagosSubrubroId";
-
+  
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -40,7 +40,7 @@
   $rubros = getRubrosPagos($rubrosAlfabeticos);
   $goBackLink = "pagos_subrubros.php";
 
-  if(isset($_GET)){
+  if(isset($_GET["pagosRubrosId"])){
     $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
   }
 ?>
@@ -117,7 +117,7 @@
                                class="habilitado-checkbox"
                                name="habilitado_sys"
                                data-id="<?php echo isset($subrubro['pagosRubroId']) ? $subrubro['pagosRubroId'] : ''; ?>"
-                               <?php echo $subrubro["habilitado_sys"] == 1 ? "checked" : "" ?>
+                               <?php echo isset($subrubro['habilitado_sys']) && $subrubro["habilitado_sys"] == 1 ? "checked" : "" ?>
                                onclick="habilitadoCheckboxChange(this)">
                             Habilitado
                           </label>

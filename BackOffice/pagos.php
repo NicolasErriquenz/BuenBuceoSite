@@ -44,8 +44,8 @@
               <h6 class="float-start">Listado</h6>
               <div class="float-end">
                 <?php if (isset($_GET['usuarioId'])): ?>
-                <a href="pagos.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
-                  <i class="fa fa-trash"></i> Limpiar filtro de usuario
+                <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
+                  <i class="ni ni-bold-left"></i> Volver
                 </a>
                 <?php endif; ?>
                 <a href="pagos_editar.php">
@@ -107,10 +107,18 @@
                           <p class="text-sm font-weight-bold mb-0"><?php echo $pago["medioPago"] ?></p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0"><?php echo isset($pago["usuario_nombre"]) ? $pago["usuario_nombre"] : '-' ?></p>
+                          <a href="usuarios_editar.php?usuarioId=<?php echo $pago["usuarioId"] ?>">
+                            <p class="text-sm font-weight-bold mb-0"><?php echo isset($pago["usuario_nombre"]) ? $pago["usuario_nombre"]." ".$pago["usuario_apellido"]." (".$pago["apodo"].") - ".$pago["dni"] : '-' ?></p>
+                          </a>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0"><?php echo isset($pago["deuda_descripcion"]) ? $pago["deuda_descripcion"] : '-' ?></p>
+                          <a href="deudas_editar.php?deudaId=<?php echo $pago['deudaId'] ?>">
+                            <p class="text-sm font-weight-bold mb-0">
+                              <?php if($pago["deudaId"] !== null): ?>
+                                <?php echo $pago['deuda_tipo']; ?> (<?php echo $pago['deuda_simbolo']; ?> <?php echo $pago['deuda']; ?>)
+                              <?php endif; ?>
+                            </p>
+                          </a>
                         </td>
                         <td class="text-center">
                           <span id="badge-<?php echo $pago[$idNombre]; ?>" class="badge badge-sm habilitado-checkbox 

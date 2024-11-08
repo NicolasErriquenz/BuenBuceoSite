@@ -101,7 +101,7 @@
     <?php include("includes/navbar.php"); ?>
     <form action="" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="action" value="<?php echo $action ?>">
-      <input type="hidden" name="<?php echo $idNombre ?>" id="<?php echo $idNombre ?>" value="<?php echo $usuario[$idNombre] ?>">
+      <input type="hidden" name="<?php echo $idNombre ?>" id="<?php echo $idNombre ?>" value="<?php echo $usuario[$idNombre] ?? null ?>">
       <div class="card shadow-lg mx-4 card-profile-bottom">
         <div class="card-body p-3">
           <div class="row gx-4">
@@ -141,7 +141,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="mb-0">Editar Perfil</p>
                     <div class="d-flex align-items-center">
-                      <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
+                      <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                         <i class="ni ni-bold-left"></i> Volver
                       </a>
                       <button class="btn bg-gradient-primary btn-sm ms-2" type="submit">Guardar</button>
@@ -252,7 +252,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-12">
+                    <div class="col-3">
                       <div class="form-group">
                         <label for="sexoId" class="form-control-label">Sexo</label>
                         <select id="sexoId" name="sexoId" class="form-control">
@@ -266,8 +266,28 @@
                         </select>
                       </div>
                     </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="altura" class="form-control-label">Altura</label>
+                        <input class="form-control" type="text" name="altura" id="altura" value="<?php echo isset($usuario["altura"]) ? $usuario["altura"] : "" ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="peso" class="form-control-label">Peso</label>
+                        <input class="form-control" type="text" name="peso" id="peso" value="<?php echo isset($usuario["peso"]) ? $usuario["peso"] : "" ?>">
+                      </div>
+                    </div>
+                     <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="talle" class="form-control-label">Talle</label>
+                        <input class="form-control" type="text" name="talle" id="talle" value="<?php echo isset($usuario["talle"]) ? $usuario["talle"] : "" ?>">
+                      </div>
+                    </div>
                   </div>
 
+                  
+                  <?php if(isset($usuarioRedes)): ?>
                   <hr class="horizontal dark">
                   <p class="text-uppercase text-sm">Redes sociales</p>
                   <div class="row">
@@ -292,6 +312,7 @@
                         <input type="text" id="url" name="url" class="form-control">
                       </div>
 
+                      
                       <button type="button" id="agregar_red_social" class="btn btn-primary">Agregar red social</button>
 
                       <div class="card-body px-0 pt-0 pb-2">
@@ -324,9 +345,11 @@
                           </table>
                         </div>
                       </div>
+                      
+
                     </div>
                   </div>
-
+                  <?php endif; ?>
                 </div>
               </div>
             

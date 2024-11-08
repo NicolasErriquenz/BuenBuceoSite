@@ -54,6 +54,11 @@
     die();
   }
 
+   if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] == "buscarDeudas" ) {
+    echo json_encode(buscarDeudas($_GET["usuarioId"]));
+    die();
+  }
+
   if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] == "cotizacion" ) {
     echo getCotizacion($_GET["monedaId"]);
     die();
@@ -70,6 +75,7 @@
   $subrubro = null;
   $subrubros = null;
   $usuario = null;
+  $deudasUsuario = [];
 
   if( isset($_GET[$idNombre]) ){
     $title = "Editar pago";
@@ -79,8 +85,10 @@
     $subrubro = getItem("pagos_subrubros", "pagosSubrubroId", $pago["pagosSubrubroId"]);
     $subrubros = getSubrubrosPagos(true, $subrubro["pagosRubrosId"]);
 
-    if($pago["usuarioId"] != null)
+    if($pago["usuarioId"] != null){
       $usuario = getItem("usuarios", "usuarioId", $pago["usuarioId"]);
+      $deudasUsuario = buscarDeudas($pago["usuarioId"]);
+    }
   }else{
     $title = "Alta pago";
     $subtitle = "Podés dar de alta un pago desde aquí";
@@ -95,11 +103,10 @@
   $cotizacion = "";
   //$cotizacion = 0;
   $mediosPago = getMediosDePago();
+  //$deudasTipos = getDeudaTipos();
   // if(isset($_GET)){
   //   $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
   // }
-  // var_dump($usuario);
-  // die();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -292,17 +299,36 @@
                                       name="buscar" 
                                       class="form-control" 
                                       value="<?php echo $usuario != null ? $usuario["nombre"]." ".$usuario["apellido"]." (".$usuario["apodo"].") - ".$usuario["dni"] : ''?>"
-                                      placeholder="Ingrese al menos 3 caracteres">
+                                      placeholder="Ingrese al menos 1 caracter">
                               </div>
                               <div class="col-md-3">
                                 <button id="deseleccionar" 
                                         class="btn btn-outline-secondary w-100" 
-                                        <?php echo isset($usuario['usuarioId']) ? "" : 'disabled'; ?>>
+                                        <?php echo !isset($usuario["usuarioId"]) ? "disabled" : ''; ?>>
                                   <i class="fas fa-times"></i> Deseleccionar
                                 </button>
                               </div>
                             </div>
                             <div id="resultado" class="dropdown-menu dropdown-menu-left w-100"></div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="form-control-label">Deudas del usuario</label>
+                            <select id="deudaId" 
+                                    name="deudaId" 
+                                    class="form-control"
+                                    <?php echo $usuario == null ? "disabled" : "" ?>
+                                    >
+                              <option value="" selected disabled>Seleccione una deuda disponible</option>
+                              <?php foreach ($deudasUsuario as $deudaUsuario): ?>
+                              <option value="<?php echo $deudaUsuario['deudaId']; ?>" 
+                                      <?php echo (isset($pago['deudaId']) && $pago['deudaId'] == $deudaUsuario['deudaId']) ? "selected" : ""; ?>>
+                                <?php echo $deudaUsuario['tipoDeuda']; ?> (<?php echo $deudaUsuario['simbolo']; ?> <?php echo $deudaUsuario['deuda']; ?>) - <?php echo $deudaUsuario['comentario']; ?>
+                              </option>
+                              <?php endforeach; ?>
+                            </select>
                           </div>
                         </div>
 
@@ -327,7 +353,7 @@
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
                         <input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $usuario != null ? $usuario["usuarioId"] : ''?>">
-                        <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
+                        <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>
                         <button type="submit" class="btn btn-sm bg-gradient-primary">
@@ -490,6 +516,21 @@
           // Aquí puedes agregar la lógica para seleccionar el usuario
           console.log('Usuario seleccionado: ', usuarioId, texto);
 
+          $.ajax({
+            type: 'GET',
+            url: '',
+            data: {usuarioId: usuarioId, action:"buscarDeudas"},
+            dataType: 'json',
+            success: function(data) {
+              $('#deudaId').empty();
+              $('#deudaId').append('<option value="" selected disabled>Seleccione una deuda disponible</option>');
+              $.each(data, function(index, item) {
+                $('#deudaId').append('<option value="' + item.deudaId + '">' + item.tipoDeuda + ' (' + item.simbolo + ' ' + item.deuda + ') ' + ' - ' + item.comentario + ' </option>');
+              });
+              $('#deudaId').removeAttr('disabled'); // Remueve el atributo disabled
+            }
+          });
+
           $('#deseleccionar').prop("disabled", false);
           $('#buscar').prop("disabled", true);
         });
@@ -499,11 +540,13 @@
           $('#deseleccionar').prop("disabled", true);
           $('#buscar').val("");
           $("#usuarioId").val("");
+          $('#deudaId').empty();
         });
+
 
         $('#buscar').on('keyup', function() {
           var q = $(this).val();
-          if (q.length >= 3) {
+          if (q.length >= 1) {
             $.ajax({
               type: 'GET',
               url: '',

@@ -1,9 +1,9 @@
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="m-0" href="#">
+      <!-- <a class="m-0" href="#">
         <img src="images/logos/LogoBB_02.png" class="h-100" alt="<?php echo MARCA ?>" title="<?php echo MARCA ?>" style="max-width: 100%;">
-      </a>
+      </a> -->
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto h-auto " id="sidenav-collapse-main">
@@ -58,7 +58,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">TRavel</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php echo $archivoActual == "viajes" || $archivoActual == "viajes_editar" ? ' active bg-gradient-success' : '' ?>" href="viajes.php">
+          <a class="nav-link <?php echo $archivoActual == "viajes" || $archivoActual == "viajes_editar" || $archivoActual == "viajes_dashboard" ? ' active bg-gradient-success' : '' ?>" href="viajes.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-favourite-28 text-dark text-sm opacity-10"></i>
             </div>
@@ -85,11 +85,11 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php echo $archivoActual == "deudaTipo_listado" || $archivoActual == "deudaTipo_listado_editar" ? ' active bg-gradient-success' : '' ?>" href="deudaTipo_listado.php">
+          <a class="nav-link <?php echo $archivoActual == "hospedajes" || $archivoActual == "hospedajes_editar" || $archivoActual == "hospedajes_tarifas" ? ' active bg-gradient-success' : '' ?>" href="hospedajes.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Tipos deuda</span>
+            <span class="nav-link-text ms-1">Hospedajes</span>
           </a>
         </li>
       </ul>

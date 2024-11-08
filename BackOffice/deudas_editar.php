@@ -14,7 +14,7 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && ($_POST['action'] == "editar" || $_POST['action'] == "alta")) {
       // Validación de campos
-      if (empty($_POST['deudaTipoId']))  $errores[] = 'Categoría es requerida';
+      if (empty($_POST['pagosRubroId']))  $errores[] = 'Categoría es requerida';
       if (empty($_POST['monedaId']))  $errores[] = 'Moneda es requerido';
       if (empty($_POST['usuarioId']))  $errores[] = 'Usuario es requerido';
       if (empty($_POST['deuda']))  $errores[] = 'Monto es requerido';
@@ -75,7 +75,7 @@
   }
 
   $goBackLink = "deudas.php";
-  $tipoDeudas = getTipoDeudas();
+  $rubros = getRubrosPagos();
   
   $monedas = getMonedas();
   $cotizacion = "";
@@ -128,12 +128,12 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="rubro" class="form-control-label">Categoría</label>
-                              <select id="deudaTipoId" name="deudaTipoId" class="form-control custom-select">
+                              <select id="pagosRubroId" name="pagosRubroId" class="form-control custom-select">
                                 <option value="" selected disabled>Seleccione una categoría</option>
-                                <?php foreach ($tipoDeudas as $tipoDeuda): ?>
-                                <option value="<?php echo $tipoDeuda['deudaTipoId']; ?>" 
-                                        <?php echo (isset($deuda['deudaTipoId']) && $deuda['deudaTipoId'] == $tipoDeuda['deudaTipoId']) ? "selected" : ""; ?>>
-                                  <?php echo $tipoDeuda['deuda']; ?>
+                                <?php foreach ($rubros as $rubro): ?>
+                                <option value="<?php echo $rubro['pagosRubroId']; ?>" 
+                                        <?php echo (isset($deuda['pagosRubroId']) && $deuda['pagosRubroId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
+                                  <?php echo $rubro['rubro']; ?>
                                 </option>
                                 <?php endforeach; ?>
                               </select>
@@ -185,7 +185,7 @@
                                 name="buscar" 
                                 class="form-control" 
                                 value="<?php echo $usuario != null ? $usuario["nombre"]." ".$usuario["apellido"]." (".$usuario["apodo"].") - ".$usuario["dni"] : ''?>"
-                                placeholder="Ingrese al menos 3 caracteres">
+                                placeholder="Ingrese al menos 1 caracter">
                               </div>
                               <div class="col-md-3">
                                 <button id="deseleccionar" 
@@ -220,7 +220,7 @@
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
                         <input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $usuario != null ? $usuario["usuarioId"] : ''?>">
-                        <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
+                        <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>
                         <button type="submit" class="btn btn-sm bg-gradient-primary">
@@ -314,7 +314,7 @@
 
         $('#buscar').on('keyup', function() {
           var q = $(this).val();
-          if (q.length >= 3) {
+          if (q.length >= 1) {
             $.ajax({
               type: 'GET',
               url: '',
