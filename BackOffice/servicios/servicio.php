@@ -1404,37 +1404,81 @@
 	}
 
 	function getViajesUsuarios($viajesId) {
-	  global $mysqli;
+		global $mysqli;
 	  
-	  $query = "
-	    SELECT 
-	      vu.viajesUsuariosId,
-		  vu.habilitado_sys,
-		  u.nombre,
-		  u.apellido,
-		  u.apodo,
-	      vvt.viajero_tipo
-	    FROM 
-	      viajes_usuarios vu
-		INNER JOIN 
-	      usuarios u ON u.usuarioId = vu.usuarioId
-	    INNER JOIN 
-	      viajes_viajero_tipo vvt ON vu.viajeroTipoId = vvt.viajeroTipoId
-	    WHERE 
-	      vu.viajesId = '$viajesId'
-	  ";
-
-	  $result = $mysqli->query($query);
-	  if (!$result) {
-	    die("Error al obtener viajes de usuario: " . $mysqli->error);
-	  }
-
-	  $viajes = array();
-	  while ($row = $result->fetch_assoc()) {
-	    $viajes[] = $row;
-	  }
-
-	  return $viajes;
+		$query = "
+		  SELECT 
+			vu.viajesUsuariosId,
+			vu.habilitado_sys,
+			u.usuarioId,
+			u.nombre,
+			u.apellido,
+			u.apodo,
+			u.email,
+			u.dni,
+			u.altura,
+			u.peso,
+			u.talle,
+			u.comentario,
+			u.direccion,
+			u.ciudad,
+			u.fecha_registro,
+			u.fecha_nacimiento,
+			u.imagen,
+			u.habilitado_sys,
+			u.paisId,
+			u.sexoId,
+			vvt.viajeroTipoId,
+			vvt.viajero_tipo
+		  FROM 
+			viajes_usuarios vu
+		  INNER JOIN 
+			usuarios u ON u.usuarioId = vu.usuarioId
+		  INNER JOIN 
+			viajes_viajero_tipo vvt ON vu.viajeroTipoId = vvt.viajeroTipoId
+		  WHERE 
+			vu.viajesId = '$viajesId'
+		";
+	  
+		$result = $mysqli->query($query);
+		if (!$result) {
+		  die("Error al obtener viajes de usuario: " . $mysqli->error);
+		}
+	  
+		$viajes = array();
+		while ($row = $result->fetch_assoc()) {
+		  $viaje = array(
+			"viajesUsuariosId" => $row["viajesUsuariosId"],
+			"habilitado_sys" => $row["habilitado_sys"],
+			"usuario" => array(
+			  "usuarioId" => $row["usuarioId"],
+			  "nombre" => $row["nombre"],
+			  "apellido" => $row["apellido"],
+			  "apodo" => $row["apodo"],
+			  "email" => $row["email"],
+			  "dni" => $row["dni"],
+			  "altura" => $row["altura"],
+			  "peso" => $row["peso"],
+			  "talle" => $row["talle"],
+			  "comentario" => $row["comentario"],
+			  "direccion" => $row["direccion"],
+			  "ciudad" => $row["ciudad"],
+			  "fecha_registro" => $row["fecha_registro"],
+			  "fecha_nacimiento" => $row["fecha_nacimiento"],
+			  "imagen" => $row["imagen"],
+			  "habilitado_sys" => $row["habilitado_sys"],
+			  "paisId" => $row["paisId"],
+			  "sexoId" => $row["sexoId"]
+			),
+			"viajeroTipo" => array(
+			  "viajeroTipoId" => $row["viajeroTipoId"],
+			  "viajero_tipo" => $row["viajero_tipo"]
+			)
+		  );
+		  $viajes[] = $viaje;
+		}
+	  
+		return $viajes;
 	}
 
 	function getHospedajes() {
@@ -1524,6 +1568,7 @@
 	    SELECT 
 	      ht.hospedajeTarifaId, 
 	      ht.alias, 
+		  hb.baseHospedajeId,
 	      hb.nombre AS base, 
 	      ht.tipoHospedajeId, 
 	      htt.nombre AS tipo, 
@@ -1535,7 +1580,9 @@
 	    INNER JOIN 
 	      hospedaje_habitaciones_tipos htt ON ht.tipoHospedajeId = htt.tipoHospedajeId
 	    WHERE
-	      ht.hospedajesId = ".$hospedajesId;
+	      ht.hospedajesId = ".$hospedajesId."
+		ORDER BY 
+      	  ht.alias ASC";
 
 	  $result = $mysqli->query($sql);
 
@@ -1551,40 +1598,42 @@
 	}
 
 	function getViajesHospedajes($viajesId) {
-	  global $mysqli;
-
-	  $sql = "
-	    SELECT 
-	      vh.viajesHospedajesId, 
-	      v.viajesId, 
-	      h.hospedajesId, 
-	      h.nombre AS hospedaje,
-	      (SELECT COUNT(*) FROM hospedaje_habitaciones_tarifas WHERE hospedajesId = h.hospedajesId) AS tarifas_cargadas
-	    FROM 
-	      viajes_hospedajes vh 
-	    INNER JOIN 
-	      viajes v ON vh.viajesId = v.viajesId 
-	    INNER JOIN 
-	      hospedajes h ON vh.hospedajesId = h.hospedajesId
-	    WHERE 
-	      vh.viajesId = ?
-	  ";
-
-	  $stmt = $mysqli->prepare($sql);
-	  $stmt->bind_param("i", $viajesId);
-	  $stmt->execute();
-	  $result = $stmt->get_result();
-
-	  if ($result->num_rows > 0) {
-	    $viajesHospedajes = array();
-	    while($row = $result->fetch_assoc()) {
-	      $viajesHospedajes[] = $row;
-	    }
-	    return $viajesHospedajes;
-	  } else {
-	    return array();
+		global $mysqli;
+	  
+		$sql = "
+		  SELECT 
+			vh.viajesHospedajesId, 
+			v.viajesId, 
+			h.hospedajesId, 
+			h.nombre AS hospedaje,
+			(SELECT COUNT(*) FROM hospedaje_habitaciones_tarifas WHERE hospedajesId = h.hospedajesId) AS tarifas_cargadas,
+			(SELECT COUNT(*) FROM viajes_hospedajes_habitaciones WHERE viajesHospedajesId = vh.viajesHospedajesId) AS habitaciones_creadas,
+			(SELECT COUNT(*) FROM viajes_hospedajes_habitaciones_usuarios WHERE viajesHospedajesHabitacionId IN (SELECT viajesHospedajesHabitacionId FROM viajes_hospedajes_habitaciones WHERE viajesHospedajesId = vh.viajesHospedajesId)) AS usuarios_asignados
+		  FROM 
+			viajes_hospedajes vh 
+		  INNER JOIN 
+			viajes v ON vh.viajesId = v.viajesId 
+		  INNER JOIN 
+			hospedajes h ON vh.hospedajesId = h.hospedajesId
+		  WHERE 
+			vh.viajesId = ?
+		";
+	  
+		$stmt = $mysqli->prepare($sql);
+		$stmt->bind_param("i", $viajesId);
+		$stmt->execute();
+		$result = $stmt->get_result();
+	  
+		if ($result->num_rows > 0) {
+		  $viajesHospedajes = array();
+		  while($row = $result->fetch_assoc()) {
+			$viajesHospedajes[] = $row;
+		  }
+		  return $viajesHospedajes;
+		} else {
+		  return array();
+		}
 	  }
-	}
 
 	function getViajesViajeroTipo() {
 	  global $mysqli;
@@ -1937,4 +1986,144 @@
 	    die("Error al eliminar el registro: " . $mysqli->error);
 	  }
 	}
-?>
+
+	function getViajeHospedaje($viajesHospedajesId) {
+		global $mysqli;
+		
+		$bases = getHospedajeHabitacionesBases();
+		
+		// Obtiene los datos del viaje hospedaje
+		$query = "SELECT * FROM viajes_hospedajes vh WHERE vh.viajesHospedajesId = '$viajesHospedajesId'";
+		$result = $mysqli->query($query);
+		$row = $result->fetch_assoc();
+	  
+		// Obtiene los datos del hospedaje
+		$hospedajeQuery = "
+		  SELECT * FROM hospedajes h WHERE h.hospedajesId = '" . $row['hospedajesId'] . "'";
+		$hospedajeResult = $mysqli->query($hospedajeQuery);
+		$hospedajeRow = $hospedajeResult->fetch_assoc();
+	  
+		// Obtiene las habitaciones del hospedaje
+		$habitacionesQuery = "SELECT * FROM viajes_hospedajes_habitaciones vhh WHERE vhh.viajesHospedajesId = '$viajesHospedajesId'";
+		$habitacionesResult = $mysqli->query($habitacionesQuery);
+		$habitaciones = array();
+	  
+		while ($habitacionRow = $habitacionesResult->fetch_assoc()) {
+		  // Obtiene la tarifa de la habitación
+		  $tarifaQuery = "SELECT * FROM hospedaje_habitaciones_tarifas ht WHERE ht.hospedajeTarifaId = '" . $habitacionRow['hospedajeTarifaId'] . "'";
+		  $tarifaResult = $mysqli->query($tarifaQuery);
+		  $tarifaRow = $tarifaResult->fetch_assoc();
+
+		  $idColumn = array_column($bases, 'nombre', 'baseHospedajeId');
+		  $nombreBase = $idColumn[$tarifaRow['baseHospedajeId']] ?? null;
+			
+		  $usuariosQuery = "SELECT * 
+		  		FROM viajes_hospedajes_habitaciones_usuarios vhhu
+				INNER JOIN viajes_usuarios vu ON vu.viajesUsuariosId = vhhu.viajesUsuariosId
+				INNER JOIN usuarios u ON u.usuarioId = vu.usuarioId
+		  		WHERE viajesHospedajesHabitacionId = '" . $habitacionRow['viajesHospedajesHabitacionId'] . "'";
+		  $usuarioResult = $mysqli->query($usuariosQuery);
+		  $viajesUsuarios = array();
+		  while ($usuarios = $usuarioResult->fetch_assoc()) {
+					
+			$viajesUsuarios[] = array(
+				"viajesUsuariosId" => $usuarios["viajesUsuariosId"],
+				"viajesId" => $usuarios["viajesId"],
+				"viajesHospedajesHabitacionesUsuariosId" => $usuarios["viajesHospedajesHabitacionesUsuariosId"],
+				"usuario" => array(
+					"usuarioId" => $usuarios["usuarioId"],
+					"viajeroTipoId" => $usuarios["viajeroTipoId"],
+					"habilitado_sys" => $usuarios["habilitado_sys"],
+					"nombre" => $usuarios["nombre"],
+					"apellido" => $usuarios["apellido"],
+					"email" => $usuarios["email"],
+					"dni" => $usuarios["dni"],
+					"apodo" => $usuarios["apodo"],
+					"altura" => $usuarios["altura"],
+					"peso" => $usuarios["peso"],
+					"talle" => $usuarios["talle"],
+					"comentario" => $usuarios["comentario"],
+					"direccion" => $usuarios["direccion"],
+					"ciudad" => $usuarios["ciudad"],
+					"fecha_registro" => $usuarios["fecha_registro"],
+					"fecha_nacimiento" => $usuarios["fecha_nacimiento"],
+					"imagen" => $usuarios["imagen"],
+					"paisId" => $usuarios["paisId"],
+					"sexoId" => $usuarios["sexoId"],
+				),
+			);
+		  }
+
+		  $habitaciones[] = array(
+			"viajesHospedajesHabitacionId" => $habitacionRow['viajesHospedajesHabitacionId'],
+			"hospedajeTarifaId" => $habitacionRow['hospedajeTarifaId'],
+			"camas_dobles" => $habitacionRow['camas_dobles'],
+			"camas_simples" => $habitacionRow['camas_simples'],
+			"tarifa" => array(
+			  "hospedajeTarifaId" => $tarifaRow['hospedajeTarifaId'],
+			  "baseHospedajeId" => $tarifaRow['baseHospedajeId'],
+			  "tipoHospedajeId" => $tarifaRow['tipoHospedajeId'],
+			  "hospedajesId" => $tarifaRow['hospedajesId'],
+			  "precio" => $tarifaRow['precio'],
+			  "alias" => $tarifaRow['alias'],
+			  "base" => $nombreBase,
+			),
+			"usuarios" => $viajesUsuarios,
+		  );
+		}
+	  
+		$viajeHospedaje = array(
+		  "viajesHospedajesId" => $row['viajesHospedajesId'],
+		  "viajesId" => $row['viajesId'],
+		  "hospedaje" => array(
+			"hospedajesId" => $hospedajeRow['hospedajesId'],
+			"nombre" => $hospedajeRow['nombre'],
+			"paisId" => $hospedajeRow['paisId'],
+			"direccion" => $hospedajeRow['direccion'],
+			"estrellas" => $hospedajeRow['estrellas'],
+			"comentario" => $hospedajeRow['comentario'],
+			"telefono" => $hospedajeRow['telefono'],
+			"email" => $hospedajeRow['email'],
+		  )
+		);
+
+		$viajeHospedaje["hospedaje"]["habitaciones"] = $habitaciones;
+		
+		return $viajeHospedaje;
+	}
+
+	function altaViajesHospedajesHabitacion($data) {
+	  global $mysqli;
+
+	  $viajesHospedajesId = $data['viajesHospedajesId'];
+	  $hospedajeTarifaId = $data['hospedajeTarifaId'];
+	  $camasDobles = $data['camasDobles'];
+	  $camasSimples = $data['camasSimples'];
+
+	  $query = "
+	    INSERT INTO 
+	      viajes_hospedajes_habitaciones 
+	      (viajesHospedajesId, hospedajeTarifaId, camas_dobles, camas_simples)
+	    VALUES 
+	      ('$viajesHospedajesId', '$hospedajeTarifaId', '$camasDobles', '$camasSimples')
+	  ";
+	  $mysqli->query($query);
+
+	  $viajesHospedajesHabitacionId = $mysqli->insert_id;
+
+	  return array(
+	    'viajesHospedajesHabitacionId' => $viajesHospedajesHabitacionId
+	  );
+	}
+
+	function eliminarViajesHospedajesHabitacion($viajesHospedajesHabitacionId) {
+	  global $mysqli;
+
+	  $query = "DELETE FROM viajes_hospedajes_habitaciones 
+	            WHERE viajesHospedajesHabitacionId = '$viajesHospedajesHabitacionId'";
+
+	  if ($mysqli->query($query) === TRUE)
+	    return 'ok';
+	  else 
+	    return 'error';
+	}

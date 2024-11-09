@@ -15,17 +15,9 @@
     echo buscarUsuarios($_GET["q"]);
     die();
   }
-  if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] == "borrarViajero" ) {
-    borrarViajero($_GET["viajesUsuariosId"]);
-  }
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "altaViajero" ) {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "agregarViajero" ) {
+    
     echo altaViajero($_POST);
-    die();
-  }
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "altaViajeHospedaje" ) {
-    echo altaViajeHospedaje($_POST);
     die();
   }
   
@@ -81,13 +73,12 @@
   $viaje = getItem($tabla, $idNombre, $_GET[$idNombre]);
   $viajeros = getViajesUsuarios($viaje[$idNombre]);
   $viajesHospedajes = getViajesHospedajes($viaje[$idNombre]);
+  $redirect = "viajes.php";
   $paises = getPaises();
-  $paisNombre = getPais($viaje['paisId']);
 
   $viajerosTipos = getViajesViajeroTipo();
-  $hospedajes = getHospedajes();
 
-  $redirect = "viajes.php";
+  $paisNombre = getPais($viaje['paisId']);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -249,7 +240,7 @@
                 <div class="col">
                   <div class="custom-scroll-container">
                     <div class="table-responsive custom-pagination" style="margin: 0px !important;">
-                      <table class="table mb-0 dataTable table-borderless" id="tableDataTables">
+                      <table class="table mb-0 dataTable" id="tableDataTables">
                         <thead>
                           <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
@@ -270,24 +261,30 @@
                               </div>
                             </td>
                             <td>
-                              <p class="text-sm font-weight-bold mb-0"><?php echo $item["nombre"] ?> <?php echo $item["apellido"] ?> (<?php echo $item["apodo"] ?>)</p>
+                              <p class="text-sm font-weight-bold mb-0"><?php echo $item["usuario"]["nombre"] ?> <?php echo $item["usuario"]["apellido"] ?> (<?php echo $item["usuario"]["apodo"] ?>)</p>
                             </td>
                             <td class="text-center">
-                              <span class=" text-xs">
-                                <strong><?php echo $item["viajero_tipo"] ?></strong>
+                              <span class="text-secondary text-xs font-weight-bold">
+                                <strong><?php echo $item["viajeroTipo"]["viajero_tipo"] ?></strong>
                               </span>
                             </td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">-</td>
+                            <td class="text-center">
+                              -
+                            </td>
+                            <td class="text-center">
+                              -
+                            </td>
                             <td class="text-center">
                               <span id="badge-<?php echo $item["viajesUsuariosId"]; ?>" class="badge badge-sm habilitado-checkbox 
                                   <?php echo ($item["habilitado_sys"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
-                                  <?php echo ($item["habilitado_sys"] == 1) ? 'Activo' : 'inactivo'; ?>
+                                  <?php echo ($item["habilitado_sys"] == 1) ? 'Online' : 'Offline'; ?>
                               </span>
                             </td>
-                            <td class="align-middle text-center ajuste_boton">
-                              <a href="viajes_dashboard.php?<?php echo $idNombre ?>=<?php echo $viaje[$idNombre] ?>&viajesUsuariosId=<?php echo $item["viajesUsuariosId"] ?>&action=borrarViajero" style="">
-                               <span class="badge bg-gradient-danger "><span class="fa fa-times"></span></span>
+                            <td class="align-middle text-center">
+                              <a href="pagos_subrubros_editar.php?<?php echo $idNombre ?>=<?php echo $subrubro[$idNombre] ?>">
+                                <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
+                                  <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                                </button>
                               </a>
                             </td>
                           </tr>
@@ -307,7 +304,7 @@
                 <div class="col">
                   <h6 class="float-start">HOSPEDAJES (<?php echo count($viajesHospedajes) ?>)</h6>
                   <div class="float-end">
-                    <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-hospedajes">
+                    <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-form">
                         <i class="ni ni-fat-add"></i> AGREGAR HOSPEDAJE
                     </button>
                   </div>
@@ -319,14 +316,14 @@
                 <div class="col">
                   <div class="custom-scroll-container">
                     <div class="table-responsive custom-pagination" style="margin: 0px !important;">
-                      <table class="table mb-0 dataTable" id="tableDataTablesHospedajes">
+                      <table class="table mb-0 dataTable" id="tableDataTables">
                         <thead>
                           <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hotel</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacidad</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">% Ocupación</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarifas</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habitaciones</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuarios</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                           </tr>
                         </thead>
@@ -335,37 +332,27 @@
                           <tr>
                             <td>
                               <div class="">
-                                <?php echo $item["hospedajesId"] ?>
+                                <?php echo $item["viajesHospedajesId"] ?>
                               </div>
                             </td>
                             <td>
                               <p class="text-sm font-weight-bold mb-0"><?php echo $item["hospedaje"] ?></p>
                             </td>
                             <td class="text-center">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                <a href="pagos_rubros_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
-                                    <strong>0</strong>
-                                </a>
-                              </span>
+                              <a href="hospedajes_tarifas.php?hospedajesId=<?php echo $item["hospedajesId"] ?>">
+                                <p class="text-sm font-weight-bold mb-0"><?php echo $item["tarifas_cargadas"] ?></p>
+                              </a>
                             </td>
                             <td class="text-center">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                <a href="pagos_rubros_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
-                                    <strong>0</strong>
-                                </a>
-                              </span>
+                              <p class="text-sm font-weight-bold mb-0"><?php echo $item["habitaciones_creadas"] ?></p>
                             </td>
                             <td class="text-center">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                <a href="pagos_rubros_editar.php?pagosRubroId=<?php echo $subrubro["pagosRubrosId"] ?>&ref=pagos_subrubros.php">
-                                    <strong>0</strong>
-                                </a>
-                              </span>
+                              <p class="text-sm font-weight-bold mb-0"><?php echo $item["usuarios_asignados"] ?></p>
                             </td>
                             <td class="align-middle text-center">
-                              <a href="pagos_subrubros_editar.php?<?php echo $idNombre ?>=<?php echo $subrubro[$idNombre] ?>">
+                              <a href="viajes_habitaciones_editar.php?viajesHospedajesId=<?php echo $item["viajesHospedajesId"] ?>">
                                 <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-                                  <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                                  <span class="btn-inner--icon"><i class="ni ni-ungroup"></i> Habitaciones</span>
                                 </button>
                               </a>
                             </td>
@@ -426,23 +413,19 @@
       
     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-
         <div class="modal-content">
-           <div class="modal-header">
-            <h6 class="modal-title" id="modal-title-default">Agregar viajero</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
           <div class="modal-body p-0">
             <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                <h3 class="font-weight-bolder text-info text-gradient">Agregar viajero!</h3>
+              </div>
               <div class="card-body">
                 <form role="form text-left" method="post" action"" id="formNuevoViajero>
                   <input type="hidden" value="agregarViajero" name="action">
-                  <div class="">
+                  <div class="form-group">
                     <label class="form-control-label">Usuario</label>
                     <div class="row">
-                      <div class="col-md-10">
+                      <div class="col-md-9">
                         <input type="hidden" name="usuarioId">
                         <input autocomplete="off" 
                               type="text" 
@@ -450,11 +433,11 @@
                               name="buscar" 
                               class="form-control" 
                               value=""
-                              placeholder="Ingrese al menos 1 caracteres">
+                              placeholder="Ingrese al menos 3 caracteres">
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-3">
                         <button id="deseleccionar" 
-                                class="btn btn-outline-secondary " 
+                                class="btn btn-outline-secondary w-100" 
                                 <?php echo !isset($usuario["usuarioId"]) ? "disabled" : ''; ?>>
                           <i class="fas fa-times"></i>
                         </button>
@@ -462,7 +445,7 @@
                     </div>
                     <div id="resultado" class="dropdown-menu dropdown-menu-left"></div>
                   </div>
-                  <div class="">
+                  <div class="form-group">
                     <label for="viajeroTipoId" class="form-control-label">País</label>
                     <select id="viajeroTipoId" name="viajeroTipoId" class="form-control">
                       <option value="" selected disabled>Elegí un tipo de viajero</option>
@@ -473,60 +456,14 @@
                         <?php endforeach; ?>
                     </select>
                   </div>
-                  
-                  <div class="d-flex justify-content-end">
-                    <button type="button" onclick="javascript:validarFormNuevoViajero()" class="btn btn-sm bg-gradient-info mt-4 mb-0">GUARDAR</button>
-                  </div>
-
                   <div class="row">
-                    <div class="text-center alert alert-danger fade" id="error_div" style="    margin-top: 33px;    color: white;    padding: 3px;">
+                    <div class="text-center alert alert-danger fade" id="error_div">
                       <span class="alert-icon"><i class="fa fa-warning"></i></span>
                       <span id="error-text"></span>
                     </div>
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="modal-hospedajes" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-
-        <div class="modal-content">
-           <div class="modal-header">
-            <h6 class="modal-title" id="modal-title-default">Agregar hospedajes</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body p-0">
-            <div class="card card-plain">
-              <div class="card-body">
-                <form role="form text-left" method="post" action"" id="formNuevoViajero">
-                  <div class="">
-                    <label for="hospedajesId" class="form-control-label">Hospedaje</label>
-                    <select id="hospedajesId" name="hospedajesId" class="form-control">
-                      <option value="" selected disabled>Elegí un hospedaje</option>
-                        <?php foreach ($hospedajes as $item): ?>
-                        <option value="<?php echo $item['hospedajesId']; ?>">
-                          <?php echo $item['nombre']; ?>
-                        </option>
-                        <?php endforeach; ?>
-                    </select>
-                  </div>
-                  
-                  <div class="d-flex justify-content-end">
-                    <button type="button" onclick="javascript:validarFormNuevoHospedaje()" class="btn btn-sm bg-gradient-info mt-4 mb-0">GUARDAR</button>
-                  </div>
-
-                  <div class="row">
-                    <div class="text-center alert alert-danger fade" id="error_div_hospedajes" style="    margin-top: 33px;    color: white;    padding: 3px;">
-                      <span class="alert-icon"><i class="fa fa-warning"></i></span>
-                      <span id="error-text-hospedajes"></span>
-                    </div>
+                  <div class="text-center">
+                    <button type="button" onclick="javascript:validarFormNuevoViajero()" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">GUARDAR</button>
                   </div>
                 </form>
               </div>
@@ -540,8 +477,6 @@
   <script>
     var texto;
     var usuarioId;
-    var hospedajesId;
-
     function validarFormNuevoViajero(){
 
 
@@ -573,56 +508,14 @@
         url: '',
         data: {
           usuarioId: usuarioId, 
-          action:"altaViajero",
+          action:"agregarViajero",
           viajesId:<?= $viaje[$idNombre] ?>,
           viajeroTipoId:viajeroTipoId,
           habilitado_sys:1
         },
-        dataType: 'text',
+        dataType: 'json',
         success: function(data) {
-          if(data == "ok")
-            location.reload();
-          else{
-            $('#error_div').removeClass('fade').addClass('show');
-            $('#error-text').text(data);
-          }
-        }
-      });
-
-    }
-
-    function validarFormNuevoHospedaje(){
-      hospedajesId = $("#hospedajesId").val();
-
-      if(!hospedajesId || hospedajesId == undefined){
-        var error = 'Hay que seleccionar un hospedaje'; // reemplaza con el mensaje de error real
-      }
-      
-      if (error) {
-        $('#error_div_hospedajes').removeClass('fade').addClass('show');
-        $('#error-text-hospedajes').text(error);
-        return;
-      } else {
-        $('#error_div_hospedajes').removeClass('show').addClass('fade');
-      }
-
-
-      $.ajax({
-        type: 'POST',
-        url: '',
-        data: {
-          hospedajesId: hospedajesId, 
-          action:"altaViajeHospedaje",
-          viajesId:<?= $viaje[$idNombre] ?>,
-        },
-        dataType: 'text',
-        success: function(data) {
-          if(data == "ok")
-            location.reload();
-          else{
-            $('#error_div_hospedajes').removeClass('fade').addClass('show');
-            $('#error-text-hospedajes').text(data);
-          }
+          location.reload();
         }
       });
 
@@ -650,11 +543,18 @@
 
           $('#deseleccionar').prop("disabled", false);
           $('#buscar').prop("disabled", true);
+
+        
+
+        
       });
+
+      
+
 
       $('#buscar').on('keyup', function() {
         var q = $(this).val();
-        if (q.length >= 1) {
+        if (q.length >= 3) {
           $.ajax({
             type: 'GET',
             url: '',
@@ -697,7 +597,57 @@
           });
       });
 
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var form = $(this)[0];
+        var datos = new FormData(form);
 
+        // Obtener la extensión del archivo
+        var archivo = datos.get('imagen');
+        var extension = archivo.name.split('.').pop().toLowerCase();
+        console.log(extension);
+        // Validar extensión
+        if (extension !== 'jpg' && extension !== 'jpeg' && extension !== "") {
+          $('#ul_errores').html('Sólo se permiten imágenes .JPG y .JPEG');
+          $('#btn-modal-errores').click();
+          return false;
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: 'usuarios_editar.php',
+          data: datos,
+          processData: false,
+          contentType: false,
+          dataType: 'json',
+          success: function(respuesta) {
+            console.log(respuesta);
+            if(respuesta.estado == "ok"){
+              window.location.href = "<?php echo $redirect; ?>?action=<?php echo $action ?>&success=true&usuarioId="+respuesta.usuarioId;
+              
+            }else if(respuesta.estado == "error"){
+              $('#ul_errores').html(respuesta.mensaje);
+              $('#btn-modal-errores').click();
+            }else{
+              // Formulario inválido, muestra errores en modal
+              var errores = respuesta.errores;
+              $('#ul_errores').empty();
+              $.each(errores, function(index, error) {
+                $('#ul_errores').append('<li>' + error + '</li>');
+              });
+              $('#btn-modal-errores').click();  
+            }
+            
+          },
+          error: function(error){
+            alert(error)
+            if(error == "Error"){
+              $('#ul_errores').html('Error al insertar usuario');
+              $('#btn-modal-errores').click();
+            }
+          }
+        });
+      });
 
       <?php if(isset($_GET["success"]) && $_GET["success"]  == "true"): ?>
         crearToast();
@@ -716,20 +666,10 @@
       toast.show();
     }
 
-    $('#tableDataTablesHospedajes').DataTable({
-      language: lang,
-      order: [[0, 'desc']]
-    });
-
   </script>
   <style type="text/css">
     .habilitado-checkbox {
         cursor: pointer;
-    }
-    #resultado{
-      display: block;
-      margin-top: -18px;
-      padding: 0;
     }
   </style>
 </body>

@@ -26,5 +26,6 @@
 
     <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" />
 </head>
 

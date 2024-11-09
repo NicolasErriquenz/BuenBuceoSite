@@ -109,7 +109,7 @@
                       </div>
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
-                        <a href="<?php echo $goBackLink ?>" class="btn bg-gradient-outline-danger btn-sm">
+                        <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>
                         <!-- <button type="submit" class="btn btn-sm bg-gradient-primary">
