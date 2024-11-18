@@ -40,11 +40,21 @@
 	
 	$AUTH_BEARER = "Authorization: BEARER eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjE2MDg0ODQsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJuZXJyaXF1ZW56QGdtYWlsLmNvbSJ9.TSyyPz0oicx_RAi_6NQp8058TA6ZIbN5e_9R6rrO1VqeYPgdeTW9r9TwN-xonrAMmJxanKBqDTPY3JTqW_nUXQ";
 
-	$imagenes = array("bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg", "bg5.jpg");
+	$num_imagenes = 68; // Número total de imágenes disponibles
+	$imagenes = [];
+
+	// Generar automáticamente el array de nombres de imágenes
+	for ($i = 1; $i <= $num_imagenes; $i++) {
+	    $imagenes[] = "bg$i.JPG";
+	}
+
+	// Seleccionar una imagen al azar
 	$imagen = $imagenes[array_rand($imagenes)];
-  	$HEADER_IMAGEN = '<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url(\'images/' . $imagen . '\'); background-position-y: 50%;">
-    <span class="mask bg-primary opacity-6"></span>
-  </div>';
+
+	// Generar el HTML con la imagen seleccionada
+	$HEADER_IMAGEN = '<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url(\'images/' . $imagen . '\'); background-position-y: 50%;"> 
+	    <span class="mask bg-primary opacity-6"></span> 
+	  </div>';
 
   	$HEADER_PLANO = '<div class="min-height-300 bg-dark position-absolute w-100" ></div>';
 

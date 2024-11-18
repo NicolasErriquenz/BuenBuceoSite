@@ -61,33 +61,60 @@
 	}
 
 	function obtenerOracionInspiradora() {
+		$num_imagenes = 68;
+
 		$oraciones = [
-			[
-			  'titulo' => "La atención es la nueva moneda.",
-			  'descripcion' => "La creatividad es la llave que abre puertas al éxito.",
-			  'imagen' => 'images/insp1.jpg'
-			],
-			[
-			  'titulo' => "El esfuerzo silencioso es el que más rinde frutos.",
-			  'descripcion' => "Cuanto más fácil parece, más esfuerzo hay detrás.",
-			  'imagen' => 'images/insp2.jpg'
-			],
-			[
-			  'titulo' => "La simplicidad es la nueva sofisticación.",
-			  'descripcion' => "La pasión es el combustible que impulsa tus sueños.",
-			  'imagen' => 'images/insp3.jpg'
-			],
-			[
-			  'titulo' => "La claridad es la llave del éxito.",
-			  'descripcion' => "La resiliencia es el escudo que protege tus objetivos.",
-			  'imagen' => 'images/insp4.jpg'
-			],
-			[
-			  'titulo' => "La profundidad es la que da valor a tus palabras.",
-			  'descripcion' => "La imaginación es el puente que conecta tus sueños con la realidad.",
-			  'imagen' => 'images/insp5.jpg'
-			],
-			// Agrega más oraciones aquí...
+		    [
+		        'titulo' => "El mar, una vez que lanza su hechizo, te atrapa en su red de maravillas para siempre.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "Explorar el mundo submarino es un privilegio, pues es la última gran frontera de la Tierra.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "La gente protege lo que ama y ama lo que entiende.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "Sin azul, no hay verde. Sin océanos, no hay vida.",
+		        'descripcion' => "Sylvia Earle",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "Desde el nacimiento, el hombre lleva el peso de la gravedad sobre sus hombros. Solo tiene que sumergirse, para sentirse libre.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "El buceo nos permite entrar en el mundo del silencio, donde la paz y la belleza se mezclan en un espacio eterno.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "El mar, una vez que su secreto ha sido revelado, se convierte en nuestro eterno compañero.",
+		        'descripcion' => "Rachel Carson",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "Para la mayoría de la gente, el mar es solo un espacio azul sin fin. Pero para los buceadores, es un hogar lleno de vida y aventura.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "La gente dice que necesitamos salvar al planeta, pero en realidad es al océano a quien debemos salvar si queremos salvarnos a nosotros mismos.",
+		        'descripcion' => "Sylvia Earle",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    [
+		        'titulo' => "Los océanos son el verdadero reflejo de nuestro planeta; al sumergirnos en ellos, viajamos a nuestras propias raíces.",
+		        'descripcion' => "Jacques Cousteau",
+		        'imagen' => 'images/bg' . rand(1, $num_imagenes) . '.JPG'
+		    ],
+		    // Agrega más frases aquí con el mismo formato...
 		];
 
 		$indiceAleatorio = array_rand($oraciones);

@@ -72,7 +72,9 @@
                         </div>
                       </td>
                       <td class="text-center">
-                        <div class="imagen-circular" style="background-image: url('_recursos/profile_pics/<?php echo $usuario['imagen'] ?>')"></div>
+                        <div class="imagen-circular" style="background-image: url('_recursos/profile_pics/<?php 
+                          echo !empty($usuario['imagen']) ? $usuario['imagen'] : 'generic_user.png'; 
+                        ?>')"></div>
                       </td>
                       <td>
                         <p class="text-sm font-weight-bold mb-0"><?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?></p>

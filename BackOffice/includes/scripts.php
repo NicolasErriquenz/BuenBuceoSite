@@ -5,6 +5,7 @@
 <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>
 <script src="assets/js/core/bootstrap.min.js"></script>
+
 <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script>
@@ -59,5 +60,36 @@
 
     console.log($('#tableDataTables').DataTable().data().toArray());
 
+  });
+
+  function redirectConParametro(parametro, valor) {
+    const urlActual = new URL(window.location.href);
+    const params = urlActual.searchParams;
+
+    params.set(parametro, valor);
+
+    const nuevaUrl = `${urlActual.origin}${urlActual.pathname}?${params.toString()}`;
+
+    window.location.href = nuevaUrl;
+  }
+
+  function isEmpty(valor) {
+    return (
+      valor === undefined ||
+      valor === null ||
+      valor === "" ||
+      valor === NaN ||
+      (typeof valor === "object" && Object.keys(valor).length === 0) ||
+      (Array.isArray(valor) && valor.length === 0)
+    );
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   });
 </script>

@@ -144,7 +144,7 @@
                       <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                         <i class="ni ni-bold-left"></i> Volver
                       </a>
-                      <button class="btn bg-gradient-primary btn-sm ms-2" type="submit">Guardar</button>
+                      <button class="btn bg-gradient-primary btn-sm ms-2" type="submit" id="btn_guardar">Guardar</button>
                     </div>
                   </div>
                 </div>
@@ -204,10 +204,16 @@
                           <option value="" selected disabled>Seleccione un país</option>
                           <?php foreach ($paises as $pais): ?>
                           <option value="<?php echo $pais['paisId']; ?>" 
-                                  <?php echo (isset($usuario['paisId']) && $usuario['paisId'] == $pais['paisId']) ? "selected" : ""; ?>>
+                                  <?php 
+                                    if ($action == "alta" && $pais['paisId'] == 1) {
+                                      echo "selected";
+                                    } elseif (isset($usuario['paisId']) && $usuario['paisId'] == $pais['paisId']) {
+                                      echo "selected";
+                                    } 
+                                  ?>>
                             <?php echo $pais['pais']; ?>
                           </option>
-                          <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
@@ -219,7 +225,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="comentario" class="form-control-label">Comentario</label>
-                        <input class="form-control" type="text" name="comentario" id="comentario" value="<?php echo isset($usuario["comentario"]) ? $usuario["comentario"] : "" ?>">
+                        <textarea class="form-control" name="comentario" id="comentario"><?php echo isset($usuario["comentario"]) ? $usuario["comentario"] : "" ?></textarea>
                       </div>
                     </div>
                   </div>
@@ -280,7 +286,7 @@
                     </div>
                      <div class="col-md-3">
                       <div class="form-group">
-                        <label for="talle" class="form-control-label">Talle</label>
+                        <label for="talle" class="form-control-label">Talle calzado</label>
                         <input class="form-control" type="text" name="talle" id="talle" value="<?php echo isset($usuario["talle"]) ? $usuario["talle"] : "" ?>">
                       </div>
                     </div>
@@ -632,12 +638,13 @@
         inputs.forEach(input => {
             input.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter') {
-                    event.preventDefault();
-                    form.submit();
+                    event.preventDefault(); // Evita el envío predeterminado del formulario
+                    $("#btn_guardar").trigger("click");
                 }
             });
         });
     });
+
 
   </script>
   <style type="text/css">

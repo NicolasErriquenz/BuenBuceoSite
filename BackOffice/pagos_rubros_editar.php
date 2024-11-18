@@ -9,6 +9,7 @@
 
   $tabla = "pagos_rubros";
   $idNombre = "pagosRubroId";
+  $rubro;
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -95,7 +96,7 @@
                                class="habilitado-checkbox"
                                name="habilitado_sys"
                                data-id="<?php echo isset($rubro['pagosRubroId']) ? $rubro['pagosRubroId'] : ''; ?>"
-                               <?php echo $rubro["habilitado_sys"] == 1 ? "checked" : "" ?>
+                               <?php echo isset($rubro) && $rubro["habilitado_sys"] == 1 ? "checked" : "" ?>
                                onclick="habilitadoCheckboxChange(this)">
                             Habilitado
                           </label>
