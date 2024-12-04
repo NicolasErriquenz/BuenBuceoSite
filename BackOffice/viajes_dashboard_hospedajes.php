@@ -1,89 +1,83 @@
 
-<div class="card mt-4">
-	<div class="card-header pb-0">
-	  <div class="row">
-	    <div class="col">
-	      <h6 class="float-start"></h6>
-	      <div class="float-end">
-	        <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-hospedaje">
-	            <i class="ni ni-fat-add"></i> AGREGAR HOSPEDAJE
-	        </button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<div class="card-body pt-0">
-	  <div class="row">
-	    <div class="col">
-	      <div class="custom-scroll-container">
-	        <div class="table-responsive custom-pagination" style="margin: 0px !important;">
-	          <table class="table mb-0 dataTable" id="tableDataTables">
-	            <thead>
-	              <tr>
-	                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-	                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarifas</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habitaciones</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacidad Tot.</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Camas disp.</th>
-	                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-	              </tr>
-	            </thead>
-	            <tbody>
-	              <?php foreach ($viajesHospedajes as $item): ?>
-	              <tr>
-	                <td>
-	                  <div class="">
-	                    <?php echo $item["viajesHospedajesId"] ?>
-	                  </div>
-	                </td>
-	                <td>
-	                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["hospedaje"] ?></p>
-	                </td>
-	                <td class="text-center">
-	                  <a href="hospedajes_tarifas.php?hospedajesId=<?php echo $item["hospedajesId"] ?>">
-	                    <p class="text-sm font-weight-bold mb-0"><?php echo $item["tarifas_cargadas"] ?></p>
-	                  </a>
-	                </td>
-	                <td class="text-center">
-	                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["habitaciones_creadas"] ?></p>
-	                </td>
-	                <td class="text-center">
-	                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["usuarios_asignados"] ?></p>
-	                </td>
-	                <td class="text-center">
-	                  <p class="text-sm font-weight-bold mb-0">
-	                    <?php echo $item["capacidad_total"] ?>
-	                    (<?php 
-	                        if($item["capacidad_total"] != 0)
-	                          $porcentaje = 100 - ($item["capacidad_disponible"] * 100 ) / $item["capacidad_total"];
-	                        else
-	                          $porcentaje = 0;
-	                        echo number_format($porcentaje, 0) . "%";
-	                    ?>)
-	                  </p>
-	                </td>
-	                <td class="text-center">
-	                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["capacidad_disponible"] ?></p>
-	                </td>
-	                <td class="align-middle text-center">
-	                  <a href="viajes_habitaciones_editar.php?viajesHospedajesId=<?php echo $item["viajesHospedajesId"] ?>">
-	                    <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-	                      <span class="btn-inner--icon"><i class="ni ni-ungroup"></i> Distribución</span>
-	                    </button>
-	                  </a>
-	                </td>
-	              </tr>
-	              <?php endforeach; ?>
-	            </tbody>
-	          </table>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	</div> 
+  <div class="row">
+    <div class="col">
+      <h6 class="float-start"></h6>
+      <div class="float-end">
+        <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-hospedaje">
+            <i class="ni ni-fat-add"></i> AGREGAR HOSPEDAJE
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="custom-scroll-container">
+        <div class="table-responsive custom-pagination" style="margin: 0px !important;">
+          <table class="table mb-0 dataTable" id="tableDataTables">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarifas</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habitaciones</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacidad Tot.</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Camas disp.</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($viajesHospedajes as $item): ?>
+              <tr>
+                <td>
+                  <div class="">
+                    <?php echo $item["viajesHospedajesId"] ?>
+                  </div>
+                </td>
+                <td>
+                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["hospedaje"] ?></p>
+                </td>
+                <td class="text-center">
+                  <a href="hospedajes_tarifas.php?hospedajesId=<?php echo $item["hospedajesId"] ?>">
+                    <p class="text-sm font-weight-bold mb-0"><?php echo $item["tarifas_cargadas"] ?></p>
+                  </a>
+                </td>
+                <td class="text-center">
+                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["habitaciones_creadas"] ?></p>
+                </td>
+                <td class="text-center">
+                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["usuarios_asignados"] ?></p>
+                </td>
+                <td class="text-center">
+                  <p class="text-sm font-weight-bold mb-0">
+                    <?php echo $item["capacidad_total"] ?>
+                    (<?php 
+                        if($item["capacidad_total"] != 0)
+                          $porcentaje = 100 - ($item["capacidad_disponible"] * 100 ) / $item["capacidad_total"];
+                        else
+                          $porcentaje = 0;
+                        echo number_format($porcentaje, 0) . "%";
+                    ?>)
+                  </p>
+                </td>
+                <td class="text-center">
+                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["capacidad_disponible"] ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <a href="viajes_habitaciones_editar.php?viajesHospedajesId=<?php echo $item["viajesHospedajesId"] ?>">
+                    <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
+                      <span class="btn-inner--icon"><i class="ni ni-ungroup"></i> Distribución</span>
+                    </button>
+                  </a>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

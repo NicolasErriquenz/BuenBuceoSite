@@ -130,7 +130,7 @@
     function habilitadoCheckboxChange(checkbox) {
         var id = $(checkbox).data('id');
         var habilitado = $(checkbox).is(':checked') ? 1 : 0;
-        console.log(id, habilitado);
+        
         $.ajax({
             url: '', // URL del mismo archivo PHP
             type: 'POST',

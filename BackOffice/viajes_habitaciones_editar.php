@@ -307,7 +307,6 @@
   <script>
     // Acceder a las habitaciones
     var viajeHospedajeHabitaciones = <?= $jsonViajeHospedajeHabitaciones ?>;
-    console.log(viajeHospedajeHabitaciones);
     // Recorrer las habitaciones y crear cada una
     viajeHospedajeHabitaciones.forEach(habitacion => {
       crearHabitacion(habitacion);
@@ -366,10 +365,8 @@
             var camas = camasDiv.children;
 
             habitacion.viajesHospedajesHabitacionUsuarios.forEach(viajero => {
-                console.log(viajero);
                 var tipoCama = viajero.cama_doble == 1 ? 'doble' : 'simple';
                 var camaDisponible = getCamaDisponible(camas, tipoCama, viajero);
-                console.log("cama", camaDisponible);
                 if (camaDisponible) {
                     agregarViajeroACama(camaDisponible, viajero);
                 }
@@ -478,7 +475,6 @@
 
     // Manejar formulario para crear habitación
     function validarFormCrearHabitacion(){
-        console.log("validarFormCrearHabitacion");
         //event.preventDefault();
 
         // Obtener datos del formulario

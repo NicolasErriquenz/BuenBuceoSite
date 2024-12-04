@@ -13,8 +13,8 @@
 
     console.log($("#viajesUsuariosId").val());
 
-    var altaEditar = $("#viajesUsuariosId").val() != null ? "editarViajero" : "altaViajero";
-
+    var altaEditar = isEmpty($("#viajesUsuariosId").val()) ? "altaViajero" : "editarViajero";
+    
     if(altaEditar == "altaViajero" && (!usuarioId || usuarioId == undefined)){
       var error = 'Hay que seleccionar un viajero'; // reemplaza con el mensaje de error real
     }
@@ -58,6 +58,7 @@
       },
       dataType: 'text',
       success: function(data) {
+        
         if(data == "ok")
           redirectConParametro("seccion", "viajeros");
         else{
@@ -130,7 +131,8 @@
       },
       dataType: 'text',
       success: function(data) {
-        redirectConParametro("seccion", "viajeros");
+        if(data == "ok")
+          redirectConParametro("seccion", "viajeros");
       },
       error: function(e, i){
         

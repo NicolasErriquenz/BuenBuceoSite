@@ -1,5 +1,3 @@
-<div class="card mt-4">
-  <div class="card-header pb-0">
     <div class="row">
       <div class="col">
         <h6 class="float-start"></h6>
@@ -10,8 +8,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="card-body pt-0">
     <div class="row">
       <div class="col">
         <div class="custom-scroll-container">
@@ -89,8 +85,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 <div class="modal fade" id="modal-form-viajeros" tabindex="-1" role="dialog" aria-labelledby="modal-form-viajeros" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md" role="document">

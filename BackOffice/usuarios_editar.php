@@ -561,7 +561,7 @@
         // Obtener la extensión del archivo
         var archivo = datos.get('imagen');
         var extension = archivo.name.split('.').pop().toLowerCase();
-        console.log(extension);
+        
         // Validar extensión
         if (extension !== 'jpg' && extension !== 'jpeg' && extension !== "") {
           $('#ul_errores').html('Sólo se permiten imágenes .JPG y .JPEG');
@@ -577,7 +577,7 @@
           contentType: false,
           dataType: 'json',
           success: function(respuesta) {
-            console.log(respuesta);
+            
             if(respuesta.estado == "ok"){
               window.location.href = "<?php echo $redirect; ?>?action=<?php echo $action ?>&success=true&usuarioId="+respuesta.usuarioId;
               

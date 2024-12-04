@@ -55,6 +55,11 @@
     die();
   }
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "getSubrubros" ) {
+    echo getSubrubrosPagos(true, $_POST["pagosRubroId"], true);
+    die();
+  }
+
   
   $deuda = [];
   $deuda["habilitado_sys"] = 1;
@@ -65,6 +70,8 @@
     $subtitle = "Podés editar la deuda desde acá";
     $action = "editar";
     $deuda = getItem($tabla, $idNombre, $_GET[$idNombre]);
+    $subrubro = getItem("pagos_subrubros", "pagosSubrubroId", $deuda["pagosSubrubroId"]);
+    $subrubros = getSubrubrosPagos(true, $subrubro["pagosRubrosId"]);
 
     if($deuda["usuarioId"] != null)
       $usuario = getItem("usuarios", "usuarioId", $deuda["usuarioId"]);
@@ -80,7 +87,7 @@
   $monedas = getMonedas();
   $cotizacion = "";
   $mediosPago = getMediosDePago();
-  
+  $viajes = getViajes();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -125,17 +132,33 @@
                         <p class="text-uppercase text-sm">Categorías</p>
 
                         <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-6">
                             <div class="form-group">
-                              <label for="rubro" class="form-control-label">Categoría</label>
+                              <label for="rubro" class="form-control-label">Rubro</label>
                               <select id="pagosRubroId" name="pagosRubroId" class="form-control custom-select">
-                                <option value="" selected disabled>Seleccione una categoría</option>
+                                <option value="" selected disabled>Seleccione un rubro</option>
                                 <?php foreach ($rubros as $rubro): ?>
                                 <option value="<?php echo $rubro['pagosRubroId']; ?>" 
-                                        <?php echo (isset($deuda['pagosRubroId']) && $deuda['pagosRubroId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
+                                        <?php echo (isset($subrubro['pagosRubrosId']) && $subrubro['pagosRubrosId'] == $rubro['pagosRubroId']) ? "selected" : ""; ?>>
                                   <?php echo $rubro['rubro']; ?>
                                 </option>
                                 <?php endforeach; ?>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="subrubro" class="form-control-label">Subrubro</label>
+                              <select id="pagosSubrubroId" name="pagosSubrubroId" class="form-control">
+                                <option value="" selected disabled>Seleccione un subrubro</option>
+                                <?php if($subrubro != null): ?>
+                                  <?php foreach ($subrubros as $sub): ?>
+                                    <option value="<?php echo $sub['pagosSubrubroId']; ?>" 
+                                          <?php echo (isset($subrubro['pagosSubrubroId']) && $subrubro['pagosSubrubroId'] == $sub['pagosSubrubroId']) ? "selected" : ""; ?>>
+                                    <?php echo $sub['subrubro']; ?>
+                                  </option>
+                                  <?php endforeach; ?>
+                                <?php endif ?>
                               </select>
                             </div>
                           </div>
@@ -196,6 +219,21 @@
                               </div>
                             </div>
                             <div id="resultado" class="dropdown-menu dropdown-menu-left w-100"></div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12 pb-1">
+                          <div class="form-group">
+                            <label class="form-control-label">Asignar al viaje</label>
+                            <select id="viajesId" name="viajesId" class="form-control">
+                              <option value="" selected disabled>Seleccione un viaje</option>
+                              <?php foreach ($viajes as $item): ?>
+                              <option value="<?php echo $item['viajesId']; ?>" 
+                                      <?php echo (isset($deuda['viajesId']) && $deuda['viajesId'] == $item['viajesId']) ? "selected" : ""; ?>>
+                                <?php echo $item['pais']; ?> <?php echo $item['anio']; ?>
+                              </option>
+                              <?php endforeach; ?>
+                            </select>
                           </div>
                         </div>
 
@@ -299,7 +337,6 @@
           $('#resultado').hide();
           $("#usuarioId").val(usuarioId);
           // Aquí puedes agregar la lógica para seleccionar el usuario
-          console.log('Usuario seleccionado: ', usuarioId, texto);
 
           $('#deseleccionar').prop("disabled", false);
           $('#buscar').prop("disabled", true);
@@ -355,6 +392,29 @@
                 window.location.href = "<?php echo $redirect; ?>?success=true";
             }
           });
+        });
+
+        $('#pagosRubroId').change(function() {
+            var pagosRubroId = $(this).val();
+            
+            $.ajax({
+                type: 'POST',
+                url: '',
+                dataType: 'json',
+                data: {
+                  pagosRubroId: pagosRubroId, 
+                  action: 'getSubrubros'
+                },
+                success: function(response) {
+                    $('#pagosSubrubroId').empty();
+                    $.each(response, function(index, value) {
+                        $('#pagosSubrubroId').append('<option value="' + value.pagosSubrubroId + '">' + value.subrubro + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al actualizar:', error);
+                }
+            });
         });
 
     });

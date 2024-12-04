@@ -70,6 +70,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medio Pago</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deuda</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viaje</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                       </tr>
@@ -118,6 +119,11 @@
                                 <?php echo $pago['deuda_tipo']; ?> (<?php echo $pago['deuda_simbolo']; ?> <?php echo $pago['deuda']; ?>)
                               <?php endif; ?>
                             </p>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="viajes_dashboard.php?viajesId=<?php echo $pago["viajesId"] ?>">
+                            <p class="text-sm font-weight-bold mb-0"><?php echo isset($pago["viajesId"]) ? $pago["pais"]." ".$pago["anio"] : '-' ?></p>
                           </a>
                         </td>
                         <td class="text-center">

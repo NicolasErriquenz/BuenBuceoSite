@@ -103,6 +103,7 @@
   $cotizacion = "";
   //$cotizacion = 0;
   $mediosPago = getMediosDePago();
+  $viajes = getViajes();
   //$deudasTipos = getDeudaTipos();
   // if(isset($_GET)){
   //   $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
@@ -288,6 +289,22 @@
 
                         <p class="text-uppercase text-sm">Datos opcionales</p>
 
+                        <div class="col-md-12 pb-1">
+                          <div class="form-group">
+                            <label class="form-control-label">Asignar al viaje</label>
+                            <select id="viajesId" name="viajesId" class="form-control">
+                              <option value="" selected disabled>Seleccione un viaje</option>
+                              <?php foreach ($viajes as $item): ?>
+                              <option value="<?php echo $item['viajesId']; ?>" 
+                                      <?php echo (isset($pago['viajesId']) && $pago['viajesId'] == $item['viajesId']) ? "selected" : ""; ?>>
+                                <?php echo $item['pais']; ?> <?php echo $item['anio']; ?>
+                              </option>
+                              <?php endforeach; ?>
+                            </select>
+                          </div>
+                        </div>
+
+
                         <div class="col-md-12">
                           <div class="form-group">
                             <label class="form-control-label">Asignar pago al usuario</label>
@@ -444,7 +461,7 @@
               dataType: 'json',
               success: function(data) {
                 console.log('Cotización dólar:', data);
-                $('#cotizacion').val(data.cotizacion);
+                
                 $('#fecha_cotizacion').val("Cotización (" + data.fecha + ")");
                 // Actualiza el valor de la cotización dólar en tu interfaz
 
@@ -465,7 +482,6 @@
                     const dolarBlue = data.blue.value_avg;
                     const euroBlue = data.blue_euro.value_avg;
 
-                    console.log(`Última actualización: ${ultimoUpdate}`);
                     console.log(`Dólar oficial: ${dolarOficial}`);
                     console.log(`Euro oficial: ${euroOficial}`);
                     console.log(`Dólar blue: ${dolarBlue}`);
@@ -504,7 +520,6 @@
 
         $('#pagoTransaccionTipoId').on('change', function() {
           $(this).val($(this).prop('checked') ? 2 : 1);
-          console.log($(this).val());
         });
 
         $(document).on('click', '.dropdown-item', function() {
@@ -514,7 +529,6 @@
           $('#resultado').hide();
           $("#usuarioId").val(usuarioId);
           // Aquí puedes agregar la lógica para seleccionar el usuario
-          console.log('Usuario seleccionado: ', usuarioId, texto);
 
           $.ajax({
             type: 'GET',

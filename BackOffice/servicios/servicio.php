@@ -312,6 +312,7 @@
 	        'usuarioId' => isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : null,
 	        'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
 	        'deudaId' => $datos['deudaId'] ?? null,
+	        'viajesId' => $datos['viajesId'] ?? null,
 	    );
 
 	    // Validaciones
@@ -326,7 +327,7 @@
 	    }
 
 	    // Sentencia SQL para insertar el pago
-	    $sql = "INSERT INTO pagos (pagosSubrubroId, pagoTransaccionTipoId, fecha, monedaId, monto, medioPagoId, comentario, cotizacion, habilitado_sys, usuarioId, deudaId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    $sql = "INSERT INTO pagos (pagosSubrubroId, pagoTransaccionTipoId, fecha, monedaId, monto, medioPagoId, comentario, cotizacion, habilitado_sys, usuarioId, deudaId, viajesId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	    $stmt = mysqli_prepare($mysqli, $sql);
 	    if (!$stmt) {
@@ -337,7 +338,7 @@
 	 	$comentario = $pago['comentario'] ?? '';
 		$usuarioId = $pago['usuarioId'] ?? null;
 
-		mysqli_stmt_bind_param($stmt, 'iisddiissdi', 
+		mysqli_stmt_bind_param($stmt, 'iisddiissdii', 
 		    $pago['pagosSubrubroId'], 
 		    $pago['pagoTransaccionTipoId'], 
 		    $pago['fecha'], 
@@ -348,7 +349,8 @@
 		    $pago['cotizacion'], 
 		    $pago['habilitado_sys'], 
 		    $usuarioId, 
-		    $pago['deudaId']
+		    $pago['deudaId'],
+		    $pago['viajesId']
 		);
 
 	    // Ejecutar la sentencia
@@ -371,13 +373,13 @@
 	  $sql = "SELECT 
 	            d.deudaId, 
 	            d.deuda, 
-	            dt.rubro as tipoDeuda, 
+	            dt.subrubro as tipoDeuda, 
 	            d.comentario, 
 	            m.moneda, 
 	            m.simbolo 
 	          FROM 
 	            deudas d 
-	          INNER JOIN pagos_rubros dt ON d.pagosRubroId = dt.pagosRubroId 
+	          INNER JOIN pagos_subrubros dt ON d.pagosSubrubroId = dt.pagosSubrubroId 
 	          INNER JOIN monedas m ON d.monedaId = m.monedaId 
 	          WHERE 
 	            d.usuarioId = ? AND 
@@ -403,6 +405,7 @@
 		$pagoId = $_GET['pagoId'];
 		$usuarioId = isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : 'NULL';
 		$deudaId = $datos['deudaId'] ?? 'NULL';
+		$viajesId = $datos['viajesId'] ?? 'NULL';
 		$habilitado_sys = isset($datos['habilitado_sys']) ? 1 : 0;
 
 		// Sentencia SQL para actualizar el pago
@@ -417,7 +420,8 @@
 		      cotizacion = '".($datos['cotizacion'] ?? '')."', 
 		      habilitado_sys = ".$habilitado_sys.", 
 		      usuarioId = ".$usuarioId.", 
-		      deudaId = ".$deudaId."
+		      deudaId = ".$deudaId.",
+		      viajesId = ".$viajesId."
 		  WHERE pagoId = $pagoId";
 
 		$stmt = mysqli_prepare($mysqli, $sql);
@@ -460,7 +464,7 @@
 	  global $mysqli;
 
 	  // Preparamos la consulta utilizando ? como placeholders
-	  $query = "INSERT INTO deudas (deuda, monedaId, usuarioId, pagosRubroId, comentario, habilitado_sys) VALUES (?, ?, ?, ?, ?, ?)";
+	  $query = "INSERT INTO deudas (deuda, monedaId, usuarioId, viajesId, pagosSubrubroId, comentario, habilitado_sys) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 	  $POST['habilitado_sys'] = 1;
 
@@ -469,18 +473,19 @@
 
 	  	$comentario = empty($POST['comentario']) ? NULL : $POST['comentario'];
 
-	    $stmt->bind_param('diidsi', 
+	    $stmt->bind_param('diiidsi', 
 		  $POST['deuda'], 
 		  $POST['monedaId'], 
 		  $POST['usuarioId'], 
-		  $POST['pagosRubroId'], 
+		  $POST['viajesId'], 
+		  $POST['pagosSubrubroId'], 
 		  $comentario, 
 		  $POST['habilitado_sys']
 		);
 	    if(!$stmt->execute()) 
 	      die("Error al insertar el registro: " . $stmt->error);
 	  	else
-	  		echo "ok";
+	  		return "ok";
 
 	    $stmt->close();
 	  } else {
@@ -494,7 +499,8 @@
 	  // Preparar datos
 	  $deudaId = $_GET['deudaId'];
 	  $usuarioId = isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : 'NULL';
-	  $pagosRubroId = $datos['pagosRubroId'] ?? 'NULL';
+	  $viajesId = isset($datos['viajesId']) && $datos['viajesId'] !== '' ? $datos['viajesId'] : 'NULL';
+	  $pagosSubrubroId = $datos['pagosSubrubroId'] ?? 'NULL';
 	  $habilitado_sys = isset($datos['habilitado_sys']) ? 1 : 0;
 
 	  // Sentencia SQL para actualizar la deuda
@@ -502,7 +508,8 @@
 	          deuda = '".$datos['deuda']."', 
 	          monedaId = ".$datos['monedaId'].", 
 	          usuarioId = ".$usuarioId.", 
-	          pagosRubroId = ".$pagosRubroId.", 
+	          viajesId = ".$viajesId.", 
+	          pagosSubrubroId = ".$pagosSubrubroId.", 
 	          comentario = '".($datos['comentario'] ?? '')."', 
 	          habilitado_sys = ".$habilitado_sys."
 	      WHERE deudaId = $deudaId";
@@ -696,6 +703,7 @@
 	              u.nombre as usuario_nombre, 
 	              u.apellido as usuario_apellido, 
 	              u.apodo, 
+	              s.subrubro,
 	              r.rubro
 	            FROM 
 	              deudas d
@@ -704,7 +712,9 @@
 	            INNER JOIN 
 	              usuarios u ON d.usuarioId = u.usuarioId
 	            INNER JOIN 
-	              pagos_rubros r ON d.pagosRubroId = r.pagosRubroId
+	              pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
+	            INNER JOIN 
+	              pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
 	            ";
 
 	  if ($usuarioId !== null) {
@@ -725,45 +735,51 @@
 	  global $mysqli;
 	  
 	  $query = "
-	    SELECT 
-	      p.*, 
-	      ps.subrubro, 
-	      pt.transaccion AS transaccion_tipo, 
-	      m.simbolo AS simbolo, 
-	      m.moneda AS moneda,
-	      mp.medioPago,
-	      u.nombre AS usuario_nombre, 
-	      u.apellido AS usuario_apellido, 
-	      u.apodo, 
-	      u.dni, 
-	      d.deudaId, 
-	      d.deuda, 
-	      d.comentario AS deuda_comentario, 
-	      dm.simbolo AS deuda_simbolo, 
-	      dm.moneda AS deuda_moneda,
-	      r.rubro AS deuda_tipo, 
-	      pr.rubro
-	    FROM 
-	      pagos p
-	    INNER JOIN 
-	      pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
-	    INNER JOIN 
-	      pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
-	    INNER JOIN 
-	      pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
-	    INNER JOIN 
-	      monedas m ON p.monedaId = m.monedaId
-	    INNER JOIN 
-	      medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
-	    LEFT JOIN 
-	      usuarios u ON p.usuarioId = u.usuarioId
-	    LEFT JOIN 
-	      deudas d ON p.deudaId = d.deudaId
-	    LEFT JOIN 
-	      monedas dm ON d.monedaId = dm.monedaId
-	    LEFT JOIN 
-	      pagos_rubros r ON d.pagosRubroId = r.pagosRubroId
-	  ";
+		SELECT
+			p.*,
+			ps.subrubro,
+			pt.transaccion AS transaccion_tipo,
+			m.simbolo AS simbolo,
+			m.moneda AS moneda,
+			mp.medioPago,
+			u.nombre AS usuario_nombre,
+			u.apellido AS usuario_apellido,
+			u.apodo,
+			u.dni,
+			d.deudaId,
+			d.deuda,
+			d.comentario AS deuda_comentario,
+			dm.simbolo AS deuda_simbolo,
+			dm.moneda AS deuda_moneda,
+			psr.subrubro AS deuda_tipo,
+			pr.rubro,
+			v.anio,
+			pa.pais
+		FROM
+			pagos p
+		INNER JOIN
+			pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
+		INNER JOIN
+			pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
+		INNER JOIN
+			pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
+		INNER JOIN
+			monedas m ON p.monedaId = m.monedaId
+		INNER JOIN
+			medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
+		LEFT JOIN
+			usuarios u ON p.usuarioId = u.usuarioId
+		LEFT JOIN
+			deudas d ON p.deudaId = d.deudaId
+		LEFT JOIN
+			monedas dm ON d.monedaId = dm.monedaId
+		LEFT JOIN
+			pagos_subrubros psr ON d.pagosSubrubroId = psr.pagosSubrubroId
+		LEFT JOIN
+			viajes v ON p.viajesId = v.viajesId
+		LEFT JOIN
+			paises pa ON v.paisId = pa.paisId
+		";
 
 	  if ($usuarioId !== null) {
 	    $query .= " WHERE p.usuarioId = '$usuarioId'";
@@ -1934,6 +1950,7 @@
 	  $result = $stmtVerificar->get_result();
 	  $stmtVerificar->close();
 
+
 	  if ($result->num_rows == 0) {
 	    echo "El usuario no está participando del viaje";
 	    return;
@@ -1941,6 +1958,9 @@
 
 	  $fila = $result->fetch_assoc();
 	  $viajesUsuariosId = $fila['viajesUsuariosId'];
+
+	  //elimino usuario
+	  agregarDeudaUsuarioPaquete($viajesUsuariosId, true);
 
 	  // Eliminar al usuario de las habitaciones asignadas
 	  $queryEliminarHabitacionUsuario = "DELETE FROM viajes_hospedajes_habitaciones_usuarios WHERE viajesUsuariosId = ?";
@@ -1958,7 +1978,12 @@
 	    $stmt->bind_param('ii', $data['viajesId'], $data['usuarioId']);
 	    if($stmt->execute()) {
 	      $stmt->close();
+
+	      
+
 	      echo "ok";
+
+
 	    } else {
 	      die("Error al eliminar el registro de viaje: " . $stmt->error);
 	    }
@@ -1998,6 +2023,10 @@
 	    }
 	    if($stmt->execute()) {
 	      $stmt->close();
+
+	      $viajesUsuariosId = $mysqli->insert_id;
+	      agregarDeudaUsuarioPaquete($viajesUsuariosId);
+
 	      echo "ok";
 	    } else {
 	      die("Error al insertar el registro: " . $stmt->error);
@@ -2007,19 +2036,71 @@
 	  }
 	}
 
+	function agregarDeudaUsuarioPaquete($viajesUsuariosId, $delete = false){
+
+		global $mysqli;
+
+		$query = "SELECT vu.*, v.anio, p.pais FROM viajes_usuarios vu 
+				  INNER JOIN viajes v ON v.viajesId = vu.viajesId
+				  INNER JOIN paises p ON v.paisId = p.paisId
+				  WHERE viajesUsuariosId = ".$viajesUsuariosId;
+		$result = $mysqli->query($query);
+		$row = $result->fetch_assoc();
+
+		$sqlDelete = "DELETE FROM deudas 
+					  WHERE viajesId = ".$row["viajesId"]."
+					  	AND usuarioId = ".$row["usuarioId"]."
+					  	AND pagosSubrubroId = 19;";
+		if($delete){
+	    	$mysqli->query($sqlDelete);
+		}else{
+			if(!empty($row['venta_paquete'])) {
+
+				$deuda["comentario"] = "Venta paquete ".$row['pais']." ".$row['anio'];
+				$deuda['deuda'] = $row['venta_paquete'];
+				$deuda['monedaId'] = 2; //dolares 
+				$deuda['usuarioId'] = $row["usuarioId"];
+				$deuda['viajesId'] = $row["viajesId"];
+				$deuda['pagosSubrubroId'] = 19; //Venta paquetes
+				$deuda['habilitado_sys'] = 1;
+
+				$res = altaDeuda($deuda);
+			}	
+		}
+	}
+
 	function editarViajero($data){
 
 	  global $mysqli;
 
 	  // Establece venta_paquete en NULL si es 0
-  		$venta_paquete = $data["venta_paquete"] == 0 ? NULL : $data["venta_paquete"];
+  	  $venta_paquete = $data["venta_paquete"] == 0 ? NULL : $data["venta_paquete"];
 
 		// Si existe, procedemos con la edición
 	  $query = "UPDATE viajes_usuarios SET viajeroTipoId = ?, venta_paquete = ? WHERE viajesUsuariosId = ?";
 	  if ($stmt = $mysqli->prepare($query)) {
 	    $stmt->bind_param('idi', $data['viajeroTipoId'], $venta_paquete, $data['viajesUsuariosId']);
 	    if($stmt->execute()) {
-	      $stmt->close();
+	      	$stmt->close();
+
+			$query = "SELECT vu.*, v.anio, p.pais FROM viajes_usuarios vu 
+						INNER JOIN viajes v ON v.viajesId = vu.viajesId
+						INNER JOIN paises p ON v.paisId = p.paisId
+						WHERE viajesUsuariosId = ".$data['viajesUsuariosId'];
+			$result = $mysqli->query($query);
+			$row = $result->fetch_assoc();
+
+	      	if(!empty($row['venta_paquete'])) {
+
+				$sqlUpdate = "UPDATE deudas 
+							  SET deuda = ".$row["venta_paquete"]."
+							  WHERE viajesId = ".$row["viajesId"]."
+								AND usuarioId = ".$row["usuarioId"]."
+								AND pagosSubrubroId = 19;";
+								
+				$mysqli->query($sqlUpdate);
+			}
+
 	      echo "ok";
 	    } else {
 	      die("Error al editar el registro: " . $stmt->error);
@@ -2030,25 +2111,27 @@
 
 	}
 
-	function borrarViajero($viajesUsuariosId) {
-	  global $mysqli;
+	// function borrarViajero($viajesUsuariosId) {
+	//   global $mysqli;
 
-	  // Preparamos la consulta utilizando ? como placeholders
-	  $query = "DELETE FROM viajes_usuarios WHERE viajesUsuariosId = ?";
+	//   // Preparamos la consulta utilizando ? como placeholders
+	//   $query = "DELETE FROM viajes_usuarios WHERE viajesUsuariosId = ?";
 
-	  // Preparamos la consulta
-	  if ($stmt = $mysqli->prepare($query)) {
-	    $stmt->bind_param('i', $viajesUsuariosId);
-	    if($stmt->execute()) {
-	      $stmt->close();
-	      echo "ok";
-	    } else {
-	      die("Error al eliminar el registro: " . $stmt->error);
-	    }
-	  } else {
-	    echo "Error al preparar la consulta: " . $mysqli->error;
-	  }
-	}
+	//   agregarDeudaUsuarioPaquete($viajesUsuariosId, true);
+
+	//   // Preparamos la consulta
+	//   if ($stmt = $mysqli->prepare($query)) {
+	//     $stmt->bind_param('i', $viajesUsuariosId);
+	//     if($stmt->execute()) {
+	//       $stmt->close();
+	//       echo "ok";
+	//     } else {
+	//       die("Error al eliminar el registro: " . $stmt->error);
+	//     }
+	//   } else {
+	//     echo "Error al preparar la consulta: " . $mysqli->error;
+	//   }
+	// }
 
 	function editarHospedaje($data, $hospedajesId) {
 	  global $mysqli;
@@ -2479,19 +2562,27 @@
 		global $mysqli;
 		
 		$query = "
-		  SELECT 
-			vc.*,
-			s.subrubro,
-			m.simbolo
-		  FROM 
-			viajes_costos vc
-		  INNER JOIN 
-			pagos_subrubros s ON vc.pagosSubrubroId = s.pagosSubrubroId
-		  INNER JOIN 
-			monedas m ON vc.monedaId = m.monedaId
-		  WHERE 
-			vc.viajesId = '$viajesId'
-		";
+		    SELECT 
+		      vc.*,
+		      s.subrubro,
+		      m.simbolo,
+		      (
+		        SELECT 
+		          COUNT(*) 
+		        FROM 
+		          viajes_costos_usuarios vcu 
+		        WHERE 
+		          vcu.viajeCostoId = vc.viajeCostoId
+		      ) AS cantidad_personas
+		    FROM 
+		      viajes_costos vc
+		    INNER JOIN 
+		      pagos_subrubros s ON vc.pagosSubrubroId = s.pagosSubrubroId
+		    INNER JOIN 
+		      monedas m ON vc.monedaId = m.monedaId
+		    WHERE 
+		      vc.viajesId = '$viajesId'
+		  ";
 		
 		$result = $mysqli->query($query);
 		if (!$result) {
@@ -2546,11 +2637,60 @@
 		// Verificar resultado
 		if ($stmt->affected_rows > 0) {
 			if( isset($params["aplicarCostoViajeros"]) && $params["aplicarCostoViajeros"] == "on"){
-				
+				$viajeCostoId = $mysqli->insert_id;
+
+				$res = aplicarViajeCostoaTodosViajeros($viajeCostoId);
 			}
 		  	return "ok";
 		} else {
 		  	die("Error al insertar costo: " . $mysqli->error);
+		}
+	}
+
+	function editarViajeCosto($params) {
+		global $mysqli;
+	  
+		// Validar parámetros
+		if (!isset($params["viajeCostoId"], $params["pagosSubrubroId"], $params["viajesId"], $params["monedaId"], $params["monto"], $params["soloBuzos"])) {
+		  die("Error: Faltan parámetros requeridos");
+		}
+	  
+		// Preparar consulta
+		$query = "
+		  UPDATE viajes_costos
+		  SET
+			pagosSubrubroId = ?,
+			viajesId = ?,
+			monto = ?,
+			cotizacion = ?,
+			monedaId = ?,
+			soloBuzos = ?,
+			comentario = ?
+		  WHERE viajeCostoId = ?
+		";
+	  
+		// Preparar parámetros
+		$viajeCostoId = $params["viajeCostoId"];
+		$pagosSubrubroId = $params["pagosSubrubroId"];
+		$viajesId = $params["viajesId"];
+		$monto = $params["monto"];
+		$cotizacion = $params["cotizacion"] ?? NULL;
+		$monedaId = $params["monedaId"];
+		$soloBuzos = $params["soloBuzos"] == "2" ? 1 : 0;
+		$comentario = $params["comentario"] ?? NULL;
+	  
+		// Ejecutar consulta
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("iiiiidsi", $pagosSubrubroId, $viajesId, $monto, $cotizacion, $monedaId, $soloBuzos, $comentario, $viajeCostoId);
+		$stmt->execute();
+		
+
+		// Verificar resultado
+		if ($stmt->affected_rows > 0) {
+			$res = aplicarViajeCostoaTodosViajeros($viajeCostoId);
+		    return "ok";
+		} else {
+		  	die("Error al editar costo: " . $mysqli->error);
 		}
 	}
 
@@ -2575,6 +2715,16 @@
 		$stmt = $mysqli->prepare($query);
 		$stmt->bind_param("i", $viajeCostoId);
 		$stmt->execute();
+
+		$query = "
+		  DELETE FROM viajes_costos_usuarios
+		  WHERE viajeCostoId = ?
+		";
+		
+		// Ejecutar consulta
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("i", $viajeCostoId);
+		$stmt->execute();
 		
 		// Verificar resultado
 		if ($stmt->affected_rows > 0) {
@@ -2582,4 +2732,151 @@
 		} else {
 		  die("Error al eliminar costo: " . $mysqli->error);
 		}
+	}
+
+	function aplicarViajeCostoaTodosViajeros($viajeCostoId){
+		global $mysqli;
+
+		$query = "SELECT * FROM viajes_costos vc WHERE vc.viajeCostoId = '$viajeCostoId'";
+		$result = $mysqli->query($query);
+		$row = $result->fetch_assoc();
+
+		$viajesId = $row["viajesId"]; 
+		$monto = $row["monto"]; 
+		$soloBuzos = $row["soloBuzos"]; 
+
+		$query = "SELECT * FROM viajes_usuarios WHERE viajesId = '$viajesId'";
+		$result = $mysqli->query($query);
+
+		while ($row_usuario = $result->fetch_assoc()) {
+		  $viajesUsuariosId = $row_usuario["viajesUsuariosId"];
+		  $viajeroTipoId = $row_usuario["viajeroTipoId"];
+
+		  // Validación para eliminar registro existente
+		  $query_validacion = "SELECT viajesCostosUsuariosId 
+		                       FROM viajes_costos_usuarios 
+		                       WHERE viajesUsuariosId = '$viajesUsuariosId' 
+		                       AND viajeCostoId = '$viajeCostoId'";
+
+		  $result_validacion = $mysqli->query($query_validacion);
+
+		  if ($result_validacion->num_rows > 0) {
+		    $row_validacion = $result_validacion->fetch_assoc();
+		    $viajesCostosUsuariosId = $row_validacion["viajesCostosUsuariosId"];
+
+		    // Eliminar registro existente
+		    $query_delete = "DELETE FROM viajes_costos_usuarios 
+		                     WHERE viajesCostosUsuariosId = '$viajesCostosUsuariosId'";
+
+		    $mysqli->query($query_delete);
+		  }
+		  // FIN DELETE
+
+		  if (($soloBuzos == 1 && $viajeroTipoId != 3) || $soloBuzos == 0) {
+			$query = "INSERT INTO viajes_costos_usuarios (
+				viajesUsuariosId,
+				viajeCostoId,
+				viajesId,
+				monto
+			)
+			VALUES (
+				'$viajesUsuariosId',
+				'$viajeCostoId',
+				'$viajesId',
+				'$monto'
+			)";
+
+			$mysqli->query($query);
+		  }
+		}
+
+		return "ok";
+	}
+
+	function getDetalleCostosTotalesPorViaje($viajesId){
+		global $mysqli;
+
+		$query = "SELECT 
+		            ps.subrubro,
+		            SUM(vcu.monto) AS monto_total,
+		            COUNT(vcu.viajesCostosUsuariosId) AS cantidad_registros,
+		            vc.soloBuzos 
+		          FROM 
+		            viajes_costos_usuarios vcu
+		          INNER JOIN 
+		            viajes_costos vc ON vcu.viajeCostoId = vc.viajeCostoId
+		          INNER JOIN 
+		            pagos_subrubros ps ON vc.pagosSubrubroId = ps.pagosSubrubroId
+		          WHERE 
+		            vcu.viajesId = ?
+		          GROUP BY 
+		            ps.subrubro";
+
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("i", $viajesId);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		$data = array();
+		while ($row = $result->fetch_assoc()) {
+		  $data[] = $row;
+		}
+
+		return ($data);
+	}
+
+	function getDetallesCostosHospedajes($viajesId){
+		global $mysqli;
+
+		$query = "SELECT * FROM viajes_hospedajes vh
+				  INNER JOIN  hospedajes h ON h.hospedajesId = vh.hospedajesId
+				  WHERE vh.viajesId = '$viajesId'";
+		$result = $mysqli->query($query);
+
+		$respuesta = array();
+
+		while ($row = $result->fetch_assoc()){
+
+			$hospedajeId = $row["hospedajesId"];
+
+			$sqlTarifas = "SELECT 
+			                    hht.*
+			                FROM 
+			                    hospedaje_habitaciones_tarifas hht
+			                INNER JOIN 
+			                    viajes_hospedajes vh ON vh.hospedajesId = hht.hospedajesId
+			                WHERE 
+			                    vh.hospedajesId =".$hospedajeId;
+
+			$resultTarifas = $mysqli->query($sqlTarifas);
+			while ($rowTarifas = $resultTarifas->fetch_assoc()){
+
+				$sqlHabitaciones = "SELECT * FROM viajes_hospedajes_habitaciones vhh
+									WHERE vhh.hospedajeTarifaId = ".$rowTarifas["hospedajeTarifaId"];
+				$resultHabitaciones = $mysqli->query($sqlHabitaciones);
+				$rowTarifas["habitaciones"] = array();
+				while ($rowHabitaciones = $resultHabitaciones->fetch_assoc()){
+					$viajesHospedajesHabitacionId = $rowHabitaciones["viajesHospedajesHabitacionId"];
+
+					$sqlUsuarios = "SELECT vhhu.*, vu.viajeroTipoId, vu.venta_paquete, vu.habilitado_sys, u.nombre, u.apellido, u.apodo, vt.* 
+									FROM viajes_hospedajes_habitaciones_usuarios vhhu
+									INNER JOIN viajes_usuarios vu ON vu.viajesUsuariosId = vhhu.viajesUsuariosId
+									INNER JOIN viajes_viajero_tipo vt ON vt.viajeroTipoId = vu.viajeroTipoId
+									INNER JOIN usuarios u ON u.usuarioId = vu.usuarioId
+									WHERE vhhu.viajesHospedajesHabitacionId = ".$viajesHospedajesHabitacionId;
+					$resUsuarios = $mysqli->query($sqlUsuarios);
+					$rowHabitaciones["usuarios"] = array();
+					while ($rowUsuarios = $resUsuarios->fetch_assoc()){
+						$rowHabitaciones["usuarios"][] = $rowUsuarios;
+					}
+					$rowTarifas["habitaciones"][] = $rowHabitaciones;
+				}
+				$row["tarifas"][] = $rowTarifas;
+			}
+
+			$respuesta["hospedajes"][] = $row;
+
+		}
+
+		return ($respuesta);
 	}

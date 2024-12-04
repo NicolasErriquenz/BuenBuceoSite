@@ -12,6 +12,11 @@
   $errores = array();
 
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "aplicarViajeCostoaTodosViajeros" ) {
+    echo aplicarViajeCostoaTodosViajeros($_POST["viajeCostoId"]);
+    die();
+  }
+
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "eliminarViajeCostos" ) {
     echo eliminarViajeCostos($_POST);
     die();
@@ -19,6 +24,11 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "altaViajeCosto" ) {
     echo altaViajeCostos($_POST);
+    die();
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "editarViajeCosto" ) {
+    echo editarViajeCosto($_POST);
     die();
   }
 
@@ -106,6 +116,20 @@
 
   $costos = getCostos($_GET[$idNombre]);
 
+  $groupedCosts = [];
+  foreach ($costos as $costo) {
+    $subrubroId = $costo['pagosSubrubroId'];
+    if (!isset($groupedCosts[$subrubroId])) {
+      $groupedCosts[$subrubroId] = [
+        'subrubro' => $costo['subrubro'],
+        'soloBuzos' => $costo['soloBuzos'],
+        'total' => 0,
+        'simbolo' => $costo['simbolo']
+      ];
+    }
+    $groupedCosts[$subrubroId]['total'] += floatval($costo['monto']);
+  }
+    
   $viajerosTipos = getViajesViajeroTipo();
   $monedas = getMonedas();
   $paisNombre = getPais($viaje['paisId']);
@@ -113,7 +137,13 @@
   $hospedajes = getHospedajes($viaje['paisId']);
 
   $seccion = isset($_GET["seccion"]) ? $_GET["seccion"] : "costos";
+  $sub_seccion = isset($_GET["sub_seccion"]) ? $_GET["sub_seccion"] : "costos_totales";
 
+  $estadisticasCostosTotales = getDetalleCostosTotalesPorViaje($_GET[$idNombre]);
+
+  $costosHospedajes = getDetallesCostosHospedajes($_GET[$idNombre]);
+  // print_r(json_encode($costosHospedajes));
+  // die();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -133,7 +163,7 @@
     
     <input type="hidden" name="action" value="<?php echo $action ?>">
     <input type="hidden" name="<?php echo $idNombre ?>" id="<?php echo $idNombre ?>" value="<?php echo $usuario[$idNombre] ?? null ?>">
-    <div class="card shadow-lg mx-4" style="margin-top: 3rem !important;">
+    <div class="card shadow-lg mx-4" style="margin-top: 1rem !important;">
       <div id="status-tab" style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: white; color: #007bff; font-size: 0.9rem; font-weight: bold; padding: 5px 15px; border-radius: 10px; border: 2px solid #007bff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
         <!-- Contenido dinámico del tiempo restante -->
         <span id="time-remaining">Calculando...</span>
@@ -174,45 +204,112 @@
     <div class="container-fluid py-4">
 
       
+      <div class="row">
+        <!-- Card 1: Total Cobrado -->
+        <div class="col-lg-3 col-md-6 col-12">
+          <div class="mb-3 card border-0 border-top border-primary border-5">
+              <div class="py-2 px-3 card-body d-flex align-items-center">
+                  <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                      <i class="ni ni-money-coins text-primary" style="font-size: 1.2rem;"></i>
+                  </div>
+                  <div>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
+                      <h6 class="mb-1 font-weight-bold">$53,000</h6>
+                      <small class="text-xs text-primary">12% del total</small>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="mb-3 card border-0 border-top border-danger border-5">
+                <div class="py-2 px-3 card-body d-flex align-items-center">
+                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-money-coins text-danger" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
+                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
+                        <small class="text-xs text-danger">12% del total</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="mb-3 card border-0 border-top border-warning border-5">
+                <div class="py-2 px-3 card-body d-flex align-items-center">
+                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-money-coins text-warning" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
+                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
+                        <small class="text-xs text-warning">12% del total</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="mb-3 card border-0 border-top border-secondary border-5">
+                <div class="py-2 px-3 card-body d-flex align-items-center">
+                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-money-coins text-secondary" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
+                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
+                        <small class="text-xs text-secondary">12% del total</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+  
+
       <div class="row pb-3">
-        <div class="col-12">
-          <div class="card">
+        <div class="col-9 d-flex">
+          <div class="card flex-fill">
             <div class="card-body">
 
               <div class="nav-wrapper position-relative end-0">
-                <ul class="nav nav-pills nav-fill p-1" role="tablist" style="border-radius: 10px; background-color: #f8f9fa;">
 
-                  <!-- Costos -->
-                  <li class="nav-item">
-                    <a class="nav-link <?= ($seccion == 'costos') ? 'active' : '' ?> mb-0 px-4 py-3 d-flex align-items-center justify-content-center" 
-                       data-bs-toggle="tab" href="#costos-tabs-icons" role="tab" aria-controls="costos-tabs-icons" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" 
-                       style="border-radius: 8px; text-align: center;">
-                      <i class="ni ni-credit-card text-lg me-2"></i>
-                      <span>Costos</span>
-                      <span class="badge bg-primary ms-2 px-2 py-1" style="font-size: 0.85rem;">$<?php echo number_format(0, 2, '.', ','); ?></span>
-                    </a>
+                <ul class="nav nav-tabs nav-justified mb-3 nav-border-top-primary"  role="tablist">
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link fw-medium <?= ($seccion == 'costos') ? 'active' : '' ?>" 
+                         data-bs-toggle="tab" 
+                         href="#costos-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
+                        Costos planificados <span class="badge bg-danger rounded-circle">$<?php echo number_format(0, 2, '.', ','); ?></span>
+                      </a>
                   </li>
-
-                  <!-- Viajeros -->
-                  <li class="nav-item">
-                    <a class="nav-link <?= ($seccion == 'viajeros') ? 'active' : '' ?> mb-0 px-4 py-3 d-flex align-items-center justify-content-center" 
-                       data-bs-toggle="tab" href="#viajeros-tabs-icons" role="tab" aria-controls="viajeros-tabs-icons" aria-selected="<?= ($seccion == 'viajeros') ? 'true' : 'false' ?>" 
-                       style="border-radius: 8px; text-align: center;">
-                      <i class="ni ni-circle-08 text-lg me-2"></i>
-                      <span>Viajeros</span>
-                      <span class="badge bg-warning ms-2 px-2 py-1" style="font-size: 0.85rem;"><?php echo count($viajeros); ?> personas</span>
-                    </a>
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link fw-medium <?= ($seccion == 'costos_listado') ? 'active' : '' ?>" 
+                         data-bs-toggle="tab" 
+                         href="#costos_listado-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
+                        Listado de Costos  <span class="badge bg-gradient-warning rounded-circle"><?php echo count($costos); ?></span>
+                      </a>
                   </li>
-
-                  <!-- Hospedajes -->
-                  <li class="nav-item">
-                    <a class="nav-link <?= ($seccion == 'hospedajes') ? 'active' : '' ?> mb-0 px-4 py-3 d-flex align-items-center justify-content-center" 
-                       data-bs-toggle="tab" href="#hospedajes-tabs-icons" role="tab" aria-controls="hospedajes-tabs-icons" aria-selected="<?= ($seccion == 'hospedajes') ? 'true' : 'false' ?>" 
-                       style="border-radius: 8px; text-align: center;">
-                      <i class="ni ni-building text-lg me-2"></i>
-                      <span>Hospedajes</span>
-                      <span class="badge bg-success ms-2 px-2 py-1" style="font-size: 0.85rem;"><?php echo count($viajesHospedajes); ?></span>
-                    </a>
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link fw-medium align-middle <?= ($seccion == 'viajeros') ? 'active' : '' ?> " 
+                         data-bs-toggle="tab" 
+                         href="#viajeros-tabs-icons" 
+                         role="tab" aria-selected="<?= ($seccion == 'viajeros') ? 'true' : 'false' ?>" tabindex="-1">
+                        Viajeros <span class="badge bg-primary rounded-circle"><?php echo count($viajeros); ?></span>
+                      </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link fw-medium align-middle <?= ($seccion == 'hospedajes') ? 'active' : '' ?>" 
+                         data-bs-toggle="tab" 
+                         href="#hospedajes-tabs-icons" 
+                         role="tab" 
+                         aria-selected="<?= ($seccion == 'hospedajes') ? 'true' : 'false' ?>">
+                        Hospedajes <span class="badge bg-info "><?php echo count($viajesHospedajes); ?></span>
+                      </a>
                   </li>
                 </ul>
               </div>
@@ -221,59 +318,14 @@
                 <div class="tab-pane fade <?= ($seccion == 'costos') ? 'show active' : '' ?>" id="costos-tabs-icons" role="tabpanel" aria-labelledby="costos-tabs-icons-tab">
                   <!-- Content for Costos Tab -->
 
-                  <div class="row">
-                    <div class="col">
-                      <h6 class="float-start"></h6>
-                      <div class="float-end">
-                        <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-costo">
-                            <i class="ni ni-fat-add"></i> COSTO
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="custom-scroll-container">
-                    <div class="table-responsive custom-pagination" style="margin: 0px !important;">
-                      <table class="table mb-0 dataTable">
-                        <thead>
-                          <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alcance</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php foreach ($costos as $item): ?>
-                          <tr>
-                            <td>
-                              <?php echo $item["viajeCostoId"] ?>
-                            </td>
-                            <td>
-                              <?php echo $item["subrubro"] ?>
-                            </td>
-                            <td class="text-center">
-                              <?php echo $item["simbolo"] ?> <?php echo $item["monto"] ?>
-                            </td>
-                            <td class="text-center">
-                              <?php echo $item["soloBuzos"] == "1" ? "Buzos" : "Todos" ?>
-                            </td>
-                            <td>
-                              <?php echo $item["comentario"] ?>
-                            </td>
-                            <td class="align-middle text-center">
-                                <a href="javascript:confirmarEliminarCosto(<?php echo $item["viajeCostoId"] ?>)"
-                                   class="btn btn-icon btn-outline-danger btn-xs mb-0">
-                                  <span class="btn-inner--icon"><i class="fa fa-times"></i></span>
-                                </a>
-                            </td>
-                          </tr>
-                          <?php endforeach; ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  <?php include("viajes_dashboard_costos.php"); ?>
+
+                </div>
+                <div class="tab-pane fade <?= ($seccion == 'costos_listado') ? 'show active' : '' ?>" id="costos_listado-tabs-icons" role="tabpanel" aria-labelledby="costos_listado-tabs-icons-tab">
+                  <!-- Content for Costos Tab -->
+
+                  <?php include("viajes_dashboard_costos_listado.php"); ?>
+
                 </div>
                 <div class="tab-pane fade <?= ($seccion == 'viajeros') ? 'show active' : '' ?>" id="viajeros-tabs-icons" role="tabpanel" aria-labelledby="viajeros-tabs-icons-tab">
                   <!-- Content for Viajeros Tab -->
@@ -288,91 +340,57 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <!-- Card 1: Today's Money -->
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="mb-4 card" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); transition: box-shadow 0.3s ease;">
-            <div class="p-3 card-body">
-              <div class="d-flex flex-row-reverse justify-content-between">
-                <div>
-                  <div class="text-center icon icon-shape bg-gradient-primary border-radius-2xl">
-                    <i class="text-lg opacity-10 ni ni-money-coins" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="numbers">
-                    <p class="mb-0 text-sm text-uppercase font-weight-bold">Total cobrado</p>
-                    <h5 class="font-weight-bolder">$53,000</h5>
-                    <span class="text-sm text-info font-weight-bold">12%</span> del total de deuda
-                  </div>
-                </div>
-              </div>
+        <div class="col-3 d-flex">
+          <div class="card mb-3 flex-fill">
+            <div class="card-header pb-0">
+              <h5 class="card-title">Pagos realizados</h5>
             </div>
-          </div>
-        </div>
+            <div class="card-body">
+              <div class="">
+                <div class="d-grid gap-4">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 rounded-2 p-3 me-3">
+                      <i class="ni ni-credit-card fs-4" style="color:white;"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h7 class="mb-0">18/7/2024</h7>
+                      <p class="text-truncate m-0">Viajes - Vuelos</p>
+                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
+                        El vuelo de Alber lo pagué con lo que cobré de lo que recibí de la devolución de los vuelos a Costa Rica
+                      </p>
+                    </div>
+                    <h4 class="m-0 ms-auto text-danger">$670.19</h4>
+                  </div>
+                  
+                  <div class="d-flex align-items-center">
+                    <div class="bg-success bg-opacity-10 rounded-2 p-3 me-3">
+                      <i class="ni ni-mobile-button fs-4" style="color:white;"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h7 class="mb-0">18/7/2024</h7>
+                      <p class="text-truncate m-0">Viajes - Vuelos</p>
+                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
+                        Vuelos Facu y Ana
+                      </p>
+                    </div>
+                    <h4 class="m-0 ms-auto text-danger">$1361.78</h4>
+                  </div>
 
-        <!-- Card 2: Today's Users -->
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="mb-4 card" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); transition: box-shadow 0.3s ease;">
-            <div class="p-3 card-body">
-              <div class="d-flex flex-row-reverse justify-content-between">
-                <div>
-                  <div class="text-center icon icon-shape bg-gradient-danger border-radius-2xl">
-                    <i class="text-lg opacity-10 ni ni-world" aria-hidden="true"></i>
+                  <div class="d-flex align-items-center">
+                    <div class="bg-secondary bg-opacity-10 rounded-2 p-3 me-3">
+                      <i class="ni ni-money-coins fs-4" style="color:white;"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h7 class="mb-0">26/9/2024</h7>
+                      <p class="text-truncate m-0">Viajes - Excursiones</p>
+                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
+                        Son 4300 pesos mexicanos a 18,50 el dólar, en pesos mexicanos. Esos son 240 dólares, que pagué en pesos a ANA CAROLINA CUTAIA, la amiga de Nani. Le transferí $296,400 a cotización de 1235
+                      </p>
+                    </div>
+                    <h4 class="m-0 ms-auto text-danger">$240.00</h4>
                   </div>
-                </div>
-                <div>
-                  <div class="numbers">
-                    <p class="mb-0 text-sm text-uppercase font-weight-bold">Falta cobrar</p>
-                    <h5 class="font-weight-bolder">2,300</h5>
-                    <span class="text-sm text-success font-weight-bold">+3%</span> since last week
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: New Clients -->
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="mb-4 card" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); transition: box-shadow 0.3s ease;">
-            <div class="p-3 card-body">
-              <div class="d-flex flex-row-reverse justify-content-between">
-                <div>
-                  <div class="text-center icon icon-shape bg-gradient-success border-radius-2xl">
-                    <i class="text-lg opacity-10 ni ni-paper-diploma" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="numbers">
-                    <p class="mb-0 text-sm text-uppercase font-weight-bold">Ganancia total</p>
-                    <h5 class="font-weight-bolder">+3,462</h5>
-                    <span class="text-sm text-danger">-2%</span> since last quarter
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Sales -->
-        <div class="col-lg-3 col-md-6 col-12">
-          <div class="mb-4 card" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); transition: box-shadow 0.3s ease;">
-            <div class="p-3 card-body">
-              <div class="d-flex flex-row-reverse justify-content-between">
-                <div>
-                  <div class="text-center icon icon-shape bg-gradient-warning border-radius-2xl">
-                    <i class="text-lg opacity-10 ni ni-cart" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div>
-                  <div class="numbers">
-                    <p class="mb-0 text-sm text-uppercase font-weight-bold">Costos nuestros</p>
-                    <h5 class="font-weight-bolder">$3500.00</h5>
-                    <span class="text-sm text-success"></span> Ver detalle
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -381,10 +399,10 @@
       </div>
 
       <div class="row pb-3">
+
         <div class="col-4">
-          
           <div class="card">
-            <div class="card-header pb-0">
+            <!-- <div class="card-header pb-0">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0">DASHBOARD</p>
                 <div class="d-flex align-items-center">
@@ -393,28 +411,26 @@
                   </a>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="card-body">
-              
               <div class="row">
                 <div class="col">
                   <div class="card text-dark bg-light">
                     <div class="card-body p-3">
                       <div class="row" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <div class="col-8">
+                        <div class="col">
                           <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Costos</p>
                             <h5 class="font-weight-bolder">
-                              $53,000
+                              <?php if (is_array($estadisticasCostosTotales) && count($estadisticasCostosTotales) > 0) : ?>
+                                $<?= number_format(array_sum(array_column($estadisticasCostosTotales, 'monto_total')), 2) ?>
+                              <?php else : ?>
+                                $0,00
+                              <?php endif; ?>
                             </h5>
                             <p class="mb-0">
-                              <canvas id="myDoughnutChart" height="70" width="70"></canvas>
+                              <canvas id="totalCostosChart" height="70" width="70"></canvas>
                             </p>
-                          </div>
-                        </div>
-                        <div class="col-4 text-end">
-                          <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                            <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
                           </div>
                         </div>
                       </div>
@@ -425,13 +441,55 @@
             </div>
           </div>
         </div>
+
+        
+
+        <div class="col-md-4 col-sm-4">
+          <div class="card h-100 overflow-hidden">
+            <div class="card-header pb-0">
+                <h5 class="card-title">Tipo de viajeros</h5>
+              </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <canvas class="tipoViajerosChart" id="tipoViajerosChart" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="table table-borderless mb-0">
+                        <tr>
+                          <td><p class="mb-0"><i class="fa fa-square text-primary"></i> Total PAX </p></td>
+                          <td><?php echo count($viajeros) ?></td>
+                        </tr>
+                        <tr>
+                          <td><p class="mb-0"><i class="fa fa-square text-success"></i> Buzos </p></td>
+                          <td>17 (83%)</td>
+                        </tr>
+                        <tr>
+                          <td><p class="mb-0"><i class="fa fa-square text-purple"></i> Acompañantes </p></td>
+                          <td>6 (17%)</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      
+
 
       <?php include("includes/footer.php") ?>
 
     </div>
 
-  <?php include("includes/scripts.php") ?>
+
+    <?php include("includes/scripts.php") ?>
 
     <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-" role="document">
@@ -480,6 +538,32 @@
       </div>
     </div>
 
+    <div class="modal fade" id="modal_promt_refresh_costo_usuarios" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i class="fa fa-warning text-warning"></i>&nbsp;
+            <h6 class="modal-title" id="modal-title-default">Atención</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              Estás seguro que querés refrescar el item costo en todos los usuarios? Esta acción no puede deshacerse.
+              Se van a actualizar todos los usuarios que correspondan con este costo al valor asignado.
+              Si habias modificado este costo en algun usuario en particular, pasará a tener el nuevo valor desde ahora.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-secondary ml-auto" data-bs-dismiss="modal">CANCELAR</button>
+            <button type="button" 
+                    class="btn bg-gradient-primary ml-auto" 
+                    onclick="javascript:aplicarViajeCostoaTodosViajeros()"
+                    data-bs-dismiss="modal" >ENTENDIDO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button type="button" id="btn-modal-errores" class="btn btn-block bg-gradient-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-default" style="display:none;">Default</button>
 
     <div id="toast" class="toast align-items-center text-white <?php echo ($_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -491,239 +575,13 @@
       </div>
     </div>
 
-      
-    
-
-   
-
-    <div class="modal fade" id="modal-costo" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Agregar costo</h5>
-
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color:black">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-0">
-            <div class="card card-plain">
-              <div class="card-body">
-                <form role="form text-left" method="post" action"" id="formNuevoCosto">
-                  <input type="hidden" value="agregarCosto" name="action">
-                  <p class="text-uppercase text-sm">Categorías del costo</p>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="rubro" class="form-control-label">Rubro</label>
-                        <select id="pagosRubroId" name="pagosRubroId" class="form-control custom-select" disabled>
-                          <option value="2" selected>Viajes</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="subrubro" class="form-control-label">Subrubro</label>
-                        <select id="pagosSubrubroId" name="pagosSubrubroId" class="form-control">
-                          <option value="" selected disabled>Seleccione un subrubro</option>
-                            <?php foreach ($subrubros as $sub): ?>
-                              <option value="<?php echo $sub['pagosSubrubroId']; ?>">
-                              <?php echo $sub['subrubro']; ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="horizontal dark">
-                  <p class="text-uppercase text-sm">Datos del costo</p>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="form-control-label" style="display: block;">Moneda</label>
-                      <div class="btn-group btn-group-toggle w-100" data-bs-toggle="buttons">
-                        <?php foreach ($monedas as $moneda): ?>
-                        <label class="btn w-100 <?php echo $moneda['monedaId'] == 1 ? "active" : ""; ?>">
-                          <input type="radio" name="monedaId" value="<?php echo $moneda['monedaId']; ?>" <?php echo $moneda['monedaId'] == 1 ? "selected" : ""; ?>">
-                          <?php echo $moneda['moneda']; ?>
-                        </label>
-                        <?php endforeach; ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row align-items-center">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-control-label">Monto</label>
-                        <div class="input-group mb-4">
-                          <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
-                          <input type="number" step="any" 
-                                id="monto" name="monto" 
-                                placeholder="00.00"
-                                value="" 
-                                class="form-control" style="text-align: right;">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-control-label" id="fecha_cotizacion">Cotización</label>
-                        <div class="input-group mb-4">
-                          <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
-                          <input type="text" 
-                                id="cotizacion" name="cotizacion" 
-                                value="" 
-                                class="form-control" style="text-align: right;">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group my-auto">
-                    <label class="form-control-label">Alcance</label>
-                    <div class="d-grid gap-4">
-                      <input type="checkbox" 
-                              name="soloBuzos"
-                              id="soloBuzos"
-                              data-onvalue="2"
-                              data-offvalue="1"
-                              data-toggle="toggle" 
-                              data-onlabel="Sólo buzos" 
-                              data-offlabel="Todos" 
-                              data-onstyle="info" 
-                              data-offstyle="secondary" 
-                              data-style="android"
-                              style="min-height: 42px !important;"
-                              >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="comentario">Comentario</label>
-                    <textarea id="comentario" name="comentario" class="form-control"></textarea>
-                  </div>
-
-                  <div class="form-check form-switch">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" 
-                          class="habilitado-checkbox"
-                          name="aplicarCostoViajeros"
-                          id="aplicarCostoViajeros"
-                          checked>
-                      Aplicar costo a los viajeros actuales
-                    </label>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="text-center alert alert-danger fade mb-0 mt-2" id="error_div_costos">
-                      <span class="alert-icon"><i class="fa fa-warning"></i></span>
-                      <span id="error-text-costos"></span>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <button type="button" onclick="javascript:altaCosto()" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">GUARDAR</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
 
   <script>
     var texto;
     var usuarioId;
-    var viajeCostoId;
-
-    function confirmarEliminarCosto(id){
-      $("#modal_promt").modal("show");
-      viajeCostoId = id;
-    }
-
-    function eliminarViajeCostos(){
-      $.ajax({
-        type: 'POST',
-        url: '',
-        data: {
-          viajeCostoId: viajeCostoId, 
-          action:"eliminarViajeCostos",
-          viajesId:<?= $viaje[$idNombre] ?>,
-        },
-        dataType: 'text',
-        success: function(data) {
-          if(data == "ok")
-            location.reload();
-          else{
-            $('#error_div_costos').removeClass('fade').addClass('show');
-            $('#error-text-costos').text(data);
-          }
-        },
-        error: function(e, i){
-          
-        }
-      })
-    };
-
-    function altaCosto(){
-
-      var pagosSubrubroId = $("#pagosSubrubroId").val();
-      var monedaId = $('input[name="monedaId"]:checked').val();
-      var monto = $("#monto").val();
-      var cotizacion = $("#cotizacion").val();
-      var soloBuzos = $('input[name="soloBuzos"]:checked').val();
-      var comentario = $("#comentario").val();
-      var aplicarCostoViajeros = $('input[name="aplicarCostoViajeros"]:checked').val();
-
-      if(!pagosSubrubroId || pagosSubrubroId == undefined)
-        var error = 'Hay que seleccionar un subrubro';
-
-      if(!monedaId || monedaId == undefined)
-        var error = 'Hay que seleccionar el tipo de moneda"';
-
-      if(!monto || monto == "")
-        var error = 'Ingresa monto';
-
-      if(!monto || monto == "")
-        var error = 'Ingresa monto';
-
-      if (error) {
-        $('#error_div_costos').removeClass('fade').addClass('show');
-        $('#error-text-costos').text(error);
-        return;
-      } else {
-        $('#error_div_costos').removeClass('show').addClass('fade');
-      }
-
-      $.ajax({
-        type: 'POST',
-        url: '',
-        data: {
-          pagosSubrubroId: pagosSubrubroId, 
-          action:"altaViajeCosto",
-          viajesId:<?= $viaje[$idNombre] ?>,
-          monedaId:monedaId,
-          monto:monto,
-          cotizacion:cotizacion,
-          soloBuzos:soloBuzos,
-          comentario:comentario,
-          aplicarCostoViajeros:aplicarCostoViajeros,
-        },
-        dataType: 'text',
-        success: function(data) {
-          if(data == "ok")
-            location.reload();
-          else{
-            $('#error_div_costos').removeClass('fade').addClass('show');
-            $('#error-text-costos').text(data);
-          }
-        },
-        error: function(e, i){
-          
-        }
-      });
-    }
+    
 
     $(document).ready(function() {
 
@@ -805,6 +663,8 @@
         }
       });
 
+      $('input[name="monedaId"][value="2"]').trigger('click');
+
       $('.habilitado-checkbox').click(function() {
          var id = $(this).attr('id').split('-')[1]; // Obtenemos el ID desde el atributo ID del span
           var activo = $(this).hasClass('bg-gradient-success') ? 0 : 1; // Toggle habilitado/deshabilitado
@@ -833,27 +693,23 @@
   </script>
 
    <script>
-    var ctx = document.getElementById('myDoughnutChart').getContext('2d');
-    var myDoughnutChart = new Chart(ctx, {
+
+    <?php 
+      $labels = array_column($estadisticasCostosTotales, 'subrubro');
+      $data_values = array_column($estadisticasCostosTotales, 'monto_total');
+      foreach ($estadisticasCostosTotales as $index => $item) {
+        $colors[] = "#".dechex(rand(0,16777215)); // colores aleatorios
+      }
+    ?>
+    var ctx = document.getElementById('totalCostosChart').getContext('2d');
+    var totalCostosChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Primario', 'Éxito', 'Peligro', 'Advertencia', 'Info'],
+        labels: <?= json_encode($labels) ?>,
         datasets: [{
-          data: [100, 25, 30, 15, 10],
-          backgroundColor: [
-            '#5e72e4', // Primario
-            '#2dce89', // Éxito
-            '#f5365c', // Peligro
-            '#fb6340', // Advertencia
-            '#11cdef'  // Info
-          ],
-          hoverBackgroundColor: [
-            '#5e72e4cc',
-            '#2dce89cc',
-            '#f5365ccc',
-            '#fb6340cc',
-            '#11cdefcc'
-          ],
+          data: <?= json_encode($data_values) ?>,
+          backgroundColor: <?= json_encode($colors) ?>,
+          hoverBackgroundColor: <?= json_encode($colors) ?>,
           borderWidth: 1
         }]
       },
@@ -862,6 +718,48 @@
         plugins: {
           legend: {
             display: true,
+            position: 'right', // Leyenda a la derecha
+            align: 'center', // Centrado verticalmente
+            labels: {
+              boxWidth: 15, // Tamaño de la caja de color
+              padding: 20,  // Espaciado entre ítems de la leyenda
+              color: '#525f7f' // Color de texto
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#2dce89',
+            titleColor: '#fff',
+            bodyColor: '#fff'
+          }
+        },
+        cutout: '70%' // Ajusta el tamaño del agujero en el centro
+      }
+    });
+
+    var ctxTipoViajeros = document.getElementById('tipoViajerosChart').getContext('2d');
+    var myTipoViajerosChart = new Chart(ctxTipoViajeros, {
+      type: 'pie',
+      data: {
+        labels: ['Buzos', 'Acompañantes'],
+        datasets: [{
+          data: [17, 6],
+          backgroundColor: [
+            '#2dce89',
+            '#67748e'
+          ],
+          hoverBackgroundColor: [
+            '#2dce89',
+            '#67748e'
+          ],
+          borderWidth: 1
+        }]
+      },
+       options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
             position: 'right', // Leyenda a la derecha
             align: 'center', // Centrado verticalmente
             labels: {
@@ -912,6 +810,8 @@
     // Actualiza la solapa cada segundo
     setInterval(updateStatusTab, 1000);
     updateStatusTab();
+
+
   </script>
 
   <style type="text/css">
@@ -965,6 +865,39 @@
 
     #resultado{
       margin-top:-20px;
+    }
+
+    .card-hospedaje {
+      border: 1px solid #ddd;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .card-hospedaje-header {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .card-hospedaje-body {
+      padding: 20px;
+    }
+
+    .card-hospedaje-footer {
+      background-color: #f7f7f7;
+      border-top: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .nav-border-top-primary .nav-link.active {
+      color: #5e72e4 !important;
+      border-top-color: #5e72e4 !important;
+      border-top: 4px solid !important;
+    }
+
+    .fs-7 {
+      font-size: 0.75rem !important;
     }
 
   </style>
