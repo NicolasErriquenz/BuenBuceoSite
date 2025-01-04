@@ -50,6 +50,10 @@ Para este último caso, el sistema permite la utilización de los **Roles** que 
 
 
 ## Datos
+Hostinger:
+https://hpanel.hostinger.com/
+user: escuela.buen.buceo@gmail.com
+Pass: Rosario278!
 
 Para acceder al proyecto:
 https://buenbuceo.ar
