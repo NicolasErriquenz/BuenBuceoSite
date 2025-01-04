@@ -50,6 +50,10 @@ Para este último caso, el sistema permite la utilización de los **Roles** que 
 
 
 ## Datos
+Hostinger:
+https://hpanel.hostinger.com/
+user: escuela.buen.buceo@gmail.com
+Pass: Rosario278!
 
 Para acceder al proyecto:
 https://buenbuceo.ar
@@ -81,6 +85,7 @@ ns2.dns-parking.com
 
 DDBB
 ```
+IP: 193.203.175.53
 base: u229759960_buenbuceo
 User: u229759960_buceo
 Pass: Rosario440
