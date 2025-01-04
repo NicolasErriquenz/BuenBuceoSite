@@ -18,16 +18,22 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Viajero</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tipo</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Venta Paq.</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">c/Hab</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Venta Paq.</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deudas</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagos</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pendiente</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($viajeros as $item): ?>
+                <?php 
+                  $totalVentaPaquetes = 0;
+                  foreach ($viajeros as $item): 
+                    $pendienteViajero = $item["total_deuda"] - $item["pagos_realizado"];
+                    $totalVentaPaquetes += $item["venta_paquete"];
+                ?>
                 <tr>
                   <td>
                     <div class="">
@@ -52,16 +58,23 @@
                     </span>
                   </td>
                   <td class="text-center">
-                    <?php echo isset($item["venta_paquete"]) ? "USD ".number_format($item["venta_paquete"], 2) : "-" ?>
-                  </td>
-                  <td class="text-center">
                     <?php echo $item["habitaciones_asignadas"] ?>
                   </td>
                   <td class="text-center">
-                    -
+                    <?php echo isset($item["venta_paquete"]) ? "USD ".number_format($item["venta_paquete"], 2) : "-" ?>
                   </td>
                   <td class="text-center">
-                    -
+                    <a href="deudas.php?usuarioId=<?php echo $item["usuario"]["usuarioId"] ?>">
+                      $<?php echo number_format($item["total_deuda"], 2, ',', '.') ?>
+                    </a>
+                  </td>
+                  <td class="text-center">
+                    $<?php echo number_format($item["pagos_realizado"], 2, ',', '.') ?>
+                  </td>
+                  <td class="text-center">
+                      <span class="<?php echo ($pendienteViajero == 0) ? 'text-info' : 'text-danger'; ?> fw-bold">
+                          $<?php echo number_format($pendienteViajero, 2, ',', '.') ?>
+                      </span>
                   </td>
                   <td class="text-center">
                     <span id="badge-<?php echo $item["viajesUsuariosId"]; ?>" class="badge badge-sm habilitado-checkbox 
@@ -80,6 +93,20 @@
                 </tr>
                 <?php endforeach; ?>
               </tbody>
+              <tfoot>
+                  <tr>
+                      <td colspan="4" class="text-end fw-bold">Totales:</td>
+                      <td class="text-center">$<?php echo number_format($totalVentaPaquetes, 2, ',', '.') ?></td>
+                      <td class="text-center">$<?php echo number_format($totalDeudaViaje, 2, ',', '.') ?></td>
+                      <td class="text-center">$<?php echo number_format($totalCobrado, 2, ',', '.') ?></td>
+                      <td class="text-center">
+                          <span class="<?php echo ($totalPendiente == 0) ? 'text-info' : 'text-danger'; ?> fw-bold">
+                              $<?php echo number_format($totalPendiente, 2, ',', '.') ?>
+                          </span>
+                      </td>
+                      <td colspan="2"></td>
+                  </tr>
+              </tfoot>
             </table>
           </div>
         </div>

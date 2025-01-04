@@ -89,6 +89,26 @@
       $usuario = getItem("usuarios", "usuarioId", $pago["usuarioId"]);
       $deudasUsuario = buscarDeudas($pago["usuarioId"]);
     }
+  }else if( isset($_GET["deudaId"]) ){
+    $title = "Pagar deuda";
+    $subtitle = "Podés pagar la deuda desde aquí";
+    $action = "alta";
+    
+    $deuda = getItem("deudas", "deudaId", $_GET["deudaId"]);
+    $subrubro = getItem("pagos_subrubros", "pagosSubrubroId", $deuda["pagosSubrubroId"]);
+    $subrubros = getSubrubrosPagos(true, $subrubro["pagosRubrosId"]);
+
+    $pago['pagoTransaccionTipoId'] = 2;
+    $pago['monto'] = $deuda["deuda"];
+    $pago['monedaId'] = $deuda['monedaId'];
+    $pago['viajesId'] = $deuda['viajesId'];
+    $pago['deudaId'] = $deuda['deudaId'];
+
+    $usuario = getItem("usuarios", "usuarioId", $deuda["usuarioId"]);
+    $deudasUsuario = buscarDeudas($deuda["usuarioId"]);
+
+    $redirect = "deudas.php?usuarioId=".$deuda["usuarioId"];
+
   }else{
     $title = "Alta pago";
     $subtitle = "Podés dar de alta un pago desde aquí";
@@ -108,6 +128,7 @@
   // if(isset($_GET)){
   //   $goBackLink = "pagos_subrubros.php?pagosRubrosId=".$_GET["pagosRubrosId"].conservarQueryString();
   // }
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -442,6 +463,8 @@
 
     $(document).ready(function() {
         
+       
+
         $('.btn-group').on('change', 'input[type="radio"]', function() {
           var monedaId = $(this).val();
           $('#cotizacion').prop("disabled", true);
@@ -627,6 +650,13 @@
         });
 
         
+        <?php if(isset($_GET["deudaId"])): ?>
+            // Encuentra el radio button con el valor correspondiente y márcalo
+            $('input[type="radio"][value="<?php echo $pago["monedaId"]; ?>"]').prop('checked', true);
+            // Dispara el evento change manualmente
+            $('input[type="radio"][value="<?php echo $pago["monedaId"]; ?>"]').trigger('change');
+        <?php endif; ?>
+
     });
 
     document.addEventListener('DOMContentLoaded', function() {

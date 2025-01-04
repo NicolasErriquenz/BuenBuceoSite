@@ -14,8 +14,8 @@
 	$GCMApiKey = "AIzaSyDo_mNa_skr5qOakPPL8jAy0hi4jhmMEuw";
 	$diasNotificarInactividad = 3;
 	$diasNotificarSinMovimientos = 2;
-
-	if ($_SERVER['HTTP_HOST'] === 'localhost') {
+	
+	if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'buenbuceo') {
 		$dbhost = 'localhost';
 		$dbusername = 'root';
 		$dbpasswd = '';
