@@ -85,6 +85,7 @@ ns2.dns-parking.com
 
 DDBB
 ```
+IP: 193.203.175.53
 base: u229759960_buenbuceo
 User: u229759960_buceo
 Pass: Rosario440
