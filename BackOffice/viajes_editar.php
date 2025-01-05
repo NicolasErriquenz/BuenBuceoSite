@@ -175,6 +175,7 @@
                           // Mostrar enlace al archivo existente y botón para eliminar
                           if ($viaje['viaje_pdf'] != '') {
                             ?>
+                            <input type="hidden" name="viaje_pdf" id="viaje_pdf" value="<?= $viaje['viaje_pdf'] ?>">
                             <div class="form-group">
                               <label class="form-control-label">Archivo existente:</label><br>
                               <a href="_recursos/viajes_pdf/<?= $viaje['viaje_pdf'] ?>" target="_blank" class="ml-2">Ver archivo</a>

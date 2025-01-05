@@ -44,7 +44,7 @@
               <h6 class="float-start">Listado</h6>
               <div class="float-end">
                 <?php if (isset($_GET['usuarioId'])): ?>
-                <a href="pagos.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
+                <a href="deudas.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
                   <i class="fa fa-trash"></i> Limpiar filtro de usuario
                 </a>
                 <?php endif; ?>
@@ -68,6 +68,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -79,16 +80,16 @@
                           </div>
                         </td>
                         <td class="">
-                          <p class="text-sm font-weight-bold mb-0"><?php echo $deuda["usuario_nombre"] ?> <?php echo $deuda["usuario_apellido"] ?> (<?php echo $deuda["apodo"] ?>)</p>
+                          <p class="text-sm mb-0"><?php echo $deuda["usuario_nombre"] ?> <?php echo $deuda["usuario_apellido"] ?> (<?php echo $deuda["apodo"] ?>)</p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0"><?php echo $deuda["subrubro"] ?> (<?php echo $deuda["rubro"] ?>)</p>
+                          <p class="text-sm mb-0"><?php echo $deuda["subrubro"] ?> (<?php echo $deuda["rubro"] ?>)</p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0"><?php echo $deuda["simbolo"] ?> <?php echo number_format($deuda["deuda"], 2) ?> </p>
+                          <p class="text-sm mb-0"><?php echo $deuda["simbolo"] ?> <?php echo number_format($deuda["deuda"], 2) ?> </p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0"><?php echo $deuda["comentario"] ?></p>
+                          <p class="text-sm mb-0"><?php echo $deuda["comentario"] ?></p>
                         </td>
                         <td class="text-center">
                           <span id="badge-<?php echo $deuda[$idNombre]; ?>" class="badge badge-sm habilitado-checkbox 
@@ -100,6 +101,14 @@
                           <a href="deudas_editar.php?<?php echo $idNombre ?>=<?php echo $deuda[$idNombre] ?>">
                             <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
                               <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                            </button>
+                          </a>
+                        </td>
+                        <td class="text-center">
+                          <a href="pagos_editar.php?<?php echo $idNombre ?>=<?php echo $deuda[$idNombre] ?>"
+                             data-bs-toggle="tooltip" data-bs-placement="top" title="Pagar deuda" data-container="body" data-animation="true">
+                            <button class="btn btn-icon btn-2 btn-sm btn-default mb-0 ajuste_boton" type="button">
+                              <span class="btn-inner--icon text-danger"><i class="fa fa-money"></i></span>
                             </button>
                           </a>
                         </td>

@@ -715,11 +715,47 @@
 	              pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
 	            INNER JOIN 
 	              pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
-	            ";
+	            WHERE 1";
 
 	  if ($usuarioId !== null) {
 	    $query .= " AND d.usuarioId = '$usuarioId'";
 	  }
+
+	  $resultado = mysqli_query($mysqli, $query);
+	  $deudas = array();
+
+	  while ($fila = mysqli_fetch_assoc($resultado)) {
+	    $deudas[] = $fila;
+	  }
+
+	  return $deudas;
+	}
+
+	function getDeudasViaje($viajesId) {
+
+	  global $mysqli;
+
+	  $query = "SELECT 
+	              d.*, 
+	              m.moneda, 
+	              m.simbolo, 
+	              u.nombre as usuario_nombre, 
+	              u.apellido as usuario_apellido, 
+	              u.apodo, 
+	              s.subrubro,
+	              r.rubro
+	            FROM 
+	              deudas d
+	            INNER JOIN 
+	              monedas m ON d.monedaId = m.monedaId
+	            INNER JOIN 
+	              usuarios u ON d.usuarioId = u.usuarioId
+	            INNER JOIN 
+	              pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
+	            INNER JOIN 
+	              pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
+	            WHERE viajesId = ".$viajesId;
+
 
 	  $resultado = mysqli_query($mysqli, $query);
 	  $deudas = array();
@@ -783,6 +819,72 @@
 
 	  if ($usuarioId !== null) {
 	    $query .= " WHERE p.usuarioId = '$usuarioId'";
+	  }
+	  $result = $mysqli->query($query);
+	  if (!$result) {
+	    die("Error al obtener pagos: " . $mysqli->error);
+	  }
+
+	  $pagos = array();
+	  while ($row = $result->fetch_assoc()) {
+	    $pagos[] = $row;
+	  }
+
+	  return $pagos;
+	}
+
+	function getPagosViaje($viajesId) {
+	  global $mysqli;
+	  
+	  $query = "
+		SELECT
+			p.*,
+			ps.subrubro,
+			pt.transaccion AS transaccion_tipo,
+			m.simbolo AS simbolo,
+			m.moneda AS moneda,
+			mp.medioPago,
+			u.nombre AS usuario_nombre,
+			u.apellido AS usuario_apellido,
+			u.apodo,
+			u.dni,
+			d.deudaId,
+			d.deuda,
+			d.comentario AS deuda_comentario,
+			dm.simbolo AS deuda_simbolo,
+			dm.moneda AS deuda_moneda,
+			psr.subrubro AS deuda_tipo,
+			pr.rubro,
+			v.anio,
+			pa.pais
+		FROM
+			pagos p
+		INNER JOIN
+			pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
+		INNER JOIN
+			pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
+		INNER JOIN
+			pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
+		INNER JOIN
+			monedas m ON p.monedaId = m.monedaId
+		INNER JOIN
+			medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
+		LEFT JOIN
+			usuarios u ON p.usuarioId = u.usuarioId
+		LEFT JOIN
+			deudas d ON p.deudaId = d.deudaId
+		LEFT JOIN
+			monedas dm ON d.monedaId = dm.monedaId
+		LEFT JOIN
+			pagos_subrubros psr ON d.pagosSubrubroId = psr.pagosSubrubroId
+		LEFT JOIN
+			viajes v ON p.viajesId = v.viajesId
+		LEFT JOIN
+			paises pa ON v.paisId = pa.paisId
+		";
+
+	  if ($viajesId !== null) {
+	    $query .= " WHERE p.viajesId = '$viajesId'";
 	  }
 	  $result = $mysqli->query($query);
 	  if (!$result) {
@@ -1403,7 +1505,7 @@
 	  return $viajes;
 	}
 
-	function getTodosViajesUsuarios($viajeId) {
+	function getTodosViajesUsuarios($viajesId) {
 	  global $mysqli;
 
 	  $query = "
@@ -1422,7 +1524,7 @@
 
 	  $query .= "
 	    AND 
-	      vu.viajesId = '$viajeId'
+	      vu.viajesId = '$viajesId'
 	  ";
 
 	  $result = $mysqli->query($query);
@@ -1430,51 +1532,75 @@
 	    die("Error al obtener viajeros: " . $mysqli->error);
 	  }
 
-	  $viajeros = array();
-	  while ($row = $result->fetch_assoc()) {
-	    $viajero = array(
-	      "viajesUsuariosId" => $row["viajesUsuariosId"],
-	      "habilitado_sys" => $row["habilitado_sys"],
-	      "venta_paquete" => $row["venta_paquete"],
-	      "usuario" => array(
-	        "usuarioId" => $row["usuarioId"],
-	        "nombre" => $row["nombre"],
-	        "apellido" => $row["apellido"],
-	        "apodo" => $row["apodo"],
-	        "email" => $row["email"],
-	        "dni" => $row["dni"],
-	        "altura" => $row["altura"],
-	        "peso" => $row["peso"],
-	        "talle" => $row["talle"],
-	        "comentario" => $row["comentario"],
-	        "direccion" => $row["direccion"],
-	        "ciudad" => $row["ciudad"],
-	        "fecha_registro" => $row["fecha_registro"],
-	        "fecha_nacimiento" => $row["fecha_nacimiento"],
-	        "imagen" => $row["imagen"],
-	        "habilitado_sys" => $row["habilitado_sys"],
-	        "paisId" => $row["paisId"],
-	        "sexoId" => $row["sexoId"]
-	      ),
-	      "viajeroTipo" => array(
-	        "viajeroTipoId" => $row["viajeroTipoId"],
-	        "viajero_tipo" => $row["viajero_tipo"]
-	      ),
-	      "habitaciones_asignadas" => 0
-	    );
+		$viajeros = array();
 
-	    // Consulta para obtener el número de habitaciones asignadas
-	    $queryHabitaciones = "SELECT COUNT(*) AS habitaciones_asignadas 
-	                         FROM viajes_hospedajes_habitaciones_usuarios 
-	                         WHERE viajesUsuariosId = " . $row["viajesUsuariosId"];
-	    $resultHabitaciones = $mysqli->query($queryHabitaciones);
-	    if ($resultHabitaciones) {
-	      $habitaciones = $resultHabitaciones->fetch_assoc();
-	      $viajero["habitaciones_asignadas"] = $habitaciones["habitaciones_asignadas"];
-	    }
+		while ($row = $result->fetch_assoc()) {
+			$viajero = array(
+			  "viajesUsuariosId" => $row["viajesUsuariosId"],
+			  "habilitado_sys" => $row["habilitado_sys"],
+			  "venta_paquete" => $row["venta_paquete"],
+			  "usuario" => array(
+			    "usuarioId" => $row["usuarioId"],
+			    "nombre" => $row["nombre"],
+			    "apellido" => $row["apellido"],
+			    "apodo" => $row["apodo"],
+			    "email" => $row["email"],
+			    "dni" => $row["dni"],
+			    "altura" => $row["altura"],
+			    "peso" => $row["peso"],
+			    "talle" => $row["talle"],
+			    "comentario" => $row["comentario"],
+			    "direccion" => $row["direccion"],
+			    "ciudad" => $row["ciudad"],
+			    "fecha_registro" => $row["fecha_registro"],
+			    "fecha_nacimiento" => $row["fecha_nacimiento"],
+			    "imagen" => $row["imagen"],
+			    "habilitado_sys" => $row["habilitado_sys"],
+			    "paisId" => $row["paisId"],
+			    "sexoId" => $row["sexoId"]
+			  ),
+			  "viajeroTipo" => array(
+			    "viajeroTipoId" => $row["viajeroTipoId"],
+			    "viajero_tipo" => $row["viajero_tipo"]
+			  ),
+			  "habitaciones_asignadas" => 0,
+			  "pagos_realizado" => 0,
+			);
 
-	    $viajeros[] = $viajero;
-	  }
+			// Consulta para obtener el número de habitaciones asignadas
+			$queryHabitaciones = "SELECT COUNT(*) AS habitaciones_asignadas 
+			                     FROM viajes_hospedajes_habitaciones_usuarios 
+			                     WHERE viajesUsuariosId = " . $row["viajesUsuariosId"];
+			$resultHabitaciones = $mysqli->query($queryHabitaciones);
+			if ($resultHabitaciones) {
+			  $habitaciones = $resultHabitaciones->fetch_assoc();
+			  $viajero["habitaciones_asignadas"] = $habitaciones["habitaciones_asignadas"];
+			}
+
+			// Obtengo pagos hechos por el usuario
+			$queryPagos = "SELECT SUM(monto) AS totalPagado 
+			                     FROM pagos 
+			                     WHERE usuarioId = ".$row["usuarioId"]."
+			                     AND viajesId = ".$viajesId;
+			$resultPagos = $mysqli->query($queryPagos);
+			if ($resultPagos) {
+			  $pagos = $resultPagos->fetch_assoc();
+			  $viajero["pagos_realizado"] = $pagos["totalPagado"];
+			}
+
+			// Obtengo deudas
+			$queryPagos = "SELECT SUM(deuda) AS totalDeuda 
+			                     FROM deudas 
+			                     WHERE usuarioId = ".$row["usuarioId"]."
+			                     AND viajesId = ".$viajesId;
+			$resultPagos = $mysqli->query($queryPagos);
+			if ($resultPagos) {
+			  $pagos = $resultPagos->fetch_assoc();
+			  $viajero["total_deuda"] = $pagos["totalDeuda"];
+			}
+
+			$viajeros[] = $viajero;
+		}
 
 	  return $viajeros;
 	}
@@ -2036,7 +2162,7 @@
 	  }
 	}
 
-	function agregarDeudaUsuarioPaquete($viajesUsuariosId, $delete = false){
+	function agregarDeudaUsuarioPaquete($viajesUsuariosId, $soloBorrar = false){
 
 		global $mysqli;
 
@@ -2051,22 +2177,22 @@
 					  WHERE viajesId = ".$row["viajesId"]."
 					  	AND usuarioId = ".$row["usuarioId"]."
 					  	AND pagosSubrubroId = 19;";
-		if($delete){
-	    	$mysqli->query($sqlDelete);
-		}else{
-			if(!empty($row['venta_paquete'])) {
+	    $mysqli->query($sqlDelete);
+		if($soloBorrar)
+			return;
 
-				$deuda["comentario"] = "Venta paquete ".$row['pais']." ".$row['anio'];
-				$deuda['deuda'] = $row['venta_paquete'];
-				$deuda['monedaId'] = 2; //dolares 
-				$deuda['usuarioId'] = $row["usuarioId"];
-				$deuda['viajesId'] = $row["viajesId"];
-				$deuda['pagosSubrubroId'] = 19; //Venta paquetes
-				$deuda['habilitado_sys'] = 1;
+		if(!empty($row['venta_paquete'])) {
 
-				$res = altaDeuda($deuda);
-			}	
-		}
+			$deuda["comentario"] = "Venta paquete ".$row['pais']." ".$row['anio'];
+			$deuda['deuda'] = $row['venta_paquete'];
+			$deuda['monedaId'] = 2; //dolares 
+			$deuda['usuarioId'] = $row["usuarioId"];
+			$deuda['viajesId'] = $row["viajesId"];
+			$deuda['pagosSubrubroId'] = 19; //Venta paquetes
+			$deuda['habilitado_sys'] = 1;
+
+			$res = altaDeuda($deuda);
+		}	
 	}
 
 	function editarViajero($data){
@@ -2091,14 +2217,7 @@
 			$row = $result->fetch_assoc();
 
 	      	if(!empty($row['venta_paquete'])) {
-
-				$sqlUpdate = "UPDATE deudas 
-							  SET deuda = ".$row["venta_paquete"]."
-							  WHERE viajesId = ".$row["viajesId"]."
-								AND usuarioId = ".$row["usuarioId"]."
-								AND pagosSubrubroId = 19;";
-								
-				$mysqli->query($sqlUpdate);
+			    agregarDeudaUsuarioPaquete($data['viajesUsuariosId']);
 			}
 
 	      echo "ok";

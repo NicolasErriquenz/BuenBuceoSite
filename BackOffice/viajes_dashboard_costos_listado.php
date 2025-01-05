@@ -34,11 +34,11 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alcance</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Costo total</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                   </tr>
                 </thead>
@@ -53,6 +53,11 @@
                     <td>
                       <p class="text-sm font-weight-bold mb-0">
                       <?php echo $item["subrubro"] ?>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">
+                      <?php echo $item["comentario"] ?>
                       </p>
                     </td>
                     <td class="text-center">
@@ -73,11 +78,6 @@
                     <td class="text-center">
                       <p class="text-sm font-weight-bold mb-0">
                       <?php echo $item["simbolo"] ?> <?php echo $item["monto"] * $item["cantidad_personas"] ?>
-                      </p>
-                    </td>
-                    <td>
-                      <p class="text-sm font-weight-bold mb-0">
-                      <?php echo $item["comentario"] ?>
                       </p>
                     </td>
                     <td class="align-middle text-center">

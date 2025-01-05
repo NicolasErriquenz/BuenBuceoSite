@@ -140,10 +140,25 @@
   $sub_seccion = isset($_GET["sub_seccion"]) ? $_GET["sub_seccion"] : "costos_totales";
 
   $estadisticasCostosTotales = getDetalleCostosTotalesPorViaje($_GET[$idNombre]);
+  $costosTotalesSumados = array_sum(array_column($estadisticasCostosTotales, 'monto_total'));
 
   $costosHospedajes = getDetallesCostosHospedajes($_GET[$idNombre]);
-  // print_r(json_encode($costosHospedajes));
-  // die();
+
+  $costoTotalHabitaciones = getCostoTotalHabitaciones($costosHospedajes);
+  $costoTotalViaje = $costoTotalHabitaciones + $costosTotalesSumados;
+
+  $deudasViaje = getDeudasViaje($_GET[$idNombre]);
+  $totalDeudaViaje = array_sum(array_column($deudasViaje, 'deuda'));
+
+  $cobrosRealizados  = getPagosViaje($_GET[$idNombre]);
+  $totalCobrado = array_sum(array_column($cobrosRealizados, 'monto'));
+
+  $totalPendiente = $totalDeudaViaje - $totalCobrado;
+  $gastosInternos = 12000;
+
+  $costoPromedioPersona = count($viajeros) == 0 ? 0 : number_format($costoTotalViaje/count($viajeros), 2, ',', '.');
+  $porcentajeCobradoDelTotal = $totalDeudaViaje == 0 ? 0 : number_format(($totalCobrado/$totalDeudaViaje)*100, 1);
+  $costoCholoAnaPrcentajeDeudatotal = $totalDeudaViaje == 0 ? 0 : number_format(($gastosInternos/$totalDeudaViaje)*100, 1);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -204,71 +219,68 @@
     <div class="container-fluid py-4">
 
       
-      <div class="row">
-        <!-- Card 1: Total Cobrado -->
+     <div class="row">
+        <!-- Costo Total -->
         <div class="col-lg-3 col-md-6 col-12">
-          <div class="mb-3 card border-0 border-top border-primary border-5">
-              <div class="py-2 px-3 card-body d-flex align-items-center">
-                  <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                      <i class="ni ni-money-coins text-primary" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div>
-                      <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
-                      <h6 class="mb-1 font-weight-bold">$53,000</h6>
-                      <small class="text-xs text-primary">12% del total</small>
-                  </div>
-              </div>
-          </div>
+            <div class="mb-3 card border-0 border-top border-primary border-5">
+                <div class="py-2 px-3 card-body d-flex align-items-center">
+                    <div class="me-3 icon-container bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-chart-pie-35 text-white" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Costo Total</p>
+                        <h6 class="mb-1 fw-bold">$<?= number_format($costoTotalViaje, 2, ',', '.'); ?></h6>
+                        <small class="text-xs text-primary">Promedio/persona: $<?= $costoPromedioPersona; ?></small>
+                    </div>
+                </div>
+            </div>
         </div>
-
+        <!-- Deuda Total -->
         <div class="col-lg-3 col-md-6 col-12">
             <div class="mb-3 card border-0 border-top border-danger border-5">
                 <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-money-coins text-danger" style="font-size: 1.2rem;"></i>
+                    <div class="me-3 icon-container bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-credit-card text-white" style="font-size: 1.2rem;"></i>
                     </div>
                     <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
-                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
-                        <small class="text-xs text-danger">12% del total</small>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Deuda Total</p>
+                        <h6 class="mb-1 fw-bold">$<?= number_format($totalDeudaViaje, 2, ',', '.'); ?></h6>
+                        <small class="text-xs text-danger">&nbsp;</small>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
+        <!-- Total Cobrado -->
         <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-warning border-5">
+            <div class="mb-3 card border-0 border-top border-success border-5">
                 <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-money-coins text-warning" style="font-size: 1.2rem;"></i>
+                    <div class="me-3 icon-container bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-check-bold text-white" style="font-size: 1.2rem;"></i>
                     </div>
                     <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
-                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
-                        <small class="text-xs text-warning">12% del total</small>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Cobrado</p>
+                        <h6 class="mb-1 fw-bold">$<?= number_format($totalCobrado, 2, ',', '.'); ?></h6>
+                        <small class="text-xs text-success"><?= $porcentajeCobradoDelTotal ?>% del total</small>
                     </div>
                 </div>
             </div>
         </div>
-
-        
+        <!-- Gastos Internos -->
         <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-secondary border-5">
+            <div class="mb-3 card border-0 border-top border-info border-5">
                 <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-money-coins text-secondary" style="font-size: 1.2rem;"></i>
+                    <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="ni ni-cart text-white" style="font-size: 1.2rem;"></i>
                     </div>
                     <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Total cobrado</p>
-                        <h6 class="mb-1 font-weight-bold">$53,000</h6>
-                        <small class="text-xs text-secondary">12% del total</small>
+                        <p class="mb-0 text-xs text-muted text-uppercase">Gastos Internos</p>
+                        <h6 class="mb-1 fw-bold">$<?= number_format($gastosInternos, 2, ',', '.'); ?></h6>
+                        <small class="text-xs text-info"><?= $costoCholoAnaPrcentajeDeudatotal ?>% de la deuda</small>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
+    </div>
 
   
 
@@ -284,14 +296,14 @@
                       <a class="nav-link fw-medium <?= ($seccion == 'costos') ? 'active' : '' ?>" 
                          data-bs-toggle="tab" 
                          href="#costos-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
-                        Costos planificados <span class="badge bg-danger rounded-circle">$<?php echo number_format(0, 2, '.', ','); ?></span>
+                        Costos hospedajes <span class="badge bg-danger rounded-circle">$<?php echo number_format($costoTotalHabitaciones, 2, '.', ','); ?></span>
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
                       <a class="nav-link fw-medium <?= ($seccion == 'costos_listado') ? 'active' : '' ?>" 
                          data-bs-toggle="tab" 
                          href="#costos_listado-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
-                        Listado de Costos  <span class="badge bg-gradient-warning rounded-circle"><?php echo count($costos); ?></span>
+                        Costos planificados  <span class="badge bg-gradient-warning rounded-circle"><?php echo count($costos); ?></span>
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -318,7 +330,13 @@
                 <div class="tab-pane fade <?= ($seccion == 'costos') ? 'show active' : '' ?>" id="costos-tabs-icons" role="tabpanel" aria-labelledby="costos-tabs-icons-tab">
                   <!-- Content for Costos Tab -->
 
-                  <?php include("viajes_dashboard_costos.php"); ?>
+                  <?php 
+                    if(isset($costosHospedajes['hospedajes']))
+                      include("viajes_dashboard_costos.php"); 
+                    else{
+                  ?>
+                  <p>No hay tarifas cargadas aun para el hospedaje</p>
+                  <?php } ?>
 
                 </div>
                 <div class="tab-pane fade <?= ($seccion == 'costos_listado') ? 'show active' : '' ?>" id="costos_listado-tabs-icons" role="tabpanel" aria-labelledby="costos_listado-tabs-icons-tab">
@@ -422,11 +440,7 @@
                           <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Costos</p>
                             <h5 class="font-weight-bolder">
-                              <?php if (is_array($estadisticasCostosTotales) && count($estadisticasCostosTotales) > 0) : ?>
-                                $<?= number_format(array_sum(array_column($estadisticasCostosTotales, 'monto_total')), 2) ?>
-                              <?php else : ?>
-                                $0,00
-                              <?php endif; ?>
+                              $<?= number_format($costosTotalesSumados, 2, ',', '.'); ?>
                             </h5>
                             <p class="mb-0">
                               <canvas id="totalCostosChart" height="70" width="70"></canvas>
@@ -464,11 +478,11 @@
                         </tr>
                         <tr>
                           <td><p class="mb-0"><i class="fa fa-square text-success"></i> Buzos </p></td>
-                          <td>17 (83%)</td>
+                          <td>0 (0%)</td>
                         </tr>
                         <tr>
                           <td><p class="mb-0"><i class="fa fa-square text-purple"></i> Acompañantes </p></td>
-                          <td>6 (17%)</td>
+                          <td>0 (0%)</td>
                         </tr>
                       </table>
                     </td>

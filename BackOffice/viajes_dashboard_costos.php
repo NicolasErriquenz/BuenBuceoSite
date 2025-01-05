@@ -1,7 +1,8 @@
 
-<?php foreach ($costosHospedajes['hospedajes'] as $hospedaje): ?>
+<?php 
+foreach ($costosHospedajes['hospedajes'] as $hospedaje): ?>
 <div class="container-fluid">
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-header bg-gradient-secondary text-white d-flex justify-content-between align-items-center py-2 shadow-sm">
       <h5 class="mb-0"><?php echo $hospedaje['nombre']; ?></h5>
       <div class="hotel-details">
@@ -14,19 +15,23 @@
 
     <div class="card-body">
       <div class="row g-4">
-        <?php foreach ($hospedaje['tarifas'] as $tarifa): 
-            $totalDoubledBeds = array_sum(array_column($tarifa['habitaciones'], 'camas_dobles'));
-            $totalSingleBeds = array_sum(array_column($tarifa['habitaciones'], 'camas_simples'));
-            
-            $usuarios = [];
-            foreach ($tarifa['habitaciones'] as $habitacion) {
-              foreach ($habitacion['usuarios'] as $usuario) {
-                $usuarios[] = $usuario;
+        <?php 
+          if(!isset($hospedaje['tarifas']))
+            echo "<p>No hay tarifas cargadas aún.</p>";
+          else
+            foreach ($hospedaje['tarifas'] as $tarifa): 
+              $totalDoubledBeds = array_sum(array_column($tarifa['habitaciones'], 'camas_dobles'));
+              $totalSingleBeds = array_sum(array_column($tarifa['habitaciones'], 'camas_simples'));
+              
+              $usuarios = [];
+              foreach ($tarifa['habitaciones'] as $habitacion) {
+                foreach ($habitacion['usuarios'] as $usuario) {
+                  $usuarios[] = $usuario;
+                }
               }
-            }
-            $totalUsers = count($usuarios);
-            
-            $totalCost = number_format(rand(5000, 15000), 2);
+              $totalUsers = count($usuarios);
+              
+              $totalCost = number_format(rand(5000, 15000), 2);
           ?>
           <div class="col-4">
             <div class="card h-100 border-light shadow-sm rounded-3">
@@ -91,8 +96,8 @@
                   <table class="table table-sm table-borderless mb-0 fs-7">
                     <thead>
                       <tr class="border-bottom">
-                        <th class="text-muted p-1 text-start">Subrubro</th>
-                        <th class="text-muted p-1 text-start">Solo Buzos</th>
+                        <th class="text-muted p-1 text-start">Categoría</th>
+                        <th class="text-muted p-1 text-start">Alcance</th>
                         <th class="text-muted p-1 text-end">Total</th>
                       </tr>
                     </thead>
@@ -107,7 +112,7 @@
                         if($group['soloBuzos'] == '1'){
                           $badge = '<span class="badge bg-info text-white">Buzos</span>';
                         }else{
-                          $badge = '<span class="badge bg-secondary text-white">Acomp.</span>';
+                          $badge = '<span class="badge bg-secondary text-white">Todos</span>';
                           $totalAcompanantes += $group['total'];
                         }
                         $totalBuzos += $group['total'];
@@ -168,13 +173,13 @@
               <div class="card-footer border-top-1 d-flex flex-column align-items-stretch py-2 px-3">
                 <!-- First div for total hoodies cost -->
                 <div class="d-flex justify-content-between">
-                    <small class="text-muted">Costo Total Buzos:</small>
+                    <small class="text-muted">Costo p/Buzo:</small>
                     <small class="text-secondary">$<?php echo $totalBuzos; ?></small>
                 </div>
                 
                 <!-- Second div for total companions/accompaniers cost -->
                 <div class="d-flex justify-content-between">
-                    <small class="text-muted">Costo Total Acompañantes:</small>
+                    <small class="text-muted">Costo p/Acompañante:</small>
                     <small class="text-secondary">$<?php echo $totalAcompanantes; ?></small>
                 </div>
               </div>

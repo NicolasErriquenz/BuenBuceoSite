@@ -120,4 +120,54 @@
 		$indiceAleatorio = array_rand($oraciones);
 		return $oraciones[$indiceAleatorio];
     }
+
+   	function getCostoTotalHabitaciones($costosHospedajes) {
+	    $costoTotal = 0;
+	    
+	    // Validación inicial de la estructura del array
+	    if (!is_array($costosHospedajes) || !isset($costosHospedajes['hospedajes']) || !is_array($costosHospedajes['hospedajes'])) {
+	        return $costoTotal;
+	    }
+	    
+	    // Iteramos por cada hospedaje
+	    foreach ($costosHospedajes['hospedajes'] as $hospedaje) {
+	        // Validamos que exista la clave 'tarifas' y sea un array
+	        if (!isset($hospedaje['tarifas']) || !is_array($hospedaje['tarifas'])) {
+	            continue;
+	        }
+	        
+	        // Iteramos por cada tarifa del hospedaje
+	        foreach ($hospedaje['tarifas'] as $tarifa) {
+	            // Validamos que exista la clave 'precio'
+	            if (!isset($tarifa['precio'])) {
+	                continue;
+	            }
+	            
+	            $precioTarifa = floatval($tarifa['precio']);
+	            
+	            // Validamos que exista la clave 'habitaciones' y sea un array
+	            if (!isset($tarifa['habitaciones']) || !is_array($tarifa['habitaciones'])) {
+	                continue;
+	            }
+	            
+	            // Por cada habitación
+	            foreach ($tarifa['habitaciones'] as $habitacion) {
+	                // Validamos que exista la clave 'usuarios' y sea un array
+	                if (!isset($habitacion['usuarios']) || !is_array($habitacion['usuarios'])) {
+	                    continue;
+	                }
+	                
+	                // Contamos cuántos usuarios hay en la habitación
+	                $cantidadUsuarios = count($habitacion['usuarios']);
+	                
+	                // Si hay usuarios, multiplicamos el precio por la cantidad
+	                if ($cantidadUsuarios > 0) {
+	                    $costoTotal += $precioTarifa * $cantidadUsuarios;
+	                }
+	            }
+	        }
+	    }
+	    
+	    return $costoTotal;
+	}
 ?>
