@@ -46,37 +46,37 @@
                   <?php foreach ($costos as $item): ?>
                   <tr>
                     <td>
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm  mb-0">
                       <?php echo $item["viajeCostoId"] ?>
                       </p>
                     </td>
                     <td>
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm  mb-0">
                       <?php echo $item["subrubro"] ?>
                       </p>
                     </td>
                     <td>
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm  mb-0">
                       <?php echo $item["comentario"] ?>
                       </p>
                     </td>
                     <td class="text-center">
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm mb-0">
                       <?php echo $item["simbolo"] ?> <?php echo $item["monto"] ?>
                       </p>
                     </td>
                     <td class="text-center">
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm mb-0">
                       <?php echo $item["soloBuzos"] == "1" ? "Buzos" : "Todos" ?>
                       </p>
                     </td>
                     <td class="text-center">
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm mb-0">
                       <?php echo $item["cantidad_personas"]?>
                       </p>
                     </td>
                     <td class="text-center">
-                      <p class="text-sm font-weight-bold mb-0">
+                      <p class="text-sm mb-0">
                       <?php echo $item["simbolo"] ?> <?php echo $item["monto"] * $item["cantidad_personas"] ?>
                       </p>
                     </td>

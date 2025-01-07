@@ -15,7 +15,16 @@
     $deudas = getDeudas($usuarioId);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
-        updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
+      updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
+    }
+
+    $descripcion = "";
+
+    if( isset($_GET["viajesId"]) ){
+      $viaje = getItem("viajes", "viajesId", $_GET["viajesId"]);
+      $pais = getItem("paises", "paisId", $viaje["paisId"]);
+      $descripcion = " de deudas - ".$pais["pais"]." ".$viaje["anio"];
+      $deudas = getDeudasViaje($_GET["viajesId"]);
     }
 
 ?>
@@ -41,11 +50,14 @@
         <div class="col-12">
           <div class="card mb-4" style="padding: 18px;">
             <div class="card-header pb-0">
-              <h6 class="float-start">Listado</h6>
+              <h6 class="float-start">Listado <?php echo $descripcion ?></h6>
               <div class="float-end">
-                <?php if (isset($_GET['usuarioId'])): ?>
+                <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
+                  <i class="ni ni-bold-left"></i> Volver
+                </a>
+                <?php if (isset($_GET['usuarioId']) || isset($_GET["viajesId"])): ?>
                 <a href="deudas.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
-                  <i class="fa fa-trash"></i> Limpiar filtro de usuario
+                  <i class="fa fa-trash"></i> Limpiar filtros
                 </a>
                 <?php endif; ?>
                 <a href="deudas_editar.php">
@@ -64,9 +76,10 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipo</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deuda</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deuda</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagos</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagar</th>
                       </tr>
@@ -86,17 +99,28 @@
                           <p class="text-sm mb-0"><?php echo $deuda["subrubro"] ?> (<?php echo $deuda["rubro"] ?>)</p>
                         </td>
                         <td>
+                          <p class="text-sm mb-0"><?php echo $deuda["comentario"] ?></p>
+                        </td>
+                        <td>
                           <p class="text-sm mb-0"><?php echo $deuda["simbolo"] ?> <?php echo number_format($deuda["deuda"], 2) ?> </p>
                         </td>
                         <td>
-                          <p class="text-sm mb-0"><?php echo $deuda["comentario"] ?></p>
+                          <a href="pagos.php?<?php echo $idNombre ?>=<?php echo $deuda[$idNombre] ?>">
+                            <p class="text-sm mb-0 text-bold"><?php echo $deuda["simbolo"] ?> <?php echo number_format($deuda["total_pagado"], 2) ?> </p>
+                          </a>
                         </td>
                         <td class="text-center">
+                          <span class="badge badge-sm
+                              <?php echo ($deuda["deuda"] <= $deuda["total_pagado"] ) ? 'bg-gradient-success' : 'bg-gradient-warning'; ?>">
+                              <?php echo ($deuda["deuda"] <= $deuda["total_pagado"]) ? 'PAGO' : 'IMPAGO'; ?>
+                          </span>
+                        </td>
+                        <!-- <td class="text-center">
                           <span id="badge-<?php echo $deuda[$idNombre]; ?>" class="badge badge-sm habilitado-checkbox 
                               <?php echo ($deuda["habilitado_sys"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
                               <?php echo ($deuda["habilitado_sys"] == 1) ? 'Online' : 'Offline'; ?>
                           </span>
-                        </td>
+                        </td> -->
                         <td class="text-center">
                           <a href="deudas_editar.php?<?php echo $idNombre ?>=<?php echo $deuda[$idNombre] ?>">
                             <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
@@ -119,7 +143,9 @@
                 </div>
               </div>
             </div>
+
           </div>
+
         </div>
       </div>
       

@@ -57,6 +57,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Avatar</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tipo</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deudas</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagos</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habilitado</th>
@@ -77,10 +78,13 @@
                         ?>')"></div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0"><?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?></p>
+                        <p class="text-sm mb-0"><?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?></p>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0"><?php echo $usuario["email"] ?> </p>
+                        <p class="text-sm mb-0"><?php echo $usuario["email"] ?> </p>
+                      </td>
+                      <td>
+                        <p class="text-sm mb-0"><?php echo $usuario["tipo"] ?> </p>
                       </td>
                       <td class="text-center">
                         <span class="text-secondary text-xs font-weight-bold">

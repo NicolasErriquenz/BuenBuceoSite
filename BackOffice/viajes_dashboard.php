@@ -154,11 +154,15 @@
   $totalCobrado = array_sum(array_column($cobrosRealizados, 'monto'));
 
   $totalPendiente = $totalDeudaViaje - $totalCobrado;
-  $gastosInternos = 12000;
+  $costosOperativos = 12000;
 
   $costoPromedioPersona = count($viajeros) == 0 ? 0 : number_format($costoTotalViaje/count($viajeros), 2, ',', '.');
   $porcentajeCobradoDelTotal = $totalDeudaViaje == 0 ? 0 : number_format(($totalCobrado/$totalDeudaViaje)*100, 1);
-  $costoCholoAnaPrcentajeDeudatotal = $totalDeudaViaje == 0 ? 0 : number_format(($gastosInternos/$totalDeudaViaje)*100, 1);
+  $costosOperativosPorcentaje = $totalDeudaViaje == 0 ? 0 : number_format(($costosOperativos/$totalDeudaViaje)*100, 1);
+
+  $param = array();
+  $param["viajesId"] = $_GET[$idNombre];
+  $costosAlquileres = obtenerIngresosAlquileres($param);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -219,67 +223,92 @@
     <div class="container-fluid py-4">
 
       
-     <div class="row">
-        <!-- Costo Total -->
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-primary border-5">
-                <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-chart-pie-35 text-white" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Costo Total</p>
-                        <h6 class="mb-1 fw-bold">$<?= number_format($costoTotalViaje, 2, ',', '.'); ?></h6>
-                        <small class="text-xs text-primary">Promedio/persona: $<?= $costoPromedioPersona; ?></small>
-                    </div>
+    <div class="row g-3 mb-3">
+      <!-- Costo Total -->
+      <div class="col">
+          <div class="card border-0 border-top border-primary border-5">
+              <div class="py-2 px-3 card-body d-flex align-items-center">
+                  <div class="me-3 icon-container bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                      <i class="ni ni-chart-pie-35 text-white" style="font-size: 1.2rem;"></i>
+                  </div>
+                  <div>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Costo Total</p>
+                      <h6 class="mb-1 fw-bold">$<?= number_format($costoTotalViaje, 2, ',', '.'); ?></h6>
+                      <small class="text-xs text-primary">Promedio/persona: $<?= $costoPromedioPersona; ?></small>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Deuda Total -->
+      <div class="col">
+          <div class="card border-0 border-top border-danger border-5">
+              <div class="py-2 px-3 card-body d-flex align-items-center">
+                  <div class="me-3 icon-container bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                      <i class="ni ni-credit-card text-white" style="font-size: 1.2rem;"></i>
+                  </div>
+                  <div>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Deuda Total</p>
+                      <h6 class="mb-1 fw-bold">$<?= number_format($totalDeudaViaje, 2, ',', '.'); ?></h6>
+                      <small class="text-xs text-danger">Cantidad de items: <?php echo count($deudasViaje) ?></small>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Total Cobrado -->
+      <div class="col">
+          <div class="card border-0 border-top border-success border-5">
+              <div class="py-2 px-3 card-body d-flex align-items-center">
+                  <div class="me-3 icon-container bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                      <i class="ni ni-check-bold text-white" style="font-size: 1.2rem;"></i>
+                  </div>
+                  <div>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Cobrado</p>
+                      <h6 class="mb-1 fw-bold">$<?= number_format($totalCobrado, 2, ',', '.'); ?></h6>
+                      <small class="text-xs text-success"><?= $porcentajeCobradoDelTotal ?>% del total</small>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Gastos Internos -->
+      <div class="col">
+          <div class="card border-0 border-top border-info border-5">
+              <div class="py-2 px-3 card-body d-flex align-items-center">
+                  <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                      <i class="ni ni-cart text-white" style="font-size: 1.2rem;"></i>
+                  </div>
+                  <div>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Costos operativos</p>
+                      <h6 class="mb-1 fw-bold">$<?= number_format($costosOperativos, 2, ',', '.'); ?></h6>
+                      <small class="text-xs text-info"><?= $costosOperativosPorcentaje ?>% de la deuda</small>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Total Pendiente -->
+      <div class="col"
+           data-equipo-id="<?php echo $equipo['alquilerEquiposId']; ?>"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Editar alquileres de equipos">
+        <a href="viajes_alquiler_equipos.php?viajesId=<?php echo $viaje[$idNombre]; ?>">
+          <div class="card border-0 border-top border-warning border-5">
+            <div class="py-2 px-3 card-body d-flex align-items-center">
+                <div class="me-3 icon-container bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                    <i class="ni ni-bulb-61 text-white" style="font-size: 1.2rem;"></i>
+                </div>
+                <div>
+                    <p class="mb-0 text-xs text-muted text-uppercase">Alquiler equipos</p>
+                    <h6 class="mb-1 fw-bold">$<?= number_format($costosAlquileres["costoTotal"], 2, ',', '.'); ?></h6>
+                    <small class="text-xs text-warning">Ganancia $<?= number_format($costosAlquileres["ganancia"], 2, ',', '.'); ?></small>
                 </div>
             </div>
-        </div>
-        <!-- Deuda Total -->
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-danger border-5">
-                <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-credit-card text-white" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Deuda Total</p>
-                        <h6 class="mb-1 fw-bold">$<?= number_format($totalDeudaViaje, 2, ',', '.'); ?></h6>
-                        <small class="text-xs text-danger">&nbsp;</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Total Cobrado -->
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-success border-5">
-                <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-check-bold text-white" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Cobrado</p>
-                        <h6 class="mb-1 fw-bold">$<?= number_format($totalCobrado, 2, ',', '.'); ?></h6>
-                        <small class="text-xs text-success"><?= $porcentajeCobradoDelTotal ?>% del total</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Gastos Internos -->
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="mb-3 card border-0 border-top border-info border-5">
-                <div class="py-2 px-3 card-body d-flex align-items-center">
-                    <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                        <i class="ni ni-cart text-white" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div>
-                        <p class="mb-0 text-xs text-muted text-uppercase">Gastos Internos</p>
-                        <h6 class="mb-1 fw-bold">$<?= number_format($gastosInternos, 2, ',', '.'); ?></h6>
-                        <small class="text-xs text-info"><?= $costoCholoAnaPrcentajeDeudatotal ?>% de la deuda</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div>
+        </a>
+      </div>
     </div>
 
   

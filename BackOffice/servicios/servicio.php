@@ -693,42 +693,46 @@
 	// }
 
 	function getDeudas($usuarioId = null) {
-
-	  global $mysqli;
-
-	  $query = "SELECT 
-	              d.*, 
-	              m.moneda, 
-	              m.simbolo, 
-	              u.nombre as usuario_nombre, 
-	              u.apellido as usuario_apellido, 
-	              u.apodo, 
-	              s.subrubro,
-	              r.rubro
-	            FROM 
-	              deudas d
-	            INNER JOIN 
-	              monedas m ON d.monedaId = m.monedaId
-	            INNER JOIN 
-	              usuarios u ON d.usuarioId = u.usuarioId
-	            INNER JOIN 
-	              pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
-	            INNER JOIN 
-	              pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
-	            WHERE 1";
-
-	  if ($usuarioId !== null) {
-	    $query .= " AND d.usuarioId = '$usuarioId'";
-	  }
-
-	  $resultado = mysqli_query($mysqli, $query);
-	  $deudas = array();
-
-	  while ($fila = mysqli_fetch_assoc($resultado)) {
-	    $deudas[] = $fila;
-	  }
-
-	  return $deudas;
+	    global $mysqli;
+	    $query = "SELECT 
+	                d.*, 
+	                m.moneda, 
+	                m.simbolo, 
+	                u.nombre as usuario_nombre, 
+	                u.apellido as usuario_apellido, 
+	                u.apodo, 
+	                s.subrubro,
+	                r.rubro,
+	                COALESCE(SUM(p.monto), 0) as total_pagado
+	              FROM 
+	                deudas d
+	              INNER JOIN 
+	                monedas m ON d.monedaId = m.monedaId
+	              INNER JOIN 
+	                usuarios u ON d.usuarioId = u.usuarioId
+	              INNER JOIN 
+	                pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
+	              INNER JOIN 
+	                pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
+	              LEFT JOIN 
+	                pagos p ON d.deudaId = p.deudaId AND p.habilitado_sys = 1
+	              WHERE 1";
+	    
+	    if ($usuarioId !== null) {
+	        $query .= " AND d.usuarioId = '$usuarioId'";
+	    }
+	    
+	    $query .= " GROUP BY d.deudaId";
+	    
+	    $resultado = mysqli_query($mysqli, $query);
+	    $deudas = array();
+	    while ($fila = mysqli_fetch_assoc($resultado)) {
+	        // Calculamos el saldo pendiente
+	        $fila['saldo_pendiente'] = $fila['deuda'] - $fila['total_pagado'];
+	        $deudas[] = $fila;
+	    }
+	    
+	    return $deudas;
 	}
 
 	function getDeudasViaje($viajesId) {
@@ -743,7 +747,8 @@
 	              u.apellido as usuario_apellido, 
 	              u.apodo, 
 	              s.subrubro,
-	              r.rubro
+	              r.rubro,
+	              COALESCE(SUM(p.monto), 0) as total_pagado
 	            FROM 
 	              deudas d
 	            INNER JOIN 
@@ -754,7 +759,21 @@
 	              pagos_subrubros s ON d.pagosSubrubroId = s.pagosSubrubroId
 	            INNER JOIN 
 	              pagos_rubros r ON r.pagosRubroId = s.pagosRubrosId
-	            WHERE viajesId = ".$viajesId;
+	            LEFT JOIN 
+	              pagos p ON d.deudaId = p.deudaId AND p.habilitado_sys = 1
+	            WHERE d.viajesId = ".$viajesId."
+				GROUP BY 
+				    d.deudaId, 
+				    d.monedaId, 
+				    d.usuarioId, 
+				    d.pagosSubrubroId, 
+				    m.moneda, 
+				    m.simbolo, 
+				    u.nombre, 
+				    u.apellido, 
+				    u.apodo, 
+				    s.subrubro,
+   					r.rubro";
 
 
 	  $resultado = mysqli_query($mysqli, $query);
@@ -767,70 +786,81 @@
 	  return $deudas;
 	}
 
-	function getPagos($usuarioId = null) {
-	  global $mysqli;
-	  
-	  $query = "
-		SELECT
-			p.*,
-			ps.subrubro,
-			pt.transaccion AS transaccion_tipo,
-			m.simbolo AS simbolo,
-			m.moneda AS moneda,
-			mp.medioPago,
-			u.nombre AS usuario_nombre,
-			u.apellido AS usuario_apellido,
-			u.apodo,
-			u.dni,
-			d.deudaId,
-			d.deuda,
-			d.comentario AS deuda_comentario,
-			dm.simbolo AS deuda_simbolo,
-			dm.moneda AS deuda_moneda,
-			psr.subrubro AS deuda_tipo,
-			pr.rubro,
-			v.anio,
-			pa.pais
-		FROM
-			pagos p
-		INNER JOIN
-			pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
-		INNER JOIN
-			pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
-		INNER JOIN
-			pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
-		INNER JOIN
-			monedas m ON p.monedaId = m.monedaId
-		INNER JOIN
-			medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
-		LEFT JOIN
-			usuarios u ON p.usuarioId = u.usuarioId
-		LEFT JOIN
-			deudas d ON p.deudaId = d.deudaId
-		LEFT JOIN
-			monedas dm ON d.monedaId = dm.monedaId
-		LEFT JOIN
-			pagos_subrubros psr ON d.pagosSubrubroId = psr.pagosSubrubroId
-		LEFT JOIN
-			viajes v ON p.viajesId = v.viajesId
-		LEFT JOIN
-			paises pa ON v.paisId = pa.paisId
-		";
-
-	  if ($usuarioId !== null) {
-	    $query .= " WHERE p.usuarioId = '$usuarioId'";
-	  }
-	  $result = $mysqli->query($query);
-	  if (!$result) {
-	    die("Error al obtener pagos: " . $mysqli->error);
-	  }
-
-	  $pagos = array();
-	  while ($row = $result->fetch_assoc()) {
-	    $pagos[] = $row;
-	  }
-
-	  return $pagos;
+	function getPagos($usuarioId = null, $deudaId = null) {
+	    global $mysqli;
+	    
+	    $query = "
+	        SELECT
+	            p.*,
+	            ps.subrubro,
+	            pt.transaccion AS transaccion_tipo,
+	            m.simbolo AS simbolo,
+	            m.moneda AS moneda,
+	            mp.medioPago,
+	            u.nombre AS usuario_nombre,
+	            u.apellido AS usuario_apellido,
+	            u.apodo,
+	            u.dni,
+	            d.deudaId,
+	            d.deuda,
+	            d.comentario AS deuda_comentario,
+	            dm.simbolo AS deuda_simbolo,
+	            dm.moneda AS deuda_moneda,
+	            psr.subrubro AS deuda_tipo,
+	            pr.rubro,
+	            v.anio,
+	            pa.pais
+	        FROM
+	            pagos p
+	        INNER JOIN
+	            pagos_subrubros ps ON p.pagosSubrubroId = ps.pagosSubrubroId
+	        INNER JOIN
+	            pagos_rubros pr ON pr.pagosRubroId = ps.pagosRubrosId
+	        INNER JOIN
+	            pagos_transaccion_tipo pt ON p.pagoTransaccionTipoId = pt.pagoTransaccionTipoId
+	        INNER JOIN
+	            monedas m ON p.monedaId = m.monedaId
+	        INNER JOIN
+	            medios_de_pago mp ON p.medioPagoId = mp.medioPagoId
+	        LEFT JOIN
+	            usuarios u ON p.usuarioId = u.usuarioId
+	        LEFT JOIN
+	            deudas d ON p.deudaId = d.deudaId
+	        LEFT JOIN
+	            monedas dm ON d.monedaId = dm.monedaId
+	        LEFT JOIN
+	            pagos_subrubros psr ON d.pagosSubrubroId = psr.pagosSubrubroId
+	        LEFT JOIN
+	            viajes v ON p.viajesId = v.viajesId
+	        LEFT JOIN
+	            paises pa ON v.paisId = pa.paisId
+	        WHERE 1=1";
+	    
+	    $whereConditions = array();
+	    
+	    if ($usuarioId !== null) {
+	        $whereConditions[] = "p.usuarioId = '$usuarioId'";
+	    }
+	    
+	    if ($deudaId !== null) {
+	        $whereConditions[] = "p.deudaId = '$deudaId'";
+	    }
+	    
+	    if (!empty($whereConditions)) {
+	        $query .= " AND " . implode(" AND ", $whereConditions);
+	    }
+	    
+	    $result = $mysqli->query($query);
+	    if (!$result) {
+	        die("Error al obtener pagos: " . $mysqli->error);
+	    }
+	    
+	    $pagos = array();
+	    while ($row = $result->fetch_assoc()) {
+	        $pagos[] = $row;
+	    }
+	    
+	    return $pagos;
 	}
 
 	function getPagosViaje($viajesId) {
@@ -908,10 +938,13 @@
 	          u.*, 
 	          p.pais, 
 	          s.sexo, 
+	          ut.tipo, 
 	          (SELECT COUNT(*) FROM pagos WHERE usuarioId = u.usuarioId) AS cantidad_pagos,
 	          (SELECT COUNT(*) FROM deudas WHERE usuarioId = u.usuarioId) AS cantidad_deudas
 	        FROM 
 	          usuarios u
+	        INNER JOIN 
+	          usuarios_tipo ut ON ut.usuarioTipoId = u.usuarioTipoId
 	        LEFT JOIN 
 	          paises p ON u.paisId = p.paisId
 	        LEFT JOIN 
@@ -1069,20 +1102,48 @@
 	function altaUsuario($datos) {
 	    global $mysqli;
 
-	    // Validaciones
+	    // Validaciones básicas (mantener las existentes)
 	    if (empty($datos['nombre']) || empty($datos['email'])) {
 	        echo 'Faltan campos obligatorios (nombre y email)';
 	        return;
 	    }
 
-	    // Verificar formato email
-	    if (!filter_var($datos['email'], FILTER_VALIDATE_EMAIL)) {
-	        echo 'Email inválido';
-	        return;
+	    // Construir el SQL dinámicamente
+	    $campos = "nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, paisId, sexoId";
+	    $valores = "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+	    $tipos = "sssissssssssssii"; // tipos base
+	    $parametros = [];
+
+	    // Agregar campos opcionales si existen
+	    if (isset($datos['username']) && !empty($datos['username'])) {
+	        $campos .= ", usuario";
+	        $valores .= ", ?";
+	        $tipos .= "s";
+	        $parametros[] = $datos['username'];
 	    }
 
-	    // Sentencia SQL para insertar el usuario
-	    $sql = "INSERT INTO usuarios (nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, paisId, sexoId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    if (isset($datos['password']) && !empty($datos['password'])) {
+	        $campos .= ", password";
+	        $valores .= ", ?";
+	        $tipos .= "s";
+	        $parametros[] = password_hash($datos['password'], PASSWORD_DEFAULT);
+	    }
+
+	    if (isset($datos['usuarioTipoId'])) {
+	        $campos .= ", usuarioTipoId";
+	        $valores .= ", ?";
+	        $tipos .= "i";
+	        $parametros[] = $datos['usuarioTipoId'];
+	    }
+
+	    if (isset($datos['viajeroTipoId'])) {
+	        $campos .= ", viajeroTipoId";
+	        $valores .= ", ?";
+	        $tipos .= "i";
+	        $parametros[] = $datos['viajeroTipoId'];
+	    }
+
+	    $sql = "INSERT INTO usuarios ($campos) VALUES ($valores)";
 
 	    $stmt = mysqli_prepare($mysqli, $sql);
 	    if (!$stmt) {
@@ -1090,39 +1151,33 @@
 	        return;
 	    }
 
-	    // Manejar campos como NULL si es necesario
-		$apellido = $datos['apellido'] ?? '';
-		$dni = $datos['dni'] ?? '';
-		$apodo = $datos['apodo'] ?? '';
-		$comentario = $datos['comentario'] ?? '';
-		$altura = $datos['altura'] ?? 0;
-		$peso = $datos['peso'] ?? 0;
-		$talle = $datos['talle'] ?? 0;
-		$direccion = $datos['direccion'] ?? '';
-		$ciudad = $datos['ciudad'] ?? '';
-		$fecha_nacimiento = $datos['fecha_nacimiento'] ?? '0000-00-00';
-		$paisId = $datos['paisId'] ?? 0;
-		$sexoId = $datos['sexoId'] ?? 0;
-		$habilitado_sys = $datos['habilitado_sys'] ?? 1; // Agregué esta línea
+	    // Preparar los parámetros base
+	    $parametrosBase = [
+	        $datos['nombre'], 
+	        $datos['apellido'] ?? '', 
+	        $datos['email'], 
+	        $datos['dni'] ?? '', 
+	        $datos['apodo'] ?? '', 
+	        $datos['comentario'] ?? '', 
+	        $datos['altura'] ?? 0, 
+	        $datos['peso'] ?? 0, 
+	        $datos['talle'] ?? 0, 
+	        $datos['direccion'] ?? '', 
+	        $datos['ciudad'] ?? '', 
+	        $datos['fecha_registro'], 
+	        $datos['fecha_nacimiento'] ?? '0000-00-00', 
+	        $datos['habilitado_sys'] ?? 1, 
+	        $datos['paisId'] ?? 0, 
+	        $datos['sexoId'] ?? 0
+	    ];
 
-		mysqli_stmt_bind_param($stmt, 'sssissssssssssii', 
-		    $datos['nombre'], 
-		    $apellido, 
-		    $datos['email'], 
-		    $dni, 
-		    $apodo, 
-		    $comentario, 
-		    $altura, 
-		    $peso, 
-		    $talle, 
-		    $direccion, 
-		    $ciudad, 
-		    $datos['fecha_registro'], 
-		    $fecha_nacimiento, 
-		    $habilitado_sys, 
-		    $paisId, 
-		    $sexoId
-		);
+	    // Combinar parámetros base con los opcionales
+	    $parametros = array_merge($parametrosBase, $parametros);
+
+	    // Bind dinámico de parámetros
+	    $bindParams = array_merge([$stmt, $tipos], $parametros);
+	    call_user_func_array('mysqli_stmt_bind_param', $bindParams);
+
 
 	    // Ejecutar la sentencia
 	    if (!mysqli_stmt_execute($stmt)) {
@@ -1889,6 +1944,25 @@
 
 	  // Consulta SQL
 	  $sql = "SELECT * FROM viajes_viajero_tipo ORDER BY viajero_tipo ASC";
+
+	  $result = $mysqli->query($sql);
+
+	  if ($result->num_rows > 0) {
+	    $viajesViajeroTipo = array();
+	    while($row = $result->fetch_assoc()) {
+	      $viajesViajeroTipo[] = $row;
+	    }
+	    return $viajesViajeroTipo;
+	  } else {
+	    return array();
+	  }
+	}
+
+	function getUsuariosTipo() {
+	  global $mysqli;
+
+	  // Consulta SQL
+	  $sql = "SELECT * FROM usuarios_tipo";
 
 	  $result = $mysqli->query($sql);
 
@@ -2998,4 +3072,429 @@
 		}
 
 		return ($respuesta);
+	}
+
+	function getAlquilerEquipos() {
+		global $mysqli;
+	
+		$query = "SELECT 
+					alquilerEquiposId,
+					equipo,
+					acronimo,
+					orden
+				  FROM 
+					alquiler_equipos
+				  ORDER BY 
+					orden ASC";
+	
+		$result = $mysqli->query($query);
+	
+		$data = array();
+		while ($row = $result->fetch_assoc()) {
+			$data[] = $row;
+		}
+	
+		return ($data);
+	}
+
+	function guardarViajeTarifas($post) {
+		global $mysqli;
+	 
+		// Validar datos requeridos
+		if (!isset($post['viajesId']) || !isset($post['tarifas'])) {
+			return ['error' => 'Faltan datos requeridos'];
+		}
+	 
+		$viajesId = intval($post['viajesId']);
+		$tarifas = json_decode($post['tarifas'], true);
+	 
+		if (!is_array($tarifas)) {
+			return ['error' => 'Formato de tarifas inválido'];
+		}
+	 
+		try {
+			// Comenzar transacción
+			$mysqli->begin_transaction();
+	 
+			// Primero eliminar tarifas existentes para este viaje
+			$query = "DELETE FROM viajes_alquiler_equipos_tarifas WHERE viajesId = ?";
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("i", $viajesId);
+			$stmt->execute();
+	 
+			// Preparar query para insertar nuevas tarifas
+			$query = "INSERT INTO viajes_alquiler_equipos_tarifas 
+					  (alquilerEquiposId, costo, valor_venta, viajesId) 
+					  VALUES (?, ?, ?, ?)";
+			$stmt = $mysqli->prepare($query);
+			
+			// Insertar cada tarifa
+			foreach ($tarifas as $tarifa) {
+				$alquilerEquiposId = intval($tarifa['alquilerEquiposId']);
+				$costo = floatval($tarifa['costo']);
+				$valor_venta = floatval($tarifa['valor_venta']);
+	 
+				$stmt->bind_param("iddi", 
+					$alquilerEquiposId,
+					$costo,
+					$valor_venta,
+					$viajesId
+				);
+				
+				if (!$stmt->execute()) {
+					throw new Exception("Error al insertar tarifa para equipo ID: " . $alquilerEquiposId);
+				}
+			}
+	 
+			// Confirmar transacción
+			$mysqli->commit();
+			
+			return ['success' => true, 'message' => 'Tarifas guardadas correctamente'];
+	 
+		} catch (Exception $e) {
+			// Rollback en caso de error
+			$mysqli->rollback();
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	function tieneEquipoCompleto($mysqli, $viajesUsuariosId, $viajesId) {
+		$query = "SELECT vaet.alquilerEquiposId 
+				  FROM viajes_alquiler_equipos vae
+				  JOIN viajes_alquiler_equipos_tarifas vaet ON vae.viajesAlquilerEquiposTarifaId = vaet.viajesAlquilerEquiposTarifaId
+				  WHERE vae.viajesUsuariosId = ? 
+				  AND vae.viajesId = ? 
+				  AND vaet.alquilerEquiposId = 8";
+		
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+		$stmt->execute();
+		return $stmt->get_result()->num_rows > 0;
+	}
+	
+	function verificarTodosLosEquipos($mysqli, $viajesUsuariosId, $viajesId, $nuevoEquipoId = null) {
+		// Obtener todos los equipos individuales existentes
+		$query = "SELECT DISTINCT ae.alquilerEquiposId
+				  FROM alquiler_equipos ae
+				  WHERE ae.alquilerEquiposId != 8
+				  ORDER BY ae.alquilerEquiposId";
+		
+		$stmt = $mysqli->prepare($query);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$todosLosEquipos = [];
+		while ($row = $result->fetch_assoc()) {
+			$todosLosEquipos[] = $row['alquilerEquiposId'];
+		}
+	
+		// Obtener equipos actuales del usuario
+		$query = "SELECT DISTINCT vaet.alquilerEquiposId
+				  FROM viajes_alquiler_equipos vae
+				  JOIN viajes_alquiler_equipos_tarifas vaet ON vae.viajesAlquilerEquiposTarifaId = vaet.viajesAlquilerEquiposTarifaId
+				  WHERE vae.viajesUsuariosId = ? 
+				  AND vae.viajesId = ?
+				  AND vaet.alquilerEquiposId != 8";
+		
+		$stmt = $mysqli->prepare($query);
+		$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$equiposActuales = [];
+		while ($row = $result->fetch_assoc()) {
+			$equiposActuales[] = $row['alquilerEquiposId'];
+		}
+	
+		// Agregar el nuevo equipo si existe
+		if ($nuevoEquipoId && !in_array($nuevoEquipoId, $equiposActuales)) {
+			$equiposActuales[] = $nuevoEquipoId;
+		}
+	
+		// Verificar si tiene todos los equipos
+		sort($equiposActuales);
+		sort($todosLosEquipos);
+		return $equiposActuales == $todosLosEquipos;
+	}
+
+	function guardarAlquilerEquipo($post) {
+		global $mysqli;
+		
+		// Validar datos requeridos
+		if (!isset($post['viajesId']) || 
+			!isset($post['viajesUsuariosId']) || 
+			!isset($post['alquilerEquiposId']) || 
+			!isset($post['estado'])) {
+			return ['error' => 'Faltan datos requeridos'];
+		}
+
+		$viajesId = intval($post['viajesId']);
+		$viajesUsuariosId = intval($post['viajesUsuariosId']);
+		$alquilerEquiposId = intval($post['alquilerEquiposId']);
+		$estado = intval($post['estado']);
+
+		try {
+			$mysqli->begin_transaction();
+
+			if ($estado === 1) {
+				if ($alquilerEquiposId === 8) {
+					// Si marca equipo completo, eliminar otros y guardar solo el completo
+					$query = "DELETE FROM viajes_alquiler_equipos 
+							WHERE viajesUsuariosId = ? AND viajesId = ?";
+					$stmt = $mysqli->prepare($query);
+					$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+					$stmt->execute();
+				} else {
+					// Si es equipo individual, verificar si completaría el set
+					if (verificarTodosLosEquipos($mysqli, $viajesUsuariosId, $viajesId, $alquilerEquiposId)) {
+						// Cambiar a equipo completo
+						$alquilerEquiposId = 8;
+						$query = "DELETE FROM viajes_alquiler_equipos 
+								WHERE viajesUsuariosId = ? AND viajesId = ?";
+						$stmt = $mysqli->prepare($query);
+						$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+						$stmt->execute();
+					}
+				}
+
+				// Obtener el ID de la tarifa correspondiente
+				$query = "SELECT viajesAlquilerEquiposTarifaId 
+						FROM viajes_alquiler_equipos_tarifas 
+						WHERE alquilerEquiposId = ? AND viajesId = ?";
+				
+				$stmt = $mysqli->prepare($query);
+				$stmt->bind_param("ii", $alquilerEquiposId, $viajesId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				
+				if ($result->num_rows === 0) {
+					throw new Exception("No se encontró tarifa para el equipo seleccionado");
+				}
+				
+				$tarifa = $result->fetch_assoc();
+				$tarifaId = $tarifa['viajesAlquilerEquiposTarifaId'];
+
+				// Insertar el registro
+				$query = "INSERT INTO viajes_alquiler_equipos 
+						(viajesUsuariosId, viajesId, viajesAlquilerEquiposTarifaId)
+						VALUES (?, ?, ?)
+						ON DUPLICATE KEY UPDATE viajesAlquilerEquiposTarifaId = ?";
+				
+				$stmt = $mysqli->prepare($query);
+				$stmt->bind_param("iiii", 
+					$viajesUsuariosId, 
+					$viajesId, 
+					$tarifaId,
+					$tarifaId
+				);
+				
+				if (!$stmt->execute()) {
+					throw new Exception("Error al guardar el alquiler del equipo");
+				}
+			} else {
+				// Si se desmarca
+				if ($alquilerEquiposId === 8) {
+					// Si es equipo completo, eliminar todo
+					$query = "DELETE FROM viajes_alquiler_equipos 
+							 WHERE viajesUsuariosId = ? AND viajesId = ?";
+					$stmt = $mysqli->prepare($query);
+					$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+				} else {
+					// Primero verificar si tenía equipo completo
+					$tieneEquipoCompleto = tieneEquipoCompleto($mysqli, $viajesUsuariosId, $viajesId);
+					
+					if ($tieneEquipoCompleto) {
+						// Si tenía equipo completo, primero eliminar todo
+						$query = "DELETE FROM viajes_alquiler_equipos 
+								 WHERE viajesUsuariosId = ? AND viajesId = ?";
+						$stmt = $mysqli->prepare($query);
+						$stmt->bind_param("ii", $viajesUsuariosId, $viajesId);
+						$stmt->execute();
+						
+						// Luego reinsertar todos menos el que se desmarcó
+						$query = "INSERT INTO viajes_alquiler_equipos 
+								 (viajesUsuariosId, viajesId, viajesAlquilerEquiposTarifaId)
+								 SELECT ?, ?, viajesAlquilerEquiposTarifaId
+								 FROM viajes_alquiler_equipos_tarifas
+								 WHERE viajesId = ? 
+								 AND alquilerEquiposId != 8 
+								 AND alquilerEquiposId != ?";
+						
+						$stmt = $mysqli->prepare($query);
+						$stmt->bind_param("iiii", 
+							$viajesUsuariosId, 
+							$viajesId, 
+							$viajesId,
+							$alquilerEquiposId
+						);
+					} else {
+						// Si no tenía equipo completo, solo eliminar el equipo específico
+						$query = "DELETE FROM viajes_alquiler_equipos 
+								 WHERE viajesUsuariosId = ? 
+								 AND viajesId = ? 
+								 AND viajesAlquilerEquiposTarifaId IN (
+									 SELECT viajesAlquilerEquiposTarifaId 
+									 FROM viajes_alquiler_equipos_tarifas 
+									 WHERE alquilerEquiposId = ?
+								 )";
+						$stmt = $mysqli->prepare($query);
+						$stmt->bind_param("iii", $viajesUsuariosId, $viajesId, $alquilerEquiposId);
+					}
+				}
+				
+				if (!$stmt->execute()) {
+					throw new Exception("Error al eliminar el alquiler del equipo");
+				}
+			}
+
+			$mysqli->commit();
+			
+			return [
+				'success' => true, 
+				'message' => 'Alquiler de equipo actualizado correctamente',
+				'equipoCompleto' => ($alquilerEquiposId === 8)
+			];
+
+		} catch (Exception $e) {
+			$mysqli->rollback();
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	function obtenerIngresosAlquileres($post) {
+		global $mysqli;
+		
+		// Validar datos requeridos
+		if (!isset($post['viajesId'])) {
+			return ['error' => 'Falta el ID del viaje'];
+		}
+	 
+		$viajesId = intval($post['viajesId']);
+	 
+		try {
+			// Query para obtener la suma de ventas y costos
+			$query = "SELECT 
+						SUM(vaet.valor_venta) as ingresoTotal,
+						SUM(vaet.costo) as costoTotal
+					 FROM viajes_alquiler_equipos vae
+					 JOIN viajes_alquiler_equipos_tarifas vaet 
+						ON vae.viajesAlquilerEquiposTarifaId = vaet.viajesAlquilerEquiposTarifaId
+					 WHERE vae.viajesId = ?
+					 GROUP BY vae.viajesId";
+	 
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("i", $viajesId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$ingresoTotal = floatval($row['ingresoTotal']);
+				$costoTotal = floatval($row['costoTotal']);
+				
+				return [
+					'success' => true,
+					'ingresoTotal' => $ingresoTotal,
+					'costoTotal' => $costoTotal,
+					'ganancia' => $ingresoTotal - $costoTotal
+				];
+			}
+			
+			// Si no hay resultados, devolver todos en 0
+			return [
+				'success' => true,
+				'ingresoTotal' => 0,
+				'costoTotal' => 0,
+				'ganancia' => 0
+			];
+	 
+		} catch (Exception $e) {
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	function obtenerTarifasAlquilerEquipo($viajesId) {
+		global $mysqli;
+		
+		$viajesId = intval($viajesId);
+		$tarifas = array();
+	
+		try {
+			// Primero obtenemos las tarifas
+			$query = "SELECT 
+						vaet.alquilerEquiposId,
+						vaet.costo,
+						vaet.valor_venta,
+						COUNT(vae.viajesAlquilerEquiposId) as cantidad
+					 FROM viajes_alquiler_equipos_tarifas vaet
+					 LEFT JOIN viajes_alquiler_equipos vae ON 
+						vae.viajesAlquilerEquiposTarifaId = vaet.viajesAlquilerEquiposTarifaId
+						AND vae.viajesId = vaet.viajesId
+					 WHERE vaet.viajesId = ?
+					 GROUP BY vaet.alquilerEquiposId, vaet.costo, vaet.valor_venta";
+	
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("i", $viajesId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			
+			// Indexar por alquilerEquiposId para fácil acceso en el template
+			while ($row = $result->fetch_assoc()) {
+				$tarifas[$row['alquilerEquiposId']] = array(
+					'costo' => $row['costo'],
+					'valor_venta' => $row['valor_venta'],
+					'cantidad' => intval($row['cantidad'])
+				);
+			}
+	
+			return $tarifas;
+	
+		} catch (Exception $e) {
+			return array();
+		}
+	}
+
+	function obtenerEquiposSeleccionados($viajesId) {
+		global $mysqli;
+		
+		$viajesId = intval($viajesId);
+		$equiposSeleccionados = array();
+	
+		try {
+			$query = "SELECT 
+						vae.viajesUsuariosId,
+						vaet.alquilerEquiposId
+					 FROM viajes_alquiler_equipos vae
+					 JOIN viajes_alquiler_equipos_tarifas vaet 
+						ON vae.viajesAlquilerEquiposTarifaId = vaet.viajesAlquilerEquiposTarifaId
+					 WHERE vae.viajesId = ?";
+	
+			$stmt = $mysqli->prepare($query);
+			$stmt->bind_param("i", $viajesId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			
+			while ($row = $result->fetch_assoc()) {
+				if (!isset($equiposSeleccionados[$row['viajesUsuariosId']])) {
+					$equiposSeleccionados[$row['viajesUsuariosId']] = array();
+				}
+				$equiposSeleccionados[$row['viajesUsuariosId']][] = $row['alquilerEquiposId'];
+				
+				// Si es equipo completo, agregar todos los demás IDs
+				if ($row['alquilerEquiposId'] == 8) {
+					$query_todos = "SELECT alquilerEquiposId 
+								  FROM alquiler_equipos 
+								  WHERE alquilerEquiposId != 8";
+					$result_todos = $mysqli->query($query_todos);
+					while ($equipo = $result_todos->fetch_assoc()) {
+						if (!in_array($equipo['alquilerEquiposId'], $equiposSeleccionados[$row['viajesUsuariosId']])) {
+							$equiposSeleccionados[$row['viajesUsuariosId']][] = $equipo['alquilerEquiposId'];
+						}
+					}
+				}
+			}
+	
+			return $equiposSeleccionados;
+	
+		} catch (Exception $e) {
+			return array();
+		}
 	}

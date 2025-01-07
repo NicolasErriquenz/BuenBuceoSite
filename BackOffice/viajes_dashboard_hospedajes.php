@@ -35,7 +35,7 @@
                   </div>
                 </td>
                 <td>
-                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["hospedaje"] ?></p>
+                  <p class="text-sm  mb-0"><?php echo $item["hospedaje"] ?></p>
                 </td>
                 <td class="text-center">
                   <a href="hospedajes_tarifas.php?hospedajesId=<?php echo $item["hospedajesId"] ?>">
@@ -43,13 +43,13 @@
                   </a>
                 </td>
                 <td class="text-center">
-                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["habitaciones_creadas"] ?></p>
+                  <p class="text-sm  mb-0"><?php echo $item["habitaciones_creadas"] ?></p>
                 </td>
                 <td class="text-center">
-                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["usuarios_asignados"] ?></p>
+                  <p class="text-sm  mb-0"><?php echo $item["usuarios_asignados"] ?></p>
                 </td>
                 <td class="text-center">
-                  <p class="text-sm font-weight-bold mb-0">
+                  <p class="text-sm  mb-0">
                     <?php echo $item["capacidad_total"] ?>
                     (<?php 
                         if($item["capacidad_total"] != 0)
@@ -61,7 +61,7 @@
                   </p>
                 </td>
                 <td class="text-center">
-                  <p class="text-sm font-weight-bold mb-0"><?php echo $item["capacidad_disponible"] ?></p>
+                  <p class="text-sm  mb-0"><?php echo $item["capacidad_disponible"] ?></p>
                 </td>
                 <td class="align-middle text-center">
                   <a href="viajes_habitaciones_editar.php?viajesHospedajesId=<?php echo $item["viajesHospedajesId"] ?>">

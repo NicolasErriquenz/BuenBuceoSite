@@ -12,7 +12,8 @@
     //$subpagos = getPagos();
     $title = "PAGOS";
     $usuarioId = isset($_GET["usuarioId"]) && !empty($_GET["usuarioId"]) ? $_GET["usuarioId"] : null;
-    $pagos = getPagos($usuarioId);
+    $deudaId = isset($_GET["deudaId"]) && !empty($_GET["deudaId"]) ? $_GET["deudaId"] : null;
+    $pagos = getPagos($usuarioId, $deudaId);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
         updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -43,9 +44,12 @@
             <div class="card-header pb-0">
               <h6 class="float-start">Listado</h6>
               <div class="float-end">
-                <?php if (isset($_GET['usuarioId'])): ?>
                 <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                   <i class="ni ni-bold-left"></i> Volver
+                </a>
+                <?php if (isset($_GET['deudaId'])): ?>
+                <a href="pagos.php" class="btn btn-sm btn-icon grey darken-1 mx-1">
+                  <i class="fa fa-trash"></i> Limpiar filtro de deuda
                 </a>
                 <?php endif; ?>
                 <a href="pagos_editar.php">

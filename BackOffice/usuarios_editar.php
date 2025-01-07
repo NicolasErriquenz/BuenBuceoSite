@@ -83,6 +83,8 @@
   $sexos = getSexos();
   $redes = getRedes();
 
+  $viajerosTipos = getViajesViajeroTipo();
+  $usuariosTipo = getUsuariosTipo();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -175,6 +177,37 @@
                         <input class="form-control" type="number" name="dni" id="dni" value="<?php echo isset($usuario["dni"]) ? $usuario["dni"] : "" ?>">
                       </div>
                     </div>
+                  </div>
+                  <hr class="horizontal dark">
+                  <p class="text-uppercase text-sm">Información de logueo</p>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="username" class="form-control-label">Username</label>
+                        <input class="form-control" type="text" name="username" id="username" value="<?php echo isset($usuario["username"]) ? $usuario["username"] : "" ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="password" class="form-control-label">Password</label>
+                        <input class="form-control" type="text" name="password" id="password" value="<?php echo isset($usuario["password"]) ? $usuario["password"] : "" ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="paisId" class="form-control-label">Tipo usuario</label>
+                        <select id="usuarioTipoId" name="usuarioTipoId" class="form-control">
+                          <option value="" selected disabled>Elegí un tipo de usuario</option>
+                            <?php foreach ($usuariosTipo as $item): ?>
+                            <option value="<?php echo $item['usuarioTipoId']; ?>" 
+                                    selected="<?php echo $item['usuarioTipoId'] == $usuario["usuarioTipoId"] ? "selected" : ""; ?>">
+                              <?php echo $item['tipo']; ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    
                   </div>
                   <hr class="horizontal dark">
                   <p class="text-uppercase text-sm">Información de contacto</p>
@@ -284,10 +317,24 @@
                         <input class="form-control" type="text" name="peso" id="peso" value="<?php echo isset($usuario["peso"]) ? $usuario["peso"] : "" ?>">
                       </div>
                     </div>
-                     <div class="col-md-3">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="talle" class="form-control-label">Talle calzado</label>
                         <input class="form-control" type="text" name="talle" id="talle" value="<?php echo isset($usuario["talle"]) ? $usuario["talle"] : "" ?>">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="talle" class="form-control-label">Tipo viajero</label>
+                        <select id="viajeroTipoId" name="viajeroTipoId" class="form-control">
+                          <option value="" selected disabled>Elegí un tipo de viajero</option>
+                            <?php foreach ($viajerosTipos as $item): ?>
+                            <option value="<?php echo $item['viajeroTipoId']; ?>"
+                                    selected="<?php echo $item['viajeroTipoId'] == $usuario["viajeroTipoId"] ? "selected" : ""; ?>">
+                              <?php echo $item['viajero_tipo']; ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
                       </div>
                     </div>
                   </div>

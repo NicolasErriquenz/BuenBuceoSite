@@ -7,7 +7,7 @@
     require_once ("servicios/servicio.php");
 
     if( isset($_POST["userid"]) && $_POST["userid"] != "" && isset($_POST["password"]) && $_POST["password"] != "" ){
-        $sql = "SELECT * FROM administradores WHERE usuario='".$_POST["userid"]."' AND password='".md5($_POST["password"])."'";
+        $sql = "SELECT * FROM usuarios WHERE usuario='".$_POST["userid"]."' AND password='".md5($_POST["password"])."'";
         $rs  = $mysqli->query($sql);
         
         if( mysqli_num_rows($rs) > 0 ){
@@ -17,6 +17,7 @@
                 @session_start();
             
             $_SESSION["admin"] = $row;
+            $_SESSION["admin"]["foto"] = $row["imagen"];
 
             //$_POST["rememberme"];
             header("location:dashboard.php");

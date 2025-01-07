@@ -46,15 +46,15 @@
                         echo !empty($item["usuario"]['imagen']) ? $item["usuario"]['imagen'] : 'generic_user.png'; 
                       ?>')"></div>
                       <a href="usuarios_editar.php?usuarioId=<?php echo $item["usuario"]["usuarioId"] ?>">
-                        <p class="text-sm font-weight-bold mb-0" style="margin-left: 10px;">
+                        <p class="text-sm  mb-0" style="margin-left: 10px;">
                           <?php echo $item["usuario"]["nombre"] ?> <?php echo $item["usuario"]["apellido"] ?> (<?php echo $item["usuario"]["apodo"] ?>)
                         </p>
                       </a>
                     </div>
                   </td>                  
                   <td class="text-center">
-                    <span class="text-secondary text-xs font-weight-bold">
-                      <strong><?php echo $item["viajeroTipo"]["viajero_tipo"] ?></strong>
+                    <span class="text-secondary text-xs ">
+                      <?php echo $item["viajeroTipo"]["viajero_tipo"] ?>
                     </span>
                   </td>
                   <td class="text-center">
@@ -63,13 +63,13 @@
                   <td class="text-center">
                     <?php echo isset($item["venta_paquete"]) ? "USD ".number_format($item["venta_paquete"], 2) : "-" ?>
                   </td>
-                  <td class="text-center">
+                  <td class="text-center font-weight-bold ">
                     <a href="deudas.php?usuarioId=<?php echo $item["usuario"]["usuarioId"] ?>">
-                      $<?php echo number_format($item["total_deuda"], 2, ',', '.') ?>
+                      $<?php echo number_format($item["total_deuda"] ?? 0, 2, ',', '.') ?>
                     </a>
                   </td>
                   <td class="text-center">
-                    $<?php echo number_format($item["pagos_realizado"], 2, ',', '.') ?>
+                    <?php echo number_format($item["pagos_realizado"] ?? 0, 2, ',', '.') ?>
                   </td>
                   <td class="text-center">
                       <span class="<?php echo ($pendienteViajero == 0) ? 'text-info' : 'text-danger'; ?> fw-bold">

@@ -58,7 +58,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">TRavel</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php echo $archivoActual == "viajes" || $archivoActual == "viajes_editar" || $archivoActual == "viajes_dashboard" ? ' active bg-gradient-success' : '' ?>" href="viajes.php">
+          <a class="nav-link <?php echo $archivoActual == "viajes" || $archivoActual == "viajes_editar" || $archivoActual == "viajes_dashboard" || $archivoActual == "viajes_alquiler_equipos" ? ' active bg-gradient-success' : '' ?>" href="viajes.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-favourite-28 text-dark text-sm opacity-10"></i>
             </div>
