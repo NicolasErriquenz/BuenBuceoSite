@@ -97,9 +97,6 @@
             <form role="form text-left" method="post" action"" id="formNuevoViajero">
               <input type="hidden" value="agregarViajero" name="action">
               <div class="form-group">
-                <small>Si el hospedaje no se encuentra en el listado, fijate que haya sido dado de alta con país del viaje</small>
-              </div>  
-              <div class="form-group">
                 <label for="hospedajesId" class="form-control-label">Hospedajes</label>
                 <select id="hospedajesId" name="hospedajesId" class="form-control">
                   <option value="" selected disabled>Elegí un hospedaje</option>

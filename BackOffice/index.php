@@ -3,6 +3,7 @@
     // require_once ("ssi_seguridad.php");
     require_once ("Connections/config.php");
     require_once ("Connections/connect.php");
+    
 
     require_once ("servicios/servicio.php");
 
@@ -52,7 +53,10 @@
                       <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="username" id="userid" name="userid">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" id="password" name="password">
+                      <div class="position-relative">
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                        <i class="fa fa-eye position-absolute top-50 translate-middle-y text-muted" style="cursor: pointer; right: 15px;" onmousedown="togglePassword(true)" onmouseup="togglePassword(false)"></i>
+                      </div>
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe">
@@ -81,6 +85,12 @@
     </section>
   </main>
   
+  <script>
+    function togglePassword(show) {
+        document.getElementById("password").type = show ? "text" : "password";
+    }
+  </script>
+
   <?php include("includes/scripts.php") ?>
 </body>
 

@@ -78,7 +78,7 @@
                           </div>
                         </td>
                         <td class="text-center">
-                          <p class="text-sm font-weight-bold mb-0"><?php echo $item["pais"] ?> <?php echo $item["anio"] ?></p>
+                          <p class="text-sm font-weight-bold mb-0"><?php echo $item["nombre"] ?> <?php echo $item["anio"] ?></p>
                         </td>
                         <td>
                           <p class="text-sm font-weight-bold mb-0">
@@ -103,12 +103,12 @@
                         <td class="text-center">
                           <a href="viajes_editar.php?<?php echo $idNombre ?>=<?php echo $item[$idNombre] ?>">
                             <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                              Editar
                             </button>
                           </a>
                           <a href="viajes_dashboard.php?<?php echo $idNombre ?>=<?php echo $item[$idNombre] ?>">
                             <button class="btn btn-icon btn-2 btn-sm bg-gradient-warning mb-0 ajuste_boton" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-world-2"></i> DASHBOARD</span>
+                              DASHBOARD
                             </button>
                           </a>
                         </td>

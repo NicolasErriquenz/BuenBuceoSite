@@ -67,7 +67,8 @@
 		$usuarios = array();
 		while ($row = mysqli_fetch_assoc($resultado)) {
 			$obj["usuarioId"] = $row["usuarioId"];
-			$obj["nombre"] = $row["nombre"]." ".$row["apellido"]." (".$row["apodo"].") - ".$row["dni"];
+			$obj["nombre"] = $row["apodo"]." (".$row["nombre"]." ".$row["apellido"].")";
+			$obj["viajeroTipoId"] = $row["viajeroTipoId"];
 			$usuarios[] = $obj;
 		}
 
@@ -934,22 +935,25 @@
 
 	    // Consulta SQL para obtener datos de usuarios
 	    $sql = "
-	        SELECT 
-	          u.*, 
-	          p.pais, 
-	          s.sexo, 
-	          ut.tipo, 
-	          (SELECT COUNT(*) FROM pagos WHERE usuarioId = u.usuarioId) AS cantidad_pagos,
-	          (SELECT COUNT(*) FROM deudas WHERE usuarioId = u.usuarioId) AS cantidad_deudas
-	        FROM 
-	          usuarios u
-	        INNER JOIN 
-	          usuarios_tipo ut ON ut.usuarioTipoId = u.usuarioTipoId
-	        LEFT JOIN 
-	          paises p ON u.paisId = p.paisId
-	        LEFT JOIN 
-	          sexo s ON u.sexoId = s.sexoId
-	    ";
+		    SELECT 
+		      u.*, 
+		      p.pais, 
+		      s.sexo, 
+		      ut.tipo, 
+		      vt.viajero_tipo,
+		      (SELECT COUNT(*) FROM pagos WHERE usuarioId = u.usuarioId) AS cantidad_pagos,
+		      (SELECT COUNT(*) FROM deudas WHERE usuarioId = u.usuarioId) AS cantidad_deudas
+		    FROM 
+		      usuarios u
+		    INNER JOIN 
+		      usuarios_tipo ut ON ut.usuarioTipoId = u.usuarioTipoId
+		    LEFT JOIN 
+		      paises p ON u.paisId = p.paisId
+		    LEFT JOIN 
+		      sexo s ON u.sexoId = s.sexoId
+		    LEFT JOIN
+		      viajes_viajero_tipo vt ON vt.viajeroTipoId = u.viajeroTipoId
+		";
 
 	    // Ejecutar consulta
 	    $result = $mysqli->query($sql);
@@ -1072,8 +1076,8 @@
 	    $sql = "
 	        SELECT 
 	          rs.red, 
-	          urs.link, 
-	          urs.username
+	          rs.redSocialId, 
+	          urs.*
 	        FROM 
 	          usuarios_redes_sociales urs
 	        INNER JOIN 
@@ -1102,91 +1106,77 @@
 	function altaUsuario($datos) {
 	    global $mysqli;
 
-	    // Validaciones básicas (mantener las existentes)
+	    // Validaciones básicas
 	    if (empty($datos['nombre']) || empty($datos['email'])) {
 	        echo 'Faltan campos obligatorios (nombre y email)';
 	        return;
 	    }
 
-	    // Construir el SQL dinámicamente
-	    $campos = "nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, paisId, sexoId";
-	    $valores = "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
-	    $tipos = "sssissssssssssii"; // tipos base
-	    $parametros = [];
+	    $datos['fecha_registro'] = date('Y-m-d H:i:s');
 
-	    // Agregar campos opcionales si existen
+	    // Escapar valores
+	    $nombre = $mysqli->real_escape_string($datos['nombre']);
+	    $apellido = $mysqli->real_escape_string($datos['apellido'] ?? '');
+	    $email = $mysqli->real_escape_string($datos['email']);
+	    $dni = $mysqli->real_escape_string($datos['dni'] ?? '');
+	    $apodo = $mysqli->real_escape_string($datos['apodo'] ?? '');
+	    $comentario = $mysqli->real_escape_string($datos['comentario'] ?? '');
+	    $direccion = $mysqli->real_escape_string($datos['direccion'] ?? '');
+	    $ciudad = $mysqli->real_escape_string($datos['ciudad'] ?? '');
+	    $fecha_registro = $mysqli->real_escape_string($datos['fecha_registro']);
+	    $fecha_nacimiento = $mysqli->real_escape_string($datos['fecha_nacimiento'] ?? '0000-00-00');
+	    $telefono = $mysqli->real_escape_string($datos['telefono'] ?? '');
+
+	    // Valores numéricos
+	    $altura = $datos['altura'] ?? 0;
+	    $peso = $datos['peso'] ?? 0;
+	    $talle = $datos['talle'] ?? 0;
+	    $habilitado_sys = $datos['habilitado_sys'] ?? 1;
+	    $paisId = $datos['paisId'] ?? 0;
+	    $viajeroTipoId = $datos['viajeroTipoId'] ?? 0;
+	    $sexoId = $datos['sexoId'] ?? 0;
+
+	    // Campos extra solo para username, password y usuarioTipoId
+	    $camposExtra = [];
+	    $valoresExtra = [];
+
 	    if (isset($datos['username']) && !empty($datos['username'])) {
-	        $campos .= ", usuario";
-	        $valores .= ", ?";
-	        $tipos .= "s";
-	        $parametros[] = $datos['username'];
+	        $usuario = $mysqli->real_escape_string($datos['username']);
+	        $camposExtra[] = 'usuario';
+	        $valoresExtra[] = "'$usuario'";
 	    }
 
 	    if (isset($datos['password']) && !empty($datos['password'])) {
-	        $campos .= ", password";
-	        $valores .= ", ?";
-	        $tipos .= "s";
-	        $parametros[] = password_hash($datos['password'], PASSWORD_DEFAULT);
+	        $password = password_hash($datos['password'], PASSWORD_DEFAULT);
+	        $camposExtra[] = 'password';
+	        $valoresExtra[] = "'$password'";
 	    }
 
 	    if (isset($datos['usuarioTipoId'])) {
-	        $campos .= ", usuarioTipoId";
-	        $valores .= ", ?";
-	        $tipos .= "i";
-	        $parametros[] = $datos['usuarioTipoId'];
+	        $usuarioTipoId = intval($datos['usuarioTipoId']);
+	        $camposExtra[] = 'usuarioTipoId';
+	        $valoresExtra[] = $usuarioTipoId;
 	    }
 
-	    if (isset($datos['viajeroTipoId'])) {
-	        $campos .= ", viajeroTipoId";
-	        $valores .= ", ?";
-	        $tipos .= "i";
-	        $parametros[] = $datos['viajeroTipoId'];
-	    }
+	    // Preparar campos extras
+	    $camposExtraStr = $camposExtra ? ', ' . implode(', ', $camposExtra) : '';
+	    $valoresExtraStr = $valoresExtra ? ', ' . implode(', ', $valoresExtra) : '';
 
-	    $sql = "INSERT INTO usuarios ($campos) VALUES ($valores)";
-
-	    $stmt = mysqli_prepare($mysqli, $sql);
-	    if (!$stmt) {
-	        echo "Error preparando la sentencia: " . mysqli_error($mysqli);
-	        return;
-	    }
-
-	    // Preparar los parámetros base
-	    $parametrosBase = [
-	        $datos['nombre'], 
-	        $datos['apellido'] ?? '', 
-	        $datos['email'], 
-	        $datos['dni'] ?? '', 
-	        $datos['apodo'] ?? '', 
-	        $datos['comentario'] ?? '', 
-	        $datos['altura'] ?? 0, 
-	        $datos['peso'] ?? 0, 
-	        $datos['talle'] ?? 0, 
-	        $datos['direccion'] ?? '', 
-	        $datos['ciudad'] ?? '', 
-	        $datos['fecha_registro'], 
-	        $datos['fecha_nacimiento'] ?? '0000-00-00', 
-	        $datos['habilitado_sys'] ?? 1, 
-	        $datos['paisId'] ?? 0, 
-	        $datos['sexoId'] ?? 0
-	    ];
-
-	    // Combinar parámetros base con los opcionales
-	    $parametros = array_merge($parametrosBase, $parametros);
-
-	    // Bind dinámico de parámetros
-	    $bindParams = array_merge([$stmt, $tipos], $parametros);
-	    call_user_func_array('mysqli_stmt_bind_param', $bindParams);
-
+	    // Sentencia SQL
+	    $sql = "INSERT INTO usuarios (
+	        nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, 
+	        direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, 
+	        paisId, viajeroTipoId, sexoId, telefono $camposExtraStr
+	    ) VALUES (
+	        '$nombre', '$apellido', '$email', '$dni', '$apodo', '$comentario', 
+	        $altura, $peso, $talle, '$direccion', '$ciudad', '$fecha_registro', 
+	        '$fecha_nacimiento', $habilitado_sys, $paisId, $viajeroTipoId, $sexoId, '$telefono'
+	        $valoresExtraStr
+	    )";
 
 	    // Ejecutar la sentencia
-	    if (!mysqli_stmt_execute($stmt)) {
-	        echo 'Error al insertar usuario: ' . mysqli_stmt_error($stmt);
-	        return;
-	    }
-	    // Verificar si se insertó correctamente
-		if (mysqli_stmt_affected_rows($stmt) > 0) {
-		    $usuarioId = mysqli_insert_id($mysqli);
+	    if ($mysqli->query($sql)) {
+	        $usuarioId = $mysqli->insert_id;
 
 		    if ($_FILES['imagen']['size'] > 0) {
 		        $imagen = $_FILES['imagen'];
@@ -1261,199 +1251,173 @@
 	}
 
 	function editarUsuario($datos) {
-	  global $mysqli;
+	    global $mysqli;
 
-	  if ($_FILES['imagen']['size'] > 0) {
-		  $imagen = $_FILES['imagen'];
-		  $nombreArchivo = $datos['usuarioId'] . '.jpg';
-		  $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
-		  $rutaGuardarSmall = '_recursos/profile_pics/' . $datos['usuarioId'] . '_small.jpg';
+	    if ($_FILES['imagen']['size'] > 0) {
+	        $imagen = $_FILES['imagen'];
+	        $nombreArchivo = $datos['usuarioId'] . '.jpg';
+	        $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
+	        $rutaGuardarSmall = '_recursos/profile_pics/' . $datos['usuarioId'] . '_small.jpg';
 
-		  // Verificar tipo de archivo
-		  $tiposPermitidos = array('image/jpeg', 'image/png');
-		  if (!in_array($imagen['type'], $tiposPermitidos)) {
-		    echo 'Error: Solo se aceptan imágenes JPEG y PNG';
-		    return;
-		  }
+	        // Verificar tipo de archivo
+	        $tiposPermitidos = array('image/jpeg', 'image/png');
+	        if (!in_array($imagen['type'], $tiposPermitidos)) {
+	            echo 'Error: Solo se aceptan imágenes JPEG y PNG';
+	            return;
+	        }
 
-		  // Guardar imagen original
-		  move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
+	        // Guardar imagen original
+	        move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
 
-		  // Crear versión pequeña de la imagen
-		  $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
-		  switch ($tipoImagen) {
-		    case 'jpg':
-		    case 'jpeg':
-		      $img = imagecreatefromjpeg($rutaGuardar);
-		      break;
-		    case 'png':
-		      $img = imagecreatefrompng($rutaGuardar);
-		      break;
-		  }
+	        // Crear versión pequeña de la imagen
+	        $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
+	        switch ($tipoImagen) {
+	            case 'jpg':
+	            case 'jpeg':
+	                $img = imagecreatefromjpeg($rutaGuardar);
+	                break;
+	            case 'png':
+	                $img = imagecreatefrompng($rutaGuardar);
+	                break;
+	        }
 
-		  if (!$img) {
-		    echo 'Error: No se pudo crear la imagen';
-		    return;
-		  }
+	        if (!$img) {
+	            echo 'Error: No se pudo crear la imagen';
+	            return;
+	        }
 
-		  $exif = exif_read_data($rutaGuardar);
-		  $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
+	        $exif = exif_read_data($rutaGuardar);
+	        $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
 
-		  switch ($orientacion) {
-		    case 3:
-		      // Rotar 180 grados
-		      $img = imagerotate($img, 180, 0);
-		      break;
-		    case 6:
-		      // Rotar 90 grados a la derecha
-		      $img = imagerotate($img, -90, 0);
-		      break;
-		    case 8:
-		      // Rotar 90 grados a la izquierda
-		      $img = imagerotate($img, 90, 0);
-		      break;
-		  }
+	        switch ($orientacion) {
+	            case 3:
+	                // Rotar 180 grados
+	                $img = imagerotate($img, 180, 0);
+	                break;
+	            case 6:
+	                // Rotar 90 grados a la derecha
+	                $img = imagerotate($img, -90, 0);
+	                break;
+	            case 8:
+	                // Rotar 90 grados a la izquierda
+	                $img = imagerotate($img, 90, 0);
+	                break;
+	        }
 
-		  $ancho = 100;
-		  $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
-		  $imgSmall = imagecreatetruecolor($ancho, $alto);
-		  imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
-		  imagejpeg($imgSmall, $rutaGuardarSmall);
+	        $ancho = 100;
+	        $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
+	        $imgSmall = imagecreatetruecolor($ancho, $alto);
+	        imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
+	        imagejpeg($imgSmall, $rutaGuardarSmall);
 
-		  // Actualizar campo imagen en la base de datos
-		  $datos['imagen'] = $datos['usuarioId'] . '_small.jpg';
-		} elseif (isset($datos['imagen'])) {
-		  // No se subió imagen, mantener la existente
-		  $datos['imagen'] = $datos['imagen'];
-		} else {
-		  // No se subió imagen, obtener la imagen existente desde la base de datos
-		  $sql = "SELECT imagen FROM usuarios WHERE usuarioId = ?";
-		  $stmt = mysqli_prepare($mysqli, $sql);
-		  mysqli_stmt_bind_param($stmt, 'i', $datos['usuarioId']);
-		  mysqli_stmt_execute($stmt);
-		  $resultado = mysqli_stmt_get_result($stmt);
-		  $fila = mysqli_fetch_assoc($resultado);
-		  $datos['imagen'] = $fila['imagen'];
-		}
+	        // Actualizar campo imagen en la base de datos
+	        $datos['imagen'] = $datos['usuarioId'] . '_small.jpg';
+	    } elseif (isset($datos['imagen'])) {
+	        // No se subió imagen, mantener la existente
+	        $datos['imagen'] = $datos['imagen'];
+	    } else {
+	        // No se subió imagen, obtener la imagen existente desde la base de datos
+	        $sql = "SELECT imagen FROM usuarios WHERE usuarioId = '{$datos['usuarioId']}'";
+	        $resultado = $mysqli->query($sql);
+	        $fila = $resultado->fetch_assoc();
+	        $datos['imagen'] = $fila['imagen'];
+	    }
 
-	  $usuario = array(
-	    'usuarioId' => $datos['usuarioId'],
-	    'nombre' => $datos['nombre'],
-	    'apellido' => $datos['apellido'] ?? null,
-	    'email' => $datos['email'],
-	    'dni' => $datos['dni'] ?? null,
-	    'apodo' => $datos['apodo'] ?? null,
-	    'altura' => $datos['altura'] ?? null,
-	    'peso' => $datos['peso'] ?? null,
-	    'talle' => $datos['talle'] ?? null,
-	    'comentario' => $datos['comentario'] ?? null,
-	    'direccion' => $datos['direccion'] ?? null,
-	    'ciudad' => $datos['ciudad'] ?? null,
-	    'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? null,
-	    'imagen' => $datos['imagen'] ?? null,
-	    'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
-	    'paisId' => $datos['paisId'] ?? null,
-	    'sexoId' => $datos['sexoId'] ?? null,
-	  );
+	    $usuario = array(
+	        'usuarioId' => $datos['usuarioId'],
+	        'nombre' => $datos['nombre'],
+	        'apellido' => $datos['apellido'] ?? null,
+	        'email' => $datos['email'],
+	        'dni' => $datos['dni'] ?? null,
+	        'apodo' => $datos['apodo'] ?? null,
+	        'altura' => $datos['altura'] ?? null,
+	        'peso' => $datos['peso'] ?? null,
+	        'talle' => $datos['talle'] ?? null,
+	        'comentario' => $datos['comentario'] ?? null,
+	        'direccion' => $datos['direccion'] ?? null,
+	        'ciudad' => $datos['ciudad'] ?? null,
+	        'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? null,
+	        'imagen' => $datos['imagen'] ?? null,
+	        'habilitado_sys' => $datos['habilitado_sys'],
+	        'paisId' => $datos['paisId'] ?? null,
+	        'viajeroTipoId' => $datos['viajeroTipoId'] ?? null,
+	        'sexoId' => $datos['sexoId'] ?? null,
+	        'telefono' => $datos['telefono'] ?? null,
+	        'usuarioTipoId' => $datos['usuarioTipoId'] ?? null,
+	    );
 
+	    // Validaciones
+	    if (empty($usuario['nombre']) || empty($usuario['email'])) {
+	        echo 'Faltan campos obligatorios (nombre y email)';
+	        return;
+	    }
 
+	    // Verificar formato email
+	    if (!filter_var($usuario['email'], FILTER_VALIDATE_EMAIL)) {
+	        echo 'Email inválido';
+	        return;
+	    }
 
-	  // Validaciones
-	  if (empty($usuario['nombre']) || empty($usuario['email'])) {
-	    echo 'Faltan campos obligatorios (nombre y email)';
-	    return;
-	  }
+	    // Escapar y manejar valores
+	    $nombre = $mysqli->real_escape_string($usuario['nombre']);
+	    $apellido = $mysqli->real_escape_string($usuario['apellido'] ?? '');
+	    $email = $mysqli->real_escape_string($usuario['email']);
+	    $dni = $mysqli->real_escape_string($usuario['dni'] ?? '');
+	    $apodo = $mysqli->real_escape_string($usuario['apodo'] ?? '');
+	    
+	    $altura = $usuario['altura'] === null ? 'NULL' : floatval($usuario['altura']);
+	    $peso = $usuario['peso'] === null ? 'NULL' : floatval($usuario['peso']);
+	    $talle = $usuario['talle'] === null ? 'NULL' : floatval($usuario['talle']);
+	    
+	    $comentario = $mysqli->real_escape_string($usuario['comentario'] ?? '');
+	    $direccion = $mysqli->real_escape_string($usuario['direccion'] ?? '');
+	    $ciudad = $mysqli->real_escape_string($usuario['ciudad'] ?? '');
+	    $fecha_nacimiento = $usuario['fecha_nacimiento'] === null || $usuario['fecha_nacimiento'] === '' ? 'NULL' : "'" . $mysqli->real_escape_string($usuario['fecha_nacimiento']) . "'";
+	    $imagen = $mysqli->real_escape_string($usuario['imagen'] ?? '');
+	    $habilitado_sys = $usuario['habilitado_sys'] ? 1 : 0;
+	    
+	    $paisId = $usuario['paisId'] === null ? 'NULL' : intval($usuario['paisId']);
+	    $viajeroTipoId = $usuario['viajeroTipoId'] === null ? 'NULL' : intval($usuario['viajeroTipoId']);
+	    $sexoId = $usuario['sexoId'] === null ? 'NULL' : intval($usuario['sexoId']);
+	    
+	    $telefono = $mysqli->real_escape_string($usuario['telefono'] ?? '');
+	    $usuarioTipoId = $usuario['usuarioTipoId'] === null ? 'NULL' : intval($usuario['usuarioTipoId']);
+	    $usuarioId = intval($usuario['usuarioId']);
 
-	  // Verificar formato email
-	  if (!filter_var($usuario['email'], FILTER_VALIDATE_EMAIL)) {
-	    echo 'Email inválido';
-	    return;
-	  }
+	    // Sentencia SQL para actualizar el usuario
+	    $sql = "UPDATE usuarios SET 
+	        nombre = '$nombre', 
+	        apellido = '$apellido', 
+	        email = '$email', 
+	        dni = '$dni', 
+	        apodo = '$apodo', 
+	        altura = $altura, 
+	        peso = $peso, 
+	        talle = $talle, 
+	        comentario = '$comentario', 
+	        direccion = '$direccion', 
+	        ciudad = '$ciudad', 
+	        fecha_nacimiento = $fecha_nacimiento, 
+	        imagen = '$imagen', 
+	        habilitado_sys = $habilitado_sys, 
+	        paisId = $paisId, 
+	        viajeroTipoId = $viajeroTipoId, 
+	        sexoId = $sexoId,
+	        telefono = '$telefono',
+	        usuarioTipoId = $usuarioTipoId
+	    WHERE usuarioId = $usuarioId";
 
-	  // Sentencia SQL para actualizar el usuario
-	  $sql = "UPDATE usuarios SET 
-	            nombre = ?, 
-	            apellido = ?, 
-	            email = ?, 
-	            dni = ?, 
-	            apodo = ?, 
-	            altura = ?, 
-	            peso = ?, 
-	            talle = ?, 
-	            comentario = ?, 
-	            direccion = ?, 
-	            ciudad = ?, 
-	            fecha_nacimiento = ?, 
-	            imagen = ?, 
-	            habilitado_sys = ?, 
-	            paisId = ?, 
-	            sexoId = ? 
-	          WHERE usuarioId = ?";
-
-	  $stmt = mysqli_prepare($mysqli, $sql);
-	  if (!$stmt) {
-	    echo "Error preparando la sentencia: " . mysqli_error($mysqli);
-	    return;
-	  }
-
-	  // Manejar campos como NULL si es necesario
-	  $apellido = $usuario['apellido'];
-	  $dni = $usuario['dni'];
-	  $apodo = $usuario['apodo'];
-	  $altura = $usuario['altura'];
-	  $peso = $usuario['peso'];
-	  $talle = $usuario['talle'];
-	  $comentario = $usuario['comentario'];
-	  $direccion = $usuario['direccion'];
-	  $ciudad = $usuario['ciudad'];
-	  $fecha_nacimiento = $usuario['fecha_nacimiento'];
-	  $imagen = $usuario['imagen']; //ACA $usuario['imagen'] es null pero $imagen termina siendo "" cuando ingresa a la base
-	  $paisId = $usuario['paisId'];
-	  $sexoId = $usuario['sexoId'];
-
-	 	$fechaNacimiento = $fecha_nacimiento ?? '';
-		$imagen = $imagen === null ? null : $imagen;
-		$paisId = $paisId ?? 0; 
-		$sexoId = $sexoId ?? 0;
-		$usuarioId = $usuario['usuarioId'] ?? 0;
-
-		mysqli_stmt_bind_param($stmt, 'sssssssssssssiiii', 
-		  $usuario['nombre'], 
-		  $apellido, 
-		  $usuario['email'], 
-		  $dni, 
-		  $apodo, 
-		  $altura, 
-		  $peso, 
-		  $talle, 
-		  $comentario, 
-		  $direccion, 
-		  $ciudad, 
-		  $fechaNacimiento, 
-		  $imagen, 
-		  $usuario['habilitado_sys'], 
-		  $paisId, 
-		  $sexoId,
-		  $usuarioId
-		);
-
-
-		// Ejecutar la sentencia
-		if (!mysqli_stmt_execute($stmt)) {
-		}
-
-	  	// Verificar si se actualizó correctamente
-	  	if (mysqli_stmt_affected_rows($stmt) > 0 || mysqli_stmt_errno($stmt) == 0) {
-	    	echo json_encode(array('estado' => 'ok', 'usuarioId' => $usuarioId));
-		} else {
-		  	echo json_encode(
-		  		array(
-		  			'estado' => 'error', 
-		  			'mensaje' => 'Error al actualizar el usuario',
-		  			'msqlerror' => mysqli_error($mysqli),
-		  		)
-		  	);
-		}
+	    // Ejecutar la sentencia
+	    if ($mysqli->query($sql)) {
+	        echo json_encode(array('estado' => 'ok', 'usuarioId' => $usuarioId));
+	    } else {
+	        echo json_encode(array(
+	            'estado' => 'error', 
+	            'mensaje' => 'Error al actualizar el usuario',
+	            'msqlerror' => $mysqli->error,
+	            'sql' => $sql
+	        ));
+	    }
 	}
 
 	function getPaises() {
@@ -1980,69 +1944,117 @@
 
 	function altaHospedaje($data) {
 	  global $mysqli;
+	  
+	  	// Buscar o insertar país
+		$pais = trim(strtolower($data['pais']));
+		$sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = '" . $mysqli->real_escape_string($pais) . "'";
+		$resultPais = $mysqli->query($sqlBuscarPais);
 
-	  // Preparamos la consulta utilizando ? como placeholders
-	  $query = "INSERT INTO hospedajes (nombre, paisId, direccion, telefono, email, estrellas, comentario) VALUES (?, ?, ?, ?, ?)";
+		if ($resultPais->num_rows > 0) {
+			$rowPais = $resultPais->fetch_assoc();
+			$paisId = $rowPais['paisId'];
+		} else {
+			$paisCapitalizado = ucwords(strtolower($data['pais']));
+			$sqlInsertPais = "INSERT INTO paises (pais) VALUES ('" . $mysqli->real_escape_string($paisCapitalizado) . "')";
+			$mysqli->query($sqlInsertPais);
+			$paisId = $mysqli->insert_id;
+		}
 
-	  // Preparamos la consulta
-	  if ($stmt = $mysqli->prepare($query)) {
-	    $stmt->bind_param('sisssds', 
-	                      $data['nombre'], 
-	                      $data['paisId'], 
-	                      $data['direccion'], 
-	                      $data['telefono'], 
-	                      $data['email'], 
-	                      $data['estrellas'], 
-	                      $data['comentario']);
+	  // Escapar valores
+	  $nombre = $mysqli->real_escape_string($data['nombre']);
+	  $paisId = intval($paisId);
+	  $direccion = $mysqli->real_escape_string($data['direccion']);
+	  $telefono = $mysqli->real_escape_string($data['telefono']);
+	  $email = $mysqli->real_escape_string($data['email']);
+	  $estrellas = floatval($data['estrellas']);
+	  $comentario = $mysqli->real_escape_string($data['comentario']);
 
-	    if($stmt->execute()) {
-	      $stmt->close();
-	      echo "ok";
-	    } else {
-	      die("Error al insertar el registro: " . $stmt->error);
-	    }
+	  // Consulta SQL
+	  $query = "INSERT INTO hospedajes (nombre, paisId, direccion, telefono, email, estrellas, comentario) 
+	            VALUES ('$nombre', $paisId, '$direccion', '$telefono', '$email', $estrellas, '$comentario')";
+	  
+	  if ($mysqli->query($query)) {
+	    echo "ok";
 	  } else {
-	    echo "Error al preparar la consulta: " . $mysqli->error;
+	    die("Error al insertar el registro: " . $mysqli->error);
 	  }
 	}
 
 	function altaViaje($params) {
-	  global $mysqli;
+	    global $mysqli;
+	    
+	    // Primero buscar o insertar el país y obtener su ID
+	    $pais = trim(strtolower($params['pais'])); // Normalizar el nombre del país
+	    
+	    // Buscar el país en la base de datos
+	    $sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = ?";
+	    $stmtBuscarPais = $mysqli->prepare($sqlBuscarPais);
+	    $stmtBuscarPais->bind_param("s", $pais);
+	    $stmtBuscarPais->execute();
+	    $resultadoPais = $stmtBuscarPais->get_result();
+	    
+	    if ($resultadoPais->num_rows > 0) {
+	        // Si el país existe, obtener su ID
+	        $rowPais = $resultadoPais->fetch_assoc();
+	        $paisId = $rowPais['paisId'];
+	    } else {
+	        // Si el país no existe, insertarlo
+	        $sqlInsertarPais = "INSERT INTO paises (pais) VALUES (?)";
+	        $stmtInsertarPais = $mysqli->prepare($sqlInsertarPais);
+	        $paisCapitalizado = ucwords(strtolower($params['pais'])); // Capitalizar el nombre del país
+	        $stmtInsertarPais->bind_param("s", $paisCapitalizado);
+	        
+	        if (!$stmtInsertarPais->execute()) {
+	            return json_encode(array(
+	                'estado' => 'error', 
+	                'mensaje' => 'Error al crear nuevo país'
+	            ));
+	        }
+	        
+	        $paisId = $mysqli->insert_id;
+	    }
+	    
+	    // Extraer año de fecha_inicio
+	    $anio = date('Y', strtotime($params['fecha_inicio']));
+	    // Valores por defecto
+	    $activo = 0;
+	    
+	    // Consulta SQL para insertar el viaje
+	    // Consulta SQL para insertar el viaje
+		$sql = "
+		    INSERT INTO 
+		        viajes (paisId, nombre, anio, fecha_inicio, fecha_fin, activo, descripcion, viaje_pdf)
+		    VALUES 
+		        (?, ?, ?, ?, ?, ?, ?, ?)
+		";
 
-	  // Extraer año de fecha_inicio
-	  $anio = date('Y', strtotime($params['fecha_inicio']));
+		// Preparar consulta
+		$stmt = $mysqli->prepare($sql);
 
-	  // Valores por defecto
-	  $activo = 0;
-
-	  // Consulta SQL
-	  $sql = "
-	    INSERT INTO 
-	      viajes (paisId, anio, fecha_inicio, fecha_fin, activo, descripcion, viaje_pdf)
-	    VALUES 
-	      (?, ?, ?, ?, ?, ?, ?)
-	  ";
-
-	  // Preparar consulta
-	  $stmt = $mysqli->prepare($sql);
-
-	  // Vincular parámetros
-	  $stmt->bind_param("iisssss", 
-	    $params['paisId'], 
-	    $anio, 
-	    $params['fecha_inicio'], 
-	    $params['fecha_fin'], 
-	    $activo, 
-	    $params['descripcion'], 
-	    $params['viaje_pdf']
-	  );
-
-	  // Ejecutar consulta
-	  if ($stmt->execute()) {
-	    return json_encode(array('estado' => 'ok', 'mensaje' => 'Viaje creado con éxito'));
-	  } else {
-	    return json_encode(array('estado' => 'error', 'mensaje' => 'Error al crear viaje'));
-	  }
+		// Vincular parámetros
+		$stmt->bind_param("isisssss", 
+		    $paisId,  // Usar el ID del país que encontramos o insertamos
+		    $params['nombre'], // Agregar el nombre del viaje
+		    $anio, 
+		    $params['fecha_inicio'], 
+		    $params['fecha_fin'], 
+		    $activo, 
+		    $params['descripcion'], 
+		    $params['viaje_pdf']
+		);
+	    
+	    // Ejecutar consulta
+	    if ($stmt->execute()) {
+	        return json_encode(array(
+	            'estado' => 'ok', 
+	            'mensaje' => 'Viaje creado con éxito'
+	        ));
+	    } else {
+	        return json_encode(array(
+	            'estado' => 'error', 
+	            'mensaje' => 'Error al crear viaje'
+	        ));
+	    }
 	}
 
 	function eliminarArchivo($viajesId) {
@@ -2069,74 +2081,61 @@
 	}
 
 	function editarViaje($params, $viajesId) {
-	  global $mysqli, $RUTA_FILE_VIAJES;
+	    global $mysqli, $RUTA_FILE_VIAJES;
+	    
+	    // Buscar o insertar país
+	    $pais = trim(strtolower($params['pais']));
+	    $sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = '" . $mysqli->real_escape_string($pais) . "'";
+	    $resultPais = $mysqli->query($sqlBuscarPais);
+	    
+	    if ($resultPais->num_rows > 0) {
+	        $rowPais = $resultPais->fetch_assoc();
+	        $paisId = $rowPais['paisId'];
+	    } else {
+	        $paisCapitalizado = ucwords(strtolower($params['pais']));
+	        $sqlInsertPais = "INSERT INTO paises (pais) VALUES ('" . $mysqli->real_escape_string($paisCapitalizado) . "')";
+	        $mysqli->query($sqlInsertPais);
+	        $paisId = $mysqli->insert_id;
+	    }
 
-	  // Extraer año de fecha_inicio
-	  $anio = date('Y', strtotime($params['fecha_inicio']));
+	    $anio = date('Y', strtotime($params['fecha_inicio']));
+	    $rutaDestino = $_SERVER['DOCUMENT_ROOT'] . '/' . $RUTA_FILE_VIAJES;
+	    $nombreArchivo = limpiarNombreArchivo($params['nombre']) . '_' . $anio . '_' . $viajesId . '_' . time() . '.pdf';
+	    
+	    if (isset($_FILES['viaje_pdf'])) {
+	        $tmpNombre = $_FILES['viaje_pdf']['tmp_name'];
+	        move_uploaded_file($tmpNombre, $rutaDestino . $nombreArchivo);
+	    } else {
+	        $nombreArchivo = $params['viaje_pdf'] ?? null;
+	    }
+	    
+	    $activo = !empty($params['activo']) ? 1 : 0;
+	    
+	    $sql = "UPDATE viajes 
+	            SET paisId = " . $paisId . ",
+	                nombre = '" . $mysqli->real_escape_string($params['nombre']) . "',
+	                anio = " . $anio . ", 
+	                fecha_inicio = '" . $mysqli->real_escape_string($params['fecha_inicio']) . "', 
+	                fecha_fin = '" . $mysqli->real_escape_string($params['fecha_fin']) . "', 
+	                activo = " . $activo . ", 
+	                descripcion = '" . $mysqli->real_escape_string($params['descripcion']) . "'
+	                
+	            WHERE viajesId = " . $viajesId;
 
-	  // Ruta de destino para el archivo
-	  $rutaDestino = $RUTA_FILE_VIAJES;
-	  $nombreArchivo = limpiarNombreArchivo(getPais($params['paisId'])) . '_' . $anio . '_' . $viajesId . '_' . time() . '.pdf';
-
-	  // Mover archivo a ruta de destino
-	  if (isset($_FILES['viaje_pdf'])) {
-	    $tmpNombre = $_FILES['viaje_pdf']['tmp_name'];
-	    move_uploaded_file($tmpNombre, $rutaDestino . $nombreArchivo);
-	  } else {
-	    // Si no se subió archivo, mantener el nombre del archivo anterior
-	    $nombreArchivo = $params['viaje_pdf'];
-	  }
-
-	  // Consulta SQL
-	  $sql = "
-	    UPDATE 
-	      viajes 
-	    SET 
-	      paisId = ?, 
-	      anio = ?, 
-	      fecha_inicio = ?, 
-	      fecha_fin = ?, 
-	      activo = ?, 
-	      descripcion = ?, 
-	      viaje_pdf = ?
-	    WHERE 
-	      viajesId = ?
-	  ";
-
-	  // Preparar consulta
-	  $stmt = $mysqli->prepare($sql);
-
-	  // Vincular parámetros
-	  $activo = !empty($params['activo']) ? 1 : 0;
-	  $viajesId = $viajesId;
-	  $viajePdf = $nombreArchivo;
-
-	  $stmt->bind_param("iisssssi", 
-	    $params['paisId'], 
-	    $anio, 
-	    $params['fecha_inicio'], 
-	    $params['fecha_fin'], 
-	    $activo, 
-	    $params['descripcion'], 
-	    $viajePdf, 
-	    $viajesId
-	  );
-
-	  // Ejecutar consulta
-	  if ($stmt->execute()) {
-	    $respuesta = array(
-	      'estado' => 'ok',
-	      'mensaje' => 'Viaje actualizado con éxito',
-	      'viaje_pdf' => $rutaDestino . $nombreArchivo
-	    );
-	  } else {
-	    $respuesta = array(
-	      'estado' => 'error',
-	      'mensaje' => 'Error al actualizar viaje'
-	    );
-	  }
-
-	  return json_encode($respuesta);
+	    if ($mysqli->query($sql)) {
+	        $respuesta = array(
+	            'estado' => 'ok',
+	            'mensaje' => 'Viaje actualizado con éxito',
+	            'viaje_pdf' => $rutaDestino . $nombreArchivo
+	        );
+	    } else {
+	        $respuesta = array(
+	            'estado' => 'error',
+	            'mensaje' => 'Error al actualizar viaje'
+	        );
+	    }
+	    
+	    return json_encode($respuesta);
 	}
 
 	function eliminarViajero($data) {
@@ -2240,7 +2239,7 @@
 
 		global $mysqli;
 
-		$query = "SELECT vu.*, v.anio, p.pais FROM viajes_usuarios vu 
+		$query = "SELECT vu.*, v.nombre, p.pais, v.anio FROM viajes_usuarios vu 
 				  INNER JOIN viajes v ON v.viajesId = vu.viajesId
 				  INNER JOIN paises p ON v.paisId = p.paisId
 				  WHERE viajesUsuariosId = ".$viajesUsuariosId;
@@ -2257,7 +2256,7 @@
 
 		if(!empty($row['venta_paquete'])) {
 
-			$deuda["comentario"] = "Venta paquete ".$row['pais']." ".$row['anio'];
+			$deuda["comentario"] = "Venta paquete ".$row['nombre']." ".$row['anio'];
 			$deuda['deuda'] = $row['venta_paquete'];
 			$deuda['monedaId'] = 2; //dolares 
 			$deuda['usuarioId'] = $row["usuarioId"];
@@ -2327,25 +2326,40 @@
 	// }
 
 	function editarHospedaje($data, $hospedajesId) {
-	  global $mysqli;
+		global $mysqli;
 
-	 // Consulta para editar hospedaje
-	  $query = "UPDATE hospedajes SET 
-	            nombre = '" . $data['nombre'] . "', 
-	            paisId = " . $data['paisId'] . ", 
-	            direccion = '" . $data['direccion'] . "', 
-	            telefono = '" . $data['telefono'] . "', 
-	            email = '" . $data['email'] . "', 
-	            estrellas = " . $data['estrellas'] . ", 
-	            comentario = '" . $data['comentario'] . "' 
-	            WHERE hospedajesId = " . $hospedajesId;
+		// Buscar o insertar país
+		$pais = trim(strtolower($data['pais']));
+		$sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = '" . $mysqli->real_escape_string($pais) . "'";
+		$resultPais = $mysqli->query($sqlBuscarPais);
 
-	  // Ejecutar consulta
-	  if ($mysqli->query($query)) {
-	    echo "ok";
-	  } else {
-	    die("Error al actualizar el registro: " . $mysqli->error);
-	  }
+		if ($resultPais->num_rows > 0) {
+			$rowPais = $resultPais->fetch_assoc();
+			$paisId = $rowPais['paisId'];
+		} else {
+			$paisCapitalizado = ucwords(strtolower($data['pais']));
+			$sqlInsertPais = "INSERT INTO paises (pais) VALUES ('" . $mysqli->real_escape_string($paisCapitalizado) . "')";
+			$mysqli->query($sqlInsertPais);
+			$paisId = $mysqli->insert_id;
+		}
+
+		// Consulta para editar hospedaje
+		$query = "UPDATE hospedajes SET 
+		        nombre = '" . $data['nombre'] . "', 
+		        paisId = " . $paisId . ", 
+		        direccion = '" . $data['direccion'] . "', 
+		        telefono = '" . $data['telefono'] . "', 
+		        email = '" . $data['email'] . "', 
+		        estrellas = " . $data['estrellas'] . ", 
+		        comentario = '" . $data['comentario'] . "' 
+		        WHERE hospedajesId = " . $hospedajesId;
+
+		// Ejecutar consulta
+		if ($mysqli->query($query)) {
+			echo "ok";
+		} else {
+			die("Error al actualizar el registro: " . $mysqli->error);
+		}
 	}
 
 
@@ -2841,50 +2855,49 @@
 	}
 
 	function editarViajeCosto($params) {
-		global $mysqli;
+	    global $mysqli;
 	  
-		// Validar parámetros
-		if (!isset($params["viajeCostoId"], $params["pagosSubrubroId"], $params["viajesId"], $params["monedaId"], $params["monto"], $params["soloBuzos"])) {
-		  die("Error: Faltan parámetros requeridos");
-		}
+	    // Validar parámetros
+	    if (!isset($params["viajeCostoId"], $params["pagosSubrubroId"], $params["viajesId"], $params["monedaId"], $params["monto"], $params["soloBuzos"])) {
+	        die("Error: Faltan parámetros requeridos");
+	    }
 	  
-		// Preparar consulta
-		$query = "
-		  UPDATE viajes_costos
-		  SET
-			pagosSubrubroId = ?,
-			viajesId = ?,
-			monto = ?,
-			cotizacion = ?,
-			monedaId = ?,
-			soloBuzos = ?,
-			comentario = ?
-		  WHERE viajeCostoId = ?
-		";
+	    // Escapar y preparar valores
+	    $viajeCostoId = intval($params["viajeCostoId"]);
+	    $pagosSubrubroId = intval($params["pagosSubrubroId"]);
+	    $viajesId = intval($params["viajesId"]);
+	    $monto = floatval($params["monto"]);
+	    
+	    // Manejar valores que pueden ser nulos
+	    $cotizacion = $params["cotizacion"] === '' || $params["cotizacion"] === null ? 'NULL' : floatval($params["cotizacion"]);
+	    $monedaId = intval($params["monedaId"]);
+	    
+	    $soloBuzos = $params["soloBuzos"];
+	    
+	    // Escapar comentario
+	    $comentario = $params["comentario"] === '' || $params["comentario"] === null ? 'NULL' : "'" . $mysqli->real_escape_string($params["comentario"]) . "'";
 	  
-		// Preparar parámetros
-		$viajeCostoId = $params["viajeCostoId"];
-		$pagosSubrubroId = $params["pagosSubrubroId"];
-		$viajesId = $params["viajesId"];
-		$monto = $params["monto"];
-		$cotizacion = $params["cotizacion"] ?? NULL;
-		$monedaId = $params["monedaId"];
-		$soloBuzos = $params["soloBuzos"] == "2" ? 1 : 0;
-		$comentario = $params["comentario"] ?? NULL;
+	    // Consulta SQL
+	    $query = "
+	        UPDATE viajes_costos
+	        SET
+	            pagosSubrubroId = $pagosSubrubroId,
+	            viajesId = $viajesId,
+	            monto = $monto,
+	            cotizacion = $cotizacion,
+	            monedaId = $monedaId,
+	            soloBuzos = $soloBuzos,
+	            comentario = $comentario
+	        WHERE viajeCostoId = $viajeCostoId
+	    ";
 	  
-		// Ejecutar consulta
-		$stmt = $mysqli->prepare($query);
-		$stmt->bind_param("iiiiidsi", $pagosSubrubroId, $viajesId, $monto, $cotizacion, $monedaId, $soloBuzos, $comentario, $viajeCostoId);
-		$stmt->execute();
-		
-
-		// Verificar resultado
-		if ($stmt->affected_rows > 0) {
-			$res = aplicarViajeCostoaTodosViajeros($viajeCostoId);
-		    return "ok";
-		} else {
-		  	die("Error al editar costo: " . $mysqli->error);
-		}
+	    // Ejecutar consulta
+	    if ($mysqli->query($query)) {
+	        $res = aplicarViajeCostoaTodosViajeros($viajeCostoId);
+	        return "ok";
+	    } else {
+	        die("Error al editar costo: " . $mysqli->error . " - Consulta: " . $query);
+	    }
 	}
 
 	function eliminarViajeCostos($params) {
@@ -3497,4 +3510,43 @@
 		} catch (Exception $e) {
 			return array();
 		}
+	}
+
+	function eliminarRedSocial($usuarioRedSocialId) {
+	    global $mysqli;
+	    $sql = "DELETE FROM usuarios_redes_sociales WHERE usuariosRedSocialId = $usuarioRedSocialId";
+	    if($mysqli->query($sql)) {
+	        echo json_encode(['estado' => 'ok']);
+	    } else {
+	        echo json_encode(['estado' => 'error', 'mensaje' => $mysqli->error]);
+	    }
+	    die();
+	}
+
+	function getCostosOperativos($viajesId) {
+	    global $mysqli;
+	    
+	    $sql = "SELECT 
+	                vco.*,
+	                CONCAT(pr.rubro, ' - ', ps.subrubro) as categoria
+	            FROM 
+	                viajes_costos_operativos vco
+	                INNER JOIN pagos_subrubros ps ON vco.pagosSubrubroId = ps.pagosSubrubroId
+	                INNER JOIN pagos_rubros pr ON ps.pagosRubrosId = pr.pagosRubroId
+	            WHERE 
+	                vco.viajesId = ?
+	            ORDER BY 
+	                vco.fecha DESC";
+	                
+	    $stmt = $mysqli->prepare($sql);
+	    $stmt->bind_param("i", $viajesId);
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    $costosOperativos = [];
+	    while($row = $result->fetch_assoc()) {
+	        $costosOperativos[] = $row;
+	    }
+	    
+	    return $costosOperativos;
 	}

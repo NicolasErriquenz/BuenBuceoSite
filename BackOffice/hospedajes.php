@@ -91,12 +91,12 @@
                       <td class="align-middle text-center">
                         <a href="hospedajes_editar.php?<?php echo $idNombre ?>=<?php echo $item[$idNombre] ?>">
                           <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                            Editar
                           </button>
                         </a>
                         <a href="hospedajes_tarifas.php?<?php echo $idNombre ?>=<?php echo $item[$idNombre] ?>">
                           <button class="btn btn-icon btn-2 btn-sm btn-dark mb-0 ajuste_boton" type="button">
-                            <span class="btn-inner--icon"><i class="fa fa-dollar-sign"></i> Tarifas</span>
+                            Tarifas
                           </button>
                         </a>
                       </td>

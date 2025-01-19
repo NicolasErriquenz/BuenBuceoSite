@@ -128,33 +128,33 @@
       <?php include("includes/footer.php") ?>
 
       <div class="modal fade" id="modal-agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Valores de la tarifa - </h5>
-      </div>
-      <div class="modal-body">
-        <form id="form-agregar">
-          <div class="form-group">
-            <label>Precio:</label>
-            <input type="number" id="precio" name="precio" class="form-control">
+        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Valores de la tarifa - </h5>
+            </div>
+            <div class="modal-body">
+              <form id="form-agregar">
+                <div class="form-group">
+                  <label>Nombre:</label>
+                  <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Por ej. Estudio Single">
+                </div>
+                <div class="form-group">
+                  <label>Precio x persona:</label>
+                  <input type="number" id="precio" name="precio" class="form-control">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <div>
+                <button id="btn-eliminar" class="btn btn-danger">Eliminar</button>
+                <button id="btn-guardar" class="btn btn-primary ms-auto">Guardar</button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Por ej. Estudio Single">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <div>
-          <button id="btn-eliminar" class="btn btn-danger">Eliminar</button>
-          <button id="btn-guardar" class="btn btn-primary ms-auto">Guardar</button>
         </div>
       </div>
-    </div>
-  </div>
-</div>
       
 
     </div>

@@ -14,10 +14,11 @@
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && ($_POST['action'] == "editar" || $_POST['action'] == "alta")) {
     // Validación de campos
     $errores = array();
-    if (!isset($_POST['paisId']) || empty($_POST['paisId']))  $errores[] = 'País es requerido';
+    if (!isset($_POST['nombre']) || empty($_POST['nombre']))  $errores[] = 'Nombre es requerido';
+    if (!isset($_POST['pais']) || empty($_POST['pais']))  $errores[] = 'País es requerido';
     if (empty($_POST['fecha_inicio']))  $errores[] = 'Fecha de inicio es requerida';
     if (empty($_POST['fecha_fin']))  $errores[] = 'Fecha de fin es requerida';
-    if (!empty($_POST['viaje_pdf']) && !filter_var($_POST['viaje_pdf'], FILTER_VALIDATE_URL))  $errores[] = 'URL del PDF inválida';
+    //if (!empty($_POST['viaje_pdf']) && !filter_var($_POST['viaje_pdf'], FILTER_VALIDATE_URL))  $errores[] = 'URL del PDF inválida';
     //if (empty($_POST['descripcion']))  $errores[] = 'Descripción es requerida';
 
     // Validación de fechas
@@ -79,7 +80,10 @@
   $redirect = "viajes.php";
   $goBackLink = "viajes.php";
   $paises = getPaises();
-
+  $nombrePais = isset($viaje['paisId']) 
+    ? ($paises[array_search((string)$viaje['paisId'], array_column($paises, 'paisId'))])['pais'] ?? '' 
+    : '';
+    
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -119,18 +123,28 @@
                         </div>
                         <?php } ?>
                         
-                        
                         <div class="form-group">
-                          <label for="paisId" class="form-control-label">País</label>
-                          <select id="paisId" name="paisId" class="form-control">
-                            <option value="" selected disabled>Seleccione un pais</option>
-                            <?php foreach ($paises as $pais): ?>
-                            <option value="<?php echo $pais['paisId']; ?>" 
-                                    <?php echo (isset($viaje['paisId']) && $viaje['paisId'] == $pais['paisId']) ? "selected" : ""; ?>>
-                              <?php echo $pais['pais']; ?>
-                            </option>
-                            <?php endforeach; ?>
-                          </select>
+                          <label for="nombre" class="form-control-label">Nombre</label>
+                          <input id="nombre" name="nombre" type="text" 
+                                 value="<?php echo isset($viaje["nombre"]) ? $viaje["nombre"] : ''; ?>" 
+                                 class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="pais" class="form-control-label">País</label>
+                          <input type="text" 
+                                 id="pais" 
+                                 name="pais" 
+                                 class="form-control" 
+                                 list="lista-paises" 
+                                 placeholder="Ingrese un país"
+                                 value="<?php echo isset($nombrePais) ? $nombrePais : ''; ?>">
+                          
+                          <datalist id="lista-paises">
+                              <?php foreach ($paises as $pais): ?>
+                                  <option value="<?php echo $pais['pais']; ?>">
+                              <?php endforeach; ?>
+                          </datalist>
                         </div>
 
                         <div class="row">
@@ -152,7 +166,7 @@
                               <div class="input-group">
                                 <input class="form-control" 
                                        type="date" 
-                                       value="<?php echo isset($viaje['fecha_fin']) ? date("Y-m-d", strtotime($viaje['fecha_fin'])) : date("Y-m-d"); ?>" 
+                                       value="<?php echo isset($viaje['fecha_fin']) ? date("Y-m-d", strtotime($viaje['fecha_fin'])) : date("Y-m-d", strtotime('+1 day')); ?>"
                                        id="fecha_fin" name="fecha_fin">
                               </div>
                             </div>
@@ -170,6 +184,7 @@
                           <a id="enlace-archivo" href="#" target="_blank">Ver archivo</a>
                           <button id="eliminar-archivo" class="btn btn-danger ">Eliminar archivo</button>
                         </div>
+                        <!--
                         <?php
                         if ($action == 'editar' && !empty($viaje)) {
                           // Mostrar enlace al archivo existente y botón para eliminar
@@ -188,11 +203,11 @@
                             <div class="form-group">
                               <label class="form-control-label">Seleccionar archivo</label>
                               <div class="input-group">
-                                <input type="file" 
-                                       class="form-control" 
-                                       id="viaje_pdf" 
-                                       name="viaje_pdf" 
-                                       accept="pdf/*">
+                                  <input type="file" 
+                                         class="form-control" 
+                                         id="viaje_pdf" 
+                                         name="viaje_pdf" 
+                                         accept=".pdf,application/pdf">
                               </div>
                             </div>
                             <?php
@@ -203,16 +218,17 @@
                           <div class="form-group">
                             <label class="form-control-label">Seleccionar archivo</label>
                             <div class="input-group">
-                              <input type="file" 
-                                     class="form-control" 
-                                     id="viaje_pdf" 
-                                     name="viaje_pdf" 
-                                     accept="pdf/*">
+                                <input type="file" 
+                                       class="form-control" 
+                                       id="viaje_pdf" 
+                                       name="viaje_pdf" 
+                                       accept=".pdf,application/pdf">
                             </div>
                           </div>
                           <?php
                         }
                         ?>
+                        -->
                       </div>
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
@@ -272,6 +288,34 @@
       <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
+
+  <script type="text/javascript">
+    
+    document.getElementById('fecha_inicio').addEventListener('change', function() {
+      var fechaInicio = new Date(this.value);
+      var fechaMinFin = new Date(fechaInicio);
+      fechaMinFin.setDate(fechaInicio.getDate() + 1);
+      
+      // Formatear fecha para el atributo min del input
+      var minFin = fechaMinFin.toISOString().split('T')[0];
+      
+      var fechaFinInput = document.getElementById('fecha_fin');
+      fechaFinInput.min = minFin;
+      
+      // Si la fecha fin es menor que la nueva fecha mínima, actualizarla
+      if(fechaFinInput.value < minFin) {
+          fechaFinInput.value = minFin;
+      }
+    });
+
+    // Establecer el mínimo inicial al cargar la página
+    window.addEventListener('load', function() {
+        var fechaInicio = new Date(document.getElementById('fecha_inicio').value);
+        var fechaMinFin = new Date(fechaInicio);
+        fechaMinFin.setDate(fechaInicio.getDate() + 1);
+        document.getElementById('fecha_fin').min = fechaMinFin.toISOString().split('T')[0];
+    });
+  </script>
 
   <script>
     function habilitadoCheckboxChange(checkbox) {

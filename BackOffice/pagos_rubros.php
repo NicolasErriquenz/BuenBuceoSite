@@ -95,7 +95,7 @@
                       <td class="align-middle text-center">
                         <a href="pagos_rubros_editar.php?<?php echo $idNombre ?>=<?php echo $rubro[$idNombre] ?>">
                           <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                            Editar
                           </button>
                         </a>
                       </td>

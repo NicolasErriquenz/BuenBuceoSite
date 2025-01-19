@@ -4,6 +4,10 @@
 	error_reporting(E_ALL);
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	
+	// Configurar logging
+	ini_set('log_errors', 1);
+	ini_set('error_log', '_logs/php_errors.log');
+
 	$dateFormat = "d-m-Y";
 	$sessionDateFormat = "Y-m-d";
 	$timeFormat = "H:i:s";
@@ -60,4 +64,4 @@
 
   	$archivoActual = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
 
-  	define("RUTA_FILE_VIAJES", "_recursos/viajes__pdf/");
+  	define("RUTA_FILE_VIAJES", "_recursos/viajes_pdf/");

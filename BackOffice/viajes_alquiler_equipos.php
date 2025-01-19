@@ -406,43 +406,45 @@
             
             // Función para contar switches activos por equipo y actualizar cantidades
             function actualizarCantidades() {
-    // Primero contamos cuántos equipos completos hay
-    const equiposCompletos = $('.equipo-switch[data-equipo-id="8"]:checked').length;
-
+    // Identificar filas que tienen equipo completo
+    const filasConEquipoCompleto = $('.equipo-switch[data-equipo-id="8"]:checked').closest('tr');
+    const cantidadEquiposCompletos = filasConEquipoCompleto.length;
+    
     // Para cada equipo
     $('.costo-input').each(function() {
         const equipoId = $(this).data('equipo-id');
         const row = $(this).closest('tr');
         
-        // Si es equipo completo
-        if(equipoId === 8) {
-            row.find('.cantidad-display').text(equiposCompletos);
-            row.find('.costo-total-display').text('-');
-            return;
+        // Contar total de elementos marcados para este equipo
+        const cantidadTotal = $('.equipo-switch[data-equipo-id="' + equipoId + '"]:checked').length;
+        
+        // Mostrar cantidad total para inventario
+        row.find('.cantidad-display').text(cantidadTotal);
+        
+        // Calcular costos
+        if (equipoId === 8) {
+            // En la fila de equipo completo mostramos el costo total de todos los equipos completos
+            const costoEquipoCompleto = parseFloat($(this).val()) || 0;
+            const costoTotal = cantidadEquiposCompletos * costoEquipoCompleto;
+            row.find('.costo-total-display').text('$' + costoTotal.toFixed(2));
+        } else {
+            // Para equipos individuales
+            const costoUnitario = parseFloat($(this).val()) || 0;
+            
+            // Contar solo los elementos que NO son parte de un equipo completo
+            const elementosIndividuales = $('.equipo-switch[data-equipo-id="' + equipoId + '"]:checked').closest('tr')
+                .filter(function() {
+                    return !$(this).find('.equipo-switch[data-equipo-id="8"]').prop('checked');
+                }).length;
+            
+            // Calcular costo solo para elementos individuales
+            const costoTotal = elementosIndividuales * costoUnitario;
+            row.find('.costo-total-display').text(costoTotal > 0 ? '$' + costoTotal.toFixed(2) : '$0.00');
         }
-        
-        // Para elementos individuales
-        // Solo contamos los individuales de las filas que NO tienen equipo completo
-        const cantidadIndividual = $('.equipo-switch[data-equipo-id="' + equipoId + '"]:checked').closest('tr')
-            .filter(function() {
-                return !$(this).find('.equipo-switch[data-equipo-id="8"]').prop('checked');
-            }).length;
-        
-        // La cantidad total es la suma de individuales más los que vienen de equipo completo
-        const cantidad = cantidadIndividual + equiposCompletos;
-        
-        // Actualizar displays
-        row.find('.cantidad-display').text(cantidad);
-        
-        // Calcular costo
-        const costo = parseFloat($(this).val()) || 0;
-        const costoTotal = cantidad * costo;
-        row.find('.costo-total-display').text('$' + costoTotal.toFixed(2));
     });
     
     actualizarTotalesFinancieros();
 }
-
             function actualizarTotalesFinancieros() {
                 // Calcular costo total (excluyendo equipo completo)
                 let costoTotal = 0;

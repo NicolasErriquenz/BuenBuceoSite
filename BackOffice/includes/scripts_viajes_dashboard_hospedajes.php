@@ -27,7 +27,7 @@
       dataType: 'text',
       success: function(data) {
         if(data == "ok")
-          redirectConParametro("seccion", "hospedajes");
+          redirectConParametro("sub_seccion", "hospedajes");
         else{
           $('#error_div_hospedaje').removeClass('fade').addClass('show');
           $('#error-text-hospedaje').text(data);

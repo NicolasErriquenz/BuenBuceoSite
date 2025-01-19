@@ -55,8 +55,9 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Avatar</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Apodo/Nombre</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Viajero</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tipo</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deudas</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pagos</th>
@@ -78,10 +79,13 @@
                         ?>')"></div>
                       </td>
                       <td>
-                        <p class="text-sm mb-0"><?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?></p>
+                        <p class="text-sm mb-0"><?php echo $usuario["apodo"] ?> (<?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?>)</p>
                       </td>
                       <td>
                         <p class="text-sm mb-0"><?php echo $usuario["email"] ?> </p>
+                      </td>
+                      <td>
+                        <p class="text-sm mb-0"><?php echo $usuario["viajero_tipo"] ?> </p>
                       </td>
                       <td>
                         <p class="text-sm mb-0"><?php echo $usuario["tipo"] ?> </p>
@@ -109,7 +113,7 @@
                       <td class="align-middle text-center">
                         <a href="usuarios_editar.php?<?php echo $idNombre ?>=<?php echo $usuario[$idNombre] ?>">
                           <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i> Editar</span>
+                            Editar
                           </button>
                         </a>
                       </td>

@@ -170,4 +170,28 @@
 	    
 	    return $costoTotal;
 	}
+
+	function debugQuery($sql, $types, $params) {
+	    echo "Valores a insertar:\n";
+	    foreach($params as $key => $value) {
+	        echo "Parámetro " . ($key + 1) . " (" . $types[$key] . "): " . $value . "\n";
+	    }
+	    
+	    // Construir la consulta real
+	    $query = $sql;
+	    foreach($params as $param) {
+	        $value = is_string($param) ? "'$param'" : $param;
+	        $query = preg_replace('/\?/', $value, $query, 1);
+	    }
+	    return $query;
+	}
+
+	function eco($s){
+	    if (is_array($s)) {
+	        echo json_encode($s);
+	    } else {
+	        echo $s;
+	    }
+	    die();
+	}
 ?>

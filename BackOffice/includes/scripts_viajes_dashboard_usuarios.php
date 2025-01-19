@@ -60,7 +60,7 @@
       success: function(data) {
         
         if(data == "ok")
-          redirectConParametro("seccion", "viajeros");
+          redirectConParametro("sub_seccion", "viajeros");
         else{
           $('#error_div').removeClass('fade').addClass('show');
           $('#error-text').text(data);
@@ -132,7 +132,7 @@
       dataType: 'text',
       success: function(data) {
         if(data == "ok")
-          redirectConParametro("seccion", "viajeros");
+          redirectConParametro("sub_seccion", "viajeros");
       },
       error: function(e, i){
         
@@ -145,16 +145,18 @@
 
     $(document).on('click', '.dropdown-item', function() {
       usuarioId = $(this).data('usuario-id');
+      var viajeroTipoId = $(this).data('viajerotipoid-id');
       var texto = $(this).text();
-      var viajeroTipoId = $("#viajeroTipoId").val();
+      //var viajeroTipoId = $("#viajeroTipoId").val();
 
       $('#buscar').val(texto);
       $('#resultado').hide();
 
-        console.log('Usuario seleccionado: ', usuarioId, texto);
+      console.log('Usuario seleccionado: ', usuarioId, texto, viajeroTipoId);
 
-        $('#deseleccionar').prop("disabled", false);
-        $('#buscar').prop("disabled", true);
+      $('#deseleccionar').prop("disabled", false);
+      $('#buscar').prop("disabled", true);
+      $('#viajeroTipoId').val(viajeroTipoId);
     });
 
     $('#buscar').on('keyup', function() {
@@ -168,7 +170,8 @@
           success: function(data) {
             $('#resultado').empty();
             $.each(data, function(index, value) {
-              $('#resultado').append('<div class="dropdown-item" data-usuario-id="'+value.usuarioId+'">' + value.nombre + '</div>');
+              // ESTE ES EL VALOR QUE QUIERO USAR -> value.viajeroTipoId;
+              $('#resultado').append('<div class="dropdown-item" data-usuario-id="'+value.usuarioId+'" data-viajerotipoid-id="'+value.viajeroTipoId+'">' + value.nombre + '</div>');
             });
             $('#resultado').show();
           }

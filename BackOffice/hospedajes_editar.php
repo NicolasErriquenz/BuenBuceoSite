@@ -23,6 +23,7 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "alta" ) {
     altaHospedaje($_POST);
+
     header("location:".$goBackLink."?success=true&action=alta");
     die();
   }
@@ -41,6 +42,9 @@
   
   
   $paises = getPaises();
+  $nombrePais = isset($item['paisId']) 
+    ? ($paises[array_search((string)$item['paisId'], array_column($paises, 'paisId'))])['pais'] ?? '' 
+    : '';
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -108,16 +112,20 @@
                           </div>
                           <div class="col-6">
                             <div class="form-group">
-                              <label for="paisId">Pais</label>
-                              <select id="paisId" name="paisId" class="form-control">
-                                <option value="" selected disabled>Seleccione un pais</option>
-                                <?php foreach ($paises as $pais): ?>
-                                <option value="<?php echo $pais['paisId']; ?>" 
-                                        <?php echo (isset($item['paisId']) && $item['paisId'] == $pais['paisId']) ? "selected" : ""; ?>>
-                                  <?php echo $pais['pais']; ?>
-                                </option>
-                                <?php endforeach; ?>
-                              </select>
+                              <label for="pais" class="form-control-label">País</label>
+                              <input type="text" 
+                                     id="pais" 
+                                     name="pais" 
+                                     class="form-control" 
+                                     list="lista-paises" 
+                                     placeholder="Ingrese un país"
+                                     value="<?php echo isset($nombrePais) ? $nombrePais : ''; ?>">
+                              
+                              <datalist id="lista-paises">
+                                  <?php foreach ($paises as $pais): ?>
+                                      <option value="<?php echo $pais['pais']; ?>">
+                                  <?php endforeach; ?>
+                              </datalist>
                             </div>
                           </div>
                         </div>

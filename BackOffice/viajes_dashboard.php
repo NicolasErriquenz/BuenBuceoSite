@@ -134,7 +134,7 @@
   $monedas = getMonedas();
   $paisNombre = getPais($viaje['paisId']);
 
-  $hospedajes = getHospedajes($viaje['paisId']);
+  $hospedajes = getHospedajes();
 
   $seccion = isset($_GET["seccion"]) ? $_GET["seccion"] : "costos";
   $sub_seccion = isset($_GET["sub_seccion"]) ? $_GET["sub_seccion"] : "costos_totales";
@@ -163,6 +163,7 @@
   $param = array();
   $param["viajesId"] = $_GET[$idNombre];
   $costosAlquileres = obtenerIngresosAlquileres($param);
+  //eco();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -197,7 +198,7 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                <?php echo $paisNombre ?>
+                <?php echo $viaje["nombre"] ?>
               </h5>
               <!-- Fechas del viaje -->
               <p class="text-muted mb-0" style="font-size: 0.85rem;">
@@ -273,7 +274,11 @@
       </div>
 
       <!-- Gastos Internos -->
-      <div class="col">
+      <div class="col"
+           data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Administrar gastos operativos">
+        <a href="viajes_gastos_operativos.php?viajesId=<?php echo $viaje[$idNombre]; ?>">
           <div class="card border-0 border-top border-info border-5">
               <div class="py-2 px-3 card-body d-flex align-items-center">
                   <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
@@ -286,11 +291,11 @@
                   </div>
               </div>
           </div>
+        </a>
       </div>
 
       <!-- Total Pendiente -->
       <div class="col"
-           data-equipo-id="<?php echo $equipo['alquilerEquiposId']; ?>"
             data-bs-toggle="tooltip" 
             data-bs-placement="top" 
             title="Editar alquileres de equipos">
@@ -322,41 +327,41 @@
 
                 <ul class="nav nav-tabs nav-justified mb-3 nav-border-top-primary"  role="tablist">
                   <li class="nav-item" role="presentation">
-                      <a class="nav-link fw-medium <?= ($seccion == 'costos') ? 'active' : '' ?>" 
+                      <a class="nav-link fw-medium <?= ($sub_seccion == 'costos_totales') ? 'active' : '' ?> text-secondary text-bold" 
                          data-bs-toggle="tab" 
-                         href="#costos-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
-                        Costos hospedajes <span class="badge bg-danger rounded-circle">$<?php echo number_format($costoTotalHabitaciones, 2, '.', ','); ?></span>
+                         href="#costos-tabs-icons" role="tab" aria-selected="<?= ($sub_seccion == 'costos_totales') ? 'true' : 'false' ?>" tabindex="-1">
+                        Costos hospedajes <span class="badge bg-secondary rounded-circle">$<?php echo number_format($costoTotalHabitaciones, 2, '.', ','); ?></span>
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
-                      <a class="nav-link fw-medium <?= ($seccion == 'costos_listado') ? 'active' : '' ?>" 
+                      <a class="nav-link fw-medium <?= ($sub_seccion == 'costos_listado') ? 'active' : '' ?> text-secondary text-bold" 
                          data-bs-toggle="tab" 
-                         href="#costos_listado-tabs-icons" role="tab" aria-selected="<?= ($seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
-                        Costos planificados  <span class="badge bg-gradient-warning rounded-circle"><?php echo count($costos); ?></span>
+                         href="#costos_listado-tabs-icons" role="tab" aria-selected="<?= ($sub_seccion == 'costos') ? 'true' : 'false' ?>" tabindex="-1">
+                        Costos planificados  <span class="badge bg-secondary rounded-circle"><?php echo count($costos); ?></span>
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
-                      <a class="nav-link fw-medium align-middle <?= ($seccion == 'viajeros') ? 'active' : '' ?> " 
+                      <a class="nav-link fw-medium align-middle <?= ($sub_seccion == 'viajeros') ? 'active' : '' ?> text-secondary text-bold" 
                          data-bs-toggle="tab" 
                          href="#viajeros-tabs-icons" 
-                         role="tab" aria-selected="<?= ($seccion == 'viajeros') ? 'true' : 'false' ?>" tabindex="-1">
-                        Viajeros <span class="badge bg-primary rounded-circle"><?php echo count($viajeros); ?></span>
+                         role="tab" aria-selected="<?= ($sub_seccion == 'viajeros') ? 'true' : 'false' ?> " tabindex="-1">
+                        Viajeros <span class="badge bg-secondary rounded-circle"><?php echo count($viajeros); ?></span>
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
-                      <a class="nav-link fw-medium align-middle <?= ($seccion == 'hospedajes') ? 'active' : '' ?>" 
+                      <a class="nav-link fw-medium align-middle <?= ($sub_seccion == 'hospedajes') ? 'active' : '' ?> text-secondary text-bold" 
                          data-bs-toggle="tab" 
                          href="#hospedajes-tabs-icons" 
                          role="tab" 
-                         aria-selected="<?= ($seccion == 'hospedajes') ? 'true' : 'false' ?>">
-                        Hospedajes <span class="badge bg-info "><?php echo count($viajesHospedajes); ?></span>
+                         aria-selected="<?= ($sub_seccion == 'hospedajes') ? 'true' : 'false' ?>">
+                        Hospedajes <span class="badge bg-secondary "><?php echo count($viajesHospedajes); ?></span>
                       </a>
                   </li>
                 </ul>
               </div>
 
               <div class="tab-content">
-                <div class="tab-pane fade <?= ($seccion == 'costos') ? 'show active' : '' ?>" id="costos-tabs-icons" role="tabpanel" aria-labelledby="costos-tabs-icons-tab">
+                <div class="tab-pane fade <?= ($sub_seccion == 'costos_totales') ? 'show active' : '' ?>" id="costos-tabs-icons" role="tabpanel" aria-labelledby="costos-tabs-icons-tab">
                   <!-- Content for Costos Tab -->
 
                   <?php 
@@ -368,17 +373,17 @@
                   <?php } ?>
 
                 </div>
-                <div class="tab-pane fade <?= ($seccion == 'costos_listado') ? 'show active' : '' ?>" id="costos_listado-tabs-icons" role="tabpanel" aria-labelledby="costos_listado-tabs-icons-tab">
+                <div class="tab-pane fade <?= ($sub_seccion == 'costos_listado') ? 'show active' : '' ?>" id="costos_listado-tabs-icons" role="tabpanel" aria-labelledby="costos_listado-tabs-icons-tab">
                   <!-- Content for Costos Tab -->
 
                   <?php include("viajes_dashboard_costos_listado.php"); ?>
 
                 </div>
-                <div class="tab-pane fade <?= ($seccion == 'viajeros') ? 'show active' : '' ?>" id="viajeros-tabs-icons" role="tabpanel" aria-labelledby="viajeros-tabs-icons-tab">
+                <div class="tab-pane fade <?= ($sub_seccion == 'viajeros') ? 'show active' : '' ?>" id="viajeros-tabs-icons" role="tabpanel" aria-labelledby="viajeros-tabs-icons-tab">
                   <!-- Content for Viajeros Tab -->
                   <?php include("viajes_dashboard_usuarios.php"); ?>
                 </div>
-                <div class="tab-pane fade <?= ($seccion == 'hospedajes') ? 'show active' : '' ?>" id="hospedajes-tabs-icons" role="tabpanel" aria-labelledby="hospedajes-tabs-icons-tab">
+                <div class="tab-pane fade <?= ($sub_seccion == 'hospedajes') ? 'show active' : '' ?>" id="hospedajes-tabs-icons" role="tabpanel" aria-labelledby="hospedajes-tabs-icons-tab">
                   <!-- Content for Hospedajes Tab -->
                   <?php include("viajes_dashboard_hospedajes.php"); ?>
                 </div>
@@ -391,12 +396,12 @@
         <div class="col-3 d-flex">
           <div class="card mb-3 flex-fill">
             <div class="card-header pb-0">
-              <h5 class="card-title">Pagos realizados</h5>
+              <h5 class="card-title">Pagos realizados (próximamente)</h5>
             </div>
             <div class="card-body">
               <div class="">
                 <div class="d-grid gap-4">
-                  <div class="d-flex align-items-center">
+                  <!-- <div class="d-flex align-items-center">
                     <div class="bg-primary bg-opacity-10 rounded-2 p-3 me-3">
                       <i class="ni ni-credit-card fs-4" style="color:white;"></i>
                     </div>
@@ -436,7 +441,7 @@
                       </p>
                     </div>
                     <h4 class="m-0 ms-auto text-danger">$240.00</h4>
-                  </div>
+                  </div> -->
                   
                 </div>
               </div>
@@ -445,20 +450,10 @@
         </div>
       </div>
 
-      <div class="row pb-3">
+      <!-- <div class="row pb-3">
 
         <div class="col-4">
           <div class="card">
-            <!-- <div class="card-header pb-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0">DASHBOARD</p>
-                <div class="d-flex align-items-center">
-                  <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
-                    <i class="ni ni-bold-left"></i> Volver
-                  </a>
-                </div>
-              </div>
-            </div> -->
             <div class="card-body">
               <div class="row">
                 <div class="col">
@@ -522,7 +517,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
       
 
@@ -738,11 +733,12 @@
    <script>
 
     <?php 
-      $labels = array_column($estadisticasCostosTotales, 'subrubro');
-      $data_values = array_column($estadisticasCostosTotales, 'monto_total');
-      foreach ($estadisticasCostosTotales as $index => $item) {
-        $colors[] = "#".dechex(rand(0,16777215)); // colores aleatorios
-      }
+      if(count($estadisticasCostosTotales) != 0){
+        $labels = array_column($estadisticasCostosTotales, 'subrubro');
+        $data_values = array_column($estadisticasCostosTotales, 'monto_total');
+        foreach ($estadisticasCostosTotales as $index => $item) {
+          $colors[] = "#".dechex(rand(0,16777215)); // colores aleatorios
+        }
     ?>
     var ctx = document.getElementById('totalCostosChart').getContext('2d');
     var totalCostosChart = new Chart(ctx, {
@@ -821,6 +817,8 @@
         cutout: '70%' // Ajusta el tamaño del agujero en el centro
       }
     });
+
+    <?php } ?>
   </script>
 
   <?php include("includes/scripts_viajes_dashboard_usuarios.php"); ?>
@@ -934,8 +932,8 @@
     }
 
     .nav-border-top-primary .nav-link.active {
-      color: #5e72e4 !important;
-      border-top-color: #5e72e4 !important;
+      color: var(--bs-secondary);
+      border-top-color: var(--bs-secondary);
       border-top: 4px solid !important;
     }
 

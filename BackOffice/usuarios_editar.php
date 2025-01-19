@@ -12,39 +12,58 @@
   $errores = array();
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && ($_POST['action'] == "editar" || $_POST['action'] == "alta")) {
-    // Validación de campos
-    if (empty($_POST['nombre']))  $errores[] = 'Nombre es requerido';
-    // if (empty($_POST['apellido']))  $errores[] = 'Apellido es requerido';
-    if (empty($_POST['email']))  $errores[] = 'Email es requerido';
-    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))  $errores[] = 'Email inválido';
-    // if (empty($_POST['dni']))  $errores[] = 'DNI es requerido';
-    // if (!is_numeric($_POST['dni']))  $errores[] = 'DNI debe ser un número';
-    // if (empty($_POST['fecha_nacimiento']))  $errores[] = 'Fecha de nacimiento es requerido';
-    
-    // Validación de formato
-    // if (!empty($_POST['paisId']) && !is_numeric($_POST['paisId']))  $errores[] = 'País Id debe ser un número';
-    // if (!empty($_POST['sexoId']) && !is_numeric($_POST['sexoId']))  $errores[] = 'Sexo Id debe ser un número';
-    // if (!empty($_POST['habilitado_sys']) && !is_numeric($_POST['habilitado_sys']))  $errores[] = 'Habilitado sys debe ser un número';
+     // Validaciones básicas
+     if (empty($_POST['nombre']))  $errores[] = 'Nombre es requerido';
+     if (empty($_POST['email']))  $errores[] = 'Email es requerido';
+     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))  $errores[] = 'Email inválido';
+     
+     // Validar duplicados
+     $usuarioId = isset($_POST['usuarioId']) ? $_POST['usuarioId'] : 0;
+     
+     if ($_POST['action'] == "alta") {
+         // Para alta, verificar si ya existen
+         $email = $mysqli->real_escape_string($_POST['email']);
+         $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+     } else {
+         // Para editar, verificar que no lo tenga otro usuario
+         $email = $mysqli->real_escape_string($_POST['email']);
+         $dni = $mysqli->real_escape_string($_POST['dni']);
+         //$apodo = $mysqli->real_escape_string($_POST['apodo']);
+         $usuario = $mysqli->real_escape_string($_POST['usuario']);
+         $sql = "SELECT * FROM usuarios WHERE 
+                 (email = '$email' OR 
+                  dni = '$dni' OR 
+                  usuario = '$usuario') 
+                 AND usuarioId != $usuarioId";
+     }
+     
+     $result = $mysqli->query($sql);
+     
+     if($result->num_rows > 0) {
+         while($row = $result->fetch_assoc()) {
+             if($row['email'] == $_POST['email']) $errores[] = 'Email ya registrado para el usuarioId '.$row['usuarioId'];
+             if($row['dni'] == $_POST['dni']) $errores[] = 'DNI ya registrado para el usuarioId '.$row['usuarioId'];
+             //if($row['apodo'] == $_POST['apodo']) $errores[] = 'Apodo ya registrado para el usuarioId '.$row['usuarioId'];
+             if($row['usuario'] == $_POST['usuario']) $errores[] = 'Usuario ya registrado para el usuarioId '.$row['usuarioId'];
+         }
+     }
+     
+     if (count($errores) > 0) {
+         $respuesta = array('estado' => 'error_validacion', 'errores' => $errores);
+         echo json_encode($respuesta);
+     } else {
+         if(isset($_POST["usuarioId"]) && !empty($_POST["usuarioId"]))
+             echo editarUsuario($_POST);
+         else
+             echo altaUsuario($_POST);
+     }
+     die();
+}
 
-    if (count($errores) > 0) {
-      $respuesta = array('estado' => 'error_validacion', 'errores' => $errores);
-    } else {
-      $respuesta = array('estado' => 'ok');
-    }
-    
-    if(isset($respuesta["errores"]) && count($respuesta["errores"]) > 0)
-      echo json_encode($respuesta);
-    else{
 
-      if(isset($_POST["usuarioId"]) && !empty($_POST["usuarioId"]))
-        echo editarUsuario($_POST);
-      else
-        echo altaUsuario($_POST);
-    }
-
-    die();
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "eliminarRedSocial" ) {
+    eliminarRedSocial($_POST["usuarioRedSocialId"]);
   }
-
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateHabilitado($_POST["id"], $_POST["habilitado"], $tabla, $idNombre);
@@ -57,7 +76,9 @@
 
   
   $usuario = [];
-  $usuario["habilitado_sys"] = 1;
+  $usuario["habilitado_sys"] = 0;
+  $usuario["usuarioTipoId"] = 3;
+  $usuario["viajeroTipoId"] = 0;
   
   $pagos = [];
   $deudas = [];
@@ -84,7 +105,10 @@
   $redes = getRedes();
 
   $viajerosTipos = getViajesViajeroTipo();
+  //eco($usuario);
+  //eco($viajerosTipos);
   $usuariosTipo = getUsuariosTipo();
+  // eco($usuariosTipo);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -103,6 +127,7 @@
     <?php include("includes/navbar.php"); ?>
     <form action="" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="action" value="<?php echo $action ?>">
+      <input type="hidden" name="habilitado_sys" id="habilitado_sys" value="<?php echo $usuario["habilitado_sys"]?>">
       <input type="hidden" name="<?php echo $idNombre ?>" id="<?php echo $idNombre ?>" value="<?php echo $usuario[$idNombre] ?? null ?>">
       <div class="card shadow-lg mx-4 card-profile-bottom">
         <div class="card-body p-3">
@@ -141,7 +166,7 @@
               <div class="card">
                 <div class="card-header pb-0">
                   <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-0">Editar Perfil</p>
+                    <p class="mb-0"><?php echo ucfirst($action); ?> Perfil</p>
                     <div class="d-flex align-items-center">
                       <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                         <i class="ni ni-bold-left"></i> Volver
@@ -183,8 +208,8 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="username" class="form-control-label">Username</label>
-                        <input class="form-control" type="text" name="username" id="username" value="<?php echo isset($usuario["username"]) ? $usuario["username"] : "" ?>">
+                        <label for="usuario" class="form-control-label">Username</label>
+                        <input class="form-control" type="text" name="usuario" id="usuario" value="<?php echo isset($usuario["usuario"]) ? $usuario["usuario"] : "" ?>">
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -197,11 +222,11 @@
                       <div class="form-group">
                         <label for="paisId" class="form-control-label">Tipo usuario</label>
                         <select id="usuarioTipoId" name="usuarioTipoId" class="form-control">
-                          <option value="" selected disabled>Elegí un tipo de usuario</option>
+                            <option value="" selected disabled>Elegí un tipo de usuario</option>
                             <?php foreach ($usuariosTipo as $item): ?>
                             <option value="<?php echo $item['usuarioTipoId']; ?>" 
-                                    selected="<?php echo $item['usuarioTipoId'] == $usuario["usuarioTipoId"] ? "selected" : ""; ?>">
-                              <?php echo $item['tipo']; ?>
+                                    <?php echo $item['usuarioTipoId'] == $usuario["usuarioTipoId"] ? 'selected' : ''; ?>>
+                                <?php echo $item['tipo']; ?> 
                             </option>
                             <?php endforeach; ?>
                         </select>
@@ -212,11 +237,17 @@
                   <hr class="horizontal dark">
                   <p class="text-uppercase text-sm">Información de contacto</p>
                   <div class="row">
-                    <div class="col-12">
-                      <div class="form-group">
-                        <label for="email" class="form-control-label">Email</label>
-                        <input class="form-control" type="email" name="email" id="email" value="<?php echo isset($usuario["email"]) ? $usuario["email"] : "" ?>">
-                      </div>
+                    <div class="col-md-6">
+                     <div class="form-group">
+                       <label for="email" class="form-control-label">Email</label>
+                       <input class="form-control" type="email" name="email" id="email" value="<?php echo isset($usuario["email"]) ? $usuario["email"] : "" ?>">
+                     </div>
+                    </div>
+                    <div class="col-md-6">
+                     <div class="form-group">
+                       <label for="telefono" class="form-control-label">Teléfono</label>
+                       <input class="form-control" type="text" name="telefono" id="telefono" value="<?php echo isset($usuario["telefono"]) ? $usuario["telefono"] : "" ?>">
+                     </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
@@ -327,11 +358,11 @@
                       <div class="form-group">
                         <label for="talle" class="form-control-label">Tipo viajero</label>
                         <select id="viajeroTipoId" name="viajeroTipoId" class="form-control">
-                          <option value="" selected disabled>Elegí un tipo de viajero</option>
+                            <option value="" selected disabled>Elegí un tipo de viajero</option>
                             <?php foreach ($viajerosTipos as $item): ?>
                             <option value="<?php echo $item['viajeroTipoId']; ?>"
-                                    selected="<?php echo $item['viajeroTipoId'] == $usuario["viajeroTipoId"] ? "selected" : ""; ?>">
-                              <?php echo $item['viajero_tipo']; ?>
+                                    <?php echo $item['viajeroTipoId'] == $usuario["viajeroTipoId"] ? 'selected' : ''; ?>>
+                                <?php echo $item['viajero_tipo']; ?> 
                             </option>
                             <?php endforeach; ?>
                         </select>
@@ -376,21 +407,28 @@
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Red Social</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre de Usuario</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">URL</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Acciones</th>
                               </tr>
                             </thead>
                             <tbody id="tabla_redes_sociales">
                               <?php foreach ($usuarioRedes as $redSocial): ?>
                                 <tr>
                                   <td class="text-center">
-                                      <span class="fa fa-<?= strtolower($redSocial['red']) ?>">
+                                      <span class="fa fa-<?= strtolower($redSocial['red']) ?> ">
                                   </td>
                                   <td>
                                     <p class="text-sm font-weight-bold mb-0"><?= $redSocial['username'] ?></p>
                                   </td>
+                                 <td>
+                                     <button type="button" class="btn btn-link mb-0" onclick="window.open('<?= $redSocial['link'] ?>', '_blank')">
+                                         <i class="fas fa-external-link-alt"></i>
+                                     </button>
+                                  </td>
                                   <td>
-                                    <a class="text-sm font-weight-bold mb-0" href="<?= $redSocial['link'] ?>" target="_blank">
-                                      <?= $redSocial['link'] ?>
-                                    </a>
+                                    <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" 
+                                            onclick="eliminarRedSocial(<?= $redSocial['usuariosRedSocialId'] ?>)">
+                                        <i class="far fa-trash-alt me-2"></i>
+                                    </button>
                                   </td>
                                 </tr>
                               <?php endforeach; ?>
@@ -496,6 +534,48 @@
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
       </div>
+
+      <!-- Modal de confirmación para eliminar -->
+      <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <i class="fa fa-warning text-warning"></i>&nbsp;
+              <h6 class="modal-title">Confirmar eliminación</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ¿Está seguro que desea eliminar esta red social?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn bg-gradient-danger" id="btn-confirmar-eliminar">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal-campos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <i class="fa fa-warning text-warning"></i>&nbsp;
+              <h6 class="modal-title">Campos incompletos</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- El mensaje se insertará aquí dinámicamente -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+          </div>
+        </div>
+      </div>
   <script>
     function habilitadoCheckboxChange(checkbox) {
         var id = $(checkbox).data('id');
@@ -519,6 +599,31 @@
         });
     };
 
+    let redSocialIdAEliminar;
+
+    function eliminarRedSocial(id) {
+        redSocialIdAEliminar = id;
+        var myModal = new bootstrap.Modal(document.getElementById('modal-eliminar'));
+        myModal.show();
+    }
+
+    document.getElementById('btn-confirmar-eliminar').addEventListener('click', function() {
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                action: 'eliminarRedSocial',
+                usuarioRedSocialId: redSocialIdAEliminar
+            },
+            success: function(response) {
+                if(response.estado === 'ok') {
+                    location.reload();
+                }
+            }
+        });
+        bootstrap.Modal.getInstance(document.getElementById('modal-eliminar')).hide();
+    });
+
     $(document).ready(function() {
         
       $('.habilitado-checkbox').click(function() {
@@ -538,6 +643,7 @@
                   $(`#badge-${id}`).removeClass('bg-success bg-secondary')
                                    .addClass(habilitado == 1 ? 'bg-success' : 'bg-secondary')
                                    .text(habilitado == 1 ? 'HABILITADO' : 'DESACTIVADO');
+                                   $("#habilitado_sys").val(habilitado);
               },
               error: function(xhr, status, error) {
                   console.error('Error al actualizar:', error);
@@ -549,6 +655,26 @@
         var redId = $("#redId").val();
         var username = $("#nickname").val();
         var link = $("#url").val();
+        
+        // Crear lista de campos faltantes
+        var camposFaltantes = [];
+        if (redId === "") camposFaltantes.push("Red social");
+        if (username === "") camposFaltantes.push("Nickname");
+        if (link === "") camposFaltantes.push("URL");
+        
+        if (camposFaltantes.length > 0) {
+            // Actualizar el contenido del modal
+            let mensaje = "Por favor, complete los siguientes campos:<ul>";
+            camposFaltantes.forEach(campo => {
+                mensaje += `<li>${campo}</li>`;
+            });
+            mensaje += "</ul>";
+            
+            document.querySelector("#modal-campos .modal-body").innerHTML = mensaje;
+            var modalCampos = new bootstrap.Modal(document.getElementById('modal-campos'));
+            modalCampos.show();
+            return;
+        }
         
         if (redId != "" && nickname != "" && url != "") {
           $.ajax({
@@ -564,39 +690,44 @@
             dataType: "json",
             success: function(response) {
               if (response.estado == "ok") {
-                // Limpiar tabla
-                $("#tabla_redes_sociales").empty();
-
-                // Recorrer redes sociales y agregar filas a la tabla
-                $.each(response.redes, function(index, red_social) {
-                  var fila = `
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <span class="fa fa-` + (red_social.red).toLowerCase() + `">
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">` + red_social.username + `</p>
-                      </td>
-                      <td>
-                        <a class="text-sm font-weight-bold mb-0" href="` + red_social.link + `" target="_blank">
-                          ` + red_social.link + `
-                        </a>
-                      </td>
-                    </tr>
-                  `;
-                  $("#tabla_redes_sociales").append(fila);
-                });
-
-                limpiarCampos();
+               // Limpiar tabla
+                 $("#tabla_redes_sociales").empty();
+                 // Recorrer redes sociales y agregar filas a la tabla
+                 $.each(response.redes, function(index, red_social) {
+                     var fila = `
+                     <tr>
+                         <td>
+                             <div class="d-flex px-2">
+                                 <span class="fa fa-${(red_social.red).toLowerCase()}">
+                             </div>
+                         </td>
+                         <td>
+                             <p class="text-sm font-weight-bold mb-0">${red_social.username}</p>
+                         </td>
+                         <td>
+                             <button type="button" class="btn btn-link mb-0" onclick="window.open('${red_social.link}', '_blank')">
+                                 <i class="fas fa-external-link-alt"></i>
+                             </button>
+                         </td>
+                         <td>
+                             <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" 
+                                     onclick="eliminarRedSocial(${red_social.usuarioRedSocialId})">
+                                 <i class="far fa-trash-alt me-2"></i>
+                             </button>
+                         </td>
+                     </tr>
+                     `;
+                     $("#tabla_redes_sociales").append(fila);
+                 });
+                 limpiarCampos();
               } else {
                 alert("Error al agregar red social");
               }
             }
           });
         } else {
-          alert("Por favor, complete todos los campos");
+          var modalCampos = new bootstrap.Modal(document.getElementById('modal-campos'));
+          modalCampos.show();
         }
       });
 
