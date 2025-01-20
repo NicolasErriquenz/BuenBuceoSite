@@ -6,7 +6,7 @@
     <meta name="author" content="_nK">
 
     <link rel="icon" href="<?=$FAVICON_32?>" sizes="32x32">
-    <link rel="icon" href="<?=$FAVICON_196?>" sizes="192x192">
+    <link rel="icon" href="<?=$FAVICON_192?>" sizes="192x192">
     <link rel="apple-touch-icon" href="<?=$FAVICON_180?>">
       
     <title><?php echo SITE_TITLE; ?></title>

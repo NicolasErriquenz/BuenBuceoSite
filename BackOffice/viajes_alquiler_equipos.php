@@ -91,7 +91,7 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                <?php echo $paisNombre ?>
+                <?php echo $viaje["nombre"] ?>
               </h5>
               <!-- Fechas del viaje -->
               <p class="text-muted mb-0" style="font-size: 0.85rem;">
@@ -102,13 +102,13 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-end">
+          <!-- <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-end">
             <span id="badge-<?php echo $viaje[$idNombre]; ?>" class="badge habilitado-checkbox 
             <?php echo ($viaje["activo"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>" 
             style="font-size: 15px; padding: 10px 20px; border-radius: 10px;margin-right: 50px;">
               <?php echo ($viaje["activo"] == 1) ? 'ACTIVO' : 'FINALIZADO'; ?>
             </span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

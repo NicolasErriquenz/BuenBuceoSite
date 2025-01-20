@@ -79,7 +79,15 @@
                         ?>')"></div>
                       </td>
                       <td>
-                        <p class="text-sm mb-0"><?php echo $usuario["apodo"] ?> (<?php echo $usuario["nombre"] ?> <?php echo $usuario["apellido"] ?>)</p>
+                       <p class="text-sm mb-0">
+                            <?php 
+                                if (empty($usuario["apodo"])) {
+                                    echo $usuario["nombre"] . " (" . $usuario["nombre"] . " " . $usuario["apellido"] . ")";
+                                } else {
+                                    echo $usuario["apodo"] . " (" . $usuario["nombre"] . " " . $usuario["apellido"] . ")";
+                                }
+                            ?>
+                        </p>
                       </td>
                       <td>
                         <p class="text-sm mb-0"><?php echo $usuario["email"] ?> </p>

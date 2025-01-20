@@ -48,7 +48,7 @@
 
   $viajerosSinHospedaje = getViajesUsuarios($viajeId, $_GET[$idNombre], false);
   $viajerosConHospedaje = getViajesUsuarios($viajeId, $_GET[$idNombre], true);
-  
+  //eco($viajerosSinHospedaje);
   $viajeHospedajeHabitaciones = getViajeHospedajeHabitaciones($_GET[$idNombre]);
   $jsonViajeHospedajeHabitaciones = json_encode($viajeHospedajeHabitaciones);
   // print_r(($jsonViajeHospedajeHabitaciones));
@@ -91,7 +91,7 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                <?php echo $paisNombre ?>
+                <?php echo $viaje["nombre"] ?>
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
                 <?php echo $viaje["anio"] ?>
@@ -140,7 +140,10 @@
                                     <img src="_recursos/profile_pics/<?php echo isset($viajero['usuario']['imagen']) && !empty($viajero['usuario']['imagen']) ? $viajero['usuario']['imagen'] : 'generic_user.png'; ?>" 
                                         alt="<?php echo $viajero['usuario']['nombre'] . ' ' . $viajero['usuario']['apellido']; ?>" 
                                         class="img-profile">
-                                    <?php echo $viajero['usuario']['nombre'] . ' ' . $viajero['usuario']['apellido']; ?> (<?php echo $viajero['usuario']['apodo'] ?>)
+                                    <?php 
+                                       echo (empty($viajero['usuario']['apodo']) ? $viajero['usuario']['nombre'] : $viajero['usuario']['apodo']) . 
+                                       " (" . $viajero['usuario']['nombre'] . " " . $viajero['usuario']['apellido'] . ")";
+                                    ?>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -217,11 +220,13 @@
                     </div>
                     <div class="form-group">
                         <label for="camasDobles">Camas Dobles:</label>
-                        <input type="number" class="form-control" id="camasDobles" name="camasDobles" value="0">
+                        <input type="number" class="form-control" id="camasDobles" name="camasDobles" 
+                                value="0" min="0" oninput="this.value = this.value || 0">
                     </div>
                     <div class="form-group">
                         <label for="camasSimples">Camas Simples:</label>
-                        <input type="number" class="form-control" id="camasSimples" name="camasSimples" value="0">
+                        <input type="number" class="form-control" id="camasSimples" name="camasSimples" 
+                                value="0" min="0" oninput="this.value = this.value || 0">
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -402,7 +407,10 @@
         imgProfile.alt = viajero.usuario.nombre + ' ' + viajero.usuario.apellido;
         imgProfile.className = 'img-profile';
 
-        var textoViajero = document.createTextNode(viajero.usuario.nombre + ' ' + viajero.usuario.apellido + ' (' + viajero.usuario.apodo + ')');
+        var textoViajero = document.createTextNode(
+           (viajero.usuario.apodo ? viajero.usuario.apodo : viajero.usuario.nombre) + 
+           ' (' + viajero.usuario.nombre + ' ' + viajero.usuario.apellido + ')'
+        );
 
         viajeroLi.appendChild(imgProfile);
         viajeroLi.appendChild(textoViajero);

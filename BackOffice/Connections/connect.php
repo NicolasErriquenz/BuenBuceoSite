@@ -13,5 +13,4 @@
 	$resultTZ = $mysqli->query($queryTZ);
 	$mysqli->set_charset("utf8");
 	
-	require_once ("error_handler.php");
 ?>

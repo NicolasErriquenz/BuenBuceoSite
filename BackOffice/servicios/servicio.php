@@ -313,6 +313,7 @@
 	        'usuarioId' => isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : null,
 	        'habilitado_sys' => isset($datos['habilitado_sys']) ? 1 : 0,
 	        'deudaId' => $datos['deudaId'] ?? null,
+	        'viajesCostosOperativosId' => $datos['viajesCostosOperativosId'] ?? null,
 	        'viajesId' => $datos['viajesId'] ?? null,
 	    );
 
@@ -328,7 +329,7 @@
 	    }
 
 	    // Sentencia SQL para insertar el pago
-	    $sql = "INSERT INTO pagos (pagosSubrubroId, pagoTransaccionTipoId, fecha, monedaId, monto, medioPagoId, comentario, cotizacion, habilitado_sys, usuarioId, deudaId, viajesId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    $sql = "INSERT INTO pagos (pagosSubrubroId, pagoTransaccionTipoId, fecha, monedaId, monto, medioPagoId, comentario, cotizacion, habilitado_sys, usuarioId, deudaId, viajesCostosOperativosId, viajesId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	    $stmt = mysqli_prepare($mysqli, $sql);
 	    if (!$stmt) {
@@ -339,7 +340,7 @@
 	 	$comentario = $pago['comentario'] ?? '';
 		$usuarioId = $pago['usuarioId'] ?? null;
 
-		mysqli_stmt_bind_param($stmt, 'iisddiissdii', 
+		mysqli_stmt_bind_param($stmt, 'iisddiissdiii', 
 		    $pago['pagosSubrubroId'], 
 		    $pago['pagoTransaccionTipoId'], 
 		    $pago['fecha'], 
@@ -351,6 +352,7 @@
 		    $pago['habilitado_sys'], 
 		    $usuarioId, 
 		    $pago['deudaId'],
+		    $pago['viajesCostosOperativosId'],
 		    $pago['viajesId']
 		);
 
@@ -1127,14 +1129,16 @@
 	    $fecha_nacimiento = $mysqli->real_escape_string($datos['fecha_nacimiento'] ?? '0000-00-00');
 	    $telefono = $mysqli->real_escape_string($datos['telefono'] ?? '');
 
-	    // Valores numéricos
-	    $altura = $datos['altura'] ?? 0;
-	    $peso = $datos['peso'] ?? 0;
-	    $talle = $datos['talle'] ?? 0;
-	    $habilitado_sys = $datos['habilitado_sys'] ?? 1;
-	    $paisId = $datos['paisId'] ?? 0;
-	    $viajeroTipoId = $datos['viajeroTipoId'] ?? 0;
-	    $sexoId = $datos['sexoId'] ?? 0;
+	    // Valores numéricos - asegurándonos que sean 0 si están vacíos
+		$altura = !empty($datos['altura']) ? intval($datos['altura']) : 0;
+		$peso = !empty($datos['peso']) ? intval($datos['peso']) : 0;
+		$talle = !empty($datos['talle']) ? intval($datos['talle']) : 0;
+		$habilitado_sys = !empty($datos['habilitado_sys']) ? intval($datos['habilitado_sys']) : 1;
+		$paisId = !empty($datos['paisId']) ? intval($datos['paisId']) : 0;
+		$viajeroTipoId = !empty($datos['viajeroTipoId']) ? intval($datos['viajeroTipoId']) : 0;
+		$sexoId = !empty($datos['sexoId']) ? intval($datos['sexoId']) : 0;
+
+		
 
 	    // Campos extra solo para username, password y usuarioTipoId
 	    $camposExtra = [];
@@ -1163,90 +1167,102 @@
 	    $valoresExtraStr = $valoresExtra ? ', ' . implode(', ', $valoresExtra) : '';
 
 	    // Sentencia SQL
-	    $sql = "INSERT INTO usuarios (
-	        nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, 
-	        direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, 
-	        paisId, viajeroTipoId, sexoId, telefono $camposExtraStr
-	    ) VALUES (
-	        '$nombre', '$apellido', '$email', '$dni', '$apodo', '$comentario', 
-	        $altura, $peso, $talle, '$direccion', '$ciudad', '$fecha_registro', 
-	        '$fecha_nacimiento', $habilitado_sys, $paisId, $viajeroTipoId, $sexoId, '$telefono'
-	        $valoresExtraStr
-	    )";
+		$sql = "INSERT INTO usuarios (
+		    nombre, apellido, email, dni, apodo, comentario, altura, peso, talle, 
+		    direccion, ciudad, fecha_registro, fecha_nacimiento, habilitado_sys, 
+		    paisId, viajeroTipoId, sexoId, telefono" . 
+		    (!empty($datos['usuarioTipoId']) ? ", usuarioTipoId" : "") . 
+		") VALUES (
+		    '$nombre', '$apellido', '$email', '$dni', '$apodo', '$comentario', 
+		    $altura, $peso, $talle, '$direccion', '$ciudad', '$fecha_registro', 
+		    '$fecha_nacimiento', $habilitado_sys, $paisId, $viajeroTipoId, $sexoId, '$telefono'" .
+		    (!empty($datos['usuarioTipoId']) ? ", " . intval($datos['usuarioTipoId']) : "") .
+		")";
 
 	    // Ejecutar la sentencia
 	    if ($mysqli->query($sql)) {
 	        $usuarioId = $mysqli->insert_id;
 
 		    if ($_FILES['imagen']['size'] > 0) {
-		        $imagen = $_FILES['imagen'];
-		        $nombreArchivo = $usuarioId . '.jpg';
-		        $nombreArchivoSmall = $usuarioId . '_small.jpg';
-		        $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
-		        $rutaGuardarSmall = '_recursos/profile_pics/' . $nombreArchivoSmall;
+			    $imagen = $_FILES['imagen'];
+			    $nombreArchivo = $usuarioId . '.jpg';
+			    $nombreArchivoSmall = $usuarioId . '_small.jpg';
+			    $rutaGuardar = '_recursos/profile_pics/' . $nombreArchivo;
+			    $rutaGuardarSmall = '_recursos/profile_pics/' . $nombreArchivoSmall;
 
-		        // Verificar tipo de archivo
-		        $tiposPermitidos = array('image/jpeg', 'image/png');
-		        if (!in_array($imagen['type'], $tiposPermitidos)) {
-		            echo 'Error: Solo se aceptan imágenes JPEG y PNG';
-		            return;
-		        }
+			    // Verificar tipo de archivo
+			    $tiposPermitidos = array('image/jpeg', 'image/png');
+			    if (!in_array($imagen['type'], $tiposPermitidos)) {
+			        echo json_encode(['estado' => 'error', 'mensaje' => 'Solo se aceptan imágenes JPEG y PNG']);
+			        return;
+			    }
 
-		        // Guardar imagen original
-		        move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
+			    // Guardar imagen original
+			    move_uploaded_file($imagen['tmp_name'], $rutaGuardar);
 
-		        // Crear versión pequeña de la imagen
-		        $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
-		        switch ($tipoImagen) {
-		            case 'jpg':
-		            case 'jpeg':
-		                $img = imagecreatefromjpeg($rutaGuardar);
-		                break;
-		            case 'png':
-		                $img = imagecreatefrompng($rutaGuardar);
-		                break;
-		        }
+			    // Verificar si podemos procesar la imagen
+			    if (extension_loaded('gd') && function_exists('imagecreatefromjpeg') && function_exists('imagecreatefrompng')) {
+			        // Código original de procesamiento de imagen
+			        $tipoImagen = strtolower(pathinfo($rutaGuardar, PATHINFO_EXTENSION));
+			        switch ($tipoImagen) {
+			            case 'jpg':
+			            case 'jpeg':
+			                $img = imagecreatefromjpeg($rutaGuardar);
+			                break;
+			            case 'png':
+			                $img = imagecreatefrompng($rutaGuardar);
+			                break;
+			        }
 
-		        if (!$img) {
-		            echo 'Error: No se pudo crear la imagen';
-		            return;
-		        }
+			        if ($img) {
+			            if (function_exists('exif_read_data')) {
+			                $exif = @exif_read_data($rutaGuardar);
+			                $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
 
-		        $exif = exif_read_data($rutaGuardar);
-		        $orientacion = isset($exif['Orientation']) ? $exif['Orientation'] : 1;
+			                switch ($orientacion) {
+			                    case 3:
+			                        $img = imagerotate($img, 180, 0);
+			                        break;
+			                    case 6:
+			                        $img = imagerotate($img, -90, 0);
+			                        break;
+			                    case 8:
+			                        $img = imagerotate($img, 90, 0);
+			                        break;
+			                }
+			            }
 
-		        switch ($orientacion) {
-		            case 3:
-		                // Rotar 180 grados
-		                $img = imagerotate($img, 180, 0);
-		                break;
-		            case 6:
-		                // Rotar 90 grados a la derecha
-		                $img = imagerotate($img, -90, 0);
-		                break;
-		            case 8:
-		                // Rotar 90 grados a la izquierda
-		                $img = imagerotate($img, 90, 0);
-		                break;
-		        }
+			            $ancho = 100;
+			            $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
+			            $imgSmall = imagecreatetruecolor($ancho, $alto);
+			            imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
+			            imagejpeg($imgSmall, $rutaGuardarSmall);
+			        }
+			    } else {
+			        // Si no podemos procesar, simplemente copiamos la imagen original como versión small
+			        copy($rutaGuardar, $rutaGuardarSmall);
+			    }
 
-		        $ancho = 100;
-		        $alto = (int) (($ancho / imagesx($img)) * imagesy($img));
-		        $imgSmall = imagecreatetruecolor($ancho, $alto);
-		        imagecopyresampled($imgSmall, $img, 0, 0, 0, 0, $ancho, $alto, imagesx($img), imagesy($img));
-		        imagejpeg($imgSmall, $rutaGuardarSmall);
-
-		        // Actualizar campo imagen en la base de datos
-		        $sql = "UPDATE usuarios SET imagen = ? WHERE usuarioId = ?";
-		        $stmt = mysqli_prepare($mysqli, $sql);
-		        $nombreImagen = $nombreArchivoSmall;
-				mysqli_stmt_bind_param($stmt, 'si', $nombreImagen, $usuarioId);
-		        mysqli_stmt_execute($stmt);
-		    }
+			    // Actualizar campo imagen en la base de datos
+			    $nombreImagen = $mysqli->real_escape_string($nombreArchivoSmall);
+			    $sql = "UPDATE usuarios SET imagen = '$nombreImagen' WHERE usuarioId = $usuarioId";
+			    
+			    if (!$mysqli->query($sql)) {
+			        echo json_encode(['estado' => 'error', 'mensaje' => 'Error al actualizar la imagen en la base de datos: ' . $mysqli->error]);
+			        return;
+			    }
+			}
 
 		    echo json_encode(array('estado' => 'ok', 'usuarioId' => $usuarioId));
 		} else {
-		    echo json_encode(array('estado' => 'error', 'mensaje' => 'Error al insertar usuario'));
+		    if (!$mysqli->query($sql)) {
+			    echo json_encode([
+			        'estado' => 'error', 
+			        'mensaje' => 'Error al insertar usuario: ' . $mysqli->error,
+			        'sql' => $sql  // Agregar el SQL para debugging
+			    ]);
+			    return;
+			}
 		}			
 	}
 
@@ -1627,41 +1643,41 @@
 	function getViajesUsuarios($viajeId, $viajesHospedajesId, $conHospedaje = false) {
 	  global $mysqli;
 	  
-	 $query = "
-	  SELECT 
-	    vu.viajesUsuariosId,
-	    vu.habilitado_sys,
-	    u.*,
-	    vvt.viajeroTipoId,
-	    vvt.viajero_tipo
-	  FROM 
-	    viajes_usuarios vu
-	  INNER JOIN 
-	    usuarios u ON u.usuarioId = vu.usuarioId
-	  INNER JOIN 
-	    viajes_viajero_tipo vvt ON vu.viajeroTipoId = vvt.viajeroTipoId
-	";
+		 $query = "
+		  SELECT 
+		    vu.viajesUsuariosId,
+		    vu.habilitado_sys,
+		    u.*,
+		    vvt.viajeroTipoId,
+		    vvt.viajero_tipo
+		  FROM 
+		    viajes_usuarios vu
+		  INNER JOIN 
+		    usuarios u ON u.usuarioId = vu.usuarioId
+		  INNER JOIN 
+		    viajes_viajero_tipo vvt ON vu.viajeroTipoId = vvt.viajeroTipoId
+		";
 
-	if ($conHospedaje) {
-	  $query .= "
-	    INNER JOIN 
-	      viajes_hospedajes_habitaciones_usuarios vhhhu ON vu.viajesUsuariosId = vhhhu.viajesUsuariosId
-	    WHERE 
-	      vhhhu.viajesHospedajesId = '$viajesHospedajesId'
-	  ";
-	} else {
-	  $query .= "
-	    LEFT JOIN 
-	      viajes_hospedajes_habitaciones_usuarios vhhhu ON vu.viajesUsuariosId = vhhhu.viajesUsuariosId
-	    WHERE 
-	      vhhhu.viajesHospedajesId <> '$viajesHospedajesId' OR vhhhu.viajesUsuariosId IS NULL
-	  ";
-	}
+		if ($conHospedaje) {
+		  $query .= "
+		    INNER JOIN 
+		      viajes_hospedajes_habitaciones_usuarios vhhhu ON vu.viajesUsuariosId = vhhhu.viajesUsuariosId
+		    WHERE 
+		      vhhhu.viajesHospedajesId = '$viajesHospedajesId'
+		  ";
+		} else {
+		  $query .= "
+		    LEFT JOIN 
+		      viajes_hospedajes_habitaciones_usuarios vhhhu ON vu.viajesUsuariosId = vhhhu.viajesUsuariosId
+		    WHERE 
+		      (vhhhu.viajesHospedajesId <> '$viajesHospedajesId' OR vhhhu.viajesUsuariosId IS NULL)
+		  ";
+		}
 
-	$query .= "
-	  AND 
-	    vu.viajesId = '$viajeId'
-	";
+		$query .= "
+		  AND 
+		    vu.viajesId = '$viajeId'
+		";
 	  
 	
 	  $result = $mysqli->query($query);
@@ -1704,6 +1720,7 @@
 	  
 	  return $viajeros;
 	}
+
 	function getHospedajes($paisId = null) {
 	  global $mysqli;
 
@@ -3527,16 +3544,17 @@
 	    global $mysqli;
 	    
 	    $sql = "SELECT 
-	                vco.*,
-	                CONCAT(pr.rubro, ' - ', ps.subrubro) as categoria
-	            FROM 
-	                viajes_costos_operativos vco
-	                INNER JOIN pagos_subrubros ps ON vco.pagosSubrubroId = ps.pagosSubrubroId
-	                INNER JOIN pagos_rubros pr ON ps.pagosRubrosId = pr.pagosRubroId
-	            WHERE 
-	                vco.viajesId = ?
-	            ORDER BY 
-	                vco.fecha DESC";
+	        vco.*,
+	        CONCAT(pr.rubro, ' - ', ps.subrubro) as categoria,
+	        COALESCE((SELECT SUM(monto) FROM pagos WHERE viajesCostosOperativosId = vco.viajesCostosOperativosId), 0) as total_pagado
+	    FROM 
+	        viajes_costos_operativos vco
+	        INNER JOIN pagos_subrubros ps ON vco.pagosSubrubroId = ps.pagosSubrubroId
+	        INNER JOIN pagos_rubros pr ON ps.pagosRubrosId = pr.pagosRubroId
+	    WHERE 
+	        vco.viajesId = ?
+	    ORDER BY 
+	        vco.fecha DESC";
 	                
 	    $stmt = $mysqli->prepare($sql);
 	    $stmt->bind_param("i", $viajesId);
@@ -3549,4 +3567,97 @@
 	    }
 	    
 	    return $costosOperativos;
+	}
+
+	function altaCostoOperativo($datos) {
+	    global $mysqli;
+	    
+	    // Si es liberado y el monto es positivo, hacerlo negativo
+	    $monto = $datos['monto'];
+	    if (isset($datos['liberado']) && $datos['liberado'] && $monto > 0) {
+	        $monto = -$monto;
+	    }
+	    
+	    $sql = "INSERT INTO viajes_costos_operativos 
+	            (monto, descripcion, pagosSubrubroId, viajesId, liberado, fecha) 
+	            VALUES (?, ?, ?, ?, ?, ?)";
+	            
+	    $stmt = $mysqli->prepare($sql);
+	    
+	    $liberado = isset($datos['liberado']) ? 1 : 0;
+	    $fecha = date('Y-m-d H:i:s', strtotime($datos['fecha']));
+	    
+	    $stmt->bind_param(
+	        "dsiiis",
+	        $monto,
+	        $datos['descripcion'],
+	        $datos['pagosSubrubroId'],
+	        $datos['viajesId'],
+	        $liberado,
+	        $fecha
+	    );
+	    
+	    return $stmt->execute();
+	}
+
+	function editarCostoOperativo($datos) {
+	    global $mysqli;
+	    
+	    $viajesCostosOperativosId = $datos['viajesCostosOperativosId'];
+	    $viajesId = $datos['viajesId'];
+	    $pagosSubrubroId = $datos['pagosSubrubroId'];
+	    $descripcion = $mysqli->real_escape_string($datos['descripcion']);
+	    $monto = $datos['monto'];
+	    $liberado = isset($datos['liberado']) ? 1 : 0;
+	    $fecha = date('Y-m-d H:i:s', strtotime($datos['fecha']));
+	    
+	    // Si es liberado y el monto es positivo, hacerlo negativo
+	    if ($liberado && $monto > 0) {
+	        $monto = -$monto;
+	    }
+	    
+	    $sql = "UPDATE viajes_costos_operativos
+	            SET monto = '$monto',
+	                descripcion = '$descripcion',
+	                pagosSubrubroId = '$pagosSubrubroId',
+	                viajesId = '$viajesId',
+	                liberado = '$liberado',
+	                fecha = '$fecha'
+	            WHERE viajesCostosOperativosId = '$viajesCostosOperativosId'";
+	    
+	    return $mysqli->query($sql);
+	}
+
+	function eliminarCosto($viajesCostosOperativosId) {
+	    global $mysqli;
+
+	    // Verificar si el costo está asociado a pagos
+	    $queryPagos = "SELECT COUNT(*) AS total FROM pagos WHERE viajesCostosOperativosId = $viajesCostosOperativosId";
+	    $resultadoPagos = $mysqli->query($queryPagos);
+	    $filaPagos = $resultadoPagos->fetch_assoc();
+	    $totalPagos = $filaPagos['total'];
+
+	    if ($totalPagos > 0) {
+	        // El costo tiene pagos asociados, no se puede eliminar
+	        return json_encode(array(
+	            "success" => false,
+	            "message" => "No se puede eliminar el costo porque tiene pagos asociados."
+	        ));
+	    } else {
+	        // El costo no tiene pagos asociados, se puede eliminar
+	        $sql = "DELETE FROM viajes_costos_operativos WHERE viajesCostosOperativosId = $viajesCostosOperativosId";
+	        $resultadoCosto = $mysqli->query($sql);
+
+	        if ($resultadoCosto) {
+	            return json_encode(array(
+	                "success" => true,
+	                "message" => "El costo se ha eliminado correctamente."
+	            ));
+	        } else {
+	            return json_encode(array(
+	                "success" => false,
+	                "message" => "Ha ocurrido un error al eliminar el costo."
+	            ));
+	        }
+	    }
 	}

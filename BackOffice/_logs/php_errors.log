@@ -1,0 +1,197 @@
+[2025-01-20 00:25:52] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes.php(5): require_once()
+--------------------------------
+[2025-01-20 00:25:54] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:25:54] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:25:55] ERROR: Undefined variable $totalVentaPaquetes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php
+Línea: 284
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php(284): {closure}()
+--------------------------------
+[2025-01-20 00:25:55] ERROR: Undefined variable $totalDeudaViaje
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php
+Línea: 285
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php(285): {closure}()
+--------------------------------
+[2025-01-20 00:25:55] ERROR: Undefined variable $totalCobrado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php
+Línea: 286
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php(286): {closure}()
+--------------------------------
+[2025-01-20 00:25:55] ERROR: Undefined variable $totalPendiente
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php
+Línea: 288
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php(288): {closure}()
+--------------------------------
+[2025-01-20 00:25:55] ERROR: Undefined variable $totalPendiente
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php
+Línea: 289
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_gastos_operativos.php(289): {closure}()
+--------------------------------
+[2025-01-20 00:32:44] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:32:44] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:33:29] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:33:29] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:33:41] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:33:41] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:33:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:33:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:33:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:33:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:34:04] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:34:04] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------
+[2025-01-20 00:57:33] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 607
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(607): {closure}()
+--------------------------------
+[2025-01-20 00:57:33] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php
+Línea: 610
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(610): {closure}()
+--------------------------------

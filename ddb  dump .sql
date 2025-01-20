@@ -29,6 +29,26 @@ CREATE TABLE IF NOT EXISTS `administradores` (
 INSERT INTO `administradores` (`id`, `nombre`, `foto`, `usuario`, `password`, `tipo`) VALUES
   (1, 'Cholo', 'admin_profile_pic.jpg', 'cholodiver', '81aae10cc2e8712ae7bb18cbb92f7a2c', 1);
 
+-- Volcando estructura para tabla buenbuceo.alquiler_equipos
+CREATE TABLE IF NOT EXISTS `alquiler_equipos` (
+  `alquilerEquiposId` int(11) NOT NULL AUTO_INCREMENT,
+  `equipo` varchar(100) NOT NULL,
+  `acronimo` varchar(100) NOT NULL,
+  `orden` int(2) DEFAULT NULL,
+  PRIMARY KEY (`alquilerEquiposId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla buenbuceo.alquiler_equipos: ~8 rows (aproximadamente)
+INSERT INTO `alquiler_equipos` (`alquilerEquiposId`, `equipo`, `acronimo`, `orden`) VALUES
+  (1, 'Wetsuit', 'WSU', 1),
+  (2, 'Máscara', 'Msc', 2),
+  (3, 'Aletas', 'Ale', 3),
+  (4, 'BCD', 'Bcd', 4),
+  (5, 'Regulador', 'Reg', 5),
+  (6, 'Botas', 'Bot', 6),
+  (7, 'Guantes', 'Gua', 7),
+  (8, 'Equipo completo', 'FULL', 0);
+
 -- Volcando estructura para tabla buenbuceo.cursos
 CREATE TABLE IF NOT EXISTS `cursos` (
   `id` int(11) DEFAULT NULL,
@@ -99,12 +119,29 @@ CREATE TABLE IF NOT EXISTS `deudas` (
   `comentario` varchar(255) DEFAULT NULL,
   `habilitado_sys` int(1) DEFAULT NULL,
   PRIMARY KEY (`deudaId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.deudas: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.deudas: ~19 rows (aproximadamente)
 INSERT INTO `deudas` (`deudaId`, `deuda`, `monedaId`, `usuarioId`, `viajesId`, `pagosSubrubroId`, `comentario`, `habilitado_sys`) VALUES
   (1, 150000, 1, 1, NULL, 1, NULL, 1),
-  (2, 1233, 2, 2, NULL, 2, '', 1);
+  (2, 1233, 2, 2, NULL, 2, '', 1),
+  (22, 3500, 2, 27, 7, 19, 'Venta paquete México 2024', 1),
+  (23, 3200, 2, 25, 7, 19, 'Venta paquete México 2024', 1),
+  (24, 2400, 2, 24, 7, 19, 'Venta paquete México 2024', 1),
+  (25, 3200, 2, 23, 7, 19, 'Venta paquete México 2024', 1),
+  (27, 3152.23, 2, 5, 7, 19, 'Venta paquete México 2024', 1),
+  (32, 4000, 2, 22, 7, 19, 'Venta paquete México 2024', 1),
+  (33, 2904, 2, 15, 7, 19, 'Venta paquete México 2024', 1),
+  (34, 2750, 2, 19, 7, 19, 'Venta paquete México 2024', 1),
+  (35, 2529, 2, 8, 7, 19, 'Venta paquete México 2024', 1),
+  (36, 4000, 2, 20, 7, 19, 'Venta paquete México 2024', 1),
+  (37, 2900, 2, 21, 7, 19, 'Venta paquete México 2024', 1),
+  (39, 2000, 2, 18, 7, 19, 'Venta paquete México 2024', 1),
+  (40, 2900, 2, 12, 7, 19, 'Venta paquete México 2024', 1),
+  (41, 2900, 2, 13, 7, 19, 'Venta paquete México 2024', 1),
+  (42, 2900, 2, 9, 7, 19, 'Venta paquete México 2024', 1),
+  (43, 3900, 2, 7, 7, 19, 'Venta paquete México 2024', 1),
+  (44, 1500, 2, 17, 7, 19, 'Venta paquete México 2024', 1);
 
 -- Volcando estructura para tabla buenbuceo.hospedajes
 CREATE TABLE IF NOT EXISTS `hospedajes` (
@@ -228,14 +265,23 @@ CREATE TABLE IF NOT EXISTS `pagos` (
   `deudaId` int(11) DEFAULT NULL,
   `viajesId` int(11) DEFAULT NULL,
   PRIMARY KEY (`pagoId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.pagos: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.pagos: ~11 rows (aproximadamente)
 INSERT INTO `pagos` (`pagoId`, `comentario`, `pagosSubrubroId`, `pagoTransaccionTipoId`, `fecha`, `monedaId`, `cotizacion`, `monto`, `medioPagoId`, `habilitado_sys`, `usuarioId`, `deudaId`, `viajesId`) VALUES
-  (1, '', '14', 2, '2024-11-03', 2, 1180, 1500, 1, 1, 1, 1, 7),
+  (1, '', '14', 2, '2024-11-03', 2, 1180, 1400, 1, 1, 1, 1, 7),
   (2, '', '14', 1, '2024-11-03', 1, 0, 12312, 1, 1, 1, 1, NULL),
   (3, '0', '14', 2, '2024-11-06', 1, NULL, 1500, 1, 1, NULL, NULL, NULL),
-  (4, '0', '18', 1, '2024-11-20', 2, 1125, 1205, 2, 1, NULL, NULL, 7);
+  (4, '0', '18', 1, '2024-11-20', 2, 1125, 1205, 2, 1, NULL, NULL, 7),
+  (5, '0', '19', 2, '2025-01-04', 2, 1195, 2904, 1, 1, 15, 33, 7),
+  (6, '0', '19', 2, '2025-01-04', 2, 1195, 1000, 1, 1, 9, 42, 7),
+  (7, '0', '19', 2, '2025-01-04', 2, 1195, 1000, 1, 1, 9, 42, 7),
+  (8, '0', '19', 2, '2025-01-04', 2, 1195, 1000, 1, 1, 18, 39, 7),
+  (9, '0', '19', 2, '2025-01-04', 2, 1195, 1000, 2, 1, 19, 34, 7),
+  (10, '0', '1', 2, '2025-01-05', 1, NULL, 15000, 1, 1, 1, 1, NULL),
+  (11, '0', '19', 2, '2025-01-05', 2, 1195, 900, 2, 1, 9, 42, 7),
+  (12, '0', '19', 2, '2025-01-05', 2, 1195, 1700, 2, 1, 17, 44, 7),
+  (13, '0', '19', 2, '2025-01-05', 2, 1195, 3152.23, 2, 1, 5, 27, 7);
 
 -- Volcando estructura para tabla buenbuceo.pagos_rubros
 CREATE TABLE IF NOT EXISTS `pagos_rubros` (
@@ -265,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `pagos_subrubros` (
   PRIMARY KEY (`pagosSubrubroId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.pagos_subrubros: ~17 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.pagos_subrubros: ~20 rows (aproximadamente)
 INSERT INTO `pagos_subrubros` (`pagosSubrubroId`, `subrubro`, `pagosRubrosId`, `habilitado_sys`) VALUES
   (1, 'Pileta Hurlingham', 6, 1),
   (2, 'Pileta CABA', 6, 1),
@@ -396,6 +442,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `fecha_registro` date DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `imagen` varchar(50) DEFAULT NULL,
+  `usuario` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `usuarioTipoId` int(2) DEFAULT 3,
+  `viajeroTipoId` int(2) DEFAULT 3,
   `habilitado_sys` int(1) DEFAULT 1,
   `paisId` int(11) DEFAULT NULL,
   `sexoId` int(1) DEFAULT NULL,
@@ -403,34 +453,34 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla buenbuceo.usuarios: ~27 rows (aproximadamente)
-INSERT INTO `usuarios` (`usuarioId`, `nombre`, `apellido`, `email`, `dni`, `apodo`, `altura`, `peso`, `talle`, `comentario`, `direccion`, `ciudad`, `fecha_registro`, `fecha_nacimiento`, `imagen`, `habilitado_sys`, `paisId`, `sexoId`) VALUES
-  (1, 'Nicolas', 'Erriquenz', 'nykolasvs@gmail.com', 29767357, 'Nykkodor', NULL, NULL, NULL, 'Good person', 'Rosario 440', 'Buenos Aires', '2024-11-03', '1982-09-16', '4_small.jpg', 0, 1, 1),
-  (2, 'Facundo', 'Mior', 'nykolasvs@gmail.com', 0, 'cholo', '', '', '', '', 'Rosario 440', 'Buenos Aires', '2024-11-05', '0000-00-00', '2_small.jpg', 0, 1, 0),
-  (3, 'Chris', 'Russo', 'pocho@pochopack.com', 0, 'Pochoclo', '178', '95', 'xl', '', '', '', '2024-11-05', '0000-00-00', '3_small.jpg', 0, 0, 0),
-  (4, 'Cintia', 'escobar', 'asdasd@asdasd.asd', 2147483647, 'Chola', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', NULL, 0, 1, 2),
-  (5, 'Lucila', '', 'asdasd@asdasd.asd', 2147483647, 'Chola1', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', '5_small.jpg', 0, 1, 2),
-  (6, 'Manu', '', 'asdasd@asdasd.asd', 2147483647, 'Chola', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', '6_small.jpg', 0, 3, 2),
-  (7, 'Dani ', 'Calabrese', 'asdad@asdasd.asd', 235698465, 'El loco', '', '', '', 'que groso el loco', '', '', NULL, '0000-00-00', NULL, 0, 1, 0),
-  (8, 'Pablo ', 'Jazma', 'asdad@asdasd.asd', 235698465, 'El loco', '', '', '', 'que groso el loco', '', '', NULL, '1982-09-16', NULL, 0, 1, 0),
-  (9, 'Alberto ', 'Sanchez', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 0, 1, 0),
-  (10, 'Enrique', '', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 0, 1, 0),
-  (11, 'Graciela ', 'Merino', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 0, 1, 0),
-  (12, 'Nora ', 'Amago', 'asdasda@asdasd.asd', 0, 'asdads', '', '', '', '', '', '', NULL, '0000-00-00', '12_small.jpg', 0, 1, 0),
-  (13, 'Adrián ', 'Robaina', 'asdasda@asdasd.asd', 0, 'asdads', '', '', '', '', '', '', NULL, '0000-00-00', '13_small.jpg', 0, 1, 0),
-  (14, 'Ana', 'Carabajal', 'ana@gmail.com', 0, 'Ana', '', '', '', '', '', '', NULL, '0000-00-00', '14_small.jpg', 0, 1, 0),
-  (15, 'Meli', '', 'Meli@Meli.com', 0, 'Meli', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (16, 'Eli ', '', 'elimama@mama.com', 0, 'Mamá Meli', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (17, 'Monica', '', 'Monica@Monica.vom', 0, 'Monica', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (18, 'Agustín', '', 'Agustin@Agustin.com', 0, 'Agustín', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (19, 'Adriana ', 'Calabrese', 'Calabrese@Calabrese.com', 0, 'Calabrese', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (20, 'Hernán ', 'Diaz', 'Diaz@Diaz.com', 0, 'Diaz', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (21, 'Carina ', 'Guaragna', 'Guaragna@Guaragna.com', 0, 'Guaragna', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (22, 'María ', 'Gallo', 'Gallo@Gallo.com', 0, 'Gallo', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (23, 'José Manuel ', 'Alvarez', 'Alvarez@Alvarez.com', 0, 'Alvarez', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (24, 'Soledad ', 'Alvarez', 'Alvarez@Alvarez.com', 0, 'Alvarez', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (25, 'Silvia Elizabeth ', 'Encina', 'Encina@Encina.com', 0, 'Encina', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (26, 'Brisa ', 'Diaz', 'Diaz@Diaz.com', 0, 'Diaz', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0),
-  (27, 'Adri', '', 'Adri@Adri.com', 0, 'Adri', '', '', '', '', '', '', NULL, '0000-00-00', NULL, 1, 1, 0);
+INSERT INTO `usuarios` (`usuarioId`, `nombre`, `apellido`, `email`, `dni`, `apodo`, `altura`, `peso`, `talle`, `comentario`, `direccion`, `ciudad`, `fecha_registro`, `fecha_nacimiento`, `imagen`, `usuario`, `password`, `usuarioTipoId`, `viajeroTipoId`, `habilitado_sys`, `paisId`, `sexoId`) VALUES
+  (1, 'Nicolas', 'Erriquenz', 'nykolasvs@gmail.com', 29767357, 'Nykkodor', NULL, NULL, NULL, 'Good person', 'Rosario 440', 'Buenos Aires', '2024-11-03', '1982-09-16', '4_small.jpg', 'nico', '827ccb0eea8a706c4c34a16891f84e7b', 2, 3, 0, 1, 1),
+  (2, 'Facundo', 'Mior', 'nykolasvs@gmail.com', 0, 'cholo', '', '', '', '', 'Rosario 440', 'Buenos Aires', '2024-11-05', '0000-00-00', '2_small.jpg', 'cholodiver', '81aae10cc2e8712ae7bb18cbb92f7a2c', 1, 3, 0, 1, 0),
+  (3, 'Chris', 'Russo', 'pocho@pochopack.com', 0, 'Pochoclo', '178', '95', 'xl', '', '', '', '2024-11-05', '0000-00-00', '3_small.jpg', NULL, NULL, 3, 3, 0, 0, 0),
+  (4, 'Cintia', 'escobar', 'asdasd@asdasd.asd', 2147483647, 'Chola', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', NULL, NULL, NULL, 3, 3, 0, 1, 2),
+  (5, 'Lucila', '', 'asdasd@asdasd.asd', 2147483647, 'Chola1', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', '5_small.jpg', NULL, NULL, 3, 3, 0, 1, 2),
+  (6, 'Manu', '', 'asdasd@asdasd.asd', 2147483647, 'Chola', '', '', '', '', '3011 Av 25 de Mayo', 'GERLI (PDO.DE LANUS)', NULL, '1988-11-30', '6_small.jpg', NULL, NULL, 3, 3, 0, 3, 2),
+  (7, 'Dani ', 'Calabrese', 'asdad@asdasd.asd', 235698465, 'El loco', '', '', '', 'que groso el loco', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 0, 1, 0),
+  (8, 'Pablo ', 'Jazma', 'asdad@asdasd.asd', 235698465, 'El loco', '', '', '', 'que groso el loco', '', '', NULL, '1982-09-16', NULL, NULL, NULL, 3, 3, 0, 1, 0),
+  (9, 'Alberto ', 'Sanchez', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 0, 1, 0),
+  (10, 'Enrique', '', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 0, 1, 0),
+  (11, 'Graciela ', 'Merino', 'asdasda@sdasd.asd', 0, 'asdasd', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 0, 1, 0),
+  (12, 'Nora ', 'Amago', 'asdasda@asdasd.asd', 0, 'asdads', '', '', '', '', '', '', NULL, '0000-00-00', '12_small.jpg', NULL, NULL, 3, 3, 0, 1, 0),
+  (13, 'Adrián ', 'Robaina', 'asdasda@asdasd.asd', 0, 'asdads', '', '', '', '', '', '', NULL, '0000-00-00', '13_small.jpg', NULL, NULL, 3, 3, 0, 1, 0),
+  (14, 'Ana', 'Carabajal', 'ana@gmail.com', 0, 'Ana', '', '', '', '', '', '', NULL, '0000-00-00', '14_small.jpg', 'ana', '81aae10cc2e8712ae7bb18cbb92f7a2c', 2, 3, 0, 1, 0),
+  (15, 'Meli', '', 'Meli@Meli.com', 0, 'Meli', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (16, 'Eli ', '', 'elimama@mama.com', 0, 'Mamá Meli', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (17, 'Monica', '', 'Monica@Monica.vom', 0, 'Monica', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (18, 'Agustín', '', 'Agustin@Agustin.com', 0, 'Agustín', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (19, 'Adriana ', 'Calabrese', 'Calabrese@Calabrese.com', 0, 'Calabrese', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (20, 'Hernán ', 'Diaz', 'Diaz@Diaz.com', 0, 'Diaz', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (21, 'Carina ', 'Guaragna', 'Guaragna@Guaragna.com', 0, 'Guaragna', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (22, 'María ', 'Gallo', 'Gallo@Gallo.com', 0, 'Gallo', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (23, 'José Manuel ', 'Alvarez', 'Alvarez@Alvarez.com', 0, 'Alvarez', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (24, 'Soledad ', 'Alvarez', 'Alvarez@Alvarez.com', 0, 'Alvarez', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (25, 'Silvia Elizabeth ', 'Encina', 'Encina@Encina.com', 0, 'Encina', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (26, 'Brisa ', 'Diaz', 'Diaz@Diaz.com', 0, 'Diaz', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0),
+  (27, 'Adri', '', 'Adri@Adri.com', 0, 'Adri', '', '', '', '', '', '', NULL, '0000-00-00', NULL, NULL, NULL, 3, 3, 1, 1, 0);
 
 -- Volcando estructura para tabla buenbuceo.usuarios_redes_sociales
 CREATE TABLE IF NOT EXISTS `usuarios_redes_sociales` (
@@ -446,6 +496,20 @@ CREATE TABLE IF NOT EXISTS `usuarios_redes_sociales` (
 INSERT INTO `usuarios_redes_sociales` (`usuariosRedSocialId`, `redId`, `usuarioId`, `link`, `username`) VALUES
   (1, 1, 1, 'https://www.instagram.com/nykolasvs/', 'nykolasvs');
 
+-- Volcando estructura para tabla buenbuceo.usuarios_tipo
+CREATE TABLE IF NOT EXISTS `usuarios_tipo` (
+  `usuarioTipoId` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) DEFAULT NULL,
+  `comentario` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`usuarioTipoId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla buenbuceo.usuarios_tipo: ~3 rows (aproximadamente)
+INSERT INTO `usuarios_tipo` (`usuarioTipoId`, `tipo`, `comentario`) VALUES
+  (1, 'Administrador', 'Admin del sitio, excento'),
+  (2, 'Excento', 'Costos basicos en los viajes'),
+  (3, 'Regular', 'Costos normales, cobro de paquetes y deudas');
+
 -- Volcando estructura para tabla buenbuceo.viajes
 CREATE TABLE IF NOT EXISTS `viajes` (
   `viajesId` int(11) NOT NULL AUTO_INCREMENT,
@@ -457,14 +521,64 @@ CREATE TABLE IF NOT EXISTS `viajes` (
   `descripcion` varchar(255) DEFAULT NULL,
   `viaje_pdf` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`viajesId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes: ~1 rows (aproximadamente)
 INSERT INTO `viajes` (`viajesId`, `paisId`, `anio`, `fecha_inicio`, `fecha_fin`, `activo`, `descripcion`, `viaje_pdf`) VALUES
-  (4, 2, 2024, '2024-10-31', '2024-11-04', 0, '', NULL),
-  (5, 1, 2024, '2024-11-02', '2024-11-04', 0, '', NULL),
-  (6, 26, 2024, '2024-11-02', '2024-11-04', 0, '', NULL),
-  (7, 15, 2024, '2024-11-22', '2024-11-30', 1, 'nada', 'Mexico_2024_7_1731872092.pdf');
+  (7, 15, 2024, '2025-11-22', '2025-11-30', 1, 'nada', 'Mexico_2024_7_1731872092.pdf'),
+  (8, 39, 2025, '2025-03-01', '2025-03-22', 1, 'Viaje por Europa! Auroras BOREALES!', NULL);
+
+-- Volcando estructura para tabla buenbuceo.viajes_alquiler_equipos
+CREATE TABLE IF NOT EXISTS `viajes_alquiler_equipos` (
+  `viajesAlquilerEquiposId` int(11) NOT NULL AUTO_INCREMENT,
+  `viajesUsuariosId` int(11) NOT NULL,
+  `viajesId` int(11) NOT NULL,
+  `viajesAlquilerEquiposTarifaId` int(11) NOT NULL,
+  PRIMARY KEY (`viajesAlquilerEquiposId`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla buenbuceo.viajes_alquiler_equipos: ~19 rows (aproximadamente)
+INSERT INTO `viajes_alquiler_equipos` (`viajesAlquilerEquiposId`, `viajesUsuariosId`, `viajesId`, `viajesAlquilerEquiposTarifaId`) VALUES
+  (1, 12, 7, 2),
+  (3, 21, 7, 1),
+  (4, 22, 7, 1),
+  (5, 20, 7, 2),
+  (6, 18, 7, 3),
+  (7, 15, 7, 2),
+  (8, 15, 7, 4),
+  (9, 15, 7, 5),
+  (10, 15, 7, 6),
+  (11, 15, 7, 7),
+  (12, 15, 7, 8),
+  (14, 14, 7, 3),
+  (15, 24, 7, 3),
+  (16, 27, 7, 3),
+  (17, 23, 7, 3),
+  (18, 19, 7, 5),
+  (19, 20, 7, 4),
+  (20, 14, 7, 5),
+  (21, 33, 7, 1);
+
+-- Volcando estructura para tabla buenbuceo.viajes_alquiler_equipos_tarifas
+CREATE TABLE IF NOT EXISTS `viajes_alquiler_equipos_tarifas` (
+  `viajesAlquilerEquiposTarifaId` int(11) NOT NULL AUTO_INCREMENT,
+  `alquilerEquiposId` int(11) NOT NULL,
+  `costo` float NOT NULL,
+  `valor_venta` float NOT NULL,
+  `viajesId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`viajesAlquilerEquiposTarifaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla buenbuceo.viajes_alquiler_equipos_tarifas: ~8 rows (aproximadamente)
+INSERT INTO `viajes_alquiler_equipos_tarifas` (`viajesAlquilerEquiposTarifaId`, `alquilerEquiposId`, `costo`, `valor_venta`, `viajesId`) VALUES
+  (1, 8, 100, 126, 7),
+  (2, 1, 20, 28, 7),
+  (3, 2, 10, 14, 7),
+  (4, 3, 10, 14, 7),
+  (5, 4, 20, 28, 7),
+  (6, 5, 20, 28, 7),
+  (7, 6, 10, 14, 7),
+  (8, 7, 10, 14, 7);
 
 -- Volcando estructura para tabla buenbuceo.viajes_costos
 CREATE TABLE IF NOT EXISTS `viajes_costos` (
@@ -479,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `viajes_costos` (
   PRIMARY KEY (`viajeCostoId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes_costos: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes_costos: ~10 rows (aproximadamente)
 INSERT INTO `viajes_costos` (`viajeCostoId`, `viajesId`, `pagosSubrubroId`, `monto`, `cotizacion`, `monedaId`, `soloBuzos`, `comentario`) VALUES
   (3, 7, 18, 0, 1125, 2, 0, 'Tour Río Secreto o Cobá\n'),
   (4, 7, 18, 129, 1125, 2, 0, 'Tour Chichen Itza\n'),
@@ -707,7 +821,7 @@ CREATE TABLE IF NOT EXISTS `viajes_hospedajes` (
   PRIMARY KEY (`viajesHospedajesId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes_hospedajes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes_hospedajes: ~0 rows (aproximadamente)
 INSERT INTO `viajes_hospedajes` (`viajesHospedajesId`, `viajesId`, `hospedajesId`) VALUES
   (4, 7, 3);
 
@@ -724,7 +838,7 @@ CREATE TABLE IF NOT EXISTS `viajes_hospedajes_habitaciones` (
   PRIMARY KEY (`viajesHospedajesHabitacionId`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes_hospedajes_habitaciones: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes_hospedajes_habitaciones: ~6 rows (aproximadamente)
 INSERT INTO `viajes_hospedajes_habitaciones` (`viajesHospedajesHabitacionId`, `viajesHospedajesId`, `hospedajeTarifaId`, `camas_dobles`, `camas_simples`, `comentario`, `codigo_reserva`, `reserva_nombre`) VALUES
   (59, 4, 12, 1, 0, NULL, 'CGKBW456', 'Ana'),
   (60, 4, 17, 0, 1, NULL, 'CGKBW456', 'Cholo'),
@@ -743,7 +857,7 @@ CREATE TABLE IF NOT EXISTS `viajes_hospedajes_habitaciones_usuarios` (
   PRIMARY KEY (`viajesUsuariosId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes_hospedajes_habitaciones_usuarios: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes_hospedajes_habitaciones_usuarios: ~9 rows (aproximadamente)
 INSERT INTO `viajes_hospedajes_habitaciones_usuarios` (`viajesUsuariosId`, `viajesHospedajesHabitacionId`, `viajesHospedajesId`, `cama_doble`, `cama_simple`) VALUES
   (18, 62, 4, 1, 0),
   (20, 59, 4, 1, 0),
@@ -764,14 +878,14 @@ CREATE TABLE IF NOT EXISTS `viajes_usuarios` (
   `venta_paquete` double DEFAULT NULL,
   `habilitado_sys` int(1) DEFAULT NULL,
   PRIMARY KEY (`viajesUsuariosId`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla buenbuceo.viajes_usuarios: ~26 rows (aproximadamente)
+-- Volcando datos para la tabla buenbuceo.viajes_usuarios: ~25 rows (aproximadamente)
 INSERT INTO `viajes_usuarios` (`viajesUsuariosId`, `viajesId`, `usuarioId`, `viajeroTipoId`, `venta_paquete`, `habilitado_sys`) VALUES
   (7, 6, 1, 5, NULL, 1),
   (8, 6, 3, 2, NULL, 1),
   (9, 6, 2, 5, NULL, 1),
-  (12, 7, 5, 7, 3200, 1),
+  (12, 7, 5, 7, 3152.23, 1),
   (14, 7, 6, 5, 2900, 1),
   (15, 7, 11, 7, 2900, 1),
   (18, 7, 2, 2, NULL, 1),
@@ -782,10 +896,9 @@ INSERT INTO `viajes_usuarios` (`viajesUsuariosId`, `viajesId`, `usuarioId`, `via
   (23, 7, 12, 5, 2900, 1),
   (24, 7, 13, 2, 2900, 1),
   (27, 7, 14, 1, NULL, 1),
-  (28, 7, 17, 3, NULL, 1),
+  (28, 7, 17, 3, 1500, 1),
   (29, 7, 16, 3, 2180, 1),
-  (30, 7, 15, 4, 2900, 1),
-  (31, 7, 18, 3, NULL, 1),
+  (31, 7, 18, 3, 2000, 1),
   (32, 7, 19, 3, 2750, 1),
   (33, 7, 21, 1, 2900, 1),
   (34, 7, 22, 4, 4000, 1),
@@ -793,7 +906,8 @@ INSERT INTO `viajes_usuarios` (`viajesUsuariosId`, `viajesId`, `usuarioId`, `via
   (36, 7, 23, 4, 3200, 1),
   (37, 7, 24, 3, 2400, 1),
   (38, 7, 25, 6, 3200, 1),
-  (39, 7, 27, 3, 3500, 1);
+  (39, 7, 27, 3, 3500, 1),
+  (61, 7, 15, 5, 2904, 1);
 
 -- Volcando estructura para tabla buenbuceo.viajes_viajero_tipo
 CREATE TABLE IF NOT EXISTS `viajes_viajero_tipo` (

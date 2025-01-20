@@ -181,13 +181,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="nombre" class="form-control-label">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value="<?php echo isset($usuario["nombre"]) ? $usuario["nombre"] : "" ?>">
+                        <input class="form-control" type="text"  required name="nombre" id="nombre" value="<?php echo isset($usuario["nombre"]) ? $usuario["nombre"] : "" ?>">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="apellido" class="form-control-label">Apellido</label>
-                        <input class="form-control" type="text" name="apellido" id="apellido" value="<?php echo isset($usuario["apellido"]) ? $usuario["apellido"] : "" ?>">
+                        <input class="form-control" type="text" required name="apellido" id="apellido" value="<?php echo isset($usuario["apellido"]) ? $usuario["apellido"] : "" ?>">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -199,7 +199,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="dni" class="form-control-label">Documento</label>
-                        <input class="form-control" type="number" name="dni" id="dni" value="<?php echo isset($usuario["dni"]) ? $usuario["dni"] : "" ?>">
+                        <input class="form-control" type="number" required name="dni" id="dni" value="<?php echo isset($usuario["dni"]) ? $usuario["dni"] : "" ?>">
                       </div>
                     </div>
                   </div>
@@ -240,13 +240,13 @@
                     <div class="col-md-6">
                      <div class="form-group">
                        <label for="email" class="form-control-label">Email</label>
-                       <input class="form-control" type="email" name="email" id="email" value="<?php echo isset($usuario["email"]) ? $usuario["email"] : "" ?>">
+                       <input class="form-control" type="email" required name="email" id="email" value="<?php echo isset($usuario["email"]) ? $usuario["email"] : "" ?>">
                      </div>
                     </div>
                     <div class="col-md-6">
                      <div class="form-group">
                        <label for="telefono" class="form-control-label">Teléfono</label>
-                       <input class="form-control" type="text" name="telefono" id="telefono" value="<?php echo isset($usuario["telefono"]) ? $usuario["telefono"] : "" ?>">
+                       <input class="form-control" type="text" required name="telefono" id="telefono" value="<?php echo isset($usuario["telefono"]) ? $usuario["telefono"] : "" ?>">
                      </div>
                     </div>
                     <div class="col-md-4">
@@ -526,10 +526,10 @@
 
       <button type="button" id="btn-modal-errores" class="btn btn-block bg-gradient-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-default" style="display:none;">Default</button>
 
-      <div id="toast" class="toast align-items-center text-white <?php echo ($_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="toast" class="toast align-items-center text-white <?php echo ($action == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body" style="font-size: 18px;">
-            <i class="fa fa-check" style="font-size: 24px; margin-right: 10px;"></i> <?php echo $_GET["action"] == "alta" ? "Usuario creado!" : "Usuario actualizado!"; ?>
+            <i class="fa fa-check" style="font-size: 24px; margin-right: 10px;"></i> <?php echo $action == "alta" ? "Usuario creado!" : "Usuario actualizado!"; ?>
           </div>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

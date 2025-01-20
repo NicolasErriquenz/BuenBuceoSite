@@ -123,11 +123,13 @@
         </div>
       </div>
       
-      <div id="toast" class="toast align-items-center text-white <?php echo ($_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="toast" class="toast align-items-center text-white <?php echo (isset($_GET["action"]) && $_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?>" 
+         border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
-          <div class="toast-body" style="font-size: 18px;">
-            <i class="fa fa-check" style="font-size: 24px; margin-right: 10px;"></i> <?php echo $_GET["action"] == "alta" ? "Viaje creado!" : "Viaje actualizado!"; ?>
-          </div>
+            <div class="toast-body" style="font-size: 18px;">
+                <i class="fa fa-check" style="font-size: 24px; margin-right: 10px;"></i>
+                <?php echo (isset($_GET["action"]) && $_GET["action"] == "alta") ? "Viaje creado!" : "Viaje actualizado!"; ?>
+            </div>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
       </div>

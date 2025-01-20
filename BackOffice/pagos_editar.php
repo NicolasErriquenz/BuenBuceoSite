@@ -69,13 +69,22 @@
     die();
   }
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "getCostosOperativos" ) {
+    echo json_encode(getCostosOperativos($_POST["viajesId"]));
+    die();
+  }
+
   
   $pago = [];
+  $costo = null;
   $pago["habilitado_sys"] = 1;
+  $pago["deudaId"] = null;
+  $pago["viajesCostosOperativosId"] = null;
   $subrubro = null;
   $subrubros = null;
   $usuario = null;
   $deudasUsuario = [];
+  $triggerViajesSelect = false;
 
   if( isset($_GET[$idNombre]) ){
     $title = "Editar pago";
@@ -108,6 +117,24 @@
     $deudasUsuario = buscarDeudas($deuda["usuarioId"]);
 
     $redirect = "deudas.php?usuarioId=".$deuda["usuarioId"];
+
+  }else if( isset($_GET["viajesCostosOperativosId"]) ){
+    $title = "Pagar costo";
+    $subtitle = "Podés pagar el costo operativo";
+    $action = "alta";
+    
+    $costo = getItem("viajes_costos_operativos", "viajesCostosOperativosId", $_GET["viajesCostosOperativosId"]);
+    $subrubro = getItem("pagos_subrubros", "pagosSubrubroId", $costo["pagosSubrubroId"]);
+    $subrubros = getSubrubrosPagos(true, $subrubro["pagosRubrosId"]);
+
+    $pago['pagoTransaccionTipoId'] = 1;
+    $pago['monto'] = $costo["monto"];
+    $pago['monedaId'] = 2;
+    $pago['viajesId'] = $costo['viajesId'];
+    $pago['viajesCostosOperativosId'] = $costo['viajesCostosOperativosId'];
+
+    $triggerViajesSelect = true;
+    $redirect = "viajes_gastos_operativos.php?viajesId=".$costo["viajesId"];
 
   }else{
     $title = "Alta pago";
@@ -325,6 +352,14 @@
                           </div>
                         </div>
 
+                        <div class="col-md-12 pb-1">
+                          <div class="form-group">
+                            <label class="form-control-label">Costo operativo</label>
+                            <select id="viajesCostosOperativosId" name="viajesCostosOperativosId" class="form-control">
+                              
+                            </select>
+                          </div>
+                        </div>
 
                         <div class="col-md-12">
                           <div class="form-group">
@@ -391,6 +426,7 @@
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
                         <input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $usuario != null ? $usuario["usuarioId"] : ''?>">
+                        <input type="hidden" name="viajesCostosOperativosId" id="viajesCostosOperativosId" value="<?php echo $pago["viajesCostosOperativosId"] ?>">
                         <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>
@@ -462,8 +498,6 @@
     };
 
     $(document).ready(function() {
-        
-       
 
         $('.btn-group').on('change', 'input[type="radio"]', function() {
           var monedaId = $(this).val();
@@ -580,7 +614,6 @@
           $('#deudaId').empty();
         });
 
-
         $('#buscar').on('keyup', function() {
           var q = $(this).val();
           if (q.length >= 1) {
@@ -649,6 +682,30 @@
             });
         });
 
+        $('#viajesId').change(function() {
+          console.log("CHANGE");
+            var viajesId = $(this).val();
+            
+            $.ajax({
+                type: 'POST',
+                url: '',
+                dataType: 'json',
+                data: {
+                  viajesId: viajesId, 
+                  action: 'getCostosOperativos'
+                },
+                success: function(response) {
+                    $('#viajesCostosOperativosId').empty();
+                    $.each(response, function(index, value) {
+                        $('#viajesCostosOperativosId').append('<option value="' + value.viajesCostosOperativosId + '">' + value.descripcion + " ($" + value.monto + ") " + value.categoria + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al actualizar:', error);
+                }
+            });
+        });
+
         
         <?php if(isset($_GET["deudaId"])): ?>
             // Encuentra el radio button con el valor correspondiente y márcalo
@@ -657,6 +714,9 @@
             $('input[type="radio"][value="<?php echo $pago["monedaId"]; ?>"]').trigger('change');
         <?php endif; ?>
 
+        <?php if($triggerViajesSelect): ?>
+          $('#viajesId').trigger('change');
+        <?php endif ?>
     });
 
     document.addEventListener('DOMContentLoaded', function() {

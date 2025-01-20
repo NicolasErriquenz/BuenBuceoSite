@@ -1,33 +1,29 @@
 <?php  
-    
-    // require_once ("ssi_seguridad.php");
-    require_once ("Connections/config.php");
-    require_once ("Connections/connect.php");
-    
 
-    require_once ("servicios/servicio.php");
+  // Solo cargar una vez los archivos necesarios
+  require_once ("Connections/config.php");
+  require_once ("Connections/connect.php");
+  require_once ("servicios/servicio.php");
 
-    if( isset($_POST["userid"]) && $_POST["userid"] != "" && isset($_POST["password"]) && $_POST["password"] != "" ){
-        $sql = "SELECT * FROM usuarios WHERE usuario='".$_POST["userid"]."' AND password='".md5($_POST["password"])."'";
-        $rs  = $mysqli->query($sql);
-        
-        if( mysqli_num_rows($rs) > 0 ){
-            $row = $rs->fetch_array(MYSQLI_ASSOC);
+  if(isset($_POST["userid"]) && $_POST["userid"] != "" && isset($_POST["password"]) && $_POST["password"] != "") {
+      $sql = "SELECT * FROM usuarios WHERE usuario='".$_POST["userid"]."' AND password='".md5($_POST["password"])."'";
+      $rs  = $mysqli->query($sql);
+      
+      if(mysqli_num_rows($rs) > 0) {
+          $row = $rs->fetch_array(MYSQLI_ASSOC);
+          if(!isset($_SESSION)) {
+              session_start();
+          }
+          
+          $_SESSION["admin"] = $row;
+          $_SESSION["admin"]["foto"] = $row["imagen"];
+          header("location:dashboard.php");
+          die();
+      }
+  }
 
-            if(!isset($_SESSION))
-                @session_start();
-            
-            $_SESSION["admin"] = $row;
-            $_SESSION["admin"]["foto"] = $row["imagen"];
-
-            //$_POST["rememberme"];
-            header("location:dashboard.php");
-            die();
-        }
-
-    }
-
-    $frase = obtenerOracionInspiradora();
+  $frase = obtenerOracionInspiradora();
+  
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">

@@ -46,8 +46,11 @@
                         echo !empty($item["usuario"]['imagen']) ? $item["usuario"]['imagen'] : 'generic_user.png'; 
                       ?>')"></div>
                       <a href="usuarios_editar.php?usuarioId=<?php echo $item["usuario"]["usuarioId"] ?>">
-                        <p class="text-sm  mb-0" style="margin-left: 10px;">
-                          <?php echo $item["usuario"]["nombre"] ?> <?php echo $item["usuario"]["apellido"] ?> (<?php echo $item["usuario"]["apodo"] ?>)
+                        <p class="text-sm mb-0" style="margin-left: 10px;">
+                            <?php 
+                                echo (empty($item["usuario"]["apodo"]) ? $item["usuario"]["nombre"] : $item["usuario"]["apodo"]) . 
+                                " (" . $item["usuario"]["nombre"] . " " . $item["usuario"]["apellido"] . ")";
+                            ?>
                         </p>
                       </a>
                     </div>
