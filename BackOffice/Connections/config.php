@@ -86,6 +86,8 @@
 	// 11. UTILIDADES
 	$archivoActual = pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME);
 
+	define("SUBRUBRO_ID_ALQUILER_EQUIPOS", 12);
+	define("SUBRUBRO_ID_PAQUETE_TURISTICO", 19);
 
 	// 13. Log inicial (solo una vez por sesión)
 	if (LOGGING_ENABLED && (!isset($_SESSION['log_initialized']) || $_SESSION['log_initialized'] != date('Y-m-d'))) {

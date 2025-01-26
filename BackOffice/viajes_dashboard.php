@@ -11,7 +11,16 @@
   $idNombre = "viajesId";
   $errores = array();
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "guardarTarifa" ) {
+    echo guardarHospedajeHabitacionesTarifas($_POST);
+    die();
+  }
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "eliminarTarifa" ) {
+    echo eliminarHospedajeHabitacionesTarifas($_POST);
+    die();
+  }
+  
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "aplicarViajeCostoaTodosViajeros" ) {
     echo aplicarViajeCostoaTodosViajeros($_POST["viajeCostoId"]);
     die();
@@ -95,7 +104,6 @@
     die();
   }
 
-
   $viaje = [];
   $viaje["activo"] = 1;
   
@@ -149,21 +157,28 @@
 
   $deudasViaje = getDeudasViaje($_GET[$idNombre]);
   $totalDeudaViaje = array_sum(array_column($deudasViaje, 'deuda'));
-
+  
   $cobrosRealizados  = getPagosViaje($_GET[$idNombre]);
   $totalCobrado = array_sum(array_column($cobrosRealizados, 'monto'));
 
   $totalPendiente = $totalDeudaViaje - $totalCobrado;
-  $costosOperativos = 12000;
+  $costosOperativos = getCostosOperativos($_GET[$idNombre]);
+  $totalCostosOperativos = array_sum(array_column($costosOperativos, 'monto'));;
 
   $costoPromedioPersona = count($viajeros) == 0 ? 0 : number_format($costoTotalViaje/count($viajeros), 2, ',', '.');
   $porcentajeCobradoDelTotal = $totalDeudaViaje == 0 ? 0 : number_format(($totalCobrado/$totalDeudaViaje)*100, 1);
-  $costosOperativosPorcentaje = $totalDeudaViaje == 0 ? 0 : number_format(($costosOperativos/$totalDeudaViaje)*100, 1);
+  $costosOperativosPorcentaje = $totalDeudaViaje == 0 ? 0 : number_format(($totalCostosOperativos/$totalDeudaViaje)*100, 1);
 
   $param = array();
   $param["viajesId"] = $_GET[$idNombre];
   $costosAlquileres = obtenerIngresosAlquileres($param);
-  //eco();
+  
+  $totalDeudaViaje = array_sum(array_column($deudasViaje, 'deuda'));
+  $totalIngresos = $costosAlquileres["ganancia"] + $totalDeudaViaje;
+  $totalCostos = $totalCostosOperativos;
+  $margenGanancia = $totalIngresos - $totalCostos;
+  $porcentajeMargen = number_format(($margenGanancia / $totalIngresos) * 100, 1);
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -280,16 +295,16 @@
             title="Administrar gastos operativos">
         <a href="viajes_gastos_operativos.php?viajesId=<?php echo $viaje[$idNombre]; ?>">
           <div class="card border-0 border-top border-info border-5">
-              <div class="py-2 px-3 card-body d-flex align-items-center">
-                  <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                      <i class="ni ni-cart text-white" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div>
-                      <p class="mb-0 text-xs text-muted text-uppercase">Costos operativos</p>
-                      <h6 class="mb-1 fw-bold">$<?= number_format($costosOperativos, 2, ',', '.'); ?></h6>
-                      <small class="text-xs text-info"><?= $costosOperativosPorcentaje ?>% de la deuda</small>
-                  </div>
+            <div class="py-2 px-3 card-body d-flex align-items-center">
+              <div class="me-3 icon-container bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                <i class="ni ni-cart text-white" style="font-size: 1.2rem;"></i>
               </div>
+              <div>
+                <p class="mb-0 text-xs text-muted text-uppercase">Costos operativos</p>
+                <h6 class="mb-1 fw-bold">$<?= number_format($totalCostos, 2, ',', '.'); ?></h6>
+                <small class="text-xs text-info"> $<?= number_format($margenGanancia, 2, ',', '.'); ?> Ganancia (<?= $porcentajeMargen ?>%)</small>
+              </div>
+            </div>
           </div>
         </a>
       </div>

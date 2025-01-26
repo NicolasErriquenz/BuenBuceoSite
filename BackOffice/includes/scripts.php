@@ -61,14 +61,20 @@
   });
 
   function redirectConParametro(parametro, valor) {
-    const urlActual = new URL(window.location.href);
-    const params = urlActual.searchParams;
-
-    params.set(parametro, valor);
-
-    const nuevaUrl = `${urlActual.origin}${urlActual.pathname}?${params.toString()}`;
-
-    window.location.href = nuevaUrl;
+     let urlActual = window.location.href;
+     let regex = new RegExp(`[?&]${parametro}=([^&]*)`);
+     
+     if (urlActual.includes('?')) {
+         if (urlActual.match(regex)) {
+             urlActual = urlActual.replace(regex, `$&=${valor}`);
+         } else {
+             urlActual += `&${parametro}=${valor}`;
+         }
+     } else {
+         urlActual += `?${parametro}=${valor}`;
+     }
+     
+     window.location.href = urlActual;
   }
 
   function isEmpty(valor) {

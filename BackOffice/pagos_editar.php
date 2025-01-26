@@ -86,6 +86,13 @@
   $deudasUsuario = [];
   $triggerViajesSelect = false;
 
+  $disableFields = [
+     'viajes' => false,
+     'costosOperativos' => false,
+     'usuario' => false,
+     'deudasUsuario' => false
+  ];
+
   if( isset($_GET[$idNombre]) ){
     $title = "Editar pago";
     $subtitle = "Podés editar el pago desde aquí";
@@ -118,6 +125,11 @@
 
     $redirect = "deudas.php?usuarioId=".$deuda["usuarioId"];
 
+    $disableFields['viajes'] = true;
+    $disableFields['costosOperativos'] = true;
+    $disableFields['usuario'] = true;
+    $disableFields['deudasUsuario'] = true;
+
   }else if( isset($_GET["viajesCostosOperativosId"]) ){
     $title = "Pagar costo";
     $subtitle = "Podés pagar el costo operativo";
@@ -135,6 +147,11 @@
 
     $triggerViajesSelect = true;
     $redirect = "viajes_gastos_operativos.php?viajesId=".$costo["viajesId"];
+
+    $disableFields['viajes'] = true;
+    $disableFields['costosOperativos'] = true; 
+    $disableFields['usuario'] = true;
+    $disableFields['deudasUsuario'] = true;
 
   }else{
     $title = "Alta pago";
@@ -340,8 +357,8 @@
                         <div class="col-md-12 pb-1">
                           <div class="form-group">
                             <label class="form-control-label">Asignar al viaje</label>
-                            <select id="viajesId" name="viajesId" class="form-control">
-                              <option value="" selected disabled>Seleccione un viaje</option>
+                            <select id="viajesId" name="viajesId" class="form-control" <?php echo $disableFields['viajes'] ? 'disabled' : ''; ?>>
+                              <option value="" selected >Seleccione un viaje</option>
                               <?php foreach ($viajes as $item): ?>
                               <option value="<?php echo $item['viajesId']; ?>" 
                                       <?php echo (isset($pago['viajesId']) && $pago['viajesId'] == $item['viajesId']) ? "selected" : ""; ?>>
@@ -355,7 +372,7 @@
                         <div class="col-md-12 pb-1">
                           <div class="form-group">
                             <label class="form-control-label">Costo operativo</label>
-                            <select id="viajesCostosOperativosId" name="viajesCostosOperativosId" class="form-control">
+                            <select id="viajesCostosOperativosId" name="viajesCostosOperativosId" class="form-control" <?php echo $disableFields['costosOperativos'] ? 'disabled' : ''; ?>>
                               
                             </select>
                           </div>
@@ -367,17 +384,18 @@
                             <div class="row">
                               <div class="col-md-9">
                                 <input autocomplete="off" 
-                                      type="text" 
-                                      id="buscar" 
-                                      name="buscar" 
-                                      class="form-control" 
-                                      value="<?php echo $usuario != null ? $usuario["nombre"]." ".$usuario["apellido"]." (".$usuario["apodo"].") - ".$usuario["dni"] : ''?>"
-                                      placeholder="Ingrese al menos 1 caracter">
+                                       type="text" 
+                                       id="buscar" 
+                                       name="buscar" 
+                                       class="form-control"
+                                       <?php echo $disableFields['usuario'] ? 'disabled' : ''; ?>
+                                       value="<?php echo $usuario != null ? $usuario["nombre"]." ".$usuario["apellido"]." (".$usuario["apodo"].") - ".$usuario["dni"] : ''?>"
+                                       placeholder="Ingrese al menos 1 caracter">
                               </div>
                               <div class="col-md-3">
                                 <button id="deseleccionar" 
                                         class="btn btn-outline-secondary w-100" 
-                                        <?php echo !isset($usuario["usuarioId"]) ? "disabled" : ''; ?>>
+                                        <?php echo !isset($usuario["usuarioId"]) || $disableFields['usuario'] ? "disabled" : ''; ?>>
                                   <i class="fas fa-times"></i> Deseleccionar
                                 </button>
                               </div>
@@ -389,11 +407,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label class="form-control-label">Deudas del usuario</label>
-                            <select id="deudaId" 
-                                    name="deudaId" 
-                                    class="form-control"
-                                    <?php echo $usuario == null ? "disabled" : "" ?>
-                                    >
+                            <select id="deudaId" name="deudaId" class="form-control" <?php echo $disableFields['deudasUsuario'] ? 'disabled' : ''; ?>>
                               <option value="" selected disabled>Seleccione una deuda disponible</option>
                               <?php foreach ($deudasUsuario as $deudaUsuario): ?>
                               <option value="<?php echo $deudaUsuario['deudaId']; ?>" 
@@ -426,7 +440,6 @@
                       <div class="card-footer d-flex justify-content-between">
                         <input type="hidden" name="action" value="<?php echo $action ?>">
                         <input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $usuario != null ? $usuario["usuarioId"] : ''?>">
-                        <input type="hidden" name="viajesCostosOperativosId" id="viajesCostosOperativosId" value="<?php echo $pago["viajesCostosOperativosId"] ?>">
                         <a href="javascript:history.back()" class="btn bg-gradient-outline-danger btn-sm">
                           <i class="ni ni-bold-left"></i> Volver
                         </a>
@@ -683,31 +696,35 @@
         });
 
         $('#viajesId').change(function() {
-          console.log("CHANGE");
-            var viajesId = $(this).val();
-            
-            $.ajax({
-                type: 'POST',
-                url: '',
-                dataType: 'json',
-                data: {
-                  viajesId: viajesId, 
-                  action: 'getCostosOperativos'
-                },
-                success: function(response) {
-                    $('#viajesCostosOperativosId').empty();
-                    $.each(response, function(index, value) {
-                        $('#viajesCostosOperativosId').append('<option value="' + value.viajesCostosOperativosId + '">' + value.descripcion + " ($" + value.monto + ") " + value.categoria + '</option>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error al actualizar:', error);
-                }
-            });
+          
+          var viajesId = $(this).val();
+          var viajesCostosOperativosId = <?php echo isset($pago['viajesCostosOperativosId']) ? $pago['viajesCostosOperativosId'] : 'null'; ?>;
+          
+          $.ajax({
+              type: 'POST',
+              url: '',
+              dataType: 'json',
+              data: {
+                viajesId: viajesId, 
+                action: 'getCostosOperativos'
+              },
+              success: function(response) {
+                  $('#viajesCostosOperativosId').empty();
+                  $.each(response, function(index, value) {
+                      var disabled = value.liberado == 1 ? ' disabled class="liberado-option"' : '';
+                      $('#viajesCostosOperativosId').append('<option value="' + value.viajesCostosOperativosId + '"' + disabled + '>' + 
+                          value.descripcion + " ($" + value.monto + ") " + value.categoria + '</option>');
+                  });
+                  $('#viajesCostosOperativosId').val(viajesCostosOperativosId);
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error al actualizar:', error);
+              }
+          });
         });
 
         
-        <?php if(isset($_GET["deudaId"])): ?>
+        <?php if(isset($_GET["deudaId"]) || isset($_GET["viajesCostosOperativosId"])): ?>
             // Encuentra el radio button con el valor correspondiente y márcalo
             $('input[type="radio"][value="<?php echo $pago["monedaId"]; ?>"]').prop('checked', true);
             // Dispara el evento change manualmente
@@ -735,6 +752,12 @@
 
   </script>
 
+  <style>
+    .liberado-option {
+      background-color: #e9ecef !important;
+      color: #6c757d !important;
+    }
+  </style>
 </body>
 
 </html>

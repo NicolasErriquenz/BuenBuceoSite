@@ -93,7 +93,16 @@
                           </div>
                         </td>
                         <td class="">
-                          <p class="text-sm mb-0"><?php echo $deuda["usuario_nombre"] ?> <?php echo $deuda["usuario_apellido"] ?> (<?php echo $deuda["apodo"] ?>)</p>
+                          <p class="text-sm mb-0" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            title="<?php echo $deuda["usuario_nombre"] . " " . $deuda["usuario_apellido"]; ?>">
+                             <?php 
+                             echo !empty($deuda["apodo"]) 
+                                 ? $deuda["apodo"] 
+                                 : $deuda["usuario_nombre"] . " " . $deuda["usuario_apellido"];
+                             ?>
+                          </p>
                         </td>
                         <td>
                           <p class="text-sm mb-0"><?php echo $deuda["subrubro"] ?> (<?php echo $deuda["rubro"] ?>)</p>

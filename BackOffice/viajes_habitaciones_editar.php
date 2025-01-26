@@ -203,63 +203,75 @@
     <div class="modal fade" id="modal-crear-habitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Habitación</h5>
-            </div>
-            <div class="modal-body">
-                <form id="form-crear-habitacion">
-                    <div class="form-group">
-                        <label for="hospedajeTarifaId">Tarifa:</label>
-                        <select class="form-control" id="hospedajeTarifaId" name="hospedajeTarifaId">
-                        <?php foreach ($habitacionesTarifas as $tarifa) { ?>
-                            <option value="<?php echo $tarifa['hospedajeTarifaId']; ?>" data-tarifa='<?php echo json_encode($tarifa) ?>'>
-                            <?php echo $tarifa['alias'] . ' - $' . $tarifa['precio']; ?> (<?php echo $tarifa['base']["nombre"] ?>)
-                            </option>
-                        <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="camasDobles">Camas Dobles:</label>
-                        <input type="number" class="form-control" id="camasDobles" name="camasDobles" 
-                                value="0" min="0" oninput="this.value = this.value || 0">
-                    </div>
-                    <div class="form-group">
-                        <label for="camasSimples">Camas Simples:</label>
-                        <input type="number" class="form-control" id="camasSimples" name="camasSimples" 
-                                value="0" min="0" oninput="this.value = this.value || 0">
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="codigo_reserva">Código reserva:</label>
-                                <input type="text" class="form-control" id="codigo_reserva" name="codigo_reserva" value="">
-                            </div>
-                            <div class="col-6">
-                                <label for="reserva_nombre">A nombre de:</label>
-                                <input type="text" class="form-control" id="reserva_nombre" name="reserva_nombre" value="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Habitación</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-secondary d-flex align-items-center mb-3">
+                       <i class="fas fa-info-circle me-2"></i>
+                       <div class="form-group mb-0">
+                           <label for="cantidad_habitaciones" class="mb-0">¿Cuántas habitaciones iguales desea crear?</label>
+                           <select class="form-control form-control-sm w-auto d-inline-block ms-2" 
+                                   id="cantidad_habitaciones" 
+                                   name="cantidad_habitaciones">
+                               <?php for($i=1; $i<=10; $i++) { ?>
+                                   <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                               <?php } ?>
+                           </select>
+                       </div>
+                   </div>
+                    <form id="form-crear-habitacion">
+                        <div class="form-group">
+                            <label for="hospedajeTarifaId">Tarifa:</label>
+                            <select class="form-control" id="hospedajeTarifaId" name="hospedajeTarifaId">
+                            <?php foreach ($habitacionesTarifas as $tarifa) { ?>
+                                <option value="<?php echo $tarifa['hospedajeTarifaId']; ?>" data-tarifa='<?php echo json_encode($tarifa) ?>'>
+                                <?php echo $tarifa['alias'] . ' - $' . $tarifa['precio']; ?> (<?php echo $tarifa['base']["nombre"] ?>)
+                                </option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="camasDobles">Camas Dobles:</label>
+                            <input type="number" class="form-control" id="camasDobles" name="camasDobles" 
+                                    value="0" min="0" oninput="this.value = this.value || 0">
+                        </div>
+                        <div class="form-group">
+                            <label for="camasSimples">Camas Simples:</label>
+                            <input type="number" class="form-control" id="camasSimples" name="camasSimples" 
+                                    value="0" min="0" oninput="this.value = this.value || 0">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="codigo_reserva">Código reserva:</label>
+                                    <input type="text" class="form-control" id="codigo_reserva" name="codigo_reserva" value="">
+                                </div>
+                                <div class="col-6">
+                                    <label for="reserva_nombre">A nombre de:</label>
+                                    <input type="text" class="form-control" id="reserva_nombre" name="reserva_nombre" value="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="comentario">Comentario:</label>
-                        <input type="text" class="form-control" id="comentario" name="comentario" value="">
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="text-center alert alert-danger fade" id="error_div">
-                        <span class="alert-icon"><i class="fa fa-warning"></i></span>
-                        <span id="error-text"></span>
+                        <div class="form-group">
+                            <label for="comentario">Comentario:</label>
+                            <input type="text" class="form-control" id="comentario" name="comentario" value="">
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="text-center alert alert-danger fade" id="error_div">
+                            <span class="alert-icon"><i class="fa fa-warning"></i></span>
+                            <span id="error-text"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" 
-                        class="btn btn-primary" 
-                        id="btn-crear-habitacion" 
-                        onclick="javascript:validarFormCrearHabitacion()">Crear Habitación</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            id="btn-crear-habitacion" 
+                            onclick="javascript:validarFormCrearHabitacion()">Crear Habitación</button>
+                </div>
             </div>
         </div>
     </div>
@@ -492,6 +504,7 @@
         var comentario = $('#comentario').val();
         var codigo_reserva = $('#codigo_reserva').val();
         var reserva_nombre = $('#reserva_nombre').val();
+        var cantidad_habitaciones = $('#cantidad_habitaciones').val();
 
         var seleccionado = $('#hospedajeTarifaId').find('option:selected');
         // Obtiene el JSON en data-tarifa
@@ -534,27 +547,28 @@
                 camasSimples: camasSimples,
                 codigo_reserva: codigo_reserva,
                 reserva_nombre: reserva_nombre,
+                cantidad_habitaciones: cantidad_habitaciones,
                 comentario:comentario
             },
             success: function(response) {
-
-                var viajesHospedajesHabitacionId = response.viajesHospedajesHabitacionId;
-                
-                var objViajeHospedajeHabitaciones = {
-                    camas_dobles: camasDobles,
-                    camas_simples: camasSimples,
-                    hospedajeTarifaId: hospedajeTarifaId,
-                    tarifa: tarifaJson,
-                    viajesHospedajesHabitacionId: viajesHospedajesHabitacionId,
-                    viajesHospedajesId: <?php echo $_GET[$idNombre]; ?>,
-                    viajesHospedajesHabitacionUsuarios:{
-                        usuarios: []
-                    },
-                };
-
-                crearHabitacion(objViajeHospedajeHabitaciones);
-                resetForm();
-                $('#modal-crear-habitacion').modal('hide');
+               // response ahora es un array de habitaciones
+               response.forEach(function(habitacion) {
+                   var objViajeHospedajeHabitaciones = {
+                       camas_dobles: camasDobles,
+                       camas_simples: camasSimples, 
+                       hospedajeTarifaId: hospedajeTarifaId,
+                       tarifa: tarifaJson,
+                       viajesHospedajesHabitacionId: habitacion.viajesHospedajesHabitacionId,
+                       viajesHospedajesId: <?php echo $_GET[$idNombre]; ?>,
+                       viajesHospedajesHabitacionUsuarios: {
+                           usuarios: []
+                       }
+                   };
+                   crearHabitacion(objViajeHospedajeHabitaciones);
+               });
+               
+               resetForm();
+               $('#modal-crear-habitacion').modal('hide');
             }
         });
     }

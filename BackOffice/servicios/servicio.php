@@ -408,7 +408,7 @@
 		$pagoId = $_GET['pagoId'];
 		$usuarioId = isset($datos['usuarioId']) && $datos['usuarioId'] !== '' ? $datos['usuarioId'] : 'NULL';
 		$deudaId = $datos['deudaId'] ?? 'NULL';
-		$viajesId = $datos['viajesId'] ?? 'NULL';
+		$viajesId = !empty($datos['viajesId']) ? $datos['viajesId'] : 'NULL';
 		$habilitado_sys = isset($datos['habilitado_sys']) ? 1 : 0;
 
 		// Sentencia SQL para actualizar el pago
@@ -424,7 +424,7 @@
 		      habilitado_sys = ".$habilitado_sys.", 
 		      usuarioId = ".$usuarioId.", 
 		      deudaId = ".$deudaId.",
-		      viajesId = ".$viajesId."
+		      viajesId = " . $viajesId. "
 		  WHERE pagoId = $pagoId";
 
 		$stmt = mysqli_prepare($mysqli, $sql);
@@ -2254,7 +2254,7 @@
 
 	function agregarDeudaUsuarioPaquete($viajesUsuariosId, $soloBorrar = false){
 
-		global $mysqli;
+		global $mysqli, $SUBRUBRO_ID_PAQUETE_TURISTICO;
 
 		$query = "SELECT vu.*, v.nombre, p.pais, v.anio FROM viajes_usuarios vu 
 				  INNER JOIN viajes v ON v.viajesId = vu.viajesId
@@ -2266,7 +2266,7 @@
 		$sqlDelete = "DELETE FROM deudas 
 					  WHERE viajesId = ".$row["viajesId"]."
 					  	AND usuarioId = ".$row["usuarioId"]."
-					  	AND pagosSubrubroId = 19;";
+					  	AND pagosSubrubroId = ".$SUBRUBRO_ID_PAQUETE_TURISTICO;
 	    $mysqli->query($sqlDelete);
 		if($soloBorrar)
 			return;
@@ -2278,7 +2278,7 @@
 			$deuda['monedaId'] = 2; //dolares 
 			$deuda['usuarioId'] = $row["usuarioId"];
 			$deuda['viajesId'] = $row["viajesId"];
-			$deuda['pagosSubrubroId'] = 19; //Venta paquetes
+			$deuda['pagosSubrubroId'] = $SUBRUBRO_ID_PAQUETE_TURISTICO; //Venta paquetes
 			$deuda['habilitado_sys'] = 1;
 
 			$res = altaDeuda($deuda);
@@ -2663,30 +2663,30 @@
 	}
 
 	function altaViajesHospedajesHabitacion($data) {
-	  global $mysqli;
+	    global $mysqli;
+	    $cantidad = $data['cantidad_habitaciones'] ?? 1;
+	    $respuesta = [];
 
-	  $viajesHospedajesId = $data['viajesHospedajesId'];
-	  $hospedajeTarifaId = $data['hospedajeTarifaId'];
-	  $camasDobles = $data['camasDobles'];
-	  $camasSimples = $data['camasSimples'];
-	  $viajesHospedajesId = $data['viajesHospedajesId'];
-	  $codigo_reserva = $data['codigo_reserva'];
-	  $reserva_nombre = $data['reserva_nombre'];
-
-	  $query = "
-	    INSERT INTO 
-	      viajes_hospedajes_habitaciones 
-	      (viajesHospedajesId, hospedajeTarifaId, camas_dobles, camas_simples, codigo_reserva, reserva_nombre)
-	    VALUES 
-	      ('$viajesHospedajesId', '$hospedajeTarifaId', '$camasDobles', '$camasSimples', '$codigo_reserva', '$reserva_nombre')
-	  ";
-	  $mysqli->query($query);
-
-	  $viajesHospedajesHabitacionId = $mysqli->insert_id;
-
-	  return array(
-	    'viajesHospedajesHabitacionId' => $viajesHospedajesHabitacionId
-	  );
+	    for($i = 0; $i < $cantidad; $i++) {
+	        $query = "INSERT INTO viajes_hospedajes_habitaciones 
+	                  (viajesHospedajesId, hospedajeTarifaId, camas_dobles, camas_simples, codigo_reserva, reserva_nombre)
+	                  VALUES 
+	                  (?, ?, ?, ?, ?, ?)";
+	        
+	        $stmt = $mysqli->prepare($query);
+	        $stmt->bind_param("iiisss", 
+	            $data['viajesHospedajesId'],
+	            $data['hospedajeTarifaId'],
+	            $data['camasDobles'],
+	            $data['camasSimples'],
+	            $data['codigo_reserva'],
+	            $data['reserva_nombre']
+	        );
+	        $stmt->execute();
+	        $respuesta[] = ['viajesHospedajesHabitacionId' => $mysqli->insert_id];
+	    }
+	    
+	    return $respuesta;
 	}
 
 	function eliminarViajesHospedajesHabitacion($viajesHospedajesHabitacionId) {
@@ -3315,10 +3315,12 @@
 					$tarifaId,
 					$tarifaId
 				);
+
 				
 				if (!$stmt->execute()) {
 					throw new Exception("Error al guardar el alquiler del equipo");
 				}
+
 			} else {
 				// Si se desmarca
 				if ($alquilerEquiposId === 8) {
@@ -3373,15 +3375,20 @@
 				if (!$stmt->execute()) {
 					throw new Exception("Error al eliminar el alquiler del equipo");
 				}
+
 			}
 
 			$mysqli->commit();
 			
+			agregarDeudaUsuarioAlquilerEquipo($viajesUsuariosId, false);
+
 			return [
 				'success' => true, 
 				'message' => 'Alquiler de equipo actualizado correctamente',
 				'equipoCompleto' => ($alquilerEquiposId === 8)
 			];
+
+			
 
 		} catch (Exception $e) {
 			$mysqli->rollback();
@@ -3527,6 +3534,46 @@
 		} catch (Exception $e) {
 			return array();
 		}
+	}
+
+	function agregarDeudaUsuarioAlquilerEquipo($viajesUsuariosId, $soloBorrar = false){
+
+		global $mysqli;
+
+		$sqlAlquileres = "SELECT a.*, SUM(t.valor_venta) as total, vu.usuarioId, v.nombre, v.anio
+						FROM viajes_alquiler_equipos a
+						INNER JOIN viajes_alquiler_equipos_tarifas t 
+						   ON a.viajesAlquilerEquiposTarifaId = t.viajesAlquilerEquiposTarifaId
+						INNER JOIN viajes_usuarios vu
+						   ON a.viajesUsuariosId = vu.viajesUsuariosId
+						INNER JOIN viajes v
+						   ON vu.viajesId = v.viajesId
+						WHERE a.viajesUsuariosId = ".$viajesUsuariosId;
+		$result = $mysqli->query($sqlAlquileres);
+		$row = $result->fetch_assoc();
+		$totalAlquiler = $row['total'];
+
+		$sqlDelete = "DELETE FROM deudas 
+					  WHERE viajesId = ".$row["viajesId"]."
+					  	AND usuarioId = ".$row["usuarioId"]."
+					  	AND pagosSubrubroId = ".SUBRUBRO_ID_ALQUILER_EQUIPOS;
+	    $mysqli->query($sqlDelete);
+		if($soloBorrar)
+			return;
+
+		// este fi podria ser para validar que determinados tipode v aierjso no tengan deudas de este tipo
+		if($totalAlquiler > 0) {
+
+			$deuda["comentario"] = "Alquiler equipos - ".$row['nombre']." ".$row['anio'];
+			$deuda['deuda'] = $totalAlquiler; //AGREGAR DEUDA SUMADA ACA;
+			$deuda['monedaId'] = 2; //dolares 
+			$deuda['usuarioId'] = $row["usuarioId"];
+			$deuda['viajesId'] = $row["viajesId"];
+			$deuda['pagosSubrubroId'] = SUBRUBRO_ID_ALQUILER_EQUIPOS; //alquiler equipos
+			$deuda['habilitado_sys'] = 1;
+
+			$res = altaDeuda($deuda);
+		}	
 	}
 
 	function eliminarRedSocial($usuarioRedSocialId) {

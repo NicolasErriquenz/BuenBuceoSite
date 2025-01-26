@@ -201,19 +201,19 @@
                 <div class="custom-scroll-container">
                   <div class="table-responsive custom-pagination" style="margin: 0px !important;">
                     <table class="table mb-0 dataTable" id="tableDataTables">
-                      <thead>
-                        <tr>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fecha</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripcion</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Monto</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pagado</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Porc.</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Liberado</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                        </tr>
-                      </thead>
+                        <thead>
+                            <tr>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Fecha</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripcion</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Monto</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pagado</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Porc.</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Liberado</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             <?php foreach ($costos as $costo): 
                                 $estado_pago = abs($costo['total_pagado']) >= abs($costo['monto']);
@@ -224,7 +224,7 @@
                                     <td><?php echo $costo['categoria'] ?></td>
                                     <td><?php echo $costo['descripcion'] ?></td>
                                     <td class="text-end">
-                                        $<?php echo number_format(abs($costo['monto']), 2, ',', '.') ?>
+                                        <?php if ($costo['liberado']): ?>-<?php endif; ?>$<?php echo number_format(abs($costo['monto']), 2, ',', '.') ?>
                                     </td>
                                     <td class="text-end">
                                         $<?php echo number_format(abs($costo['total_pagado']), 2, ',', '.') ?>
@@ -248,50 +248,47 @@
                                         </span>
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-link text-secondary px-1" 
-                                                    onclick="editarCosto(<?php echo htmlspecialchars(json_encode($costo)) ?>)"
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Editar costo operativo">
-                                                <i class="fas fa-edit fa-xs"></i>
-                                            </button>
-                                            <button class="btn btn-link text-secondary px-1" 
-                                                    onclick="eliminarCosto(<?php echo $costo['viajesCostosOperativosId'] ?>)"
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Eliminar costo operativo">
-                                                <i class="fas fa-trash fa-xs"></i>
-                                            </button>
-                                            <?php if (!$estado_pago): ?>
-                                                <button type="button"
-                                                        class="btn btn-link text-secondary px-1"
-                                                        onclick="verificarPagoCosto(<?php echo $costo['viajesCostosOperativosId'] ?>, <?php echo htmlspecialchars(json_encode($costo)) ?>)"
-                                                        data-bs-toggle="tooltip" 
-                                                        data-bs-placement="top" 
-                                                        title="Registrar pago del costo">
-                                                    <i class="fas fa-dollar-sign fa-xs"></i>
-                                                </button>
-                                            <?php endif; ?>
-                                        </div>
+                                       <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton" 
+                                               onclick="editarCosto(<?php echo htmlspecialchars(json_encode($costo)) ?>)"
+                                               data-bs-toggle="tooltip" 
+                                               data-bs-placement="top" 
+                                               title="Editar costo operativo">
+                                           <i class="fas fa-edit"></i>
+                                       </button>
+
+                                       <button class="btn btn-icon btn-2 btn-sm btn-outline-dark mb-0 ajuste_boton"
+                                               onclick="eliminarCosto(<?php echo $costo['viajesCostosOperativosId'] ?>)"
+                                               data-bs-toggle="tooltip" 
+                                               data-bs-placement="top" 
+                                               title="Eliminar costo operativo">
+                                           <i class="fas fa-trash"></i>
+                                       </button>
+
+                                       <?php if (!$estado_pago): ?>
+                                           <button class="btn btn-icon btn-2 btn-sm btn-default mb-0 ajuste_boton"
+                                                   onclick="verificarPagoCosto(<?php echo $costo['viajesCostosOperativosId'] ?>, <?php echo htmlspecialchars(json_encode($costo)) ?>)"
+                                                   data-bs-toggle="tooltip" 
+                                                   data-bs-placement="top" 
+                                                   title="Registrar pago del costo">
+                                               <i class="fa fa-money text-danger"></i>
+                                           </button>
+                                       <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
-                      <!-- <tfoot>
-                          <tr>
-                              <td colspan="4" class="text-end fw-bold">Totales:</td>
-                              <td class="text-center">$<?php echo number_format($totalVentaPaquetes, 2, ',', '.') ?></td>
-                              <td class="text-center">$<?php echo number_format($totalDeudaViaje, 2, ',', '.') ?></td>
-                              <td class="text-center">$<?php echo number_format($totalCobrado, 2, ',', '.') ?></td>
-                              <td class="text-center">
-                                  <span class="<?php echo ($totalPendiente == 0) ? 'text-info' : 'text-danger'; ?> fw-bold">
-                                      $<?php echo number_format($totalPendiente, 2, ',', '.') ?>
-                                  </span>
-                              </td>
-                              <td colspan="2"></td>
-                          </tr>
-                      </tfoot> -->
+                        <tfoot>
+                           <tr class="fw-bold">
+                               <td colspan="3" class="text-end">Total:</td>
+                              <td class="text-end">
+                                    $<?php echo number_format(array_sum(array_map(function($c) { 
+                                        return $c['liberado'] ? -abs($c['monto']) : abs($c['monto']); 
+                                    }, $costos)), 2, ',', '.') ?>
+                                </td>
+                               <td class="text-end">$<?php echo number_format(array_sum(array_map(function($c) { return abs($c['total_pagado']); }, $costos)), 2, ',', '.') ?></td>
+                               <td colspan="4"></td>
+                           </tr>
+                        </tfoot>
                     </table>
                   </div>
                 </div>
