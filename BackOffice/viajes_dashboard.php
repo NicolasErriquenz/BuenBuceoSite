@@ -177,8 +177,12 @@
   $totalIngresos = $costosAlquileres["ganancia"] + $totalDeudaViaje;
   $totalCostos = $totalCostosOperativos;
   $margenGanancia = $totalIngresos - $totalCostos;
-  $porcentajeMargen = number_format(($margenGanancia / $totalIngresos) * 100, 1);
+  $porcentajeMargen = $totalIngresos != 0 ? 
+    number_format(($margenGanancia / $totalIngresos) * 100, 1) : 
+    0;
 
+  $documentaciones = getDocumentacionViaje($_GET[$idNombre]);
+  $documentacionesTipos = getTipoDocumentacion();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -225,9 +229,12 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-end">
+            <a href="viajes_documentacion.php?viajesId=<?php echo $viaje[$idNombre]; ?>" 
+               class="btn btn-sm btn-outline-primary me-2">
+              <i class="fas fa-file-alt"></i> Documentación
+            </a>
             <span id="badge-<?php echo $viaje[$idNombre]; ?>" class="badge habilitado-checkbox 
-            <?php echo ($viaje["activo"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>" 
-            style="font-size: 15px; padding: 10px 20px; border-radius: 10px;margin-right: 50px;">
+              <?php echo ($viaje["activo"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
               <?php echo ($viaje["activo"] == 1) ? 'ACTIVO' : 'FINALIZADO'; ?>
             </span>
           </div>
@@ -334,7 +341,7 @@
   
 
       <div class="row pb-3">
-        <div class="col-9 d-flex">
+        <div class="col d-flex">
           <div class="card flex-fill">
             <div class="card-body">
 
@@ -372,6 +379,27 @@
                         Hospedajes <span class="badge bg-secondary "><?php echo count($viajesHospedajes); ?></span>
                       </a>
                   </li>
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link fw-medium align-middle <?= ($sub_seccion == 'documentacion') ? 'active' : '' ?> text-secondary text-bold" 
+                         data-bs-toggle="tab" 
+                         href="#documentacion-tabs-icons" 
+                         role="tab" 
+                         aria-selected="<?= ($sub_seccion == 'documentacion') ? 'true' : 'false' ?>">
+                        Documentación
+                      </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                   <a class="nav-link fw-medium align-middle text-secondary text-bold disabled" 
+                      data-bs-toggle="tab" 
+                      href="#pagos_realizados-tabs-icons" 
+                      role="tab"
+                      style="opacity: 0.5; cursor: not-allowed;"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Próximamente">
+                     Pagos realizados <span class="badge bg-secondary"></span>
+                   </a>
+                  </li>
                 </ul>
               </div>
 
@@ -402,64 +430,12 @@
                   <!-- Content for Hospedajes Tab -->
                   <?php include("viajes_dashboard_hospedajes.php"); ?>
                 </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3 d-flex">
-          <div class="card mb-3 flex-fill">
-            <div class="card-header pb-0">
-              <h5 class="card-title">Pagos realizados (próximamente)</h5>
-            </div>
-            <div class="card-body">
-              <div class="">
-                <div class="d-grid gap-4">
-                  <!-- <div class="d-flex align-items-center">
-                    <div class="bg-primary bg-opacity-10 rounded-2 p-3 me-3">
-                      <i class="ni ni-credit-card fs-4" style="color:white;"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h7 class="mb-0">18/7/2024</h7>
-                      <p class="text-truncate m-0">Viajes - Vuelos</p>
-                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
-                        El vuelo de Alber lo pagué con lo que cobré de lo que recibí de la devolución de los vuelos a Costa Rica
-                      </p>
-                    </div>
-                    <h4 class="m-0 ms-auto text-danger">$670.19</h4>
-                  </div>
-                  
-                  <div class="d-flex align-items-center">
-                    <div class="bg-success bg-opacity-10 rounded-2 p-3 me-3">
-                      <i class="ni ni-mobile-button fs-4" style="color:white;"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h7 class="mb-0">18/7/2024</h7>
-                      <p class="text-truncate m-0">Viajes - Vuelos</p>
-                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
-                        Vuelos Facu y Ana
-                      </p>
-                    </div>
-                    <h4 class="m-0 ms-auto text-danger">$1361.78</h4>
-                  </div>
-
-                  <div class="d-flex align-items-center">
-                    <div class="bg-secondary bg-opacity-10 rounded-2 p-3 me-3">
-                      <i class="ni ni-money-coins fs-4" style="color:white;"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h7 class="mb-0">26/9/2024</h7>
-                      <p class="text-truncate m-0">Viajes - Excursiones</p>
-                      <p class="text-secondary lh-sm small m-0" style="font-size: 11px;color: #c0cadb !important;">
-                        Son 4300 pesos mexicanos a 18,50 el dólar, en pesos mexicanos. Esos son 240 dólares, que pagué en pesos a ANA CAROLINA CUTAIA, la amiga de Nani. Le transferí $296,400 a cotización de 1235
-                      </p>
-                    </div>
-                    <h4 class="m-0 ms-auto text-danger">$240.00</h4>
-                  </div> -->
-                  
+                <div class="tab-pane fade <?= ($sub_seccion == 'documentacion') ? 'show active' : '' ?>" id="documentacion-tabs-icons" role="tabpanel" aria-labelledby="documentacion-tabs-icons-tab">
+                  <!-- Content for Hospedajes Tab -->
+                  <?php include("viajes_dashboard_documentacion.php"); ?>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -872,88 +848,68 @@
 
   <style type="text/css">
     .habilitado-checkbox {
-        cursor: pointer;
+       cursor: pointer;
     }
 
-    .toggle.btn{
-      min-height: 2.50rem !important;
-    }
-
-    .nav-pills .nav-link.active {
-      color: #fff;
-      background-color: #0d6efd;
-      border-radius: 8px;
+    .toggle.btn {
+       min-height: 2.50rem !important;
     }
 
     .nav-pills .nav-link {
-      transition: all 0.3s ease;
-    }
+    border: none;
+}
 
-    .nav-pills .nav-link.active:hover {
-      background-color: #083b86;
-    }
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #0d6efd;
+    border-radius: 8px;
+}
 
-    .nav-pills .nav-link.active::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 4px;
-      border-radius: 10px;
-    }
-
+    /* Other Styles */
     .imagen-circular {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        margin-top: -2px;
+       width: 25px;
+       height: 25px;
+       border-radius: 50%;
+       background-size: cover;
+       background-position: center;
+       background-repeat: no-repeat;
+       margin-top: -2px;
     }
 
-    .dropdown-item{
-      border: 1px solid #cfcbcb;
-      border-radius: inherit;
+    .dropdown-item {
+       border: 1px solid #cfcbcb;
+       border-radius: inherit;
     }
 
-    #resultado{
-      margin-top:-20px;
+    #resultado {
+       margin-top: -20px;
     }
 
     .card-hospedaje {
-      border: 1px solid #ddd;
-      border-radius: 0;
-      box-shadow: none;
-      padding: 0;
+       border: 1px solid #ddd;
+       border-radius: 0;
+       box-shadow: none;
+       padding: 0;
     }
 
     .card-hospedaje-header {
-      background-color: #f7f7f7;
-      border-bottom: 1px solid #ddd;
-      padding: 10px;
+       background-color: #f7f7f7;
+       border-bottom: 1px solid #ddd;
+       padding: 10px;
     }
 
     .card-hospedaje-body {
-      padding: 20px;
+       padding: 20px;
     }
 
     .card-hospedaje-footer {
-      background-color: #f7f7f7;
-      border-top: 1px solid #ddd;
-      padding: 10px;
-    }
-
-    .nav-border-top-primary .nav-link.active {
-      color: var(--bs-secondary);
-      border-top-color: var(--bs-secondary);
-      border-top: 4px solid !important;
+       background-color: #f7f7f7;
+       border-top: 1px solid #ddd;
+       padding: 10px;
     }
 
     .fs-7 {
-      font-size: 0.75rem !important;
+       font-size: 0.75rem !important;
     }
 
   </style>

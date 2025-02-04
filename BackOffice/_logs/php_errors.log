@@ -4540,3 +4540,2316 @@ Stack trace:
 #1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_hospedajes.php(127): {closure}()
 #2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(394): include()
 --------------------------------
+[2025-01-26 22:29:43] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php
+Línea: 229
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php(229): {closure}()
+--------------------------------
+[2025-01-26 22:29:43] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php
+Línea: 229
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php(229): {closure}()
+--------------------------------
+[2025-01-27 00:01:32] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(4): require_once()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 61
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(61): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 61
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(61): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 62
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(62): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 62
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(62): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 63
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(63): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 63
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(63): {closure}()
+--------------------------------
+[2025-01-27 00:02:35] EXCEPTION: Call to undefined function formateaFecha()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 65
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(65): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 65
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(65): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(66): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(66): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Undefined array key "usuario"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_manifiesto_viajeros.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:04:02] EXCEPTION: Call to undefined function formateaFecha()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-27 00:12:53] EXCEPTION: Call to undefined function formateaFecha()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-27 00:13:31] EXCEPTION: Call to undefined function formateaFecha()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-27 00:13:47] EXCEPTION: Call to undefined function formateaFecha()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-27 00:35:30] ERROR: Undefined variable $viajeros
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:35:30] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:35:53] ERROR: Undefined variable $viajeros
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:35:53] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:36:15] ERROR: Undefined variable $viajeros
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:36:15] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 67
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(67): {closure}()
+--------------------------------
+[2025-01-27 00:37:19] ERROR: Undefined variable $viaje
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 17
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(17): {closure}()
+--------------------------------
+[2025-01-27 00:37:19] ERROR: Trying to access array offset on value of type null
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php
+Línea: 17
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\exports\xls_alquiler_equipos_detalle.php(17): {closure}()
+--------------------------------
+[2025-01-29 00:59:02] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(4): require_once()
+--------------------------------
+[2025-01-29 01:07:06] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-01-29 01:09:27] EXCEPTION: Division by zero
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-01-29 01:13:24] EXCEPTION: Division by zero
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-02-04 00:34:13] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-02-04 00:41:40] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php
+Línea: 229
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php(229): {closure}()
+--------------------------------
+[2025-02-04 00:41:40] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php
+Línea: 229
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_habitaciones_editar.php(229): {closure}()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 155
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(155): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:16:35] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 156
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(156): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:37] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:19:38] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:20:06] EXCEPTION: Call to a member function bind_param() on bool
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(184): getDocumentacionViaje('7')
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:53] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 142
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(142): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 143
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(143): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "usuarioId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 176
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(176): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apodo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "nombre"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------
+[2025-02-04 02:21:54] ERROR: Undefined array key "apellido"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php
+Línea: 177
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard_documentacion.php(177): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_dashboard.php(435): include()
+--------------------------------

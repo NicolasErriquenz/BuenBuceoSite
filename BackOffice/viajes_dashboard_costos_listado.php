@@ -1,108 +1,102 @@
 
 
-<div class="card mt-4 shadow-none">
-  <div class="card-header pb-0">
-    <div class="row">
-      <div class="col">
-        <h6 class="float-start"></h6>
-        <div class="float-end">
-          <button class="btn btn-sm btn-icon bg-gradient-primary float-end mb-0" onclick="javascript:abrirModalCostos('altaViajeCosto')">
-              <i class="ni ni-fat-add"></i> COSTO
-          </button>
-        </div>
-      </div>
+<div class="row">
+  <div class="col">
+    <h6 class="float-start"></h6>
+    <div class="float-end">
+      <button class="btn btn-sm btn-icon bg-gradient-primary float-end mb-0" onclick="javascript:abrirModalCostos('altaViajeCosto')">
+          AGREGAR COSTO
+      </button>
     </div>
   </div>
-  <div class="card-body pt-0">
-    <div class="row">
-      <div class="col">
-        <div class="custom-scroll-container">
-          <div class="table-responsive custom-pagination" style="margin: 0px !important;">
-            <?php if (empty($costos)): ?>
-              <div class="alert text-center">
-                <i class="fas fa-info-circle fa-2x"></i>
-                <p>No hay registros para mostrar.</p>
-                <p>Puedes agregar un nuevo costo haciendo clic en el botón 
-                  <button class="btn btn-xs btn-icon bg-gradient-primary" onclick="javascript:abrirModalCostos('altaViajeCosto')" style="margin-top:13px;">
-                      <i class="ni ni-fat-add"></i> COSTO
-                  </button>
-                </p>
-              </div>
-            <?php else: ?>
-              <table class="table mb-0 dataTable">
-                <thead>
-                  <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alcance</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Costo total</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($costos as $item): ?>
-                  <tr>
-                    <td>
-                      <p class="text-sm  mb-0">
-                      <?php echo $item["viajeCostoId"] ?>
-                      </p>
-                    </td>
-                    <td>
-                      <p class="text-sm  mb-0">
-                      <?php echo $item["subrubro"] ?>
-                      </p>
-                    </td>
-                    <td>
-                      <p class="text-sm  mb-0">
-                      <?php echo $item["comentario"] ?>
-                      </p>
-                    </td>
-                    <td class="text-center">
-                      <p class="text-sm mb-0">
-                      <?php echo $item["simbolo"] ?> <?php echo $item["monto"] ?>
-                      </p>
-                    </td>
-                    <td class="text-center">
-                      <p class="text-sm mb-0">
-                      <?php echo $item["soloBuzos"] == "1" ? "Buzos" : "Todos" ?>
-                      </p>
-                    </td>
-                    <td class="text-center">
-                      <p class="text-sm mb-0">
-                      <?php echo $item["cantidad_personas"]?>
-                      </p>
-                    </td>
-                    <td class="text-center">
-                      <p class="text-sm mb-0">
-                      <?php echo $item["simbolo"] ?> <?php echo $item["monto"] * $item["cantidad_personas"] ?>
-                      </p>
-                    </td>
-                    <td class="align-middle text-center">
-                        <a href="javascript:confirmarRefrescarCosto(<?php echo $item["viajeCostoId"] ?>)"
-                           class="btn btn-icon btn-primary btn-xs mb-0"
-                           data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh a todos los usuarios">
-                          <span class="btn-inner--icon"><i class="fa fa-refresh"></i></span>
-                        </a>
-                        <a href="javascript:abrirModalCostos('editarViajeCosto', <?php echo $item["viajeCostoId"] ?>)"
-                           class="btn btn-icon btn-secondary btn-xs mb-0"
-                           data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
-                          <span class="btn-inner--icon"><i class="fa fa-edit"></i></span>
-                        </a>
-                        <a href="javascript:confirmarEliminarCosto(<?php echo $item["viajeCostoId"] ?>)"
-                           class="btn btn-icon btn-outline-danger btn-xs mb-0"
-                           data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
-                          <span class="btn-inner--icon"><i class="fa fa-times"></i></span>
-                        </a>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            <?php endif; ?>
-          </div>
+  <div class="row">
+    <div class="col">
+      <div class="custom-scroll-container">
+        <div class="table-responsive custom-pagination" style="margin: 0px !important;">
+          <?php if (empty($costos)): ?>
+            <div class="alert text-center">
+              <i class="fas fa-info-circle fa-2x"></i>
+              <p>No hay registros para mostrar.</p>
+              <p>Puedes agregar un nuevo costo haciendo clic en el botón 
+                <button class="btn btn-xs btn-icon bg-gradient-primary" onclick="javascript:abrirModalCostos('altaViajeCosto')" style="margin-top:13px;">
+                    <i class="ni ni-fat-add"></i> COSTO
+                </button>
+              </p>
+            </div>
+          <?php else: ?>
+            <table class="table mb-0 dataTable">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subrubro</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comentario</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alcance</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Viajeros</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Costo total</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($costos as $item): ?>
+                <tr>
+                  <td>
+                    <p class="text-sm  mb-0">
+                    <?php echo $item["viajeCostoId"] ?>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="text-sm  mb-0">
+                    <?php echo $item["subrubro"] ?>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="text-sm  mb-0">
+                    <?php echo $item["comentario"] ?>
+                    </p>
+                  </td>
+                  <td class="text-center">
+                    <p class="text-sm mb-0">
+                    <?php echo $item["simbolo"] ?> <?php echo $item["monto"] ?>
+                    </p>
+                  </td>
+                  <td class="text-center">
+                    <p class="text-sm mb-0">
+                    <?php echo $item["soloBuzos"] == "1" ? "Buzos" : "Todos" ?>
+                    </p>
+                  </td>
+                  <td class="text-center">
+                    <p class="text-sm mb-0">
+                    <?php echo $item["cantidad_personas"]?>
+                    </p>
+                  </td>
+                  <td class="text-center">
+                    <p class="text-sm mb-0">
+                    <?php echo $item["simbolo"] ?> <?php echo $item["monto"] * $item["cantidad_personas"] ?>
+                    </p>
+                  </td>
+                  <td class="align-middle text-center">
+                      <a href="javascript:confirmarRefrescarCosto(<?php echo $item["viajeCostoId"] ?>)"
+                         class="btn btn-icon btn-primary btn-xs mb-0"
+                         data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh a todos los usuarios">
+                        <span class="btn-inner--icon"><i class="fa fa-refresh"></i></span>
+                      </a>
+                      <a href="javascript:abrirModalCostos('editarViajeCosto', <?php echo $item["viajeCostoId"] ?>)"
+                         class="btn btn-icon btn-secondary btn-xs mb-0"
+                         data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                        <span class="btn-inner--icon"><i class="fa fa-edit"></i></span>
+                      </a>
+                      <a href="javascript:confirmarEliminarCosto(<?php echo $item["viajeCostoId"] ?>)"
+                         class="btn btn-icon btn-outline-danger btn-xs mb-0"
+                         data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                        <span class="btn-inner--icon"><i class="fa fa-times"></i></span>
+                      </a>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          <?php endif; ?>
         </div>
       </div>
     </div>

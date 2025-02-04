@@ -133,38 +133,40 @@ foreach ($costosHospedajes['hospedajes'] as $hospedaje): ?>
                   <table class="table table-sm table-borderless mb-0 fs-7">
                     <thead>
                       <tr class="border-bottom">
-                        <th class="text-muted p-1 text-start">Nombre</th>
+                        <th class="text-muted p-1 text-start">Viajeros</th>
                         <th class="text-muted p-1 text-start">Cama</th>
-                        <th class="text-muted p-1 text-start">Apodo</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($usuarios as $usuario): ?>
                         <tr>
-                          <td class="py-1">
-                            <div class="d-flex align-items-center">
-                              <?php 
-                              // Determine color based on some condition, for example, viajeroTipoId
-                              $badgeColor = match($usuario['viajeroTipoId']) {
-                                '3' => 'bg-secondary',    // Blue for one type
-                                default => 'bg-info'  // Grey for others
-                              };
-                              ?>
-                              <span class="me-2 rounded-circle <?php echo $badgeColor; ?>" 
-                                    style="width: 10px; height: 10px; display: inline-block;"
-                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo $usuario['viajero_tipo']; ?>"></span>
-                              <span class="text-truncate"><?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?></span>
-                            </div>
-                          </td>
-                          <td class="py-1">
-                            <?php 
-                            if ($usuario['cama_doble'] == '1') echo '<span class="badge bg-light text-secondary border">Doble</span>'; 
-                            if ($usuario['cama_simple'] == '1') echo '<span class="badge bg-light text-secondary border">Simple</span>'; 
-                            ?>
-                          </td>
-                          <td class="py-1 text-truncate"><?php echo $usuario['apodo']; ?></td>
-                        </tr>
+ <td class="py-1 w-100">
+   <div class="d-flex align-items-center">
+     <?php 
+     $badgeColor = match($usuario['viajeroTipoId']) {
+       '3' => 'bg-secondary',
+       default => 'bg-info'  
+     };
+     ?>
+     <span class="me-2 rounded-circle <?php echo $badgeColor; ?>" 
+           style="width: 10px; height: 10px; display: inline-block;"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="<?php echo $usuario['viajero_tipo']; ?>"></span>
+     <span class="text-truncate flex-grow-1" 
+          data-bs-toggle="tooltip" 
+          data-bs-placement="top" 
+          title="<?php echo htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']); ?>">
+        <?php echo htmlspecialchars($usuario['apodo']); ?>
+     </span>
+   </div>
+ </td>
+ <td class="py-1 text-end" style="white-space: nowrap;">
+   <?php 
+   if ($usuario['cama_doble'] == '1') echo '<span class="badge bg-light text-secondary border">Doble</span>'; 
+   if ($usuario['cama_simple'] == '1') echo '<span class="badge bg-light text-secondary border">Simple</span>'; 
+   ?>
+ </td>
+</tr>
                       <?php endforeach; ?>
                     </tbody>
                   </table>

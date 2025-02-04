@@ -1,13 +1,33 @@
-    <div class="row">
-      <div class="col">
-        <h6 class="float-start"></h6>
-        <div class="float-end">
-          <button class="btn btn-sm btn-icon bg-gradient-primary float-end" onclick="javascript:altaViajero();">
-              <i class="ni ni-fat-add"></i> AGREGAR VIAJERO
-          </button>
-        </div>
-      </div>
-    </div>
+    <div class="row mb-4">
+ <div class="col">
+   <div class="d-flex justify-content-between align-items-center">
+     <div class="d-flex align-items-center">
+       <h6 class=""></h6>
+       <!-- <div class="badge bg-primary bg-opacity-10 text-primary me-2">
+         Total: 5
+       </div>
+       <div class="badge bg-success bg-opacity-10 text-success">
+         Activos: 3  
+       </div> -->
+     </div>
+
+     <!-- Right side - Action buttons -->
+     <div class="btn-group">
+       <button class="btn btn-sm btn-primary" onclick="javascript:altaViajero();">
+         <i class="fas fa-plus me-2"></i>Agregar Viajero
+       </button>
+       <a class="btn btn-sm btn-outline-primary" 
+          href="exports/xls_manifiesto_viajeros.php?viajesId=<?php echo $_GET["viajesId"] ?>"
+          target="_blank">
+         <i class="fas fa-file-excel me-2"></i>Descargar Manifiesto
+       </a>
+       <!-- <button class="btn btn-sm btn-outline-primary" onclick="enviarNotificacion()">
+         <i class="fas fa-bell me-2"></i>Notificar Viajeros
+       </button> -->
+     </div>
+   </div>
+ </div>
+</div>
     <div class="row">
       <div class="col">
         <div class="custom-scroll-container">

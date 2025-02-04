@@ -88,6 +88,7 @@
 
 	define("SUBRUBRO_ID_ALQUILER_EQUIPOS", 12);
 	define("SUBRUBRO_ID_PAQUETE_TURISTICO", 19);
+	define("XLS_FILE_PREFIX", "");
 
 	// 13. Log inicial (solo una vez por sesión)
 	if (LOGGING_ENABLED && (!isset($_SESSION['log_initialized']) || $_SESSION['log_initialized'] != date('Y-m-d'))) {

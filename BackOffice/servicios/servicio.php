@@ -1586,6 +1586,7 @@
 			    "talle" => $row["talle"],
 			    "comentario" => $row["comentario"],
 			    "direccion" => $row["direccion"],
+			    "telefono" => $row["telefono"],
 			    "ciudad" => $row["ciudad"],
 			    "fecha_registro" => $row["fecha_registro"],
 			    "fecha_nacimiento" => $row["fecha_nacimiento"],
@@ -3707,4 +3708,111 @@
 	            ));
 	        }
 	    }
+	}
+
+	function getDocumentacionViaje($viajesId) {
+	    global $mysqli;
+	    
+	    // Prepare statement with error checking
+	    $stmt = $mysqli->prepare("SELECT 
+	        vu.usuarioId,
+	        vu.viajesId,
+	        u.nombre,
+	        u.apellido,
+	        u.apodo,
+	        u.imagen,
+	        vt.viajero_tipo,
+	        d.documentacionId,
+	        d.documento,
+	        d.comentario,
+	        dt.tipo,
+	        dt.alcance
+	    FROM viajes_usuarios vu
+	    INNER JOIN usuarios u ON vu.usuarioId = u.usuarioId
+	    INNER JOIN viajes_viajero_tipo vt ON vu.viajeroTipoId = vt.viajeroTipoId
+	    LEFT JOIN documentacion d ON (
+	        d.usuarioId = vu.usuarioId AND 
+	        d.habilitado_sys = 1 AND
+	        (d.viajesId = vu.viajesId OR d.viajesId IS NULL)
+	    )
+	    LEFT JOIN documentacion_tipos dt ON d.documentacionTipoId = dt.documentacionTipoId
+	    WHERE vu.viajesId = ? 
+	    AND vu.habilitado_sys = 1
+	    ORDER BY u.apodo, dt.alcance, dt.tipo");
+	    
+	    // Check if prepare was successful
+	    if ($stmt === false) {
+	        die("Error preparing statement: " . $mysqli->error);
+	    }
+	    
+	    // Bind parameters
+	    if (!$stmt->bind_param("i", $viajesId)) {
+	        die("Error binding parameters: " . $stmt->error);
+	    }
+	    
+	    // Execute statement
+	    if (!$stmt->execute()) {
+	        die("Error executing statement: " . $stmt->error);
+	    }
+	    
+	    $result = $stmt->get_result();
+	    
+	    $viajeros = [];
+	    while($row = $result->fetch_assoc()) {
+	        $usuarioId = $row['usuarioId'];
+	        
+	        if (!isset($viajeros[$usuarioId])) {
+	            $viajeros[$usuarioId] = [
+	                'usuarioId' => $row['usuarioId'],
+	                'nombre' => $row['nombre'],
+	                'apellido' => $row['apellido'],
+	                'apodo' => $row['apodo'],
+	                'imagen' => $row['imagen'],
+	                'viajero_tipo' => $row['viajero_tipo'],
+	                'documentos' => [
+	                    'USUARIO' => [],
+	                    'VIAJERO' => []
+	                ]
+	            ];
+	        }
+	        
+	        if ($row['documentacionId']) {
+	            $viajeros[$usuarioId]['documentos'][$row['alcance']][] = [
+	                'documentacionId' => $row['documentacionId'],
+	                'tipo' => $row['tipo'],
+	                'documento' => $row['documento'],
+	                'comentario' => $row['comentario']
+	            ];
+	        }
+	    }
+	    
+	    return array_values($viajeros);
+	}
+
+	function getTipoDocumentacion() {
+	    global $mysqli;
+	    
+	    $sql = "SELECT 
+	            documentacionTipoId,
+	            tipo,
+	            alcance 
+	        FROM documentacion_tipos 
+	        WHERE habilitado_sys = 1
+	        ORDER BY alcance, tipo";
+	    
+	    $stmt = $mysqli->prepare($sql);
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    $tipos = [
+	        'USUARIO' => [],
+	        'VIAJERO' => [],
+	        'VIAJE' => []
+	    ];
+	    
+	    while($row = $result->fetch_assoc()) {
+	        $tipos[$row['alcance']][] = $row;
+	    }
+	    
+	    return $tipos;
 	}

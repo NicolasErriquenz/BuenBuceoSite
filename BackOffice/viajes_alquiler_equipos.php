@@ -120,11 +120,18 @@
 
         <div class="col">
             <div class="card mb-4">
-                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h6>Tarifas de Equipos</h6>
-                    <button class="btn btn-info btn-sm" id="editarTarifas">
-                        <i class="fas fa-edit me-2"></i>Editar Tarifas
-                    </button>
+               <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                   <h6>Tarifas de Equipos</h6>
+                   <div class="btn-group">
+                       <button class="btn btn-sm btn-primary" id="editarTarifas">
+                           <i class="fas fa-edit me-2"></i>Editar Tarifas
+                       </button>
+                       <a class="btn btn-sm btn-outline-primary"
+                               href="exports/xls_alquiler_equipos_detalle.php?viajesId=<?php echo $_GET["viajesId"] ?>"
+                               target="_blank">
+                           <i class="fas fa-file-excel me-2"></i>Descargar Reporte
+                       </a>
+                   </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -243,12 +250,15 @@
                             <?php foreach($viajeros as $v): ?>
                             <tr class="<?php echo ($v['viajeroTipo']['viajeroTipoId'] == 3) ? 'bg-gray-100' : ''; ?> border-bottom">
                                 <!-- Datos del viajero -->
-                                <td class="py-1">
-                                    <?php if($v['usuario']['apodo']): ?>
-                                        <?php echo htmlspecialchars($v['usuario']['apodo']); ?>
-                                    <?php else: ?>
-                                        <?php echo htmlspecialchars($v['usuario']['nombre'] . ' ' . $v['usuario']['apellido']); ?>
-                                    <?php endif; ?>
+                                <td class="py-1" 
+                                   data-bs-toggle="tooltip" 
+                                   data-bs-placement="top" 
+                                   title="<?php echo htmlspecialchars($v['usuario']['nombre'] . ' ' . $v['usuario']['apellido']); ?>">
+                                   <?php if($v['usuario']['apodo']): ?>
+                                       <?php echo htmlspecialchars($v['usuario']['apodo']); ?>
+                                   <?php else: ?>
+                                       <?php echo htmlspecialchars($v['usuario']['nombre'] . ' ' . $v['usuario']['apellido']); ?>
+                                   <?php endif; ?>
                                 </td>
                                 <td class="py-1"><?php echo htmlspecialchars($v['viajeroTipo']['viajero_tipo']); ?></td>
                                 <td class="py-1"><?php echo htmlspecialchars($v['usuario']['peso'] ?: '-'); ?></td>

@@ -4,7 +4,7 @@
       <h6 class="float-start"></h6>
       <div class="float-end">
         <button class="btn btn-sm btn-icon bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-hospedaje">
-            <i class="ni ni-fat-add"></i> AGREGAR HOSPEDAJE
+            AGREGAR HOSPEDAJE
         </button>
       </div>
     </div>

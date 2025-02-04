@@ -1,29 +1,77 @@
 <?php  
+require_once ("Connections/config.php");
+require_once ("Connections/connect.php");
+require_once ("servicios/servicio.php");
 
-  // Solo cargar una vez los archivos necesarios
-  require_once ("Connections/config.php");
-  require_once ("Connections/connect.php");
-  require_once ("servicios/servicio.php");
+// Verificar si existe cookie de remember me
+if (!isset($_SESSION['admin']) && isset($_COOKIE['remember_token'])) {
+    $token = $_COOKIE['remember_token'];
+    $sql = "SELECT * FROM usuarios 
+            WHERE remember_token = ? AND token_expires > NOW()";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        session_start();
+        $_SESSION["admin"] = $row;
+        $_SESSION["admin"]["foto"] = $row["imagen"];
+        header("location:dashboard.php");
+        die();
+    }
+}
 
-  if(isset($_POST["userid"]) && $_POST["userid"] != "" && isset($_POST["password"]) && $_POST["password"] != "") {
-      $sql = "SELECT * FROM usuarios WHERE usuario='".$_POST["userid"]."' AND password='".md5($_POST["password"])."'";
-      $rs  = $mysqli->query($sql);
+// Login normal
+if(isset($_POST["userid"]) && $_POST["userid"] != "" && 
+   isset($_POST["password"]) && $_POST["password"] != "") {
+    
+    $sql = "SELECT * FROM usuarios WHERE usuario=? AND password=?";
+    $stmt = $mysqli->prepare($sql);
+    $hashedPassword = md5($_POST["password"]);
+    $stmt->bind_param("ss", $_POST["userid"], $hashedPassword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if($result->num_rows > 0) {
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        if(!isset($_SESSION)) {
+            session_start();
+        }
       
-      if(mysqli_num_rows($rs) > 0) {
-          $row = $rs->fetch_array(MYSQLI_ASSOC);
-          if(!isset($_SESSION)) {
-              session_start();
-          }
-          
-          $_SESSION["admin"] = $row;
-          $_SESSION["admin"]["foto"] = $row["imagen"];
-          header("location:dashboard.php");
-          die();
-      }
-  }
+        // Si remember me está marcado
+        if(isset($_POST['rememberMe'])) {
+            $token = bin2hex(random_bytes(32));
+            $sql = "UPDATE usuarios 
+                   SET remember_token = ?, 
+                       token_expires = DATE_ADD(NOW(), INTERVAL 30 DAY) 
+                   WHERE usuarioId = ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("si", $token, $row['usuarioId']);
+            $stmt->execute();
+            
+            setcookie(
+                'remember_token',
+                $token,
+                [
+                    'expires' => time() + (30 * 24 * 60 * 60), // 30 días
+                    'path' => '/',
+                    'secure' => true,
+                    'httponly' => true,
+                    'samesite' => 'Strict'
+                ]
+            );
+        }
+              
+        $_SESSION["admin"] = $row;
+        $_SESSION["admin"]["foto"] = $row["imagen"];
+        header("location:dashboard.php");
+        die();
+    }
+}
 
-  $frase = obtenerOracionInspiradora();
-  
+$frase = obtenerOracionInspiradora();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -55,7 +103,7 @@
                       </div>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe">
+                      <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe" value="1" checked>
                       <label class="form-check-label" for="rememberMe">Recordarme</label>
                     </div>
                     <div class="text-center">

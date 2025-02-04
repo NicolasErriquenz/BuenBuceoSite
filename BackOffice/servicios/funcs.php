@@ -186,6 +186,15 @@
 	    return $query;
 	}
 
+	function formatearFecha($fecha, $conHora = false) {
+	   if (empty($fecha) || $fecha == '0000-00-00') return '-';
+	   
+	   $timestamp = strtotime($fecha);
+	   return $conHora ? 
+	       date('d/m/Y H:i', $timestamp) : 
+	       date('d/m/Y', $timestamp);
+	}
+
 	function eco($s){
 	    if (is_array($s)) {
 	        echo json_encode($s);
