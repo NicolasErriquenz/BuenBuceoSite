@@ -199,7 +199,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="dni" class="form-control-label">Documento</label>
-                        <input class="form-control" type="number" required name="dni" id="dni" value="<?php echo isset($usuario["dni"]) ? $usuario["dni"] : "" ?>">
+                        <input class="form-control" type="number" name="dni" id="dni" value="<?php echo isset($usuario["dni"]) ? $usuario["dni"] : "" ?>">
                       </div>
                     </div>
                   </div>
@@ -246,7 +246,7 @@
                     <div class="col-md-6">
                      <div class="form-group">
                        <label for="telefono" class="form-control-label">Teléfono</label>
-                       <input class="form-control" type="text" required name="telefono" id="telefono" value="<?php echo isset($usuario["telefono"]) ? $usuario["telefono"] : "" ?>">
+                       <input class="form-control" type="text" name="telefono" id="telefono" value="<?php echo isset($usuario["telefono"]) ? $usuario["telefono"] : "" ?>">
                      </div>
                     </div>
                     <div class="col-md-4">

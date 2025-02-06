@@ -65,7 +65,17 @@
     echo altaViajeHospedaje($_POST);
     die();
   }
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "altaDocumentacion" ) {
+    
+    echo altaDocumentacion($_POST);
+    die();
+  }
   
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "eliminarDocumento" ) {
+    updateHabilitado($_POST["documentacionId"], 0, "documentacion", "documentacionId");
+  }
+
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == "actualizar" ) {
     updateActivo($_POST["id"], $_POST["activo"], $tabla, $idNombre);
   }
@@ -181,8 +191,11 @@
     number_format(($margenGanancia / $totalIngresos) * 100, 1) : 
     0;
 
-  $documentaciones = getDocumentacionViaje($_GET[$idNombre]);
+  $documentacion = getDocumentacionViaje($_GET[$idNombre]);
+  $documentacionUsuarios = $documentacion['usuarios'];
+  $documentacionViaje = $documentacion['viaje'];
   $documentacionesTipos = getTipoDocumentacion();
+  //eco($documentacionUsuarios);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang ?>">
@@ -255,7 +268,7 @@
                       <i class="ni ni-chart-pie-35 text-white" style="font-size: 1.2rem;"></i>
                   </div>
                   <div>
-                      <p class="mb-0 text-xs text-muted text-uppercase">Costo Total</p>
+                      <p class="mb-0 text-xs text-muted text-uppercase">Costo Hospedaje</p>
                       <h6 class="mb-1 fw-bold">$<?= number_format($costoTotalViaje, 2, ',', '.'); ?></h6>
                       <small class="text-xs text-primary">Promedio/persona: $<?= $costoPromedioPersona; ?></small>
                   </div>
@@ -352,7 +365,7 @@
                       <a class="nav-link fw-medium <?= ($sub_seccion == 'costos_totales') ? 'active' : '' ?> text-secondary text-bold" 
                          data-bs-toggle="tab" 
                          href="#costos-tabs-icons" role="tab" aria-selected="<?= ($sub_seccion == 'costos_totales') ? 'true' : 'false' ?>" tabindex="-1">
-                        Costos hospedajes <span class="badge bg-secondary rounded-circle">$<?php echo number_format($costoTotalHabitaciones, 2, '.', ','); ?></span>
+                        Costos hospedajes 
                       </a>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -721,99 +734,9 @@
     });
   </script>
 
-   <script>
-
-    <?php 
-      if(count($estadisticasCostosTotales) != 0){
-        $labels = array_column($estadisticasCostosTotales, 'subrubro');
-        $data_values = array_column($estadisticasCostosTotales, 'monto_total');
-        foreach ($estadisticasCostosTotales as $index => $item) {
-          $colors[] = "#".dechex(rand(0,16777215)); // colores aleatorios
-        }
-    ?>
-    var ctx = document.getElementById('totalCostosChart').getContext('2d');
-    var totalCostosChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: <?= json_encode($labels) ?>,
-        datasets: [{
-          data: <?= json_encode($data_values) ?>,
-          backgroundColor: <?= json_encode($colors) ?>,
-          hoverBackgroundColor: <?= json_encode($colors) ?>,
-          borderWidth: 1
-        }]
-      },
-       options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'right', // Leyenda a la derecha
-            align: 'center', // Centrado verticalmente
-            labels: {
-              boxWidth: 15, // Tamaño de la caja de color
-              padding: 20,  // Espaciado entre ítems de la leyenda
-              color: '#525f7f' // Color de texto
-            }
-          },
-          tooltip: {
-            enabled: true,
-            backgroundColor: '#2dce89',
-            titleColor: '#fff',
-            bodyColor: '#fff'
-          }
-        },
-        cutout: '70%' // Ajusta el tamaño del agujero en el centro
-      }
-    });
-
-    var ctxTipoViajeros = document.getElementById('tipoViajerosChart').getContext('2d');
-    var myTipoViajerosChart = new Chart(ctxTipoViajeros, {
-      type: 'pie',
-      data: {
-        labels: ['Buzos', 'Acompañantes'],
-        datasets: [{
-          data: [17, 6],
-          backgroundColor: [
-            '#2dce89',
-            '#67748e'
-          ],
-          hoverBackgroundColor: [
-            '#2dce89',
-            '#67748e'
-          ],
-          borderWidth: 1
-        }]
-      },
-       options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            position: 'right', // Leyenda a la derecha
-            align: 'center', // Centrado verticalmente
-            labels: {
-              boxWidth: 15, // Tamaño de la caja de color
-              padding: 20,  // Espaciado entre ítems de la leyenda
-              color: '#525f7f' // Color de texto
-            }
-          },
-          tooltip: {
-            enabled: true,
-            backgroundColor: '#2dce89',
-            titleColor: '#fff',
-            bodyColor: '#fff'
-          }
-        },
-        cutout: '70%' // Ajusta el tamaño del agujero en el centro
-      }
-    });
-
-    <?php } ?>
-  </script>
-
   <?php include("includes/scripts_viajes_dashboard_usuarios.php"); ?>
   <?php include("includes/scripts_viajes_dashboard_hospedajes.php"); ?>
+  <?php include("includes/scripts_viajes_dashboard_documentacion.php"); ?>
 
   <script>
     // Fecha de partida desde PHP

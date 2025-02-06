@@ -11,7 +11,7 @@
 	    // Actualizar el estado en la base de datos
 	    $updateQuery = "UPDATE $tabla SET habilitado_sys = ? WHERE $idNombre = ?";
 	    $stmt = $mysqli->prepare($updateQuery);
-	    echo ($updateQuery);
+	    
 	    $stmt->bind_param('ii', $habilitado, $id); // 'ii' significa que ambos son enteros
 
 	    
@@ -2255,7 +2255,7 @@
 
 	function agregarDeudaUsuarioPaquete($viajesUsuariosId, $soloBorrar = false){
 
-		global $mysqli, $SUBRUBRO_ID_PAQUETE_TURISTICO;
+		global $mysqli;
 
 		$query = "SELECT vu.*, v.nombre, p.pais, v.anio FROM viajes_usuarios vu 
 				  INNER JOIN viajes v ON v.viajesId = vu.viajesId
@@ -2267,7 +2267,7 @@
 		$sqlDelete = "DELETE FROM deudas 
 					  WHERE viajesId = ".$row["viajesId"]."
 					  	AND usuarioId = ".$row["usuarioId"]."
-					  	AND pagosSubrubroId = ".$SUBRUBRO_ID_PAQUETE_TURISTICO;
+					  	AND pagosSubrubroId = ".SUBRUBRO_ID_PAQUETE_TURISTICO;
 	    $mysqli->query($sqlDelete);
 		if($soloBorrar)
 			return;
@@ -2279,7 +2279,7 @@
 			$deuda['monedaId'] = 2; //dolares 
 			$deuda['usuarioId'] = $row["usuarioId"];
 			$deuda['viajesId'] = $row["viajesId"];
-			$deuda['pagosSubrubroId'] = $SUBRUBRO_ID_PAQUETE_TURISTICO; //Venta paquetes
+			$deuda['pagosSubrubroId'] = SUBRUBRO_ID_PAQUETE_TURISTICO; //Venta paquetes
 			$deuda['habilitado_sys'] = 1;
 
 			$res = altaDeuda($deuda);
@@ -3711,82 +3711,66 @@
 	}
 
 	function getDocumentacionViaje($viajesId) {
-	    global $mysqli;
-	    
-	    // Prepare statement with error checking
-	    $stmt = $mysqli->prepare("SELECT 
-	        vu.usuarioId,
-	        vu.viajesId,
-	        u.nombre,
-	        u.apellido,
-	        u.apodo,
-	        u.imagen,
-	        vt.viajero_tipo,
-	        d.documentacionId,
-	        d.documento,
-	        d.comentario,
-	        dt.tipo,
-	        dt.alcance
-	    FROM viajes_usuarios vu
-	    INNER JOIN usuarios u ON vu.usuarioId = u.usuarioId
-	    INNER JOIN viajes_viajero_tipo vt ON vu.viajeroTipoId = vt.viajeroTipoId
-	    LEFT JOIN documentacion d ON (
-	        d.usuarioId = vu.usuarioId AND 
-	        d.habilitado_sys = 1 AND
-	        (d.viajesId = vu.viajesId OR d.viajesId IS NULL)
-	    )
-	    LEFT JOIN documentacion_tipos dt ON d.documentacionTipoId = dt.documentacionTipoId
-	    WHERE vu.viajesId = ? 
-	    AND vu.habilitado_sys = 1
-	    ORDER BY u.apodo, dt.alcance, dt.tipo");
-	    
-	    // Check if prepare was successful
-	    if ($stmt === false) {
-	        die("Error preparing statement: " . $mysqli->error);
-	    }
-	    
-	    // Bind parameters
-	    if (!$stmt->bind_param("i", $viajesId)) {
-	        die("Error binding parameters: " . $stmt->error);
-	    }
-	    
-	    // Execute statement
-	    if (!$stmt->execute()) {
-	        die("Error executing statement: " . $stmt->error);
-	    }
-	    
-	    $result = $stmt->get_result();
-	    
-	    $viajeros = [];
-	    while($row = $result->fetch_assoc()) {
-	        $usuarioId = $row['usuarioId'];
-	        
-	        if (!isset($viajeros[$usuarioId])) {
-	            $viajeros[$usuarioId] = [
-	                'usuarioId' => $row['usuarioId'],
-	                'nombre' => $row['nombre'],
-	                'apellido' => $row['apellido'],
-	                'apodo' => $row['apodo'],
-	                'imagen' => $row['imagen'],
-	                'viajero_tipo' => $row['viajero_tipo'],
-	                'documentos' => [
-	                    'USUARIO' => [],
-	                    'VIAJERO' => []
-	                ]
-	            ];
-	        }
-	        
-	        if ($row['documentacionId']) {
-	            $viajeros[$usuarioId]['documentos'][$row['alcance']][] = [
-	                'documentacionId' => $row['documentacionId'],
-	                'tipo' => $row['tipo'],
-	                'documento' => $row['documento'],
-	                'comentario' => $row['comentario']
-	            ];
-	        }
-	    }
-	    
-	    return array_values($viajeros);
+	   global $mysqli;
+	   
+	   // Query usuarios
+	   $sqlUsuarios = "SELECT 
+		   u.usuarioId, u.nombre, u.apellido, u.apodo, u.imagen,
+		   vt.viajero_tipo, d.documentacionId, d.documento,
+		   d.comentario, dt.tipo, dt.alcance
+		FROM viajes_usuarios vu
+		INNER JOIN usuarios u ON vu.usuarioId = u.usuarioId 
+		INNER JOIN viajes_viajero_tipo vt ON vu.viajeroTipoId = vt.viajeroTipoId
+		LEFT JOIN documentacion_tipos dt ON dt.alcance IN ('USUARIO', 'VIAJERO')
+		LEFT JOIN documentacion d ON (
+		   d.usuarioId = vu.usuarioId AND 
+		   d.documentacionTipoId = dt.documentacionTipoId AND
+		   d.habilitado_sys = 1 AND 
+		   (d.viajesId = vu.viajesId OR (dt.alcance = 'USUARIO' AND d.viajesId IS NULL))
+		)
+		WHERE vu.viajesId = $viajesId AND vu.habilitado_sys = 1
+		ORDER BY u.apodo, dt.alcance, dt.tipo";
+
+	   // Query viaje  
+	   $sqlViaje = "SELECT d.documentacionId, d.documento, d.comentario, dt.tipo
+	   FROM documentacion d
+	   INNER JOIN documentacion_tipos dt ON d.documentacionTipoId = dt.documentacionTipoId 
+	   WHERE d.viajesId = $viajesId AND d.habilitado_sys = 1 AND dt.alcance = 'VIAJE'
+	   ORDER BY dt.tipo";
+
+	   // Procesar usuarios
+	   $result = $mysqli->query($sqlUsuarios);
+	   $viajeros = [];
+	   while($row = $result->fetch_assoc()) {
+	       $usuarioId = $row['usuarioId'];
+	       if (!isset($viajeros[$usuarioId])) {
+	           $viajeros[$usuarioId] = [
+	               'usuarioId' => $row['usuarioId'],
+	               'nombre' => $row['nombre'], 
+	               'apellido' => $row['apellido'],
+	               'apodo' => $row['apodo'],
+	               'imagen' => $row['imagen'],
+	               'viajero_tipo' => $row['viajero_tipo'],
+	               'documentos' => ['USUARIO' => [], 'VIAJERO' => []]
+	           ];
+	       }
+	       if ($row['documentacionId']) {
+	           $viajeros[$usuarioId]['documentos'][$row['alcance']][] = [
+	               'documentacionId' => $row['documentacionId'],
+	               'tipo' => $row['tipo'],
+	               'documento' => $row['documento'], 
+	               'comentario' => $row['comentario']
+	           ];
+	       }
+	   }
+
+	   // Procesar viaje
+	   $docsViaje = $mysqli->query($sqlViaje)->fetch_all(MYSQLI_ASSOC);
+
+	   return [
+	       'usuarios' => array_values($viajeros),
+	       'viaje' => $docsViaje
+	   ];
 	}
 
 	function getTipoDocumentacion() {
@@ -3815,4 +3799,69 @@
 	    }
 	    
 	    return $tipos;
+	}
+
+	function altaDocumentacion($data) {
+	   global $mysqli;
+	   
+	   try {
+	       if (!isset($data['documentacionTipoId']) || empty($data['documentacionTipoId'])) 
+	           return "Debe seleccionar un tipo de documento";
+	       if (!isset($_FILES['documento']) || empty($_FILES['documento'])) 
+	           return "Debe subir un documento";
+
+	       // Obtener el alcance del tipo de documento
+	       $stmt = $mysqli->prepare("SELECT alcance FROM documentacion_tipos WHERE documentacionTipoId = ?");
+	       $stmt->bind_param("i", $data['documentacionTipoId']);
+	       $stmt->execute();
+	       $alcance = $stmt->get_result()->fetch_assoc()['alcance'];
+
+	       // Validar campos según alcance
+	       switch($alcance) {
+	           case 'USUARIO':
+	               if (empty($data['usuarioId'])) return "Debe seleccionar un usuario";
+	               $data['viajesId'] = null;
+	               break;
+	           case 'VIAJERO':
+	               if (empty($data['usuarioId'])) return "Debe seleccionar un usuario";
+	               if (empty($data['viajesId'])) return "Debe seleccionar un viaje";
+	               break;
+	           case 'VIAJE':
+	               if (empty($data['viajesId'])) return "Debe seleccionar un viaje";
+	               $data['usuarioId'] = null;
+	               break;
+	       }
+
+	       // Procesar archivo
+	       $archivo = $_FILES['documento'];
+	       $nombreOriginal = pathinfo($archivo['name'], PATHINFO_FILENAME);
+	       $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+	       $nombreSanitizado = preg_replace('/[^a-z0-9]+/', '-', strtolower($nombreOriginal));
+	       
+	       // Definir carpeta según alcance
+	       $carpeta = "_recursos/documentacion_" . strtolower($alcance) . "s/";
+	       $prefijo = 'doc_' . strtolower($alcance) . '_' . ($data['usuarioId'] ?? $data['viajesId']);
+	       
+	       if (!file_exists($carpeta)) mkdir($carpeta, 0777, true);
+	       
+	       $nombreArchivo = $prefijo . '_' . $nombreSanitizado . '.' . $extension;
+	       if (!move_uploaded_file($archivo['tmp_name'], $carpeta . $nombreArchivo)) 
+	           return "Error al subir el archivo";
+
+	       $sql = "INSERT INTO documentacion (documentacionTipoId, usuarioId, viajesId, documento, comentario) 
+	               VALUES (?, ?, ?, ?, ?)";
+	       $stmt = $mysqli->prepare($sql);
+	       $stmt->bind_param("iiiss", 
+	           $data['documentacionTipoId'],
+	           $data['usuarioId'], 
+	           $data['viajesId'],
+	           $nombreArchivo,
+	           $data['comentario']
+	       );
+	       
+	       return $stmt->execute() ? "OK" : "Error al guardar en base de datos";
+
+	   } catch (Exception $e) {
+	       return "Error: " . $e->getMessage();
+	   }
 	}

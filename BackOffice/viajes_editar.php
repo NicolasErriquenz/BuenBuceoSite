@@ -180,10 +180,10 @@
                           <input class="form-control" type="text" name="descripcion" id="descripcion" value="<?php echo isset($viaje["descripcion"]) ? $viaje["descripcion"] : "" ?>">
                         </div>
 
-                        <div id="archivo-existente" style="display:none;">
+                       <!--  <div id="archivo-existente" style="display:none;">
                           <a id="enlace-archivo" href="#" target="_blank">Ver archivo</a>
                           <button id="eliminar-archivo" class="btn btn-danger ">Eliminar archivo</button>
-                        </div>
+                        </div> -->
                         <!--
                         <?php
                         if ($action == 'editar' && !empty($viaje)) {
@@ -280,7 +280,7 @@
 
   <button type="button" id="btn-modal-errores" class="btn btn-block bg-gradient-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-default" style="display:none;">Default</button>
 
-  <div id="toast" class="toast align-items-center text-white <?php echo ($_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="toast" class="toast align-items-center text-white <?php echo (isset($_GET["action"]) && $_GET["action"] == "alta") ? "bg-success" : "bg-info"; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body" style="font-size: 18px;">
         <i class="fa fa-check" style="font-size: 24px; margin-right: 10px;"></i> <?php echo $_GET["action"] == "alta" ? "Usuario creado!" : "Usuario actualizado!"; ?>
