@@ -1,0 +1,49 @@
+<wpml-config>
+    <custom-fields>
+        <custom-field action="translate">gdlr-core-page-option</custom-field>
+    </custom-fields>
+
+    <custom-fields-texts>
+        <key name="gdlr-core-page-option">
+            <key name="page-caption"/>
+            <key name="position"/>
+            <key name="excerpt"/>
+            <key name="social-shortcode"/>
+        </key>
+    </custom-fields-texts>
+    <custom-types>
+        <custom-type translate="1">portfolio</custom-type>
+        <custom-type translate="1">personnel</custom-type>
+    </custom-types>
+    <taxonomies>
+        <taxonomy translate="1">portfolio_tag</taxonomy>
+        <taxonomy translate="1">portfolio_category</taxonomy>
+        <taxonomy translate="1">personnel_category</taxonomy>
+        <taxonomy translate="1">page_category</taxonomy>
+    </taxonomies>
+    <admin-texts>
+        <key name="gdlr_general">
+            <key name="top-bar-left-text"/>
+            <key name="top-bar-right-text"/>
+            <key name="top-bar-social-delicious"/>
+            <key name="top-bar-social-email"/>
+            <key name="top-bar-social-deviantart"/>
+            <key name="top-bar-social-digg"/>
+            <key name="top-bar-social-facebook"/>
+            <key name="top-bar-social-flickr"/>
+            <key name="top-bar-social-google-plus"/>
+            <key name="top-bar-social-lastfm"/>
+            <key name="top-bar-social-linkedin"/>
+            <key name="top-bar-social-pinterest"/>
+            <key name="top-bar-social-rss"/>
+            <key name="top-bar-social-skype"/>
+            <key name="top-bar-social-stumbleupon"/>
+            <key name="top-bar-social-tumblr"/>
+            <key name="top-bar-social-twitter"/>
+            <key name="top-bar-social-vimeo"/>
+            <key name="top-bar-social-youtube"/>
+            <key name="copyright-text"/>
+            <key name="main-navigation-right-button-text"/>
+        </key>
+    </admin-texts>
+</wpml-config>

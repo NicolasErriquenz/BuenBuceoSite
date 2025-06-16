@@ -1,0 +1,15 @@
+how to use 'tourmaster_package_title_display' filter
+
+add_filter('tourmaster_package_title_display', 'my_package_translation');
+function my_package_translation($s){
+
+	$list = array(
+		'package1' => esc_html__('package1', 'childthemename'),
+		'package2' => esc_html__('package2', 'childthemename'),
+	);
+
+	if( !empty($list[$s]) ){
+		return $list[$s];
+	}
+	return $s;
+}
