@@ -1,0 +1,247 @@
+﻿<div cg-busy="estudiosMedicosPostulanteCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">DOCUMENTACION MEDICA </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Documentacion Medica del postulante</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Datos del postulante</h3>
+                    <div class="card-tools">
+                        <button type="button"
+                                class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;"
+                                ng-click="estudiosMedicosPostulanteCtrl.Volver()">
+                            Volver
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body box-profile pt-0 pb-2">
+                    <div class="row">
+                        <div class="col-md-4 text-center mt-4">
+                            <img class="profile-user-img img-fluid img-circle" style="margin: auto; width: 220px; height: 220px;" src="images/NoImageUser.jpg" alt="Avatar">
+                            <p class="profile-username text-center mt-3" style="font-size: 18px; margin-bottom: -5px;">{{estudiosMedicosPostulanteCtrl.postulanteData.Apellido | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{estudiosMedicosPostulanteCtrl.postulanteData.Nombres | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{estudiosMedicosPostulanteCtrl.postulanteData.Documento}}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item" style="border-top:0px;">
+                                    <b>Carrera</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.Carrera.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Escalafón</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.Escalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item" ng-if="estudiosMedicosPostulanteCtrl.postulanteData.SubEscalafon != null">
+                                    <b>Subescalafón</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.SubEscalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de registro</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.FechaRegistro | date: "dd/MM/yyyy"}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de nacimiento</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.FechaNacimiento | date: "dd/MM/yyyy" }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Edad</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.Edad }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Estado de postulacion</b> <a class="float-right">{{estudiosMedicosPostulanteCtrl.postulanteData.EstadoPostulacion.Descripcion | uppercase}}</a>
+                                </li>
+                                <li class="list-group-item" ng-if="estudiosMedicosPostulanteCtrl.postulanteData.CodigoInscripcion == null">
+                                    <b>Código de inscripción</b> <a class="float-right">NO GENERADO</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de documentación</h3>
+                </div>
+                <div class="card-body" ng-if="estudiosMedicosPostulanteCtrl.postulanteData.Documentacion.length == 0">
+                    <h3>EL POSTULANTE NO TINE LA DOCUMENTACIÓN AUN CARGADA </h3>
+                </div>
+                <div class="card-body" ng-if="estudiosMedicosPostulanteCtrl.postulanteData.Documentacion.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-estado-secciones">
+                            <thead>
+                                <tr>
+                                    <th colspan="8"><b>DOCUMENTACIÓN OBLIGATORIA</b></th>
+                                </tr>
+                                <tr>
+                                    <th>Archivo</th>
+                                    <th>Fecha de subida</th>
+                                    <th>Observaciones</th>
+                                    <th>Certificación gubernamental</th>
+                                    <th>Archivo valido</th>
+                                    <th>Fecha validación</th>
+                                    <th>Aceptar</th>
+                                    <th>Rechazar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody style="text-align: center;">
+                                <tr ng-repeat="Doc in estudiosMedicosPostulanteCtrl.postulanteData.Documentacion" ng-if="Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="estudiosMedicosPostulanteCtrl.DescargarArchivo(Doc)">
+                                            {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                        </a>
+                                    </td>
+                                    <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                    <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                    <td>
+                                        {{Doc.Certificado}}
+                                    </td>
+                                    <td>
+                                        <div ng-if="Doc.Estado==0">
+                                            <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                        </div>
+                                        <div ng-if="Doc.Estado==1">
+                                            <b style="color:green;">SI</b>
+                                        </div>
+                                        <div ng-if="Doc.Estado==2">
+                                            <b style="color:red;">NO </b><i class="fa fa-question-circle" data-toggle="tooltip"
+                                                                            data-placement="top"
+                                                                            data-original-title="Motivo: {{Doc.motivoRechazo}}"
+                                                                            data-html="true"
+                                                                            onmouseenter="$(this).tooltip('show')"></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div ng-if="!Doc.FechaValidacion">
+                                            <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                        </div>
+                                        <div ng-if="Doc.FechaValidacion">
+                                            <b>{{Doc.FechaValidacion | date : "dd/MM/yyyy"}}</b>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-click="estudiosMedicosPostulanteCtrl.ValidarDocumento(Doc, 'aceptarDocumentacion');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control content-input" ng-model="Doc.motivo" style="display:inline;">
+                                                        <option value="">SELECCIONÁ</option>
+                                                        <option ng-repeat="Opcion in estudiosMedicosPostulanteCtrl.OpcionesSelectMotivosRechazoDocs"
+                                                                ng-value="Opcion"
+                                                                ng-selected="estudiosMedicosPostulanteCtrl.query.Doc.motivo == Opcion ? 'selected' : ''">
+                                                            {{Opcion}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <button style="display: inline;" class="btn btn-sm btnSPF-sm btnSPF-eliminar" ng-click="estudiosMedicosPostulanteCtrl.ValidarDocumento(Doc, 'rechazarDocumentacion');"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        <br />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan="8"><b>DOCUMENTACIÓN NO OBLIGATORIA</b></th>
+                                </tr>
+                                <tr>
+                                    <th>Archivo</th>
+                                    <th>Fecha de subida</th>
+                                    <th>Observaciones</th>
+                                    <th>Certificación gubernamental</th>
+                                    <th>Archivo valido</th>
+                                    <th>Fecha validación</th>
+                                    <th>Aceptar</th>
+                                    <th>Rechazar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody style="text-align: center;">
+                                <tr ng-repeat="Doc in estudiosMedicosPostulanteCtrl.postulanteData.Documentacion" ng-if="!Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="estudiosMedicosPostulanteCtrl.DescargarArchivo(Doc)">
+                                            {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                        </a>
+                                    </td>
+                                    <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                    <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                    <td>
+                                        {{Doc.Certificado}}
+                                    </td>
+                                    <td>
+                                        <div ng-if="Doc.Estado==0">
+                                            <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                        </div>
+                                        <div ng-if="Doc.Estado==1">
+                                            <b style="color:green;">SI</b>
+                                        </div>
+                                        <div ng-if="Doc.Estado==2">
+                                            <b style="color:red;">NO </b><i class="fa fa-question-circle" data-toggle="tooltip"
+                                                                            data-placement="top"
+                                                                            data-original-title="Motivo: {{Doc.motivoRechazo}}"
+                                                                            data-html="true"
+                                                                            onmouseenter="$(this).tooltip('show')"></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div ng-if="!Doc.FechaValidacion">
+                                            <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                        </div>
+                                        <div ng-if="Doc.FechaValidacion">
+                                            <b>{{Doc.FechaValidacion | date : "dd/MM/yyyy"}}</b>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-click="estudiosMedicosPostulanteCtrl.ValidarDocumento(Doc, 'aceptarDocumentacion');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control content-input" ng-model="Doc.motivo" style="display:inline;">
+                                                        <option value="">SELECCIONÁ</option>
+                                                        <option ng-repeat="Opcion in estudiosMedicosPostulanteCtrl.OpcionesSelectMotivosRechazoDocs"
+                                                                ng-value="Opcion"
+                                                                ng-selected="estudiosMedicosPostulanteCtrl.query.Doc.motivo == Opcion ? 'selected' : ''">
+                                                            {{Opcion}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <button style="display: inline;" class="btn btn-sm btnSPF-sm btnSPF-eliminar" ng-click="estudiosMedicosPostulanteCtrl.ValidarDocumento(Doc, 'rechazarDocumentacion');"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  <!--fin card-body-->
+            </div>
+        </div>
+    </section>
+
+</div>
+

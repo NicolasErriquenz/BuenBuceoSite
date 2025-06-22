@@ -1,0 +1,8 @@
+[2025-06-22 20:10:11] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(30): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------

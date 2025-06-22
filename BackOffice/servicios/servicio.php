@@ -3865,3 +3865,470 @@
 	       return "Error: " . $e->getMessage();
 	   }
 	}
+
+	function getPaquetes($activo = 1) {
+	    global $mysqli;
+	    
+	    // Verificar conexión
+	    if (!$mysqli) {
+	        die("Error: No hay conexión a la base de datos");
+	    }
+	    
+	    // Verificar si la tabla existe
+	    $check_table = $mysqli->query("SHOW TABLES LIKE 'paquetes'");
+	    if ($check_table->num_rows == 0) {
+	        die("Error: La tabla 'paquetes' no existe");
+	    }
+	    
+	    // Consulta más simple
+	    $sql = "SELECT * FROM paquetes";
+	                
+	    $stmt = $mysqli->prepare($sql);
+	    
+	    if (!$stmt) {
+	        die("Error en prepare: " . $mysqli->error);
+	    }
+	    
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    $paquetes = [];
+	    while($row = $result->fetch_assoc()) {
+	        $paquetes[] = $row;
+	    }
+	    
+	    return $paquetes;
+	}
+
+	function getPaqueteById($paquetesId) {
+	    global $mysqli;
+	    
+	    $sql = "SELECT 
+	        p.*,
+	        c.nombre as continente,
+	        pa.nombre as pais,
+	        m.simbolo as moneda_simbolo,
+	        m.codigo as moneda_codigo
+	    FROM 
+	        paquetes p
+	        LEFT JOIN continentes c ON p.continenteId = c.continenteId
+	        LEFT JOIN paises pa ON p.paisId = pa.paisId
+	        LEFT JOIN monedas m ON p.monedaId = m.monedaId
+	    WHERE 
+	        p.paquetesId = ?";
+	                
+	    $stmt = $mysqli->prepare($sql);
+	    $stmt->bind_param("i", $paquetesId);
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    return $result->fetch_assoc();
+	}
+
+	function getPaquetesProximos($activo = 1) {
+	    global $mysqli;
+	    
+	    $sql = "SELECT 
+	        p.*,
+	        c.nombre as continente,
+	        pa.nombre as pais,
+	        m.simbolo as moneda_simbolo,
+	        m.codigo as moneda_codigo
+	    FROM 
+	        paquetes p
+	        LEFT JOIN continentes c ON p.continenteId = c.continenteId
+	        LEFT JOIN paises pa ON p.paisId = pa.paisId
+	        LEFT JOIN monedas m ON p.monedaId = m.monedaId
+	    WHERE 
+	        p.fecha_inicio >= CURDATE() AND p.activo = ?
+	    ORDER BY 
+	        p.fecha_inicio ASC";
+	                
+	    $stmt = $mysqli->prepare($sql);
+	    $stmt->bind_param("i", $activo);
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    $paquetes = [];
+	    while($row = $result->fetch_assoc()) {
+	        $paquetes[] = $row;
+	    }
+	    
+	    return $paquetes;
+	}
+
+	function getContinentes() {
+	    global $mysqli;
+	    
+	    $sql = "SELECT 
+	        continentesId,
+	        continente,
+	        orden
+	    FROM 
+	        continentes
+	    ORDER BY 
+	        orden ASC, continente ASC";
+	                
+	    $stmt = $mysqli->prepare($sql);
+	    
+	    if (!$stmt) {
+	        die("Error en prepare getContinentes: " . $mysqli->error);
+	    }
+	    
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+	    
+	    $continentes = [];
+	    while($row = $result->fetch_assoc()) {
+	        $continentes[] = $row;
+	    }
+	    
+	    return $continentes;
+	}
+
+	function altaPaquete($datos) {
+	    global $mysqli;
+	    
+	    // Calcular cantidad de días entre fechas
+	    $fecha_inicio = new DateTime($datos['fecha_inicio']);
+	    $fecha_fin = new DateTime($datos['fecha_fin']);
+	    $cantidad_dias = $fecha_inicio->diff($fecha_fin)->days;
+	    
+	    // Buscar el país en la base de datos
+	    $pais = strtolower(trim($datos['pais']));
+	    $sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = ?";
+	    $stmtBuscarPais = $mysqli->prepare($sqlBuscarPais);
+	    $stmtBuscarPais->bind_param("s", $pais);
+	    $stmtBuscarPais->execute();
+	    $resultadoPais = $stmtBuscarPais->get_result();
+	    
+	    if ($resultadoPais->num_rows > 0) {
+	        // Si el país existe, obtener su ID
+	        $rowPais = $resultadoPais->fetch_assoc();
+	        $paisId = $rowPais['paisId'];
+	    } else {
+	        // Si el país no existe, insertarlo
+	        $sqlInsertarPais = "INSERT INTO paises (pais) VALUES (?)";
+	        $stmtInsertarPais = $mysqli->prepare($sqlInsertarPais);
+	        $paisCapitalizado = ucwords(strtolower($datos['pais'])); // Capitalizar el nombre del país
+	        $stmtInsertarPais->bind_param("s", $paisCapitalizado);
+	        
+	        if (!$stmtInsertarPais->execute()) {
+	            return array(
+	                'estado' => 'error', 
+	                'mensaje' => 'Error al crear nuevo país'
+	            );
+	        }
+	        
+	        $paisId = $mysqli->insert_id;
+	    }
+	    
+	    $sql = "INSERT INTO paquetes 
+	            (continentesId, paisId, fecha_inicio, fecha_fin, cantidad_dias, titulo, descripcion, precio, monedaId, activo) 
+	            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            
+	    $stmt = $mysqli->prepare($sql);
+	    
+	    if (!$stmt) {
+	        return array('estado' => 'error', 'mensaje' => 'Error en prepare: ' . $mysqli->error);
+	    }
+	    
+	    // Por defecto los paquetes nuevos están activos
+	    $activo = 1;
+	    
+	    $stmt->bind_param(
+		    "iississsdi",  // ← Corregido: titulo como string
+		    $datos['continentesId'],
+		    $paisId,
+		    $datos['fecha_inicio'],
+		    $datos['fecha_fin'],
+		    $cantidad_dias,
+		    $datos['titulo'],
+		    $datos['descripcion'],
+		    $datos['precio'],
+		    $datos['monedaId'],
+		    $activo
+		);
+	    
+	    if ($stmt->execute()) {
+	        $paquetesId = $mysqli->insert_id;
+	        return array('estado' => 'ok', 'mensaje' => 'Paquete creado exitosamente', 'paquetesId' => $paquetesId);
+	    } else {
+	        return array('estado' => 'error', 'mensaje' => 'Error al crear paquete: ' . $stmt->error);
+	    }
+	}
+
+	function editarPaquete($datos, $paquetesId) {
+	    global $mysqli;
+	    
+	    // Calcular cantidad de días entre fechas
+	    $fecha_inicio = new DateTime($datos['fecha_inicio']);
+	    $fecha_fin = new DateTime($datos['fecha_fin']);
+	    $cantidad_dias = $fecha_inicio->diff($fecha_fin)->days;
+	    
+	    // Buscar el país en la base de datos
+	    $pais = strtolower(trim($datos['pais']));
+	    $sqlBuscarPais = "SELECT paisId FROM paises WHERE LOWER(pais) = ?";
+	    $stmtBuscarPais = $mysqli->prepare($sqlBuscarPais);
+	    $stmtBuscarPais->bind_param("s", $pais);
+	    $stmtBuscarPais->execute();
+	    $resultadoPais = $stmtBuscarPais->get_result();
+	    
+	    if ($resultadoPais->num_rows > 0) {
+	        // Si el país existe, obtener su ID
+	        $rowPais = $resultadoPais->fetch_assoc();
+	        $paisId = $rowPais['paisId'];
+	    } else {
+	        // Si el país no existe, insertarlo
+	        $sqlInsertarPais = "INSERT INTO paises (pais) VALUES (?)";
+	        $stmtInsertarPais = $mysqli->prepare($sqlInsertarPais);
+	        $paisCapitalizado = ucwords(strtolower($datos['pais'])); // Capitalizar el nombre del país
+	        $stmtInsertarPais->bind_param("s", $paisCapitalizado);
+	        
+	        if (!$stmtInsertarPais->execute()) {
+	            return array(
+	                'estado' => 'error', 
+	                'mensaje' => 'Error al crear nuevo país'
+	            );
+	        }
+	        
+	        $paisId = $mysqli->insert_id;
+	    }
+	    
+	    $sql = "UPDATE paquetes SET 
+	            continentesId = ?, 
+	            paisId = ?, 
+	            fecha_inicio = ?, 
+	            fecha_fin = ?, 
+	            cantidad_dias = ?, 
+	            titulo = ?, 
+	            descripcion = ?, 
+	            precio = ?, 
+	            monedaId = ?
+	            WHERE paquetesId = ?";
+	            
+	    $stmt = $mysqli->prepare($sql);
+	    
+	    if (!$stmt) {
+	        return array('estado' => 'error', 'mensaje' => 'Error en prepare: ' . $mysqli->error);
+	    }
+	    
+	    $stmt->bind_param(
+	        "iississsdi",
+	        $datos['continentesId'],
+	        $paisId,  // Usar el paisId obtenido/creado
+	        $datos['fecha_inicio'],
+	        $datos['fecha_fin'],
+	        $cantidad_dias,
+	        $datos['titulo'],
+	        $datos['descripcion'],
+	        $datos['precio'],
+	        $datos['monedaId'],
+	        $paquetesId
+	    );
+	    
+	    if ($stmt->execute()) {
+	        return array('estado' => 'ok', 'mensaje' => 'Paquete actualizado exitosamente', 'paquetesId' => $paquetesId);
+	    } else {
+	        return array('estado' => 'error', 'mensaje' => 'Error al actualizar paquete: ' . $stmt->error);
+	    }
+	}
+
+	function getGaleria($paquetesId) {
+	    global $mysqli;
+
+	    $sql = "SELECT *
+	        FROM 
+	            paquetes_galeria
+	        WHERE 
+	            paquetesId = ?
+	        ORDER BY id DESC";
+
+
+	    $stmt = $mysqli->prepare($sql);
+
+	    if (!$stmt) {
+	        die("Error en prepare getGaleria: " . $mysqli->error);
+	    }
+
+	    $stmt->bind_param("i", $paquetesId);
+	    $stmt->execute();
+	    $result = $stmt->get_result();
+
+	    $galeria = [];
+	    while($row = $result->fetch_assoc()) {
+	        $galeria[] = $row;
+	    }
+
+	    return $galeria;
+	}
+
+	function guardarGaleria($post, $file) {
+	    global $mysqli;
+
+	    $paquetesId = (int)$post['paquetesId'];
+	    $descripcion = isset($post['descripcion']) ? trim($post['descripcion']) : null;
+	    $tipo = isset($post['tipo']) ? (int)$post['tipo'] : 0;
+
+	    if (!isset($file) || $file['error'] !== UPLOAD_ERR_OK) {
+	        return ['estado' => 'error', 'mensaje' => 'Error al subir la imagen.'];
+	    }
+
+	    // Crear carpeta si no existe
+	    $carpeta = RUTA_PAQUETES_GALERIA;
+	    if (!is_dir($carpeta)) {
+	        if (!mkdir($carpeta, 0777, true)) {
+	            return ['estado' => 'error', 'mensaje' => 'No se pudo crear el directorio de destino.'];
+	        }
+	    }
+
+	    // Nombre de archivo único
+	    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+	    $nombreArchivo = uniqid('img_', true) . "." . $ext;
+	    $rutaDestino = "$carpeta/$nombreArchivo";
+
+	    // Mover original
+	    if (!move_uploaded_file($file['tmp_name'], $rutaDestino)) {
+	        return ['estado' => 'error', 'mensaje' => 'No se pudo mover el archivo.'];
+	    }
+
+	    // Crear imagen reducida
+	    $rutaMini = "$carpeta/small_$nombreArchivo";
+	    if (!crearImagenReducida($rutaDestino, $rutaMini, 200)) {
+	        return ['estado' => 'error', 'mensaje' => 'No se pudo generar la imagen reducida.'];
+	    }
+
+	    // Si la imagen es portada (1) o destacada (2), desmarcar las anteriores
+		if ($tipo === 1 || $tipo === 2) {
+		    $stmtReset = $mysqli->prepare("UPDATE paquetes_galeria SET tipo = 0 WHERE paquetesId = ? AND tipo = ?");
+		    if ($stmtReset) {
+		        $stmtReset->bind_param("ii", $paquetesId, $tipo);
+		        $stmtReset->execute();
+		    }
+		}
+
+
+	    // Guardar en la base
+	    $stmt = $mysqli->prepare("INSERT INTO paquetes_galeria (paquetesId, imagen, descripcion, tipo, activo) VALUES (?, ?, ?, ?, 1)");
+	    if (!$stmt) {
+	        return ['estado' => 'error', 'mensaje' => 'Error al preparar la consulta: ' . $mysqli->error];
+	    }
+
+	    $stmt->bind_param("issi", $paquetesId, $nombreArchivo, $descripcion, $tipo);
+	    $stmt->execute();
+
+	    if ($stmt->affected_rows > 0) {
+	        return ['estado' => 'ok', 'mensaje' => 'Imagen guardada correctamente.'];
+	    } else {
+	        return ['estado' => 'error', 'mensaje' => 'No se pudo guardar en la base de datos.'];
+	    }
+	}
+
+	function crearImagenReducida($origen, $destino, $anchoNuevo) {
+	    list($anchoOriginal, $altoOriginal, $tipo) = getimagesize($origen);
+
+	    $proporcion = $anchoNuevo / $anchoOriginal;
+	    $altoNuevo = round($altoOriginal * $proporcion);
+
+	    switch ($tipo) {
+	        case IMAGETYPE_JPEG:
+	            $origenImg = imagecreatefromjpeg($origen);
+	            break;
+	        case IMAGETYPE_PNG:
+	            $origenImg = imagecreatefrompng($origen);
+	            break;
+	        case IMAGETYPE_GIF:
+	            $origenImg = imagecreatefromgif($origen);
+	            break;
+	        default:
+	            return false;
+	    }
+
+	    $nuevaImg = imagecreatetruecolor($anchoNuevo, $altoNuevo);
+	    imagecopyresampled($nuevaImg, $origenImg, 0, 0, 0, 0, $anchoNuevo, $altoNuevo, $anchoOriginal, $altoOriginal);
+
+	    switch ($tipo) {
+	        case IMAGETYPE_JPEG:
+	            imagejpeg($nuevaImg, $destino, 85);
+	            break;
+	        case IMAGETYPE_PNG:
+	            imagepng($nuevaImg, $destino);
+	            break;
+	        case IMAGETYPE_GIF:
+	            imagegif($nuevaImg, $destino);
+	            break;
+	    }
+
+	    imagedestroy($origenImg);
+	    imagedestroy($nuevaImg);
+
+	    return true;
+	}
+
+	function updateGaleriaTipo($id, $accion, $estado) {
+	    global $mysqli;
+
+	    $columnasPermitidas = [
+	        'activo' => 'activo',
+	        'portada' => 'tipo',
+	        'destacada' => 'tipo'
+	    ];
+
+	    if (!isset($columnasPermitidas[$accion])) {
+	        return ['estado' => 'error', 'mensaje' => 'Acción no válida'];
+	    }
+
+	    $columna = $columnasPermitidas[$accion];
+
+	    if ($columna === 'tipo') {
+	        $nuevoValor = ($accion === 'portada') ? 1 : 2;
+
+	        // 1. Obtener paquetesId
+	        $stmt = $mysqli->prepare("SELECT paquetesId FROM paquetes_galeria WHERE id = ?");
+	        if (!$stmt) return ['estado' => 'error', 'mensaje' => 'Error en SELECT paquetesId: ' . $mysqli->error];
+
+	        $stmt->bind_param("i", $id);
+	        $stmt->execute();
+	        $stmt->bind_result($paquetesId);
+	        if (!$stmt->fetch()) return ['estado' => 'error', 'mensaje' => 'ID no encontrado'];
+	        $stmt->close();
+
+	        // 2. Desactivar ese tipo para otros del mismo paquete
+	        $stmt = $mysqli->prepare("UPDATE paquetes_galeria SET tipo = 0 WHERE paquetesId = ? AND tipo = ?");
+	        if (!$stmt) return ['estado' => 'error', 'mensaje' => 'Error en UPDATE unset tipo: ' . $mysqli->error];
+
+	        $stmt->bind_param("ii", $paquetesId, $nuevoValor);
+	        $stmt->execute();
+	        $stmt->close();
+
+	        // 3. Activar el tipo en el actual
+	        $stmt = $mysqli->prepare("UPDATE paquetes_galeria SET tipo = ? WHERE id = ?");
+	        if (!$stmt) return ['estado' => 'error', 'mensaje' => 'Error en UPDATE set tipo: ' . $mysqli->error];
+
+	        $stmt->bind_param("ii", $nuevoValor, $id);
+	        $stmt->execute();
+	        $stmt->close();
+
+	    } else {
+		    // Cambiar estado de activo
+		    $stmt = $mysqli->prepare("UPDATE paquetes_galeria SET activo = ? WHERE id = ?");
+		    if (!$stmt) return ['estado' => 'error', 'mensaje' => 'Error en UPDATE activo: ' . $mysqli->error];
+
+		    $stmt->bind_param("ii", $estado, $id);
+		    $stmt->execute();
+		    $stmt->close();
+
+		    // Si desactivamos la imagen, también limpiamos tipo
+		    if ($estado == 0) {
+		        $stmt = $mysqli->prepare("UPDATE paquetes_galeria SET tipo = 0 WHERE id = ?");
+		        if (!$stmt) return ['estado' => 'error', 'mensaje' => 'Error en limpiar tipo al desactivar: ' . $mysqli->error];
+
+		        $stmt->bind_param("i", $id);
+		        $stmt->execute();
+		        $stmt->close();
+		    }
+		}
+
+	    return ['estado' => 'ok'];
+	}
+

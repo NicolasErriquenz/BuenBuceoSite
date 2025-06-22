@@ -1,0 +1,152 @@
+﻿<div cg-busy="calificacionesCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">IMPORTAR CALIFICACIONES</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Importar calificaciones</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Calificacion nueva</h3>
+                </div>
+                <!-- form start -->
+                <form class="form-horizontal" name="form">
+                    <div class="card-body">
+                        <div class="offset-md-1 col-md-10">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label label-align">Archivo</label>
+                                <div class="col-sm-10">
+                                    <div class="custom-file">
+                                        <input lang="es"
+                                               class="custom-file-input"
+                                               id="customFile"
+                                               type="file"
+                                               ng-model="file"
+                                               ngf-select
+                                               ngf-change="importarCalificacionesCtrl.onFileSelect($files)"
+                                               name="file"
+                                               required
+                                               ngf-max-size="20MB"
+                                               ngf-accept="text/csv"
+                                               ngf-model-invalid="errorFile">
+                                        <label class="custom-file-label" for="customFile" ng-show="!file.name">Elegir archivo</label>
+                                        <label class="custom-file-label" for="customFile" ng-show="file.name">Elegir archivo</label>
+                                    </div>
+                                </div>
+                                <div class="offset-2 col-sm-10">
+                                    <br>
+                                    Tamaño máximo permitido: 20 MB
+                                    <br>
+                                    Extensiones permitidas: PDF, PDFX, DOC, DOCX
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label label-align">Descripción</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Descripción del contenido del archivo" ng-model="abmDocumentacionCtrl.query.Comentarios">
+                                </div>
+                            </div>
+
+                            <div class="form-group row" ng-if="abmDocumentacionCtrl.mostrarProgreso">
+                                <label class="col-sm-2 col-form-label label-align"></label>
+                                <div class="col-sm-10">
+                                    Subiendo archivo ({{abmDocumentacionCtrl.progresoNumerico}})
+                                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{abmDocumentacionCtrl.porcentajeSubido}}" aria-valuemin="0" aria-valuemax="100" style="width: {{abmDocumentacionCtrl.porcentajeSubido}}%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer" ng-show="!abmDocumentacionCtrl.mostrarProgreso">
+                        <button type="submit" class="btn btn-info float-right" ng-click="submit()">Guardar</button>
+                    </div>
+                </form>
+            </div><!-- /.Formulario -->
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Calificaciones cargadas en el sistema</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="offset-md-1 col-md-10">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">Archivo</th>
+                                    <th>Descripción</th>
+                                    <th ng-if="abmDocumentacionCtrl.checkPermiso('PGA.AbmDatosEstaticos')">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="documento in abmDocumentacionCtrl.Documentos | orderBy:'Id'">
+                                    <td>
+                                        <i class="fa fa-download cursor_mano"
+                                           data-toggle="tooltip"
+                                           data-placement="right"
+                                           title=""
+                                           data-original-title="Descargar archivo {{documento.Archivo}}"
+                                           data-html="true"
+                                           onmouseenter="$(this).tooltip('show')"
+                                           ng-click="abmDocumentacionCtrl.descargarArchivo(documento.Archivo);"></i>
+                                    </td>
+                                    <td>{{documento.Comentarios}}</td>
+                                    <td ng-if="abmDocumentacionCtrl.checkPermiso('PGA.AbmDatosEstaticos')">
+                                        <button class="btn btn-danger btn-xs"
+                                                ng-click="abmDocumentacionCtrl.confirmDocumentacionBorrar(documento)">
+                                            Borrar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div><!-- /.Formulario -->
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="modalConfirmBorrar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalConfirmBorrarLabel">ATENCIÓN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    ¿Está seguro de querer borrar el archivo <b>{{abmDocumentacionCtrl.docBorrar.Comentarios}}</b>?
+                    <p>Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">VOLVER</button>
+                    <button type="button" class="btn btn-danger" ng-click="abmDocumentacionCtrl.documentacionBorrar()">BORRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

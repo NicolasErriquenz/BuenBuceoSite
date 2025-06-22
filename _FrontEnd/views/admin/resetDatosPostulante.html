@@ -1,0 +1,48 @@
+﻿<div cg-busy="resetDatosPostulanteCtrl.busy" class="homeClass">
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="alert alert-primary">
+                <ul class="fa-ul">
+                    <li>
+                        <i class="fa fa-info-circle fa-lg fa-li"></i>
+                        <h2>ADMINISTRACIÓN DE DATOS</h2>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>RESET POSTULANTE<small>elimina los datos del postulante dejandolo como si se hubiera terminado de registrar</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class=" col-md-12 form-group has-feedback">
+                            <input type="text" 
+                                   class="form-control has-feedback-left" 
+                                   id="inputSuccess4" 
+                                   placeholder="DNI: 12345678" 
+                                   ng-model="resetDatosPostulanteCtrl.query.Documento" 
+                                   ng-keyup="resetDatosPostulanteCtrl.checkKey($event, 'resetusuario');">
+                            <span class="fa fa-cog form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                       
+                        <div class="col-md-12 col-sm-12" style="text-align: right; margin-top: 11px;" ng-if="!resetDatosPostulanteCtrl.procesandoReset">
+                            <button class="btn btn-info" type="reset" ng-click="resetDatosPostulanteCtrl.BorrarPostulanteDatos()">
+                                <i class="fa fa-bomb"></i>&nbsp;&nbsp;RESET USUARIO
+                            </button>
+                        </div>
+                        <label class="col-md-12 " ng-if="resetDatosPostulanteCtrl.procesandoReset" style="text-align: right; margin-top: 11px;">
+                            <img src="images/preloader.gif" alt="Procesando" width="20" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,122 @@
+﻿<div cg-busy="campanasListadoCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">HISTORIAL DE CAMPAÑAS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Historial de campañas</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header" >
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de campañas - EPN</h3>
+                </div>
+                <div class="card-body" ng-if="campanasListadoCtrl.CampanasOficial.length == 0">
+                    <h3>NO HAY CAMPAÑAS</h3>
+                </div>
+                <div class="card-body" ng-if="campanasListadoCtrl.CampanasOficial.length > 0">
+                    <table class="display nowrap dataTable" style="width: 100%; border-radius: 0px; border: 0px;" datatable="ng" ng-jq="$" dt-options="campanasListadoCtrl.dtOptions">
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th>ID</th>
+                                <th>CAMPAÑA</th>
+                                <!--<th>DETALLE</th>-->
+                                <th>ESTADO</th>
+                                <th>F.INI.</th>
+                                <th>F.FIN.</th>
+                                <th>POSTULANTES</th>
+                                <!--<th>RECHAZADOS</th>
+                                <th>PENDIENTES</th>-->
+                                <!--<th>ACCIONES</th>-->
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center;">
+                            <tr ng-repeat="Campana in campanasListadoCtrl.CampanasOficial">
+                                <th>{{ Campana.Id }}</th>
+                                <td> <a href="javascript:void(0);" style="color:black"  ng-click= "campanasListadoCtrl.seleccionarRuta( 'campanaDetalle/' + Campana.Id + '/1')">
+                                        {{ Campana.Nombre | uppercase }}
+                                    </a>
+                                
+                                </td>
+                                <!--<td>{{ Campana.Descripcion }}</td>-->
+                                <td ng-class="{1:'campanaActiva', 2:'campanaCerrada', 3:'campanaEnPausa', 4:'campanaCancelada'}[Campana.CampanaEstadosId]">{{ Campana.CampanaEstados.Descripcion | uppercase }}</td>
+                                <td>{{ Campana.FechaInicio | date : 'dd/MM/yyyy'}}</td>
+                                <td>{{ Campana.FechaFinalizacion | date : 'dd/MM/yyyy'}}</td>
+                                <td class="centrado">
+                                    <div ng-repeat="item in Campana.CantPostulantesPorEtapas | filter: campanasListadoCtrl.etapasConPostulantesFn | limitTo: -1">
+                                        {{item.Descripcion | uppercase}}
+                                    </div>
+                                    
+                                </td>
+                                <!--<td class="centrado">{{ Campana.PostulantesRechazados }}</td>
+                                <td class="centrado">{{ Campana.PostulantesPendientes }}</td>-->
+                                <!--<td class="centrado">
+                                    <button class="btn btn-primary btn-sm" ng-click="campanasListadoCtrl.seleccionarRuta('campanaDetalle/' + Campana.Id + '/1')"><i class="fa fa-eye"></i></button>
+                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Listado de campañas - Escuela de Suboficiales</h3>
+                </div>
+                <div class="card-body" ng-if="campanasListadoCtrl.CampanasSuboficial.length == 0">
+                    <h3>NO HAY CAMPAÑAS</h3>
+                </div>
+                <div class="card-body p-0" ng-if="campanasListadoCtrl.CampanasSuboficial.length > 0">
+                    <table class="display nowrap dataTable" style="width: 100%; border-radius: 0px; border: 0px;" datatable="ng" ng-jq="$" dt-options="campanasListadoCtrl.dtOptions">
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th>ID</th>
+                                <th>CAMPAÑA</th>
+                                <th>DETALLE</th>
+                                <th>ESTADO</th>
+                                <th>F.INI.</th>
+                                <th>F.FIN.</th>
+                                <th>CONFIRMADOS</th>
+                                <!--<th>RECHAZADOS</th>
+        <th>PENDIENTES</th>-->
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center;">
+                            <tr ng-repeat="Campana in campanasListadoCtrl.CampanasSuboficial">
+                                <th scope="row">{{ Campana.Id }}</th>
+                                <td>{{ Campana.Nombre | uppercase }}</td>
+                                <td>{{ Campana.Descripcion }}</td>
+                                <td ng-class="{1:'campanaActiva', 2:'campanaCerrada', 3:'campanaEnPausa', 4:'campanaCancelada'}[Campana.CampanaEstadosId]">{{ Campana.CampanaEstados.Descripcion | uppercase }}</td>
+                                <td>{{ Campana.FechaInicio | date : 'dd/MM/yyyy'}}</td>
+                                <td>{{ Campana.FechaFinalizacion | date : 'dd/MM/yyyy'}}</td>
+                                <td class="centrado">{{ Campana.PostulantesConfirmados }}</td>
+                                <!--<td class="centrado">{{ Campana.PostulantesRechazados }}</td>
+            <td class="centrado">{{ Campana.PostulantesPendientes }}</td>-->
+                                <td>
+                                    <button class="btn btn-primary btn-sm" ng-click="campanasListadoCtrl.seleccionarRuta('campanaDetalle/' + Campana.Id)"><i class="fa fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+</div>

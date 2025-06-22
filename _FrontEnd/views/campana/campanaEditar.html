@@ -1,0 +1,195 @@
+﻿<div cg-busy="campanaEditarCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">EDICIÓN DE CAMPAÑA</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Edición de campaña</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Datos de la campaña</h3>
+                    <!--<div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>-->
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal form-label-left">
+                        <div class="offset-md-1 col-md-10">
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="fechaInicio">
+                                    Fecha de inicio de campaña
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="date" class="form-control" ng-model="campanaEditarCtrl.Campana.FechaInicio">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="fechaFin">
+                                    Fecha de finalización de campaña
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="date" class="form-control" ng-model="campanaEditarCtrl.Campana.FechaFinalizacion">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align">Año de inicio carrera</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="text" class="form-control" disabled value="{{campanaEditarCtrl.Campana.AnioCampana}}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align">Carrera</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="text" class="form-control" disabled value="{{campanaEditarCtrl.Campana.Carreras.Descripcion}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align">Escalafón</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="text" class="form-control" disabled value="{{campanaEditarCtrl.Campana.Escalafon.Descripcion | uppercase}}">
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-if="campanaEditarCtrl.Campana.SubEscalafon">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align">Subescalafón</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <input type="text" class="form-control" disabled value="{{campanaEditarCtrl.Campana.SubEscalafon.Descripcion | uppercase}}">
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group row">
+        <label class="col-form-label col-md-4 col-sm-4 label-align" for="Nombre">
+            Nombre de la campaña
+        </label>
+        <div class="col-md-5 col-sm-5">
+            <input type="text" class="form-control" ng-model="campanaEditarCtrl.Campana.Nombre">
+        </div>
+    </div>-->
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="Descripción">
+                                    Descripción (opcional)
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <textarea class="form-control" ng-model="campanaEditarCtrl.Campana.Descripcion"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="Descripción">
+                                    Estado Actual
+                                </label>
+                                <div class="col-md-6 col-sm-5">
+                                    <div class="alert centrado"
+                                         ng-class="{1:'alert-success', 2:'alert-info', 3:'alert-warning', 4:'alert-danger'}[campanaEditarCtrl.Campana.CampanaEstados.Id]">
+                                        <strong>{{campanaEditarCtrl.Campana.CampanaEstados.Descripcion | uppercase}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align">Cambiar estado de la Campaña</label>
+                                <div class="col-md-6 col-sm-5">
+                                    <select class="form-control"
+                                            ng-disabled="campanaEditarCtrl.Campana.CampanaEstadosId == 2"
+                                            ng-model="campanaEditarCtrl.Campana.CampanaEstadosId">
+                                        <option ng-repeat="Estado in campanaEditarCtrl.EstadosCampana"
+                                                ng-value="{{Estado.Id}}"
+                                                ng-if="Estado.Id != 2 && Estado.Id != 4"
+                                                ng-disabled="campanaEditarCtrl.EstadoActualCampana == Estado.Id"
+                                                selected="{{campanaEditarCtrl.Campana.CampanaEstadosId == Estado.Id ? 'selected' : ''}}">
+                                            {{Estado.Descripcion | uppercase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-4 col-sm-4 label-align" for="">
+
+                                </label>
+                                <div class="col-md-6 col-sm-5" style="text-align:justify;">
+                                    <p ng-if="campanaEditarCtrl.Campana.CampanaEstadosId == 1">
+                                        LA CAMPAÑA <b>ABIERTA</b> REPRESENTA QUE LOS POSTULANTES QUE ESTEN PARTICIPANDO DE LA MISMA PODRÁN VERLA EN EL MENÚ SUPERIOR DE "MIS CAMPAÑAS".
+                                        PODRÁN ACEPTAR O DECLINAR LA INVITACION A PARTICIPAR DE LA MISMA.
+                                    </p>
+                                    <p ng-if="campanaEditarCtrl.Campana.CampanaEstadosId == 2">
+                                        LA CAMPAÑA <b>CERRADA</b> SIGNIFICA QUE NINGUN POSTULANTE QUE ESTE PARTICIPANDO PODRÁ ACEPTAR O RECHAZAR UNA POSTULACION PENDIENTE.
+                                        SÓLO LOS POSTULANTES QUE HAYAN ACEPTADO LA INVITACIÓN CONTINUARÁN VIENDOLA EN EL MENÚ SUPERIOR DE "MIS CAMPAÑAS".
+                                    </p>
+                                    <p ng-if="campanaEditarCtrl.Campana.CampanaEstadosId == 3">
+                                        LA CAMPAÑA <b>EN PAUSA</b> SIGNIFICA QUE NO APARECERÁ EN EL LISTADO DE "MIS CAMPAÑAS" PARA NINGUN POSTULANTE QUE ESTE PARTICIPANDO, YA SEA QUE HAYA ACEPTADO O NO.
+                                    </p>
+                                    <p ng-if="campanaEditarCtrl.Campana.CampanaEstadosId == 4">
+                                        LA CAMPAÑA <b>CANCELADA</b> SE UTILIZA EN CASO DE QUE HUBIERE ALGUN ERROR EN LA CAMPAÑA ACTUAL, DEJANDOLA SIN EFECTO. ESTO NO PUEDE CAMBIARSE UNA VEZ CERRADA LA CAMPAÑA.
+                                        LOS POSTULANTES QUE ESTEN PARTICIPANDO DE LA MISMA <b>NO PODRÁN VERLA</b> EN EL MENÚ SUPERIOR DE "MIS CAMPAÑAS"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- Fin card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary float-right" ng-click="campanaEditarCtrl.ValidarDatosFormulario()">Guardar</button>
+                    <button class="btn btn-default float-right" style="margin-right: 5px;" type="reset" ng-click="campanaEditarCtrl.volver()">Volver </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header" ng-show="campanaEditarCtrl.Postulantes.length > 0">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Postulantes preseleccionados <small>(podrá editar la lista de postulantes en el detalle de la campaña)</small></h3>
+                    <!--<div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>-->
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover jambo_table bulk_action">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th>DNI</th>
+                                <th>POSTULANTE</th>
+                                <th>EMAIL</th>
+                                <th>PROVINCIA</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center;">
+                            <tr ng-repeat="postulante in campanaEditarCtrl.postulantePage.Items">
+                                <th scope="row">{{ postulante.Documento }}</th>
+                                <td>{{ postulante.Apellido }}, {{ postulante.Nombres }}</td>
+                                <td>{{ postulante.Email }}</td>
+                                <td>{{ postulante.Provincia.Descripcion }}</td>
+                                <td><button class="btn btn-primary btn-sm" ng-click="campanaEditarCtrl.agregarEnLista(postulante.Id)"><i class="fa fa-user-plus"></i> Postular</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+</div>
+

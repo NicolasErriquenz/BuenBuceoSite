@@ -1,0 +1,1471 @@
+﻿<div cg-busy="postulanteDetalleCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">INFORMACIÓN DETALLADA</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Informacion postulante</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark ">
+
+                <div class="card-header">
+                    <h3 class="card-title">POSTULANTE: {{postulanteDetalleCtrl.postulanteData.Apellido}}, {{postulanteDetalleCtrl.postulanteData.Nombres}} - DOCUMENTO: {{postulanteDetalleCtrl.postulanteData.Documento}}</h3>
+                    <div class="card-tools">
+                        <button class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;" ng-click="postulanteDetalleCtrl.volver()">
+                            Volver
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body overlay-wrapper">
+                    <div class="overlay" ng-if="postulanteDetalleCtrl.postulanteData.length == 0">
+                        <i class="fas fa-3x fa-sync-alt fa-spin mr-3"></i>
+                        <div class="text-bold">Cargando datos del postulante</div>
+                    </div>
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading1" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        DATOS FILIATORIOS
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse1"
+                                                aria-expanded="true"
+                                                aria-controls="collapse1"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed1 = !deployed1; deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed1 ? !deployed1 : deployed1">
+                                            <i class="fa fa-plus" ng-show="!deployed1"></i>
+                                            <i class="fa fa-minus" ng-show="deployed1"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <table class="vertical table tabla-perfil myBorder">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Fecha de nacimiento</th>
+                                                            <td>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.FechaNacimiento">
+                                                                    <input type="text" class="form-control content-input" ng-value="postulanteDetalleCtrl.postulanteData.FechaNacimiento | date : 'dd/MM/yyyy'" ng-disabled="!postulanteDetalleCtrl.flag1" ng-hide="postulanteDetalleCtrl.flag1">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.FechaNacimiento">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag1" ng-hide="postulanteDetalleCtrl.flag1">
+                                                                </div>
+                                                                <div style="display: inline;" ng-hide="!postulanteDetalleCtrl.flag1">
+                                                                    <input type="date" class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.FechaNacimiento">
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag1" ng-click="postulanteDetalleCtrl.flag1 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag1" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarFechaNacimiento', 'flag1');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag1" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag1')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Género</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.Sexo.Descripcion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag2" ng-hide="postulanteDetalleCtrl.flag2">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.SexoId" ng-disabled="!postulanteDetalleCtrl.flag2">
+                                                                        <option ng-repeat="Sexo in postulanteDetalleCtrl.Sexos"
+                                                                                ng-value="{{Sexo.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.SexoId == Sexo.Id ? 'selected' : ''">
+                                                                            {{Sexo.Descripcion | uppercase}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag2" ng-click="postulanteDetalleCtrl.flag2 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag2" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarGenero', 'flag2');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag2" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag2')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Estado civil</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag3" ng-hide="postulanteDetalleCtrl.flag3">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.EstadoCivilId" ng-disabled="!postulanteDetalleCtrl.flag3">
+                                                                        <option ng-repeat="EstadoCivil in postulanteDetalleCtrl.EstadosCiviles"
+                                                                                ng-value="{{EstadoCivil.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.FamiliaresVinculoId == EstadoCivil.Id ? 'selected' : ''">
+                                                                            {{EstadoCivil.Descripcion | uppercase}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag3" ng-click="postulanteDetalleCtrl.flag3 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag3" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarEstadoCivil', 'flag3');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag3" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag3')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nacionalidad</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag4" ng-hide="postulanteDetalleCtrl.flag4">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoNacionalidadId" ng-disabled="!postulanteDetalleCtrl.flag4">
+                                                                        <option ng-repeat="TipoNacionalidad in postulanteDetalleCtrl.Nacionalidades"
+                                                                                ng-value="{{TipoNacionalidad.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.TipoNacionalidadId == TipoNacionalidad.Id ? 'selected' : ''">
+                                                                            {{TipoNacionalidad.Descripcion | uppercase}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag4" ng-click="postulanteDetalleCtrl.flag4 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag4" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarNacionalidad', 'flag4');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag4" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag4')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Prov. de nacimiento</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.Provincia.Descripcion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.ProvinciaId">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag5" ng-hide="postulanteDetalleCtrl.flag5">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.ProvinciaId">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.ProvinciaId" ng-disabled="!postulanteDetalleCtrl.flag5">
+                                                                        <option ng-repeat="provincia in postulanteDetalleCtrl.Provincias"
+                                                                                ng-value="{{provincia.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.ProvinciaId == provincia.Id ? 'selected' : ''">
+                                                                            {{provincia.Descripcion}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.Provincia.Descripcion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag5" ng-click="postulanteDetalleCtrl.flag5 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag5" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarProvinciaNacimiento', 'flag5');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag5" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag5')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Ciudad de nacimiento</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.CiudadNacimiento ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.CiudadNacimiento">
+                                                                    <input type="text" class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.CiudadNacimiento" ng-disabled="!postulanteDetalleCtrl.flag6">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.CiudadNacimiento">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteDetalleCtrl.flag6">
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px" ; ng-if="postulanteDetalleCtrl.postulanteData.CiudadNacimiento">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag6" ng-click="postulanteDetalleCtrl.flag6 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag6" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarCiudadNacimiento', 'flag6');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag6" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag6')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <table class="vertical table tabla-perfil myBorder">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Estatura</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.Estatura ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.Estatura">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag7">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Estatura">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.Estatura" ng-disabled="!postulanteDetalleCtrl.flag7">
+                                                                        <option ng-repeat="Estatura in postulanteDetalleCtrl.Estaturas"
+                                                                                ng-value="{{Estatura}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.Estatura == Estatura ? 'selected' : ''">
+                                                                            {{Estatura}} cm
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px" ; ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Estatura">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag7" ng-click="postulanteDetalleCtrl.flag7 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag7" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarEstatura', 'flag7');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag7" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag7')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Peso</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.Peso ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.Peso">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag8">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Peso">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.Peso" ng-disabled="!postulanteDetalleCtrl.flag8">
+                                                                        <option ng-repeat="Peso in postulanteDetalleCtrl.Pesos"
+                                                                                ng-value="{{Peso}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.Peso == Peso ? 'selected' : ''">
+                                                                            {{Peso}} Kg
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.Peso">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag8" ng-click="postulanteDetalleCtrl.flag8 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag8" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarPeso', 'flag8');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag8" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag8')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Secundario completo</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.SecundarioCompleto ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.SecundarioCompleto">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag9">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SecundarioCompleto">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.SecundarioCompleto" ng-disabled="!postulanteDetalleCtrl.flag9">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.SecundarioCompleto == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SecundarioCompleto">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag9" ng-click="postulanteDetalleCtrl.flag9 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag9" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarSecundarioCompleto', 'flag9');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag9" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag9')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th>Cursando el último año</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.CursaUltimoAnio ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.CursaUltimoAnio">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag90">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.CursaUltimoAnio">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.CursaUltimoAnio" ng-disabled="!postulanteDetalleCtrl.flag90">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.CursaUltimoAnio == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.CursaUltimoAnio">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag90" ng-click="postulanteDetalleCtrl.flag90 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag90" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarCursandoUltimoYear', 'flag90');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag90" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag90')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Orientación</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoOrientacion.Descripcion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoOrientacion.Descripcion">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag10">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoOrientacion.Descripcion">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.PostulanteEstudiosTipoOrientacionId" ng-disabled="!postulanteDetalleCtrl.flag10">
+                                                                        <option ng-repeat="orientacion in postulanteDetalleCtrl.EstudiostipoOrientacion"
+                                                                                ng-value="{{orientacion.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.PostulanteEstudiosTipoOrientacionId == orientacion.Id ? 'selected' : ''">
+                                                                            {{orientacion.Descripcion}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoOrientacion.Descripcion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag10" ng-click="postulanteDetalleCtrl.flag10 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag10" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarOrientacion', 'flag10');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag10" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag10')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Licencia de conducir</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoLicenciaConducir.Id ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoLicenciaConducir.Id">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag101">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoLicenciaConducir.Id">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoLicenciaConducirId" ng-disabled="!postulanteDetalleCtrl.flag101">
+                                                                        <option ng-repeat="tipoLicencia in postulanteDetalleCtrl.TipoLicenciaConducir"
+                                                                                ng-value="{{tipoLicencia.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.TipoLicenciaConducirId == tipoLicencia.Id ? 'selected' : ''">
+                                                                            {{tipoLicencia.Descripcion}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px" ; ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoLicenciaConducir.Id">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag101" ng-click="postulanteDetalleCtrl.flag101 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag101" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTipoLicenciaConducir', 'flag101');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag101" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag101')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="vertical table tabla-perfil myBorder">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Tiene título superior</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.PoseeTituloSuperior ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.PoseeTituloSuperior">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flagEstudioSup">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.PoseeTituloSuperior">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.PoseeTituloSuperior" ng-disabled="!postulanteDetalleCtrl.flagEstudioSup">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.PoseeTituloSuperior == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flagEstudioSup" ng-click="postulanteDetalleCtrl.flagEstudioSup = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flagEstudioSup" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarPoseeTituloSuperior', 'flagEstudioSup');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flagEstudioSup" ng-click="postulanteDetalleCtrl.cancelarEdicion('flagEstudioSup')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Tiene hijos</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag11">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos" ng-disabled="!postulanteDetalleCtrl.flag11">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.TieneHijos == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TieneHijos">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag11" ng-click="postulanteDetalleCtrl.flag11 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag11" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTieneHijos', 'flag11');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag11" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag11')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Fue cadete</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoPostulacionEpn.Id? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoPostulacionEpn.Id">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag12">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoPostulacionEpn.Id">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoPostulacionEpnId" ng-disabled="!postulanteDetalleCtrl.flag12">
+                                                                        <option ng-repeat="tipo in postulanteDetalleCtrl.TipoPostulacionesEpn"
+                                                                                ng-value="{{tipo.Id}}"
+                                                                                ng-selected="postulanteDetalleCtrl.query.TipoPostulacionEpnId == tipo.Id ? 'selected' : ''">
+                                                                            {{tipo.Descripcion | uppercase}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.TipoPostulacionEpn.Id">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag12" ng-click="postulanteDetalleCtrl.flag12 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag12" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarFueCadete', 'flag12');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag12" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag12')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Reside 3 años en la provincia donde se postula</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.RecideTresAniosProvinciaPostulacion ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.RecideTresAniosProvinciaPostulacion">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag13">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.RecideTresAniosProvinciaPostulacion">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.RecideTresAniosProvinciaPostulacion" ng-disabled="!postulanteDetalleCtrl.flag13">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.RecideTresAniosProvinciaPostulacion == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.RecideTresAniosProvinciaPostulacion">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag13" ng-click="postulanteDetalleCtrl.flag13 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag13" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarReside3Years', 'flag13');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag13" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag13')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Separado/a de la Administración Pública Nacional por cesantía, baja o exoneración</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.SeparadoAdminPublica ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.SeparadoAdminPublica">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag14">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SeparadoAdminPublica">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.SeparadoAdminPublica" ng-disabled="!postulanteDetalleCtrl.flag14">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.SeparadoAdminPublica == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SeparadoAdminPublica">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag14" ng-click="postulanteDetalleCtrl.flag14 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag14" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarSeparadoAdminPublica', 'flag14');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag14" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag14')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dado de baja por motivos disciplinarios en alguna fuerza de seguridad, armada o policial</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.SancionDestitucionPublica ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.SancionDestitucionPublica">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag15">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SancionDestitucionPublica">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.SancionDestitucionPublica" ng-disabled="!postulanteDetalleCtrl.flag15">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.SancionDestitucionPublica == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.SancionDestitucionPublica">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag15" ng-click="postulanteDetalleCtrl.flag15 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag15" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarFueDadoDeBaja', 'flag15');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag15" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag15')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Antecedentes policiales y/o judiciales</th>
+                                                            <td colspan="{{postulanteDetalleCtrl.postulanteData.DatosBasicos.AntecedentesPenales ? 1 : 2}}">
+                                                                <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.DatosBasicos.AntecedentesPenales">
+                                                                    <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled ng-hide="postulanteDetalleCtrl.flag16">
+                                                                </div>
+                                                                <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.AntecedentesPenales">
+                                                                    <select class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.DatosBasicos.AntecedentesPenales" ng-disabled="!postulanteDetalleCtrl.flag16">
+                                                                        <option ng-repeat="option in postulanteDetalleCtrl.OpcionesSelect"
+                                                                                ng-value="option"
+                                                                                ng-selected="postulanteDetalleCtrl.query.AntecedentesPenales == option ? 'selected' : ''">
+                                                                            {{option}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.DatosBasicos.AntecedentesPenales">
+                                                                <div>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.flag16 = true;">Editar</button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTieneAntecedentes', 'flag16');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag16')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingContacto" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        DATOS DE CONTACTO
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapseContacto"
+                                                aria-expanded="true"
+                                                aria-controls="collapseContacto"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed2 = !deployed2; deployed1 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed2 ? !deployed2 : deployed2">
+                                            <i class="fa fa-plus" ng-show="!deployed2"></i>
+                                            <i class="fa fa-minus" ng-show="deployed2"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseContacto" class="collapse" aria-labelledby="headingContacto" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+                                        <div class="col-md-12">
+                                            <table class="vertical table tabla-perfil myBorder">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>E-mail</th>
+                                                        <td colspan="{{postulanteDetalleCtrl.postulanteData.Email || postulanteDetalleCtrl.flag16 ? 1 : 2}}">
+                                                            <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.Email || postulanteDetalleCtrl.flag16">
+                                                                <input type="text" class="form-control content-input" ng-value="postulanteDetalleCtrl.postulanteData.Email" ng-model="postulanteDetalleCtrl.postulanteData.Email" ng-disabled="!postulanteDetalleCtrl.flag16">
+                                                            </div>
+                                                            <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.Email && !postulanteDetalleCtrl.flag16">
+                                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled">
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.Email || postulanteDetalleCtrl.flag16">
+                                                            <div>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.flag16 = true;">Editar</button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarEmail', 'flag16');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag16" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag16')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Teléfono celular</th>
+                                                        <td colspan="{{postulanteDetalleCtrl.postulanteData.TelefonoCelular || postulanteDetalleCtrl.flag17 ? 1 : 2}}">
+                                                            <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoCelular || postulanteDetalleCtrl.flag17">
+                                                                <input type="text" class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.TelefonoCelular" ng-disabled="!postulanteDetalleCtrl.flag17">
+                                                            </div>
+                                                            <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.TelefonoCelular && !postulanteDetalleCtrl.flag17">
+                                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoCelular || postulanteDetalleCtrl.flag17">
+                                                            <div>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag17" ng-click="postulanteDetalleCtrl.flag17 = true;">Editar</button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag17" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTelefonoCelular', 'flag17');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag17" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag17')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Teléfono fijo</th>
+                                                        <td colspan="{{postulanteDetalleCtrl.postulanteData.TelefonoFijo || postulanteDetalleCtrl.flag19 ? 1 : 2}}">
+                                                            <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoFijo || postulanteDetalleCtrl.flag19">
+                                                                <input type="text" class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.TelefonoFijo" ng-disabled="!postulanteDetalleCtrl.flag19">
+                                                            </div>
+                                                            <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.TelefonoFijo && !postulanteDetalleCtrl.flag19">
+                                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoFijo || postulanteDetalleCtrl.flag19">
+                                                            <div>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag19" ng-click="postulanteDetalleCtrl.flag19 = true;">Editar</button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag19" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTelefonoFijo', 'flag19');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag19" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag19')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Teléfono alternativo</th>
+                                                        <td colspan="{{postulanteDetalleCtrl.postulanteData.TelefonoAlternativo || postulanteDetalleCtrl.flag18 ? 1 : 2}}">
+                                                            <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoAlternativo || postulanteDetalleCtrl.flag18">
+                                                                <input type="text" class="form-control content-input" ng-model="postulanteDetalleCtrl.postulanteData.TelefonoAlternativo" ng-disabled="!postulanteDetalleCtrl.flag18">
+                                                            </div>
+                                                            <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.TelefonoAlternativo && !postulanteDetalleCtrl.flag18">
+                                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                                            </div>
+                                                        </td>
+                                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteDetalleCtrl.postulanteData.TelefonoAlternativo || postulanteDetalleCtrl.flag18">
+                                                            <div>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteDetalleCtrl.flag18" ng-click="postulanteDetalleCtrl.flag18 = true;">Editar</button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteDetalleCtrl.flag18" ng-click="postulanteDetalleCtrl.ModificarDatosPostulante('modificarTelefonoAlternativo', 'flag18');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteDetalleCtrl.flag18" ng-click="postulanteDetalleCtrl.cancelarEdicion('flag18')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading2" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        CARRERA Y ESCALAFÓN
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse2"
+                                                aria-expanded="true"
+                                                aria-controls="collapse2"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed3 = !deployed3; deployed1 = deployed2 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed3 ? !deployed3 : deployed3">
+                                            <i class="fa fa-plus" ng-show="!deployed3"></i>
+                                            <i class="fa fa-minus" ng-show="deployed3"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+                                        <table class="vertical table tabla-perfil myBorder">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Carrera</th>
+                                                    <td>
+                                                        <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.Carrera">
+                                                            <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.Carrera.Descripcion}}" ng-disabled="!flag20">
+                                                        </div>
+                                                        <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.Carrera.Descripcion">
+                                                            <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flag20">
+                                                        </div>
+                                                    </td>
+                                                    <!--<td style="padding-left:4px; padding-right:4px;">
+                                        <div>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flag20" ng-click="flag20 = true;">Editar</button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flag20" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flag20" ng-click="flag20 = !flag20"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>-->
+                                                </tr>
+                                                <tr>
+                                                    <th>Escalafón</th>
+                                                    <td>
+                                                        <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.Escalafon.Descripcion">
+                                                            <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.Escalafon.Descripcion}}" ng-disabled="!flag22">
+                                                        </div>
+                                                        <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.Escalafon.Descripcion">
+                                                            <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flag22">
+                                                        </div>
+                                                    </td>
+                                                    <!--<td style="padding-left:4px; padding-right:4px;">
+                                        <div>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flag22" ng-click="flag22 = true;">Editar</button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flag22" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flag22" ng-click="flag22 = !flag22"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>-->
+                                                </tr>
+                                                <tr>
+                                                    <th>Subescalafón</th>
+                                                    <td>
+                                                        <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.SubEscalafon.Descripcion">
+                                                            <input type="text" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.SubEscalafon.Descripcion" ng-disabled="!flag21">
+                                                        </div>
+                                                        <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.SubEscalafon && !postulanteDetalleCtrl.postulanteData.Carrera.Id">
+                                                            <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flag21">
+                                                        </div>
+                                                        <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.Carrera.Id == 1">
+                                                            <input type="text" class="form-control content-input" style="color: blue;" value="No Aplica" ng-disabled="!flag12">
+                                                        </div>
+                                                    </td>
+                                                    <!--<td style="padding-left:4px; padding-right:4px;">
+                                        <div>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flag21" ng-click="flag21 = true;">Editar</button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flag21" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flag21" ng-click="flag21 = !flag21"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>-->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading4" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        FAMILIARES
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse4"
+                                                aria-expanded="true"
+                                                aria-controls="collapse4"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed4 = !deployed4; deployed1 = deployed2 = deployed3 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed4 ? !deployed4 : deployed4">
+                                            <i class="fa fa-plus" ng-show="!deployed4"></i>
+                                            <i class="fa fa-minus" ng-show="deployed4"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Familiares.length != 0">
+
+                                            <div class="accordion" id="accordionChild" role="tablist" aria-multiselectable="true">
+                                                <div id="accordionChild">
+                                                    <div class="card" ng-repeat="familiar in postulanteDetalleCtrl.postulanteData.Familiares">
+                                                        <div class="card-header" id="headingChild">
+                                                            <h6 class="mb-0" style="text-align:center;">
+                                                                <a href="" data-toggle="collapse" data-target="#collapseChild-{{ $index }}" aria-controls="collapseChild" aria-expanded="true">
+                                                                    <b class="panel-title">{{familiar.Vinculo.Descripcion}} - {{familiar.Apellido}}, {{familiar.Nombre}}</b>
+                                                                </a>
+                                                            </h6>
+                                                        </div>
+
+                                                        <div id="collapseChild-{{ $index }}" class="collapse" aria-labelledby="headingChild" data-parent="#accordionChild">
+                                                            <div class="card-body table-responsive">
+                                                                <table class="table table-striped jambo_table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Documento</th>
+                                                                            <th>Nacionalidad</th>
+                                                                            <th>Nacimiento</th>
+                                                                            <th>Vive</th>
+                                                                            <th>Convive</th>
+                                                                            <th>Ocupación</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>{{familiar.Documento}}</td>
+                                                                            <td>{{familiar.Nacionalidad.Descripcion}}</td>
+                                                                            <td>{{familiar.FechaNacimiento  | date : "dd/MM/yyyy"}}</td>
+                                                                            <td>{{familiar.Vive}}</td>
+                                                                            <td>{{familiar.Convive}}</td>
+                                                                            <td>{{familiar.Ocupacion}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <thead ng-if="familiar.Spf.indexOf('NO');">
+                                                                        <tr>
+                                                                            <th>Miembro del SPF</th>
+                                                                            <th>En actividad</th>
+                                                                            <th>Grado</th>
+                                                                            <th>Destino</th>
+                                                                            <th colspan="2">Función</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody ng-if="familiar.Spf.indexOf('NO');">
+                                                                        <tr>
+                                                                            <td>{{familiar.Spf}}</td>
+                                                                            <td>{{familiar.EnActividad}}</td>
+                                                                            <td>{{familiar.Grado.Descripcion}}</td>
+                                                                            <td>{{familiar.Destino}}</td>
+                                                                            <td colspan="2">{{familiar.Funcion}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Familiares.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY FAMILIARES CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading5" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        DOMICILIOS
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse5"
+                                                aria-expanded="true"
+                                                aria-controls="collapse5"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed5 = !deployed5; deployed1 = deployed2 = deployed3 = deployed4 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed5 ? !deployed5 : deployed5">
+                                            <i class="fa fa-plus" ng-show="!deployed5"></i>
+                                            <i class="fa fa-minus" ng-show="deployed5"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <table class="table table-striped jambo_table bulk_action" ng-if="postulanteDetalleCtrl.postulanteData.Domicilios.length != 0">
+                                            <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>Direccion</th>
+                                                    <th>Piso/Depto.</th>
+                                                    <th>Provincia</th>
+                                                    <th>Cod.Postal</th>
+                                                    <th>Figura en DNI</th>
+                                                    <th>Fecha de carga</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align: center;">
+                                                <tr ng-repeat="Domicilio in postulanteDetalleCtrl.postulanteData.Domicilios">
+                                                    <td>{{Domicilio.Domicilio}} {{Domicilio.DomicilioNumero}}</td>
+                                                    <td>{{Domicilio.DomicilioPiso}} - {{Domicilio.DomicilioDepartamento}}</td>
+                                                    <td>{{Domicilio.Provincia.Descripcion}}</td>
+                                                    <td>{{Domicilio.DomicilioCodigoPostal}}</td>
+                                                    <td>{{Domicilio.DomicilioDni}}</td>
+                                                    <td>{{Domicilio.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Domicilios.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY DOMICILIOS CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading6" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        ESTUDIOS
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse6"
+                                                aria-expanded="true"
+                                                aria-controls="collapse6"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed6 = !deployed6; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed6 ? !deployed6 : deployed6">
+                                            <i class="fa fa-plus" ng-show="!deployed6"></i>
+                                            <i class="fa fa-minus" ng-show="deployed6"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <table class="data table table-striped jambo_table bulk_action" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteEstudios.length != 0">
+                                            <thead>
+                                                <tr style="text-align:center;">
+                                                    <th>Tipo de título</th>
+                                                    <th>Nombre</th>
+                                                    <th>Año inicio</th>
+                                                    <th>Año fin</th>
+                                                    <th>Constancia de título</th>
+                                                    <th>Título en mano</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align:center;">
+                                                <tr ng-repeat="estudio in postulanteDetalleCtrl.postulanteData.PostulanteEstudios">
+                                                    <td>{{estudio.PostulanteEstudiosTipo.TipoEstudio}}</td>
+                                                    <td>{{estudio.Titulo}}</td>
+                                                    <td>{{estudio.AnioInicio}}</td>
+                                                    <td>{{estudio.AnioFinalizado}}</td>
+                                                    <td>{{estudio.PoseeConstanciaTitulo}}</td>
+                                                    <td>{{estudio.PoseeTituloEnMano}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.PostulanteEstudios.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY ESTUDIOS CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading7" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        CURSOS
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse7"
+                                                aria-expanded="true"
+                                                aria-controls="collapse7"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed7 = !deployed7; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 = deployed7 ? !deployed7 : deployed7">
+                                            <i class="fa fa-plus" ng-show="!deployed7"></i>
+                                            <i class="fa fa-minus" ng-show="deployed7"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <table class="data table table-striped jambo_table bulk_action" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteCursos.length != 0">
+                                            <thead>
+                                                <tr style="text-align:center;">
+                                                    <th>Titulo</th>
+                                                    <th>Año</th>
+                                                    <th>Finalizado</th>
+                                                    <th>Modalidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align:center;">
+                                                <tr ng-repeat="curso in postulanteDetalleCtrl.postulanteData.PostulanteCursos">
+                                                    <td>{{curso.Titulo}}</td>
+                                                    <td>{{curso.Anio}}</td>
+                                                    <td>{{curso.Finalizado}}</td>
+                                                    <td>{{curso.PostulanteCursosTipo.TipoCurso}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.PostulanteCursos.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY CURSOS CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOficios" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        OFICIOS
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapseOficios"
+                                                aria-expanded="true"
+                                                aria-controls="collapseOficios"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployedOficios = !deployedOficios; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployed8 = deployed9 = deployed10 = deployed11 = deployedOficios ? !deployedOficios : deployedOficios">
+                                            <i class="fa fa-plus" ng-show="!deployedOficios"></i>
+                                            <i class="fa fa-minus" ng-show="deployedOficios"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOficios" class="collapse" aria-labelledby="heading7" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <table class="data table table-striped jambo_table bulk_action" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteOficios.length != 0">
+                                            <thead>
+                                                <tr style="text-align:center;">
+                                                    <th>Oficio</th>
+                                                    <th>Descripción</th>
+                                                    <th>Años Experiencia</th>
+                                                    <th>Expertice</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align:center;">
+                                                <tr ng-repeat="Item in postulanteDetalleCtrl.postulanteData.PostulanteOficios">
+                                                    <td>{{Item.PostulanteOficiosTipo.Descripcion | uppercase}}</td>
+                                                    <td>{{Item.Descripcion | uppercase}}</td>
+                                                    <td>{{Item.AniosExperiencia}}</td>
+                                                    <td>{{Item.PostulanteOficiosExpertice.Descripcion | uppercase}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.PostulanteOficios.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY OFICIOS CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading8" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        SOCIAL MÉDICO
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse8"
+                                                aria-expanded="true"
+                                                aria-controls="collapse8"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed8 = !deployed8; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed9 = deployed10 = deployed11 = deployed8 ? !deployed8 : deployed8">
+                                            <i class="fa fa-plus" ng-show="!deployed8"></i>
+                                            <i class="fa fa-minus" ng-show="deployed8"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Respuestas.length != 0">
+                                            <div style="text-align:left;" ng-repeat="social in postulanteDetalleCtrl.postulanteData.Respuestas">
+                                                <p ng-show="social.SocialMedicoPreguntas.TipoPregunta == 2">
+                                                    {{social.SocialMedicoPreguntas.Consigna}}
+                                                    <b>| RESPUESTA: {{social.TextoIngresado}}</b>
+                                                </p>
+                                                <p ng-show="social.SocialMedicoPreguntas.TipoPregunta == 1">
+                                                    {{social.SocialMedicoPreguntas.Consigna}}
+                                                    <b>| RESPUESTA: {{social.SocialMedicoOpcion.Descripcion}}</b>
+                                                </p>
+                                                <hr class="solid" />
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Respuestas.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY DATOS CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading9" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        LABORAL
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse9"
+                                                aria-expanded="true"
+                                                aria-controls="collapse9"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed9 = !deployed9; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed10 = deployed11 = deployed9 ? !deployed9 : deployed9">
+                                            <i class="fa fa-plus" ng-show="!deployed9"></i>
+                                            <i class="fa fa-minus" ng-show="deployed9"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <table class="table table-striped jambo_table bulk_action" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteTrabajos.length != 0">
+                                            <thead>
+                                                <tr style="text-align:center;">
+                                                    <th>Establecimiento</th>
+                                                    <th>Dirección</th>
+                                                    <th>Tipo</th>
+                                                    <th>Puesto laboral</th>
+                                                    <th>Año inicio</th>
+                                                    <th>Año fin</th>
+                                                    <th>Trabajo actual</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align:center;">
+                                                <tr ng-repeat="trabajo in postulanteDetalleCtrl.postulanteData.PostulanteTrabajos">
+                                                    <td>{{trabajo.Establecimiento}}</td>
+                                                    <td>{{trabajo.DomicilioEstablecimiento}}</td>
+                                                    <td>{{trabajo.PostulanteTrabajosTipo.TipoTrabajo}}</td>
+                                                    <td>{{trabajo.PuestoLaboral}}</td>
+                                                    <td>{{trabajo.AnioInicio}}</td>
+                                                    <td>{{trabajo.AnioFinalizado}}</td>
+                                                    <td>{{trabajo.TrabajoActual}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.PostulanteTrabajos.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY DATOS LABORALES CARGADOS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading10" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        REDES SOCIALES
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse10"
+                                                aria-expanded="true"
+                                                aria-controls="collapse10"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed10 = !deployed10; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed11 = deployed10 ? !deployed10 : deployed10">
+                                            <i class="fa fa-plus" ng-show="!deployed10"></i>
+                                            <i class="fa fa-minus" ng-show="deployed10"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
+                                    <div class="card-body" style="text-align:left;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <table class="vertical table tabla-perfil myBorder">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row"><a><i class="fa fa-facebook"></i></a></th>
+                                                                <td colspan="2">
+                                                                    <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkFacebook">
+                                                                        <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkFacebook}}"
+                                                                               ng-disabled="!flagFace">
+                                                                    </div>
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkFacebook">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagFace">
+                                                                        <!--<span style="color: red;">No cargado</span>-->
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagFace ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagFace" ng-click="flagFace = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagFace" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagFace" ng-click="flagFace = !flagFace"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row"><i class="fa fa-twitter"></i></th>
+                                                                <td colspan="2">
+                                                                    <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkTwitter">
+                                                                        <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkTwitter}}"
+                                                                               ng-disabled="!flagTwitter">
+                                                                    </div>
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkTwitter">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagTwitter">
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagTwitter ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagTwitter" ng-click="flagTwitter = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagTwitter" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagTwitter" ng-click="flagTwitter = !flagTwitter"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row"><i class="fa fa-music"></i></th>
+                                                                <td colspan="2">
+                                                                    {{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkTiktok}}
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkTiktok">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagTik">
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagTik ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagTik" ng-click="flagTik = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagTik" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagTik" ng-click="flagTik = !flagTik"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <table class="vertical table tabla-perfil myBorder">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row"><i class="fa fa-linkedin-square"></i></th>
+                                                                <td colspan="2">
+                                                                    <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkLinkedin">
+                                                                        <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkLinkedin}}"
+                                                                               ng-disabled="!flagLink">
+                                                                    </div>
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkLinkedin">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagLink">
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagLink ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagLink" ng-click="flagLink = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagLink" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagLink" ng-click="flagLink = !flagLink"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                            <tr>
+                                                                <th><i class="fa fa-instagram"></i></th>
+                                                                <td colspan="2">
+                                                                    <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkInstagram">
+                                                                        <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkInstagram}}"
+                                                                               ng-disabled="!flagInstagram">
+                                                                    </div>
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkInstagram">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagInstagram">
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagInstagram ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagInstagram" ng-click="flagInstagram = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagInstagram" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagInstagram" ng-click="flagInstagram = !flagInstagram"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row"><i class="fa fa-youtube-play"></i></th>
+                                                                <td colspan="2">
+                                                                    <div style="display: inline;" ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkYoutube">
+                                                                        <input type="text" class="form-control content-input" value="{{postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkYoutube}}"
+                                                                               ng-disabled="!flagYoutube">
+                                                                    </div>
+                                                                    <div style="display: inline;" ng-if="!postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.LinkYoutube">
+                                                                        <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!flagYoutube">
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td style="padding-left:4px; padding-right:4px;">-->
+                                                                <!--<div ng-style="{'visibility' : flagYoutube ? 'visible' : 'hidden'}">-->
+                                                                <!--<div>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!flagYoutube" ng-click="flagYoutube = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="flagYoutube" ng-click="postulanteDetalleCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="flagYoutube" ng-click="flagYoutube = !flagYoutube"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>-->
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.PostulanteRedesSociales.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY REDES SOCIALES CARGADAS</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading11" style="padding: 6px 12px;">
+                                    <h5 style="margin: 4px 10px;">
+                                        DOCUMENTACIÓN
+                                        <button type="button"
+                                                class="btn btn-dark btn-sm"
+                                                data-toggle="collapse"
+                                                data-target="#collapse11"
+                                                aria-expanded="true"
+                                                aria-controls="collapse11"
+                                                style="float: right; margin-top: -3px;"
+                                                ng-click="deployed11 = !deployed11; deployed1 = deployed2 = deployed3 = deployed4 = deployed5 = deployed6 = deployed7 = deployedOficios = deployed8 = deployed9 = deployed10 = deployed11 ? !deployed11 : deployed11">
+                                            <i class="fa fa-plus" ng-show="!deployed11"></i>
+                                            <i class="fa fa-minus" ng-show="deployed11"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                                    <div class="card-body table-responsive" style="text-align:left;">
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Documentacion.length != 0">
+                                            <table class="table jambo_table table-estado-secciones">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="7"><b>DOCUMENTACIÓN OBLIGATORIA</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <thead>
+                                                    <tr style="text-align: center;">
+                                                        <th>Archivo</th>
+                                                        <th>Fecha de subida</th>
+                                                        <th>Observaciones</th>
+                                                        <th>Certificación gubernamental</th>
+                                                        <th>Archivo valido</th>
+                                                        <th>Fecha de validación</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody style="text-align: center;">
+                                                    <tr ng-repeat="Doc in postulanteDetalleCtrl.postulanteData.Documentacion" ng-if="Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                                        <td>
+                                                            <a href="javascript:void(0);" ng-click="postulanteDetalleCtrl.DescargarArchivo(Doc)">
+                                                                {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                                            </a>
+                                                        </td>
+                                                        <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                                        <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                                        <td>
+                                                            {{Doc.Certificado}}
+                                                        </td>
+                                                        <td>
+                                                            <div ng-if="Doc.Estado==0">
+                                                                <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                                            </div>
+                                                            <div ng-if="Doc.Estado==1">
+                                                                <b style="color:green;">SI</b>
+                                                            </div>
+                                                            <div ng-if="Doc.Estado==2">
+                                                                <b style="color:red;">NO </b><i class="fa fa-question-circle" data-toggle="tooltip"
+                                                                                                data-placement="top"
+                                                                                                data-original-title="Motivo: {{Doc.motivoRechazo}}"
+                                                                                                data-html="true"
+                                                                                                onmouseenter="$(this).tooltip('show')"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-if="!Doc.FechaValidacion">
+                                                                <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                                            </div>
+                                                            <div ng-if="Doc.FechaValidacion">
+                                                                <b>{{Doc.FechaValidacion | date : "dd/MM/yyyy"}}</b>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="6"><b>DOCUMENTACIÓN NO OBLIGATORIA</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <thead>
+                                                    <tr style="text-align: center;">
+                                                        <th>Archivo</th>
+                                                        <th>Fecha de subida</th>
+                                                        <th>Observaciones</th>
+                                                        <th>Certificación gubernamental</th>
+                                                        <th>Archivo valido</th>
+                                                        <th>Fecha de validación</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody style="text-align: center;">
+                                                    <tr ng-repeat="Doc in postulanteDetalleCtrl.postulanteData.Documentacion" ng-if="!Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                                        <td>
+                                                            <a href="javascript:void(0);" ng-click="postulanteDetalleCtrl.DescargarArchivo(Doc)">
+                                                                {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                                            </a>
+                                                        </td>
+                                                        <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                                        <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                                        <td>
+                                                            {{Doc.Certificado}}
+                                                        </td>
+                                                        <td>
+                                                            <div ng-if="Doc.Estado==0">
+                                                                <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                                            </div>
+                                                            <div ng-if="Doc.Estado==1">
+                                                                <b style="color:green;">SI</b>
+                                                            </div>
+                                                            <div ng-if="Doc.Estado==2">
+                                                                <b style="color:red;">NO </b><i class="fa fa-question-circle" data-toggle="tooltip"
+                                                                                                data-placement="top"
+                                                                                                data-original-title="Motivo: {{Doc.motivoRechazo}}"
+                                                                                                data-html="true"
+                                                                                                onmouseenter="$(this).tooltip('show')"></i>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-if="!Doc.FechaValidacion">
+                                                                <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                                            </div>
+                                                            <div ng-if="Doc.FechaValidacion">
+                                                                <b>{{Doc.FechaValidacion | date : "dd/MM/yyyy"}}</b>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div ng-if="postulanteDetalleCtrl.postulanteData.Documentacion.length == 0">
+                                            <div style="text-align:center;" class="alert alert-danger" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                </button>
+                                                <strong>NO HAY INFORMACION</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+

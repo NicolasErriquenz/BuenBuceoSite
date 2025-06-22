@@ -1,0 +1,1565 @@
+﻿<div cg-busy="postulanteBuscarPorDniCtrl.busy">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>POSTULANTES</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Búsqueda de postulantes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header" ng-if="!postulanteBuscarPorDniCtrl.postulanteCargado">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Búsqueda por DNI</h3>
+                </div>
+                <form class="form-horizontal ng-pristine ng-valid">
+                    <div class="card-body">
+                        <div class="offset-md-1 col-md-10">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">DNI</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                                                   type="text"
+                                                   placeholder="12345678"
+                                                   value=""
+                                                   ng-disabled="postulanteBuscarPorDniCtrl.postulanteCargado"
+                                                   ng-model="postulanteBuscarPorDniCtrl.query.Documento"
+                                                   ng-keyup="postulanteBuscarPorDniCtrl.checkKey($event, 'resetusuario');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit"
+                                class="btn btn-primary float-right"
+                                ng-model="dniBuscar"
+                                ng-click="postulanteBuscarPorDniCtrl.cargarDatosPostulante();"
+                                ng-if="!postulanteBuscarPorDniCtrl.postulanteCargado">
+                            Buscar
+                        </button>
+                        <button class="btn btn-default float-right"
+                                style="margin-right: 5px;"
+                                type="reset"
+                                ng-click="postulanteBuscarPorDniCtrl.clearFormularios()"
+                                ng-if="postulanteBuscarPorDniCtrl.postulanteCargado">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header" ng-if="postulanteBuscarPorDniCtrl.postulanteCargado">
+        <div class="container-fluid">
+
+            <div class="card card-dark card-tabs">
+                <div class="card-header">
+                    <h3 class="card-title">Resultados de la búsqueda</h3>
+                    <div class="card-tools" style="margin:0px!important;">
+                        <button class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;"
+                                type="reset"
+                                ng-click="postulanteBuscarPorDniCtrl.clearFormularios()"
+                                ng-if="postulanteBuscarPorDniCtrl.postulanteCargado">
+                            Limpiar búsqueda
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <table class="vertical table tabla-perfil-data mt-1" ng-class="postulanteBuscarPorDniCtrl.postulanteData.PostulantePrueba == 'SI' ? (postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion == 'OFICIAL' ? 'myBorder-testing color-oficial-testing' : postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion == 'SUBOFICIAL'? 'myBorder-testing color-suboficial-testing' :'myBorder-testing') : (postulanteBuscarPorDniCtrl.postulanteData.PostulantePrueba == 'NO' ? (postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion == 'OFICIAL'? 'myBorder color-oficial' : postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion == 'SUBOFICIAL'? 'myBorder color-suboficial' : 'myBorder' ) : '')">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="2" id="cabecera">
+                                            <div class="input-group" style="margin-bottom: 0px!important;" ng-if="!postulanteBuscarPorDniCtrl.flagNyA">
+                                                <input type="text" class="form-control content-input disabled-cabecera" style="height: 27px; font-size:18px;" value="{{postulanteBuscarPorDniCtrl.auxCadetePrimerAnio}}{{postulanteBuscarPorDniCtrl.postulanteData.Apellido}}, {{postulanteBuscarPorDniCtrl.postulanteData.Nombres}} ({{postulanteBuscarPorDniCtrl.postulanteData.Edad}})" ng-disabled="!postulanteBuscarPorDniCtrl.flagNyA">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-sm btnSPF-sm btnSPF-azul" style="margin: 0px !important;" ng-show="!postulanteBuscarPorDniCtrl.flagNyA" ng-click="postulanteBuscarPorDniCtrl.flagNyA = true;">Editar</button>
+                                                </div>
+                                            </div>
+                                            <div class="input-group" style="margin-bottom: 0px!important;" ng-if="postulanteBuscarPorDniCtrl.flagNyA">
+                                                <input type="text" class="form-control content-input disabled-cabecera" style="height: 27px;" ng-value="postulanteBuscarPorDniCtrl.postulanteData.Apellido" ng-model="postulanteBuscarPorDniCtrl.postulanteData.Apellido" ng-disabled="!postulanteBuscarPorDniCtrl.flagNyA">
+                                                <input type="text" class="form-control content-input disabled-cabecera" style="height: 27px;" ng-value="postulanteBuscarPorDniCtrl.postulanteData.Nombres" ng-model="postulanteBuscarPorDniCtrl.postulanteData.Nombres" ng-disabled="!postulanteBuscarPorDniCtrl.flagNyA">
+
+                                                <div class="input-group-append" style="width: 56px!important;">
+                                                    <button class="btn btn-sm btnSPF-sm btnSPF-verde" style=" width: 50%; margin: 0px !important;" ng-show="postulanteBuscarPorDniCtrl.flagNyA" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarNombreApellido', 'flagNyA');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    <button class="btn btn-sm btnSPF-sm btnSPF-volver" style="width: 50%; margin: 0px !important;" ng-show="postulanteBuscarPorDniCtrl.flagNyA" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flagNyA')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.CadetePrimerAnio == 'SI' ? 1 : 2}}" id="cabecera">
+                                            <p>{{postulanteBuscarPorDniCtrl.postulanteData.Documento}}</p>
+                                        </td>
+                                        <td id="cabecera" style="text-align: center; padding-top: 0px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.CadetePrimerAnio == 'SI'">
+                                            <img src="content/icons/favicon_negro.png" alt="" height="20" />
+                                        </td>
+                                        <!--<td id="cabecera" style="text-align: center; padding-top: 0px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulantePrueba = 'SI'">
+                                            <img src="content/icons/favicon_negro.png" alt="" height="20" />
+                                        </td>-->
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="7" style="text-align: center;">
+                                            <img class="img-responsive avatar-view" src="{{postulanteBuscarPorDniCtrl._recursosFotosPerfil}}{{postulanteBuscarPorDniCtrl.postulanteData.FotoPerfil}}"
+                                                 alt="Avatar" title="Foto perfil" style="margin:auto; width:200px; height:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1" scope="row">Postulación</th>
+                                        <td colspan="1">
+                                            <div style="display: inline;">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.PostulanteEstadoPostulacionId" ng-disabled="!postulanteBuscarPorDniCtrl.flagEstadoPost">
+                                                    <option ng-repeat="option in postulanteBuscarPorDniCtrl.EstadosPostulante"
+                                                            ng-value="{{option.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.PostulanteEstadoPostulacionId == option.Id ? 'selected' : ''">
+                                                        {{option.Descripcion}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td colspan="1" style="padding-left:4px; padding-right:4px;">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.flagEstadoPost = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarEstadoPostulacion', 'flagEstadoPost');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flagEstadoPost')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1" scope="row">Fecha de registro</th>
+                                        <td colspan="2"><p>{{postulanteBuscarPorDniCtrl.postulanteData.FechaRegistro | date : "dd/MM/yyyy"}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1" scope="row">Perfil completado</th>
+                                        <td colspan="2"><p>{{postulanteBuscarPorDniCtrl.postulanteData.perfilCompletado}}%</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1" scope="row">Fecha de inscripción</th>
+                                        <td colspan="2" ng-if="postulanteBuscarPorDniCtrl.postulanteData.FechaInscripcion"><p>{{postulanteBuscarPorDniCtrl.postulanteData.FechaInscripcion | date : "dd/MM/yyyy"}}</p></td>
+                                        <td colspan="2" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.FechaInscripcion"><p class="dato-progress">No inscripto</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1" scope="row">Código de inscripción</th>
+                                        <td colspan="1" ng-if="postulanteBuscarPorDniCtrl.postulanteData.CodigoInscripcion"><p>{{postulanteBuscarPorDniCtrl.postulanteData.CodigoInscripcion}}</p></td>
+                                        <td colspan="1" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.CodigoInscripcion"><p class="dato-progress">No generado</p></td>
+                                        <td colspan="1"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1" scope="row">Postulante de prueba</th>
+                                        <td colspan="1">
+                                            <div style="display: inline;">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.PostulantePrueba" ng-disabled="!postulanteBuscarPorDniCtrl.esTesting">
+                                                    <option ng-repeat="option in postulanteBuscarPorDniCtrl.OpcionesSelect"
+                                                            ng-value="option"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.postulanteData.PostulantePrueba == option ? 'selected' : ''">
+                                                        {{option}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td colspan="1" style="padding-left:4px; padding-right:4px;">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.esTesting" ng-click="postulanteBuscarPorDniCtrl.esTesting = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.esTesting" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarPostulantePrueba', 'esTesting');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.esTesting" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('esTesting')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!--<tr>
+                                        <th colspan="1" scope="row">Psicotécnico</th>
+                                        <td colspan="2">Sin datos</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Intelectual</th>
+                                        <td colspan="2">Sin datos</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> Exámen médico</th>
+                                        <td colspan="2">Sin datos</td>
+                                    </tr>-->
+                                </tbody>
+                            </table>
+
+                            <table class="vertical table tabla-perfil myBorder">
+                                <tbody>
+                                    <tr>
+                                        <th>E-mail</th>
+                                        <td>
+                                            <div style="display: inline;">
+                                                <input type="text" class="form-control content-input" ng-value="postulanteBuscarPorDniCtrl.postulanteData.Email" ng-model="postulanteBuscarPorDniCtrl.postulanteData.Email" ng-disabled="!postulanteBuscarPorDniCtrl.flag7">
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag7" ng-click="postulanteBuscarPorDniCtrl.flag7 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag7" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarEmail', 'flag7');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag7" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag7')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha de nacimiento</th>
+                                        <td>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.FechaNacimiento">
+                                                <input type="text" class="form-control content-input" ng-value="postulanteBuscarPorDniCtrl.postulanteData.FechaNacimiento | date : 'dd/MM/yyyy'" ng-disabled="!postulanteBuscarPorDniCtrl.flag6" ng-hide="postulanteBuscarPorDniCtrl.flag6">
+                                                <!--<input type="datetime" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.FechaNacimiento" ng-disabled="!postulanteBuscarPorDniCtrl.flag6" ng-hide="postulanteBuscarPorDniCtrl.flag6">-->
+                                            </div>
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.FechaNacimiento">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag6" ng-hide="postulanteBuscarPorDniCtrl.flag6">
+                                            </div>
+                                            <div style="display: inline;" ng-hide="!postulanteBuscarPorDniCtrl.flag6">
+                                                <input type="date" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.FechaNacimiento">
+                                                <!--<input type="date" class="form-control content-input" ng-disabled="!postulanteBuscarPorDniCtrl.flag6">-->
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag6" ng-click="postulanteBuscarPorDniCtrl.flag6 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag6" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarFechaNacimiento', 'flag6');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag6" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag6')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Género</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion ? 1 : 2}}">
+                                            <!--<div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                <input type="text" class="form-control content-input" value="{{postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion}}" ng-disabled="!postulanteBuscarPorDniCtrl.flag2" ng-hide="postulanteBuscarPorDniCtrl.flag2">
+                                            </div>-->
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag2" ng-hide="postulanteBuscarPorDniCtrl.flag2">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.SexoId" ng-disabled="!postulanteBuscarPorDniCtrl.flag2">
+                                                    <option ng-repeat="Sexo in postulanteBuscarPorDniCtrl.Sexos"
+                                                            ng-value="{{Sexo.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.SexoId == Sexo.Id ? 'selected' : ''">
+                                                        {{Sexo.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.Sexo.Descripcion">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.flag2 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarGenero', 'flag2');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag2')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Estado civil</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion ? 1 : 2}}">
+                                            <!--<div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                <input type="text" class="form-control content-input" value="{{postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion}}" ng-disabled="!postulanteBuscarPorDniCtrl.flag3" ng-hide="postulanteBuscarPorDniCtrl.flag3">
+                                            </div>-->
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag3" ng-hide="postulanteBuscarPorDniCtrl.flag3">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivilId" ng-disabled="!postulanteBuscarPorDniCtrl.flag3">
+                                                    <option ng-repeat="EstadoCivil in postulanteBuscarPorDniCtrl.EstadosCiviles"
+                                                            ng-value="{{EstadoCivil.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.FamiliaresVinculoId == EstadoCivil.Id ? 'selected' : ''">
+                                                        {{EstadoCivil.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.EstadoCivil.Descripcion">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag3" ng-click="postulanteBuscarPorDniCtrl.flag3 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag3" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarEstadoCivil', 'flag3');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag3" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag3')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nacionalidad</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag73" ng-hide="postulanteBuscarPorDniCtrl.flag73">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.TipoNacionalidadId" ng-disabled="!postulanteBuscarPorDniCtrl.flag73">
+                                                    <option ng-repeat="TipoNacionalidad in postulanteBuscarPorDniCtrl.Nacionalidades"
+                                                            ng-value="{{TipoNacionalidad.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.TipoNacionalidadId == TipoNacionalidad.Id ? 'selected' : ''">
+                                                        {{TipoNacionalidad.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.DatosBasicos.TipoNacionalidad.Descripcion">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag73" ng-click="postulanteBuscarPorDniCtrl.flag73 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag73" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarNacionalidad', 'flag73');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag73" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag73')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Domicilio</th>
+                                        <td colspan="2">
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'SI'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'SI'">
+                                                <input type="text" class="form-control content-input" value="{{Dir.Domicilio}} {{Dir.DomicilioNumero}}" disabled>
+                                            </div>
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'NO'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'NO' && postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 0">
+                                                <input type="text" class="form-control content-input" style="color: orange;" value="{{Dir.Domicilio}} {{Dir.DomicilioNumero}}" disabled>
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Domicilios.length == 0">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+                                        </td>
+                                        <!--<td rowspan="3" style="padding-left:4px; padding-right:4px;">
+                                            <i class="fa fa-question-circle" data-toggle="tooltip"
+                                               data-placement="top"
+                                               data-original-title="Para ver o editar el detalle completo diríjase a 'Ver perfil completo'"
+                                               data-html="true"
+                                               onmouseenter="$(this).tooltip('show')"></i>
+                                        </td>-->
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Localidad</th>
+                                        <td colspan="2">
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'SI'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'SI'">
+                                                <input type="text" class="form-control content-input" value="{{Dir.DomicilioLocalidad}}" disabled>
+                                            </div>
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'NO'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'NO' && postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 0">
+                                                <input type="text" class="form-control content-input" style="color: orange;" value="{{Dir.DomicilioLocalidad}}" disabled>
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Domicilios.length == 0">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Provincia</th>
+                                        <td colspan="2">
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'SI'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'SI'">
+                                                <input type="text" class="form-control content-input" value="{{Dir.Provincia.Descripcion}}" disabled>
+                                            </div>
+                                            <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | filter: {DomicilioDni: 'NO'} | limitTo: -1" ng-show="Dir.DomicilioDni == 'NO' && postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 0">
+                                                <input type="text" class="form-control content-input" style="color: orange;" value="{{Dir.Provincia.Descripcion}}" disabled>
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Domicilios.length == 0">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+
+                                            <div style="display: inline; width:200px;" ng-hide="!postulanteBuscarPorDniCtrl.flag5">
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.query.ProvinciaId">
+                                                    <option value="">SELECCIONÁ</option>
+                                                    <option ng-repeat="provincia in postulanteBuscarPorDniCtrl.Provincias"
+                                                            ng-value="{{provincia.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.ProvinciaId == provincia.Id ? 'selected' : ''">
+                                                        {{provincia.Descripcion}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Teléfono celular</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.TelefonoCelular || postulanteBuscarPorDniCtrl.flag8 ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoCelular || postulanteBuscarPorDniCtrl.flag8">
+                                                <input type="text" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.TelefonoCelular" ng-disabled="!postulanteBuscarPorDniCtrl.flag8">
+                                            </div>
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.TelefonoCelular && !postulanteBuscarPorDniCtrl.flag8">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoCelular || postulanteBuscarPorDniCtrl.flag8">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag8" ng-click="postulanteBuscarPorDniCtrl.flag8 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag8" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarTelefonoCelular', 'flag8');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag8" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag8')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Teléfono fijo</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.TelefonoFijo || postulanteBuscarPorDniCtrl.flag9 ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoFijo || postulanteBuscarPorDniCtrl.flag9">
+                                                <input type="text" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.TelefonoFijo" ng-disabled="!postulanteBuscarPorDniCtrl.flag9">
+                                            </div>
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.TelefonoFijo && !postulanteBuscarPorDniCtrl.flag9">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoFijo || postulanteBuscarPorDniCtrl.flag9">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag9" ng-click="postulanteBuscarPorDniCtrl.flag9 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag9" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarTelefonoFijo', 'flag9');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag9" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag9')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Teléfono alternativo</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.TelefonoAlternativo || postulanteBuscarPorDniCtrl.flag79 ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoAlternativo || postulanteBuscarPorDniCtrl.flag79">
+                                                <input type="text" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.TelefonoAlternativo" ng-disabled="!postulanteBuscarPorDniCtrl.flag79">
+                                            </div>
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.TelefonoAlternativo && !postulanteBuscarPorDniCtrl.flag79">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" disabled>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.TelefonoAlternativo || postulanteBuscarPorDniCtrl.flag79">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag79" ng-click="postulanteBuscarPorDniCtrl.flag79 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag79" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarTelefonoAlternativo', 'flag79');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag79" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag79')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carrera</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag10" ng-hide="postulanteBuscarPorDniCtrl.flag10">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion && !postulanteBuscarPorDniCtrl.flag10">
+                                                <input type="text" class="form-control content-input" value={{postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion}} ng-disabled="!postulanteBuscarPorDniCtrl.flag10" ng-hide="postulanteBuscarPorDniCtrl.flag10">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.flag10">
+                                                <select ng-change="postulanteBuscarPorDniCtrl.GetEscalafones()" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.CarreraId" ng-disabled="!postulanteBuscarPorDniCtrl.flag10">
+                                                    <option ng-repeat="carrera in postulanteBuscarPorDniCtrl.Carreras"
+                                                            ng-value="{{carrera.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.postulanteData.CarreraId == carrera.Id ? 'selected' : ''">
+                                                        {{carrera.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td rowspan="3" style="padding-left:4px; padding-right:4px;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag10" ng-click="postulanteBuscarPorDniCtrl.flag10 = postulanteBuscarPorDniCtrl.flag11 = postulanteBuscarPorDniCtrl.flag12 = true; postulanteBuscarPorDniCtrl.GetEscalafones(); postulanteBuscarPorDniCtrl.GetSubescalafones()">Editar</button>
+                                                <!--<button class="btn btn-sm btnSPF-sm btnSPF-azul" data-toggle="modal" data-target="#modalCarreraEscalafon">Editar</button>-->
+                                                <!--<button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag10" ng-click="postulanteBuscarPorDniCtrl.flag10 = true; postulanteBuscarPorDniCtrl.GetEscalafones()">Editar</button>-->
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag10" ng-click="postulanteBuscarPorDniCtrl.AbrirModal('cambiar_carrera');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag10" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flag10'); postulanteBuscarPorDniCtrl.flag11 = postulanteBuscarPorDniCtrl.flag12 = postulanteBuscarPorDniCtrl.flag10"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Escalafón</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag11" ng-hide="postulanteBuscarPorDniCtrl.flag11">
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion && !postulanteBuscarPorDniCtrl.flag11">
+                                                <input type="text" class="form-control content-input" value={{postulanteBuscarPorDniCtrl.postulanteData.Escalafon.Descripcion}} disabled>
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.flag11">
+                                                <select ng-change="postulanteBuscarPorDniCtrl.GetSubescalafones()" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.EscalafonId" ng-disabled="!postulanteBuscarPorDniCtrl.flag11">
+                                                    <option ng-repeat="Escalafon in postulanteBuscarPorDniCtrl.Escalafones"
+                                                            ng-value="{{Escalafon.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.postulanteData.EscalafonId == Escalafon.Id ? 'selected' : ''">
+                                                        {{Escalafon.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Subescalafón</th>
+                                        <td colspan="{{postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion ? 1 : 2}}">
+                                            <div style="display: inline;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.Carrera.Descripcion">
+                                                <input type="text" class="form-control content-input" style="color: red;" value="No cargado" ng-disabled="!postulanteBuscarPorDniCtrl.flag12" ng-hide="postulanteBuscarPorDniCtrl.flag12">
+                                            </div>
+                                            <div style="display: inline;"
+                                                 ng-if="postulanteBuscarPorDniCtrl.postulanteData.CarreraId == 1 ||
+                                                             (postulanteBuscarPorDniCtrl.postulanteData.CarreraId == 2 &&
+                                                             postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == null &&
+                                                             postulanteBuscarPorDniCtrl.flag12 &&
+                                                             postulanteBuscarPorDniCtrl.SubEscalafones.length == 0)">
+                                                <input type="text" class="form-control content-input" style="color: blue;" value="No Aplica" disabled>
+                                            </div>
+                                            <div style="display: inline;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubEscalafon.Id && !postulanteBuscarPorDniCtrl.flag12">
+                                                <input type="text" class="form-control content-input" value={{postulanteBuscarPorDniCtrl.postulanteData.SubEscalafon.Descripcion}} ng-disabled="!postulanteBuscarPorDniCtrl.flag12">
+                                            </div>
+                                            <div style="display: inline;"
+                                                 ng-if="(postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId != null && postulanteBuscarPorDniCtrl.flag12) || (postulanteBuscarPorDniCtrl.flag12 && postulanteBuscarPorDniCtrl.SubEscalafones.length > 0)">
+                                                <select ng-change="postulanteBuscarPorDniCtrl.resetHabilitarCargarAmbasCarreras()" class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId" ng-disabled="!postulanteBuscarPorDniCtrl.flag12">
+                                                    <option ng-repeat="subEscalafon in postulanteBuscarPorDniCtrl.SubEscalafones"
+                                                            ng-value="{{subEscalafon.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == subEscalafon.Id ? 'selected' : ''">
+                                                        {{subEscalafon.Descripcion | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <!--<td style="padding-left:4px; padding-right:4px;">
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag12" ng-click="postulanteBuscarPorDniCtrl.flag12 = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag12" ng-click="postulanteBuscarPorDniCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag12" ng-click="postulanteBuscarPorDniCtrl.flag12 = !postulanteBuscarPorDniCtrl.flag12"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>-->
+                                    </tr>
+                                    <tr>
+                                        <th>Unidad seleccionada</th>
+                                        <td colspan="1">
+                                            <div style="display: inline;">
+                                                <!--ng-if="PostCamp.Unidad.Nombre">-->
+                                                <select class="form-control content-input" ng-model="postulanteBuscarPorDniCtrl.postulanteData.UnidadesId" ng-disabled="!postulanteBuscarPorDniCtrl.flagUnidad">
+                                                    <option ng-repeat="unidad in postulanteBuscarPorDniCtrl.Unidades"
+                                                            ng-value="{{unidad.Id}}"
+                                                            ng-selected="postulanteBuscarPorDniCtrl.query.UnidadId == unidad.Id ? 'selected' : ''">
+                                                        {{unidad.Nombre | uppercase}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left:4px; padding-right:4px;">
+                                            <!--ng-if="PostCamp.Unidad || postulanteBuscarPorDniCtrl.flagUnidad">-->
+                                            <div>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flagUnidad" ng-click="postulanteBuscarPorDniCtrl.flagUnidad = true;">Editar</button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flagUnidad" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarSedePostulante', 'flagUnidad');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flagUnidad" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flagUnidad')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-4 mt-1">
+                            <div class="row h-100">
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verDocumentacionMedica()">
+                                        <div class="card shadow card-datos <!--color-desactivado-->">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-calendar" style="font-size:30px;"></i>
+                                                    <h6>Ver campañas</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.enviarMail()">
+                                        <div class="card shadow card-datos">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-envelope-o" style="font-size:30px;"></i>
+                                                    <h6>Enviar mensaje</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#seccionesDelPerfil">
+                                        <div class="card shadow card-datos ">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-list-alt" style="font-size:30px;"></i>
+                                                    <h6>Secciones del perfil</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verPerfil()">
+                                        <div class="card shadow card-datos">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-eye" style="font-size:30px;"></i>
+                                                    <h6>Ver perfil completo</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" class="desactivado">
+                                        <div class="card shadow card-datos color-desactivado">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-power-off" style="font-size:30px;"></i>
+                                                    <h6>Dar de baja</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#password">
+                                        <div class="card shadow card-datos">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-key" style="font-size:30px;"></i>
+                                                    <h6>Cambiar contraseña</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-class="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido?'desactivado':'activado'">
+                                        <div class="card shadow card-datos" ng-class="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido?'color-desactivado':'color-activado'">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion" ng-click="postulanteBuscarPorDniCtrl.AbrirModal('validar_email')">
+                                                    <i class="fa fa-check-square-o" style="font-size:30px; color: green;" ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido"></i>
+                                                    <i class="fa fa-window-close-o" style="font-size:30px; color: red;" ng-if="!postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido"></i>
+                                                    <h6>Validar E-mail manualmente</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-class="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido?'desactivado':'activado'">
+                                        <div class="card shadow card-datos" ng-class="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EmailValido?'color-desactivado':'color-activado'">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion" ng-click="postulanteBuscarPorDniCtrl.AbrirModal('reenviar_email')">
+                                                    <i class="fa fa-retweet" style="font-size:30px;"></i>
+                                                    <h6>Reenviar E-mail registro</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-class="postulanteBuscarPorDniCtrl.postulanteData.Preinscripto?'activado':'desactivado'">
+                                        <div class="card shadow card-datos" ng-class="postulanteBuscarPorDniCtrl.postulanteData.Preinscripto?'color-activado':'color-desactivado'">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion" ng-click="postulanteBuscarPorDniCtrl.AbrirModal('reset_preinscripcion')">
+                                                    <i class="fa fa-undo" style="font-size:30px;"></i>
+                                                    <h6>Eliminar número de preinscripción</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verMailsPostulante()">
+                                        <div class="card shadow card-datos <!--color-desactivado-->">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-archive" style="font-size:30px;"></i>
+                                                    <h6>Mails</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verDocumentacion()">
+                                        <div class="card shadow card-datos <!--color-desactivado-->">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-folder-open-o" style="font-size:30px;"></i>
+                                                    <h6>Documentación</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.estudiosMedicos()">
+                                        <div class="card shadow card-datos <!--color-desactivado-->">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-folder-open-o" style="font-size:30px;"></i>
+                                                    <h6>Estudios Medicos</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!--<div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verDocumentacion()">
+                                        <div class="card shadow card-datos">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-folder-open-o" style="font-size:30px;"></i>
+                                                    <h6>Documentación</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-6 col-6 text-center">
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verDocumentacion()">
+                                        <div class="card shadow card-datos">
+                                            <div class="card-body transition contenedor-opcion">
+                                                <div class="contenido-opcion">
+                                                    <i class="fa fa-folder-open-o" style="font-size:30px;"></i>
+                                                    <h6>Documentación</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>-->
+                            </div>
+
+                        </div> <!--fin col-4-->
+                    </div> <!--fin row contenedor columnas-->
+                    <div ng-repeat="Dir in postulanteBuscarPorDniCtrl.postulanteData.Domicilios | limitTo: -1" ng-show="Dir.DomicilioDni == 'NO' && postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 0" style="color: red;">
+                        Este postulante NO tiene cargado el domicilio que figura en su DNI.
+                        <div ng-show="postulanteBuscarPorDniCtrl.postulanteData.Domicilios.length > 1">
+                            Se muestra el último domicilio de un total de {{postulanteBuscarPorDniCtrl.postulanteData.Domicilios.length}} domicilios cargados.
+                            <br />
+                            Vea el <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.verPerfil()" style="text-decoration: underline;">perfil completo</a> para más detalle
+                        </div>
+                    </div>
+
+                    <!--<div class="row mt-1">
+                        <div class="col-md-12">
+                            <ul class="nav stepper-wrapper" role="tablist">
+                                <li class="nav-item stepper-item completed">
+                                    <a class="nav-link active" data-toggle="tab" data-target="#tab1">
+                                        <div class="step-counter"><i class="fa fa-check" style="color:green;"></i></div>
+                                        <div class="step-name">Psicotécnico</div>
+                                    </a>
+                                </li>
+                                <li class="nav-item stepper-item completed">
+                                    <a class="nav-link" data-toggle="tab" data-target="#tab2">
+                                        <div class="step-counter"><i class="fa fa-check" style="color:green;"></i></div>
+                                        <div class="step-name">Intelectual</div>
+                                    </a>
+                                </li>
+                                <li class="nav-item stepper-item active">
+                                    <a class="nav-link" data-toggle="tab" data-target="#tab3">
+                                        <div class="step-counter"><i class="fa fa-times" style="color:red;"></i></div>
+                                        <div class="step-name">Médico</div>
+                                    </a>
+                                </li>
+                                <li class="nav-item stepper-item">
+                                    <a class="nav-link" data-toggle="tab" data-target="#tab4">
+                                        <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                        <div class="step-name">Físico</div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="card card-dark card-outline mb-0">-->
+                    <!--<div class="card-header">
+                        <h3 class="card-title">Etapas de la postulación</h3>
+                    </div>-->
+                    <!--<div class="card-body">
+                                    <div class="tab-content">
+                                        <div id="tab1" class="tab-pane active mt-2">
+                                            <div class="offset-md-1 col-md-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Pisicotécnico</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control content-input" type="text" ng-disabled="!postulanteBuscarPorDniCtrl.psicotecnico">
+                                                    </div>
+                                                    <div class="col-sm-1" style="display: inline; padding-left: 0px; margin-top: 2px;">
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.psicotecnico" ng-click="postulanteBuscarPorDniCtrl.psicotecnico = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.psicotecnico" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarPsicotecnico', 'psicotecnico');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.psicotecnico" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('psicotecnico')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tab2" class="tab-pane mt-2">
+                                            <div class="offset-md-1 col-md-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Intelectual</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control content-input" type="text" ng-disabled="!postulanteBuscarPorDniCtrl.intelectual">
+                                                    </div>
+                                                    <div class="col-sm-1" style="display: inline; padding-left: 0px; margin-top: 2px;">
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.intelectual" ng-click="postulanteBuscarPorDniCtrl.intelectual = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.intelectual" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarIntelectual', 'intelectual');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.intelectual" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('intelectual')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tab3" class="tab-pane mt-2">
+                                            <div class="offset-md-1 col-md-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Médico</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control content-input" type="text" ng-disabled="!postulanteBuscarPorDniCtrl.medico">
+                                                    </div>
+                                                    <div class="col-sm-1" style="display: inline; padding-left: 0px; margin-top: 2px;">
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.medico" ng-click="postulanteBuscarPorDniCtrl.medico = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.medico" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarMedico', 'medico');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.medico" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('medico')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tab4" class="tab-pane mt-2">
+                                            <div class="offset-md-1 col-md-10">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Físico</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control content-input" type="text" ng-disabled="!postulanteBuscarPorDniCtrl.fisico">
+                                                    </div>
+                                                    <div class="col-sm-1" style="display: inline; padding-left: 0px; margin-top: 2px;">
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.fisico" ng-click="postulanteBuscarPorDniCtrl.fisico = true;">Editar</button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.fisico" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarFisico', 'fisico');"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.fisico" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('fisico')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div> <!--cierra card-body-->
+            </div> <!--Cierra card-->
+        </div>
+    </section>
+
+    <div class="modal" id="seccionesDelPerfil">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">SECCIONES DEL PERFIL</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table text-center table-estado-secciones myBorder">
+                        <tbody>
+                            <tr>
+                                <th><b>SECCIÓN</b></th>
+                                <th><b>ESTADO</b></th>
+                            </tr>
+                            <tr>
+                                <td>DATOS BÁSICOS</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DatosBasicosEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DatosBasicosEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CARRERA Y ESCALAFÓN</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.CarreraEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.CarreraEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SEDE</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.SedeValida == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.SedeValida == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DATOS FILIATORIOS</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.FiliatoriosEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.FiliatoriosEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>FAMILIARES</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.FamiliaresEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.FamiliaresEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DOMICILIOS</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DomiciliosEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ESTUDIOS</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EstudiosEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.EstudiosEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CURSOS</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.CursosEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.CursosEstadoId == 1 || postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.CursosEstadoId == 2">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SOCIAL MÉDICO</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.SocialEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.SocialEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>LABORAL</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.LaboralEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.LaboralEstadoId == 1 || postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.LaboralEstadoId == 2">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>REDES SOCIALES</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.RedesSocialesEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.RedesSocialesEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DOCUMENTACION</td>
+                                <td>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DocumentacionEstadoId == 0">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteValidaciones.DocumentacionEstadoId == 1">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalValidacionesDocs">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">DOCUMENTACIÓN</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table table-striped jambo_table table-estado-secciones">
+                        <thead>
+                            <tr>
+                                <th colspan="6"><b>DOCUMENTACIÓN OBLIGATORIA</b></th>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <th>Archivo</th>
+                                <th>Fecha de subida</th>
+                                <th>Observaciones</th>
+                                <th>Certificación gubernamental</th>
+                                <th>Validado por un agente</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-align: center;">
+                            <tr ng-repeat="Doc in postulanteBuscarPorDniCtrl.postulanteData.Documentacion" ng-if="Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                <td>
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.DescargarArchivo(Doc)">
+                                        {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                    </a>
+                                </td>
+                                <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                <td>
+                                    {{Doc.Certificado}}
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       data-placement="top"
+                                       data-original-title="El documento no está certificada por ninguna entidad gubernamental"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"
+                                       ng-if="Doc.Certificado == 'NO'"></i>
+                                </td>
+                                <td>
+                                    <div ng-if="Doc.Validado == 'NO'" ng-show="!postulanteBuscarPorDniCtrl.flag2">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="Doc.Validado == 'SI'" ng-show="!postulanteBuscarPorDniCtrl.flag2">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                    <select class="form-control content-input" ng-show="postulanteBuscarPorDniCtrl.flag2">
+                                        <option value=""></option>
+                                        <option>SI</option>
+                                        <option>NO</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.flag2 = true;">Editar</button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.flag2 = !postulanteBuscarPorDniCtrl.flag2"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <br />
+                                </td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th colspan="6"><b>DOCUMENTACIÓN NO OBLIGATORIA</b></th>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <th>Archivo</th>
+                                <th>Fecha de subida</th>
+                                <th>Observaciones</th>
+                                <th>Certificación gubernamental</th>
+                                <th>Validado por un agente</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-align: center;">
+                            <tr ng-repeat="Doc in postulanteBuscarPorDniCtrl.postulanteData.Documentacion" ng-if="!Doc.PostulanteDocumentacionTipo.Obligatorio">
+                                <td>
+                                    <a href="javascript:void(0);" ng-click="postulanteBuscarPorDniCtrl.DescargarArchivo(Doc)">
+                                        {{Doc.PostulanteDocumentacionTipo.Descripcion}}
+                                    </a>
+                                </td>
+                                <td>{{Doc.FechaCreacion | date : "dd/MM/yyyy"}}</td>
+                                <td>{{Doc.Observaciones == null ? 'Sin observaciones' : Doc.Observaciones}}</td>
+                                <td>
+                                    {{Doc.Certificado}}
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       data-placement="top"
+                                       data-original-title="El documento no está certificada por ninguna entidad gubernamental"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"
+                                       ng-if="Doc.Certificado == 'NO'"></i>
+                                </td>
+                                <td>
+                                    <div ng-if="Doc.Validado == 'NO'" ng-show="!postulanteBuscarPorDniCtrl.flag2">
+                                        <i class="fa fa-times-circle-o" style="font-size: 20px; color: red;"></i>
+                                    </div>
+                                    <div ng-if="Doc.Validado == 'SI'" ng-show="!postulanteBuscarPorDniCtrl.flag2">
+                                        <i class="fa fa-check-square-o" style="font-size: 20px; color: green;"></i>
+                                    </div>
+                                    <select class="form-control content-input" ng-show="postulanteBuscarPorDniCtrl.flag2">
+                                        <option value=""></option>
+                                        <option>SI</option>
+                                        <option>NO</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.flag2 = true;">Editar</button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.GuardarValorCampo(this)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                        <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flag2" ng-click="postulanteBuscarPorDniCtrl.flag2 = !postulanteBuscarPorDniCtrl.flag2"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-verde mr-2" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalCarreraEscalafon">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">Editar carrera y escalafón</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-5 col-sm-6 label-align">CARRERA</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select ng-change="postulanteBuscarPorDniCtrl.GetEscalafones()" class="form-control" ng-model="postulanteBuscarPorDniCtrl.query.CarreraId">
+                                <option ng-repeat="Carrera in postulanteBuscarPorDniCtrl.Carreras"
+                                        ng-value="{{Carrera.Id}}"
+                                        ng-selected="carreraEscalafonPostulanteCtrl.query.CarreraId == Carrera.Id ? 'selected' : ''">
+                                    {{Carrera.Descripcion | uppercase}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="postulanteBuscarPorDniCtrl.query.CarreraId != null">
+                        <label class="col-form-label col-md-5 col-sm-6 label-align">ESCALAFÓN</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select ng-change="postulanteBuscarPorDniCtrl.GetSubescalafones()" class="form-control" ng-model="postulanteBuscarPorDniCtrl.query.EscalafonId">
+                                <option ng-repeat="Escalafon in postulanteBuscarPorDniCtrl.Escalafones"
+                                        ng-value="{{Escalafon.Id}}"
+                                        ng-selected="postulanteBuscarPorDniCtrl.query.EscalafonId == Escalafon.Id ? 'selected' : ''">
+                                    {{Escalafon.Descripcion | uppercase}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-show="postulanteBuscarPorDniCtrl.SubEscalafones.length != 0">
+                        <label class="col-form-label col-md-5 col-sm-6 label-align">SUBESCALAFÓN</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control" ng-change="postulanteBuscarPorDniCtrl.resetHabilitarCargarAmbasCarreras()" ng-model="postulanteBuscarPorDniCtrl.query.SubescalafonId">
+                                <option ng-repeat="SubEscalafon in postulanteBuscarPorDniCtrl.SubEscalafones"
+                                        ng-value="{{SubEscalafon.Id}}"
+                                        ng-selected="postulanteBuscarPorDniCtrl.query.SubescalafonId == SubEscalafon.Id ? 'selected' : ''">
+                                    {{SubEscalafon.Descripcion | uppercase}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-verde mr-2" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.AbrirModal('cambiar_carrera')">Guardar</button>
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="modal" id="modalCampanias">
+        <div class="modal-dialog modal-lg">-->
+    <!--modal-lg-->
+    <!--<div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Campañas</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">-->
+    <!--<div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteCampanas.length != 0">-->
+    <!--<div ng-repeat="PostCamp in postulanteBuscarPorDniCtrl.postulanteData.PostulanteCampanas | filter: postulanteBuscarPorDniCtrl.campAbiertas() ">
+
+        <table class="vertical table table-bordered tabla-perfil myBorder">
+            <tr>
+                <th colspan="3" class="text-center">
+                    <h4><i class="fa fa-bank"></i> <a href="javascript:void(0);" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.seleccionarRuta('CampanaDetalle/' + PostCamp.Campana.Id)">{{PostCamp.Campana.Nombre}}</a></h4>
+                </th>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td colspan="2" style="text-align: left!important; padding-left: 18px;">
+                    <div ng-if="PostCamp.Campana.Descripcion">
+                        {{PostCamp.Campana.Descripcion}}
+                    </div>
+                    <div ng-if="!PostCamp.Campana.Descripcion">
+                        <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Fecha de Inicio</th>
+                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PostCamp.Campana.FechaInicio | date : 'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <th>Carrera</th>
+                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PostCamp.Campana.Carreras.Descripcion | uppercase}}</td>
+            </tr>
+            <tr>
+                <th>Escalafón</th>
+                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PostCamp.Campana.Escalafon.Descripcion | uppercase}}</td>
+            </tr>
+            <tr>
+                <th>Subescalafón</th>
+                <td colspan="2" style="text-align: left!important; padding-left: 18px;">
+                    <div ng-if="PostCamp.Campana.SubEscalafon.Descripcion">
+                        {{PostCamp.Campana.SubEscalafon.Descripcion | uppercase}}
+                    </div>
+                    <div ng-if="!PostCamp.Campana.SubEscalafon.Descripcion" style="color: blue;">
+                        No aplica
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Notificado</th>
+                <td colspan="2" style="text-align: left!important;">
+                    <p style="display: inline">{{PostCamp.PostulanteNotificado}}</p>
+                    <p style="display: inline" ng-if="PostCamp.FechaPostulanteNotificado">
+                        ({{PostCamp.FechaPostulanteNotificado | date : "dd/MM/yyyy"}})
+                    </p>
+                </td>
+            </tr>-->
+    <!--<tr>
+        <th>Fecha de notificación</th>
+        <td>
+            <div ng-if="PostCamp.FechaPostulanteNotificado">
+                {{PostCamp.FechaPostulanteNotificado | date : "dd/MM/yyyy"}}
+            </div>
+            <div ng-if="!PostCamp.FechaPostulanteNotificado" style="color: blue">
+                -
+            </div>
+        </td>
+    </tr>-->
+    <!--<tr>
+        <th>Estado de la postulación</th>
+        <td colspan="2" style="text-align: left!important;">
+            <p style="display: inline" ng-class="{1:'dniPendiente', 2:'dniAceptado', 3:'dniRechazado'}[PostCamp.PostulanteCampanasEstadosId]">{{PostCamp.PostulanteCampanasEstados.Descripcion}}</p>
+            <p style="display: inline" ng-if="PostCamp.PostulanteCampanasEstadosId == 2 || PostCamp.PostulanteCampanasEstadosId == 3">
+                ({{PostCamp.FechaRespuestaPostulante | date : "dd/MM/yyyy"}})
+            </p>
+        </td>-->
+    <!--<td colspan="1" style="text-align: left!important;">
+        <select class="form-control content-input" ng-model="PostCamp.Campana.CampanaEstadosId" ng-disabled="!postulanteBuscarPorDniCtrl.flagEstadoPost">
+            <option ng-repeat="estadoPostulacion in postulanteBuscarPorDniCtrl.EstadosPostulacion"
+                    ng-class="{1:'dniPendiente', 2:'dniAceptado', 3:'dniRechazado', 5:'dniRechazado'}[estadoPostulacion.Id]"
+                    ng-value="{{estadoPostulacion.Id}}"
+                    ng-selected="PostCamp.Campana.CampanaEstadosId == estadoPostulacion.Id ? 'selected' : ''">
+                {{estadoPostulacion.Descripcion | uppercase}}
+            </option>
+        </select>
+    </td>
+    <td rowspan="{{PostCamp.Campana.CampanaEstadosId == 5 ? 2 : 1 }}" style="padding-left:4px; padding-right:4px;">
+        <div>
+            <button class="btn btn-sm btnSPF-sm btnSPF-azul" ng-show="!postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.flagEstadoPost = true;">Editar</button>
+            <button class="btn btn-sm btnSPF-sm btnSPF-verde" ng-show="postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.ModificarUnidad(PostCamp, 'flagEstadoPost');"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btnSPF-sm btnSPF-volver" ng-show="postulanteBuscarPorDniCtrl.flagEstadoPost" ng-click="postulanteBuscarPorDniCtrl.cancelarEdicion('flagEstadoPost')"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+    </td>-->
+    <!--</tr>
+                        </table>
+                    </div>
+
+                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteCampanas.length > 0">
+                        <table class="vertical table table-bordered tabla-perfil myBorder text-center">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">HISTORIAL DE CAMPAÑAS</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Estado de la campaña</th>
+                                <th>Estado de la postulación</th>
+                                <th>Unidad Seleccionada</th>
+                            </tr>
+                            <tr ng-repeat="PostCampHist in postulanteBuscarPorDniCtrl.postulanteData.PostulanteCampanas">
+                                <td>
+                                    <a href="javascript:void(0)" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.seleccionarRuta('CampanaDetalle/' + PostCampHist.Campana.Id)">{{PostCampHist.Campana.Nombre}}</a>
+                                </td>
+                                <td>
+                                    <p ng-class="{1:'dniPendiente', 2:'dniAceptado', 3:'dniRechazado'}[PostCampHist.Campana.CampanaEstados.Id]">{{PostCampHist.Campana.CampanaEstados.Descripcion}}</p>
+                                </td>
+                                <td>
+                                    <p ng-class="{1:'dniPendiente', 2:'dniAceptado', 3:'dniRechazado'}[PostCampHist.PostulanteCampanasEstadosId]">{{PostCampHist.PostulanteCampanasEstados.Descripcion}}</p>
+                                </td>
+                                <td>
+                                    <div ng-if="PostCampHist.Unidad.Nombre">
+                                        {{PostCampHist.Unidad.Nombre}}
+                                    </div>
+                                    <div ng-if="!PostCampHist.Unidad.Nombre" style="color: blue;">
+                                        <i class="fa fa-minus" style="font-size: 20px; color: gray;"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.PostulanteCampanas.length == 0">
+                        <div style="text-align:center;" class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            </button>
+                            <strong>ESTE POSTULANTE NO TIENE CAMPAÑAS ABIERTAS ASOCIADAS</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+</div>
+
+<!-- modal confirmar reiniciar perfil-->
+<div class="modal fade confirm_dialog_reset_perfil" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">ATENCIÓN</h2>
+            </div>
+            <div class="modal-body">
+                <h2 style="text-align:center;">¿Estás seguro de reinicar el perfil de<b> {{postulanteBuscarPorDniCtrl.postulanteData.Apellido}}, {{postulanteBuscarPorDniCtrl.postulanteData.Nombres}}</b> ?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.BorrarPostulanteDatos()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal confirmar reenviar correo-->
+<div class="modal fade confirm_dialog_reenviar_email" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">ATENCIÓN</h2>
+            </div>
+            <div class="modal-body">
+                <h2 style="text-align:center;">¿Estás seguro de reenviar el correo de verificación de email a<b> {{postulanteBuscarPorDniCtrl.postulanteData.Apellido}}, {{postulanteBuscarPorDniCtrl.postulanteData.Nombres}}</b> ?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.ReenviarCorreo('registro')">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal confirmar validar correo manualmente-->
+<div class="modal fade confirm_dialog_validar_email" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">ATENCIÓN</h2>
+            </div>
+            <div class="modal-body">
+                <h2 style="text-align:center;">¿Estás seguro de validar el correo<b>{{postulanteBuscarPorDniCtrl.postulanteData.Email}} </b>manualmente ?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.ForzarValidacionEmail()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal confirmar reset_preinscripcion -->
+<div class="modal fade confirm_dialog_reset_preinscripcion" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">ATENCIÓN</h2>
+            </div>
+            <div class="modal-body">
+                <h2 style="text-align:center;">¿Estás seguro de <b>eliminar</b> la <b>preinscripción</b> de <b>{{postulanteBuscarPorDniCtrl.postulanteData.Apellido}}, {{postulanteBuscarPorDniCtrl.postulanteData.Nombres}}</b> ?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.EliminarPreinscripcion()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal confirmar cambiar_carrera -->
+<div class="modal fade confirm_dialog_cambiar_carrera" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h2 class="modal-title">ATENCIÓN</h2>
+            </div>
+
+            <div class="modal-body">
+                <h2 style="text-align:center;">¿Estás seguro de <b>cambiar</b> la <b>carrera/escalafón/subescalafón</b> de <b>{{postulanteBuscarPorDniCtrl.postulanteData.Apellido}}, {{postulanteBuscarPorDniCtrl.postulanteData.Nombres}}</b> ?</h2>
+            </div>
+
+            <div class="card-body">
+                <!-- VALIDACIONES ESCUELA DE SUBOFICIALES -->
+                <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.CarreraId == 2" class="ml-4 mr-4">
+
+                    <div ng-if="!postulanteBuscarPorDniCtrl.habilitadoCargaCarreraSuboficiales">
+                        <div ng-if="!postulanteBuscarPorDniCtrl.habilitadoCargaCarreraSuboficiales">
+                            <strong style="color: orange;">NOTA: EL POSTULANTE NO CUMPLE CON LOS REQUISITOS MÍNIMOS PARA POSTULARTE A ESTA CARRERA / ESCALAFÓN / SUBESCALAFÓN</strong>
+                        </div>
+                    </div>
+                    <!--<div ng-if="postulanteBuscarPorDniCtrl.habilitadoCargaCarreraSuboficiales">
+                        <div class="ln_solid"></div>
+                        <div style="text-align: center;" class="alert alert-success" role="alert">
+                            <strong>EL POSTULANTE CUMPLE CON LOS REQUISITOS MÍNIMOS PARA SELECCIONAR ESTA CARRERA / ESCALAFÓN / SUBESCALAFÓN</strong>
+                        </div>
+                    </div>-->
+
+                    <div class="accordion" ng-show="!postulanteBuscarPorDniCtrl.habilitadoCargaCarreraSuboficiales">
+                        <div class="card border-light">
+                            <div class="card-body" id="headingDetalle">
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#collapseDetalleSubs" id="toggleBtn" aria-expanded="true" aria-controls="collapseDetalle" ng-click="detalleError = !detalleError;">
+                                    <div ng-show="!detalleError">Ver detalle</div>
+                                    <div ng-show="detalleError">Cerrar</div>
+                                </button>
+                            </div>
+
+                            <div id="collapseDetalleSubs" class="collapse" aria-labelledby="headingDetalle">
+                                <div class="card-body">
+                                    <div class="text-justify" style="margin-left: -25px; display: flex; color: red;">
+                                        <ul>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('nacionalidad') ? 'block' : 'none' }">Ser ARGENTINO/A, NATIVO/A O POR OPCIÓN</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('residirprovincia') ? 'block' : 'none' }">Recidir al menos 3 años en la provincia actual.</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('edad', 'cuerpo') ? 'block' : 'none' }" ng-if="postulanteBuscarPorDniCtrl.postulanteData.EscalafonId == 3">Contar entre 21 y 32 años de edad</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('edad', 'subprofesional') ? 'block' : 'none' }" ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 1">Contar con más de 21 años de edad </li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('edad', 'maestranza') ? 'block' : 'none' }" ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 2">Contar entre 21 y 35 años de edad</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('edad', 'oficinista') ? 'block' : 'none' }" ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 3">Contar entre 21 y 32 años de edad</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('edad', 'intendencia') ? 'block' : 'none' }" ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 4">Contar entre 21 y 32 años de edad</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('separacionadminpublica') ? 'block' : 'none' }">No haber sido separado de la administración pública por Exoneración y Cesantía</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('sancion') ? 'block' : 'none' }">No haber sido dado de baja por motivos disciplinarios en alguna fuerza de seguridad, armada o policial</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('antecedentes') ? 'block' : 'none' }">NO registrar Antecedentes Judiciales o Causas Judiciales en el Registro Nacional de Reincidencia.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.EscalafonId == 3" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('secundario', 'cuerpo') ? 'block' : 'none' }">Certificados de estudios secundarios o polimodal aprobado.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 1" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('secundario', 'subprofesional') ? 'block' : 'none' }">Título Secundario técnico expedido por resolución nacional o provincial.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 2" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('secundario', 'maestranza') ? 'block' : 'none' }">Poseer título de educación formal de nivel secundario.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 3" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('secundario', 'oficinista') ? 'block' : 'none' }">Certificado de estudios secundarios, preferentemente con orientación administrativa y/o contable.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 4" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('secundario', 'intendencia') ? 'block' : 'none' }">Certificados de estudios secundarios o polimodal aprobado.</li>
+                                            <li ng-if="postulanteBuscarPorDniCtrl.postulanteData.SubescalafonId == 4" ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisitoSuboficial('licenciaconducir') ? 'block' : 'none' }">Los Postulantes a choferes requieren además poseer licencia nacional de conductor de categoría profesional.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VALIDACIONES ESCUELA DE OFICIALES -->
+                <div ng-if="postulanteBuscarPorDniCtrl.postulanteData.CarreraId == 1" class="ml-4 mr-4">
+
+                    <div ng-if="!postulanteBuscarPorDniCtrl.habilitadoCargaCarrera">
+                        <strong style="color: orange;">NOTA: EL POSTULANTE NO CUMPLE CON LOS REQUISITOS MÍNIMOS PARA POSTULARTE A ESTA CARRERA Y ESCALAFÓN</strong>
+                    </div>
+                    <!--<div ng-if="postulanteBuscarPorDniCtrl.habilitadoCargaCarrera">
+                        <div class="ln_solid"></div>
+                        <div style="text-align: center;" class="alert alert-success" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            </button>
+                            <strong>EL POSTULANTE CUMPLE CON LOS REQUISITOS MÍNIMOS PARA SELECCIONAR ESTA CARRERA Y ESCALAFÓN</strong>
+                        </div>
+                    </div>-->
+
+                    <div class="accordion" ng-show="!postulanteBuscarPorDniCtrl.habilitadoCargaCarrera">
+                        <div class="card border-light">
+                            <div class="card-body" id="headingDetalle">
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#collapseDetalle" id="toggleBtn" aria-expanded="true" aria-controls="collapseDetalle" ng-click="detalleError = !detalleError;">
+                                    <div ng-show="!detalleError">Ver detalle</div>
+                                    <div ng-show="detalleError">Cerrar</div>
+                                </button>
+                            </div>
+
+                            <div id="collapseDetalle" class="collapse" aria-labelledby="headingDetalle">
+                                <div class="card-body">
+                                    <div class="text-justify" style="margin-left: -25px; display: flex; color: red;">
+                                        <ul>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('nacionalidad') ? 'block' : 'none' }">Ser ARGENTINO/A, NATIVO/A O POR OPCIÓN</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('edad', 'oficial') ? 'block' : 'none' }">Tener entre 17 a 27 años de edad al 1ro de Marzo del año de su postulación</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('separacionadminpublica') ? 'block' : 'none' }">No haber sido separado de la administración pública por Exoneración y Cesantía</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('sancion') ? 'block' : 'none' }">No haber sido dado de baja por motivos disciplinarios en alguna fuerza de seguridad, armada o policial</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('estadocivil') ? 'block' : 'none' }">Estado civil soltero/a, sin cargas de familia. </li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('antecedentes') ? 'block' : 'none' }">NO registrar Antecedentes Judiciales o Causas Judiciales en el Registro Nacional de Reincidencia.</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('secundario', 'cuerpo') ? 'block' : 'none' }">ESCALAFON CUERPO GENERAL: Haber aprobado el Nivel Medio siendo todos los títulos y orientaciones habilitantes. </li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('secundario', 'administrativo') ? 'block' : 'none' }">ESCALAFON ADMINISTRATIVO: Haber aprobado en Nivel Medio con títulos de Orientación Contable.</li>
+                                            <li ng-style="{'display':postulanteBuscarPorDniCtrl.validarRequisito('cadete1mes') ? 'block' : 'none' }">No haber estado incorporado como cadete de la escuela penitenciaria por mas de 1 mes.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="postulanteBuscarPorDniCtrl.ModificarDatosPostulante('modificarCarreraEscalafonSubEscalafon', 'flag10');">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal edición de contraseña-->
+<div class="modal fade" id="password" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--fin-->

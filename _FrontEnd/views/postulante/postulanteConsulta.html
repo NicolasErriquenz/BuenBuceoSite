@@ -1,0 +1,469 @@
+﻿<div cg-busy="postulanteConsultaCtrl.busy">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">REPORTE DE POSTULANTES</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Reporte de postulantes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Parámetros para generar el reporte</h3>
+                </div>
+                <form class="form-horizontal ng-pristine ng-valid">
+                    <div class="card-body">
+                        <!--<div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" ng-model="postulanteConsultaCtrl.query.Nombre" ng-keyup="postulanteConsultaCtrl.checkKey($event);">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Documento">Documento</label>
+            <input type="number" class="form-control" id="Documento" ng-model="postulanteConsultaCtrl.query.Apellido" ng-keyup="postulanteConsultaCtrl.checkKey($event);">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Nombre">Nombre</label>
+            <input type="text" class="form-control" id="Nombre" ng-model="postulanteConsultaCtrl.query.Documento" ng-keyup="postulanteConsultaCtrl.checkKey($event);">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Apellido">Apellido</label>
+            <input type="text" class="form-control" id="Apellido" ng-model="postulanteConsultaCtrl.query.Email" ng-keyup="postulanteConsultaCtrl.checkKey($event);">
+        </div>
+    </div>-->
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputCity">Carrera</label>
+                                <select ng-change="postulanteConsultaCtrl.GetEscalafones()"
+                                        class="form-control"
+                                        ng-model="postulanteConsultaCtrl.query.CarreraId">
+                                    <option value="">TODOS</option>
+                                    <option ng-repeat="Carrera in postulanteConsultaCtrl.Carreras"
+                                            ng-value="{{Carrera.Id}}"
+                                            ng-selected="postulanteConsultaCtrl.query.CarreraId == Carrera.Id ? 'selected' : ''">
+                                        {{Carrera.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Escalafón</label>
+                                <select ng-change="postulanteConsultaCtrl.GetSubescalafones()"
+                                        ng-disabled="postulanteConsultaCtrl.query.CarreraId == ''"
+                                        class="form-control"
+                                        ng-model="postulanteConsultaCtrl.query.EscalafonId">
+                                    <option value="">Seleccione escalafón</option>
+                                    <option ng-repeat="Escalafon in postulanteConsultaCtrl.Escalafones"
+                                            ng-value="{{Escalafon.Id}}"
+                                            ng-selected="postulanteConsultaCtrl.query.EscalafonId == Escalafon.Id ? 'selected' : ''">
+                                        {{Escalafon.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputZip">Subescalafón</label>
+                                <select class="form-control"
+                                        ng-change="postulanteConsultaCtrl.resetHabilitarCargarAmbasCarreras()"
+                                        ng-disabled="postulanteConsultaCtrl.SubEscalafones.length == 0"
+                                        ng-model="postulanteConsultaCtrl.query.SubEscalafonId">
+                                    <option value="">Seleccione subescalafón</option>
+                                    <option ng-repeat="SubEscalafon in postulanteConsultaCtrl.SubEscalafones"
+                                            ng-value="{{SubEscalafon.Id}}"
+                                            ng-selected="postulanteConsultaCtrl.query.SubEscalafonId == SubEscalafon.Id ? 'selected' : ''">
+                                        {{SubEscalafon.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputZip">Sexo</label>
+                                <select ng-model="postulanteConsultaCtrl.query.SexoId" class="form-control">
+                                    <option value="">TODOS</option>
+                                    <option ng-repeat="sexo in postulanteConsultaCtrl.Sexos" ng-value="{{sexo.Id}}">
+                                        {{sexo.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputZip">Estado Civil</label>
+                                <select ng-model="postulanteConsultaCtrl.query.EstadoCivilId" class="form-control">
+                                    <option value="">TODOS</option>
+                                    <option ng-repeat="estadoCivil in postulanteConsultaCtrl.EstadosCiviles" ng-value="{{estadoCivil.Id}}">
+                                        {{estadoCivil.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputZip">
+                                    Provincia
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Limita la búsqueda a postulantes que hayan cargado el domicilio del DNI"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <select ng-model="postulanteConsultaCtrl.query.ProvinciaId" class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="provincia in postulanteConsultaCtrl.Provincias" ng-value="{{provincia.Id}}">
+                                        {{provincia.Descripcion | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label for="TieneHijos">Con hijos</label>
+                                <select ng-model="postulanteConsultaCtrl.query.TieneHijos" class="form-control">
+                                    <option value="">TODOS</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="SecundarioCompleto">Situacion estudio secundario</label>
+                                <select ng-model="postulanteConsultaCtrl.query.Secundario" class="form-control">
+                                    <option value="">TODOS</option>
+                                    <option value="3">SECUNDARIO COMPLETO Ó CURSA ULTIMO AÑO</option>
+                                    <option value="1">UNICAMENTE SECUNDARIO COMPLETO</option>
+                                    <option value="2">UNICAMENTE CURSANDO EL ULTIMO AÑO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="CursaUltimoAnio">Orientacion titulo secundario</label>
+                                <select ng-model="postulanteConsultaCtrl.query.PostulanteEstudiosTipoOrientacionId" class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="TipoOrientacion in postulanteConsultaCtrl.TipoOrientaciones" ng-value="{{TipoOrientacion.Id}}">
+                                        {{TipoOrientacion.Descripcion}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label for="LicenciaDeConducir">Licencia de conducir</label>
+                                <select ng-model="postulanteConsultaCtrl.query.LicenciaDeConducir" class="form-control">
+                                    <option value="">TODOS</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="TipoLicenciaConducirId">Tipo licencia</label>
+                                <select ng-model="postulanteConsultaCtrl.query.TipoLicenciaConducirId"
+                                        ng-disabled="postulanteConsultaCtrl.query.LicenciaDeConducir != 1"
+                                        class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="TipoLicencia in postulanteConsultaCtrl.TipoLicenciasConducir" ng-value="{{TipoLicencia.Id}}">
+                                        {{TipoLicencia.Descripcion}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 form-group">
+                                <label for="TipoLicenciaConducirId">Estuvo incorporado como cadete EPN</label>
+                                <select ng-model="postulanteConsultaCtrl.query.TipoPostulacionEpnId"
+                                        class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option value="99">No o hasta un més</option>
+                                    <option ng-repeat="TipoPostulacion in postulanteConsultaCtrl.TipoPostulacionesEpn" ng-value="{{TipoPostulacion.Id}}">
+                                        {{TipoPostulacion.Descripcion}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label for="Edades1">Edad mínima</label>
+                                <select ng-model="postulanteConsultaCtrl.query.EdadMinima" class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="Edad in postulanteConsultaCtrl.Edades" ng-value="{{Edad}}">
+                                        {{Edad}} años
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="Edades">Edad máxima</label>
+                                <select ng-model="postulanteConsultaCtrl.query.EdadMaxima" class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="Edad in postulanteConsultaCtrl.EdadesMax" ng-value="{{Edad}}">
+                                        {{Edad}} años
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="Estatura">Estatura mínima</label>
+                                <select ng-model="postulanteConsultaCtrl.query.Estatura" class="form-control">
+                                    <option value="">TODAS</option>
+                                    <option ng-repeat="Estatura in postulanteConsultaCtrl.Estaturas" ng-value="{{Estatura}}">
+                                        {{Estatura}}cm
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label for="PoseeTituloSuperior">
+                                    Posee título superior
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Limita la búsqueda a postulantes que hayan cargado el títulos superiores<br><br>Verán duplicados los postulantes en base a la cantidad de títulos cargados"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <select ng-model="postulanteConsultaCtrl.query.PoseeTituloSuperior" class="form-control">
+                                    <option value="">SIN FILTRO</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="PoseeTituloSuperior">
+                                    Posee oficio
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Limita la búsqueda a postulantes que hayan cargado oficios<br><br>Verán duplicados los postulantes en base a la cantidad de oficios cargados"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <select ng-model="postulanteConsultaCtrl.query.PoseeOficio" class="form-control">
+                                    <option value="">SIN FILTRO</option>
+                                    <option value="1">SI</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="ParticipaCampana ">
+                                    Participación en campañas
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Según el tipo de opción elegida la búsqueda puede verse reducida"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <select ng-model="postulanteConsultaCtrl.query.ParticipaCampana " class="form-control">
+                                    <option value="">SIN FILTRO</option>
+                                    <option value="1">NO PARTICIPARON NUNCA</option>
+                                    <option value="2">PARTICIPARON ALGUNA VEZ PERO NO ACTUALMENTE</option>
+                                    <option value="3">PARTICIPA ACTUALMENTE</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label for="FechaRegistro">
+                                    Fecha registro
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Limita la búsqueda a postulantes que se hayan registrado desde la fecha indicada"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <div>
+                                    <input class="form-control" type="date" ng-model="postulanteConsultaCtrl.query.FechaRegistro" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="FechaInscripcion">
+                                    Fecha inscripción
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="Limita la búsqueda a postulantes que hayan generado un código de incripción desde la fecha indicada"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </label>
+                                <div>
+                                    <input class="form-control" type="date" ng-model="postulanteConsultaCtrl.query.FechaInscripcion"/>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+                    </div> <!-- Fin card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success float-right" style="margin-right: 5px;" ng-click="postulanteConsultaCtrl.getPostulantes(1);">
+                            <i class="fa fa-file-excel-o"></i>
+                            DESCARGAR
+                        </button>
+                        <button class="btn btn-default float-right" style="margin-right: 5px;" type="reset" ng-click="postulanteConsultaCtrl.clearFormularios()">Limpiar parámetros</button>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="card card-info" ng-if="postulanteConsultaCtrl.postulantePage.Items.length > 0">
+                <div class="card-header">
+                    <h3 class="card-title">Resultados de la búsqueda</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card card-info card-outline">
+                        <div class="card-body">
+                            <div style="overflow-x:scroll;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
+                                            Mostrando {{1 + postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize - postulanteConsultaCtrl.postulantePage.PageSize}}
+                                            a
+                                            {{postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize < postulanteConsultaCtrl.postulantePage.TotalItems ? postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize :  postulanteConsultaCtrl.postulantePage.TotalItems}}
+                                            de
+                                            {{postulanteConsultaCtrl.postulantePage.TotalItems}}
+                                            registros
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="datatable-responsive_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous" id="datatable-responsive_previous">
+                                                    <button type="button"
+                                                            ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == 1"
+                                                            ng-click="postulanteConsultaCtrl.getPostulantes(postulanteConsultaCtrl.postulantePage.PageIndex-1)"
+                                                            class="btn btn-sm btn-default">
+                                                        <i class="fa fa-chevron-left"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <select class="btn btn-mini"
+                                                            ng-change="postulanteConsultaCtrl.changeSelect()"
+                                                            ng-model="postulanteConsultaCtrl.SelectedPage">
+                                                        <option ng-value="{{ $index+1 }}"
+                                                                ng-selected="postulanteConsultaCtrl.SelectedPage == $index+1 ? 'selected' : ''"
+                                                                ng-repeat="i in getNumber(postulanteConsultaCtrl.postulantePage.TotalPages) track by $index"
+                                                                ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == $index+1">
+                                                            {{ $index+1 }}
+                                                        </option>
+                                                    </select>
+                                                </li>
+                                                <li class="paginate_button next" id="datatable-responsive_next">
+                                                    <button type="button"
+                                                            ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == postulanteConsultaCtrl.postulantePage.TotalPages"
+                                                            ng-click="postulanteConsultaCtrl.getPostulantes(postulanteConsultaCtrl.postulantePage.PageIndex+1)"
+                                                            class="btn btn-sm btn-default">
+                                                        <i class="fa fa-chevron-right"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="table table-striped table-hover jambo_table bulk_action">
+                                    <thead>
+                                        <tr style="text-align:left;">
+                                            <th>DNI</th>
+                                            <th>POSTULANTE</th>
+                                            <th>EMAIL</th>
+                                            <th>SEXO</th>
+                                            <th>EDAD</th>
+                                            <th>ACCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="text-align:left;">
+                                        <tr ng-repeat="postulante in postulanteConsultaCtrl.postulantePage.Items">
+                                            <th scope="row">{{ postulante.Documento }}</th>
+                                            <td>{{ postulante.Apellido }}, {{ postulante.Nombres }}</td>
+                                            <td>{{ postulante.Email }}</td>
+                                            <td>{{ postulante.DatosBasicos.Sexo.Descripcion | uppercase }}</td>
+                                            <td>{{ postulante.Edad }}</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm" ng-click="postulanteConsultaCtrl.verPerfil(postulante.Documento)"><i class="fa fa-eye"></i>&nbsp;&nbsp; Ver perfíl</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
+                                            Mostrando {{1 + postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize - postulanteConsultaCtrl.postulantePage.PageSize}}
+                                            a
+                                            {{postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize < postulanteConsultaCtrl.postulantePage.TotalItems ? postulanteConsultaCtrl.postulantePage.PageIndex * postulanteConsultaCtrl.postulantePage.PageSize :  postulanteConsultaCtrl.postulantePage.TotalItems}}
+                                            de
+                                            {{postulanteConsultaCtrl.postulantePage.TotalItems}}
+                                            registros
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="datatable-responsive_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous" id="datatable-responsive_previous">
+                                                    <button type="button"
+                                                            ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == 1"
+                                                            ng-click="postulanteConsultaCtrl.getPostulantes(postulanteConsultaCtrl.postulantePage.PageIndex-1)"
+                                                            class="btn btn-sm btn-default">
+                                                        <i class="fa fa-chevron-left"></i>
+                                                    </button>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <select class="btn btn-mini"
+                                                            ng-change="postulanteConsultaCtrl.changeSelect()"
+                                                            ng-model="postulanteConsultaCtrl.SelectedPage">
+                                                        <option value="{{ $index+1 }}"
+                                                                ng-repeat="i in getNumber(postulanteConsultaCtrl.postulantePage.TotalPages) track by $index"
+                                                                ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == $index+1">
+                                                            {{ $index+1 }}
+                                                        </option>
+                                                    </select>
+                                                </li>
+                                                <li class="paginate_button next" id="datatable-responsive_next">
+                                                    <button type="button"
+                                                            ng-disabled="postulanteConsultaCtrl.postulantePage.PageIndex == postulanteConsultaCtrl.postulantePage.TotalPages"
+                                                            ng-click="postulanteConsultaCtrl.getPostulantes(postulanteConsultaCtrl.postulantePage.PageIndex+1)"
+                                                            class="btn btn-sm btn-default">
+                                                        <i class="fa fa-chevron-right"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm" style="margin-top: 20px;"><i class="fa fa-list"></i> Generar listado con postulantes filtrados</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-info" ng-if="postulanteConsultaCtrl.postulantePage.Items.length == 0">
+                <div class="card-header">
+                    <h3 class="card-title">Resultados de la búsqueda</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card card-info card-outline">
+                        <div class="card-body">
+                            NO HAY DATOS QUE COINCIDAN CON LOS PARAMETROS DE BÚSQUEDA
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+

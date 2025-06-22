@@ -1,0 +1,324 @@
+﻿<div cg-busy="postulantesMapaCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">UBICACIÓN DE LOS POSTULANTES</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Mapa de postulantes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header" ng-if="postulantesMapaCtrl.Params == null">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Búqueda de postulantes por DNI (Separados por coma)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <h3>Listado de documentos</h3>
+                        <div class="item form-group">
+                            <textarea class="form-control" ng-model="postulantesMapaCtrl.DniPorComas"></textarea>
+                        </div>
+                    </div> <!-- Fin card-body -->
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-default float-right" ng-if="postulantesMapaCtrl.Postulantes.length > 0" ng-click="postulantesMapaCtrl.AbrirReporte()">Ver reporte</button>
+                    <button class="btn btn-primary float-right" style="margin-right: 5px;" ng-click="postulantesMapaCtrl.GetConsultaPostulantesMapaDniComas()">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header" ng-if="postulantesMapaCtrl.Params != null">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Detalle de la campaña</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class=""><i class="fa fa-bank"></i> {{postulantesMapaCtrl.Campana.Nombre}}</h3>
+
+                                <!--<p>{{postulantesMapaCtrl.Campana.Descripcion}}</p>-->
+                            </div>
+                            <div class="col-6">
+                                <div class="project_detail">
+
+                                    <p class="title">Fecha de Inicio</p>
+                                    <p>{{ postulantesMapaCtrl.Campana.FechaInicio | date : 'dd/MM/yyyy'}}</p>
+                                    <p class="title">Fecha de Finalización</p>
+                                    <p>{{ postulantesMapaCtrl.Campana.FechaFinalizacion | date : 'dd/MM/yyyy'}}</p>
+                                </div>
+
+                                <br>
+                                <br>
+
+                            </div>
+                            <div class="col-6">
+                                <ul class="list-unstyled project_files">
+                                    <li>
+                                        <i class="fa fa-bookmark-o"></i>
+                                        <b>Carrera</b>: {{postulantesMapaCtrl.Campana.Carreras.Descripcion | uppercase}}
+                                    </li>
+
+                                    <li>
+                                        <i class="fa fa-bookmark-o"></i>
+                                        <b>Escalafón</b>: {{postulantesMapaCtrl.Campana.Escalafon.Descripcion | uppercase}}
+                                    </li>
+                                    <li ng-if="postulantesMapaCtrl.Campana.SubEscalafon">
+                                        <i class="fa fa-bookmark-o"></i>
+                                        <b>Subescalafón</b>: {{postulantesMapaCtrl.Campana.SubEscalafon.Descripcion | uppercase}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-calendar"></i>
+                                        <b>Fecha Creación</b>: {{ postulantesMapaCtrl.Campana.FechaCreacion | date : 'dd/MM/yyyy'}}
+                                    </li>
+                                    <!--<li>
+                                        <i class="fa fa-user"></i>
+                                        <b>Agente</b>: {{ postulantesMapaCtrl.Campana.CredencialAgenteCreacion}} - {{ postulantesMapaCtrl.Campana.NombreAgenteCreacion | uppercase}}
+                                    </li>-->
+                                </ul>
+                                <br>
+
+                                <!--<div class="text-center mtop20">
+                                    <a href="javascript:void(0);" ng-click="postulantesMapaCtrl.seleccionarRuta('campanaEditar/' + postulantesMapaCtrl.Campana.Id)" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-edit">&nbsp;EDITAR DATOS</i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div class="col-12">
+                                <ul class="list-unstyled project_files">
+                                    <li class="centrado">
+                                        <div class="alert"
+                                             ng-class="{1:'alert-success', 2:'alert-info', 3:'alert-warning', 4:'alert-danger'}[postulantesMapaCtrl.Campana.CampanaEstadosId]">
+                                            <strong>{{postulantesMapaCtrl.Campana.CampanaEstados.Descripcion | uppercase}}</strong>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="collapse" id="DniPorComas">
+                                    <div class="col-md-12 mb-2">
+                                        <div class="x_panel x_panel_resaltado">
+                                            <div class="x_title">
+                                                <h2>AGREGAR POSTULANTES A LA CAMPAÑA <small>Documentos separados por comas</small></h2>
+                                                <ul class="nav navbar-right panel_toolbox no_min_width">
+                                                    <li>
+                                                        &nbsp;
+                                                    </li>
+                                                    <li class="dropdown">
+                                                        &nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <a class="close-link"
+                                                           data-toggle="collapse"
+                                                           data-target="#DniPorComas"
+                                                           aria-expanded="false"
+                                                           aria-controls="DniPorComas"><i class="fa fa-close"></i></a>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="x_content bs-example-popovers">
+                                                <div class="item form-group">
+                                                    <textarea class="form-control"
+                                                              ng-model="postulantesMapaCtrl.DniPorComas"></textarea>
+                                                </div>
+                                                <div class="item form-group" style="text-align: right;">
+                                                    <div class="col-12">
+                                                        <button class="btn btn-primary"
+                                                                type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#DniPorComas"
+                                                                aria-expanded="false"
+                                                                aria-controls="DniPorComas">
+                                                            Cancelar
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-success"
+                                                                ng-click="postulantesMapaCtrl.ProcesarDniPorComas();">
+                                                            Guardar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Fin card-body -->
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info float-right" ng-if="postulantesMapaCtrl.Postulantes.length > 0" ng-click="postulantesMapaCtrl.AbrirReporte()">Ver reporte</button>
+                    <button class="btn btn-info float-right" style="margin-right: 5px;" ng-click="postulantesMapaCtrl.VolverCampana()">Volver a la campaña</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Ubicación de los postulantes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2" style="min-height: 700px;">
+                            <div map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}">
+                                <ng-map center="-35.27514565332727, -64.0238779429014"
+                                        id="mapaPostulantes"
+                                        zoom="5"
+                                        disableDefaultUI="true"
+                                        style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; height: 100%; width: 100%;">
+                                </ng-map>
+                                <div id="legend" ng-if="postulantesMapaCtrl.LeyendaDniPorComas">
+                                    <h4>Leyenda</h4>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/green-dot.png"> Participando de una campaña ({{postulantesMapaCtrl.Totales.Verdes}})</div>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/red-dot.png"> No participa aún ({{postulantesMapaCtrl.Totales.Rojos}})</div>
+                                </div>
+                                <div id="legend" ng-if="postulantesMapaCtrl.LeyendaCampana">
+                                    <h4>Leyenda</h4>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/green-dot.png"> Aceptado ({{postulantesMapaCtrl.Totales.Verdes}})</div>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/red-dot.png"> Rechazado ({{postulantesMapaCtrl.Totales.Rojos}})</div>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/blue-dot.png"> Pendiente ({{postulantesMapaCtrl.Totales.Azules}})</div>
+                                    <div><img src="https://incorporaciones.spf.gob.ar/_AdminIncorporaciones_/images/markers/gray-dot.png"> Otros ({{postulantesMapaCtrl.Totales.Grises}})</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Fin card-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal" id="modalReporteConsultaPostulantes">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 class="modal-title">RESULTADO</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <p class="lead">Resumen de representación de postulante en el mapa (Registros: <b>{{postulantesMapaCtrl.ReporteConsultaPostulantes.TotalProcesados}}</b>)</p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th style="width:50%">Representados correctamente</th>
+                                    <td colspan="2">{{postulantesMapaCtrl.ReporteConsultaPostulantes.Postulantes.length}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Carrera no seleccionada</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar2 = !mostrar2">
+                                            {{postulantesMapaCtrl.ReporteConsultaPostulantes.PostulanteNoElegible.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar2">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in postulantesMapaCtrl.ReporteConsultaPostulantes.PostulanteNoElegible">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Con errores</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar3 = !mostrar3">
+                                            {{postulantesMapaCtrl.ReporteConsultaPostulantes.ConErrores.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar3">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in postulantesMapaCtrl.ReporteConsultaPostulantes.ConErrores track by $index">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Postulantes no encontrados</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar4 = !mostrar4">
+                                            {{postulantesMapaCtrl.ReporteConsultaPostulantes.NoEncontrados.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar4">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in postulantesMapaCtrl.ReporteConsultaPostulantes.NoEncontrados">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sin domicilio de DNI</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar7 = !mostrar7">
+                                            {{postulantesMapaCtrl.ReporteConsultaPostulantes.NoTieneDomicilioDni.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar7">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in postulantesMapaCtrl.ReporteConsultaPostulantes.NoTieneDomicilioDni">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>No elegibles</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar8 = !mostrar8">
+                                            {{postulantesMapaCtrl.ReporteConsultaPostulantes.PostulanteNoElegible.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar8">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in postulantesMapaCtrl.ReporteConsultaPostulantes.PostulanteNoElegible">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Terminar</button>
+            </div>
+        </div>
+    </div>
+</div>

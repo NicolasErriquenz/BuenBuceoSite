@@ -37268,3 +37268,3367 @@ Stack trace:
 #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
 #1 unknown(0): {closure}()
 --------------------------------
+[2025-05-01 23:11:13] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-05-01 23:45:36] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-05-01 23:45:45] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-05-03 01:10:01] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes.php(5): require_once()
+--------------------------------
+[2025-06-15 16:33:07] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes.php(5): require_once()
+--------------------------------
+[2025-06-16 01:22:44] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes.php(5): require_once()
+--------------------------------
+[2025-06-16 16:44:28] ERROR: Undefined variable $viajes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 73
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(73): {closure}()
+--------------------------------
+[2025-06-16 16:44:28] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 73
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(73): {closure}()
+--------------------------------
+[2025-06-16 16:51:22] EXCEPTION: Call to a member function bind_param() on bool
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(15): getPaquetes(NULL)
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-16 16:53:14] EXCEPTION: Call to a member function bind_param() on bool
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(15): getPaquetes()
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-16 16:53:16] EXCEPTION: Call to a member function bind_param() on bool
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(15): getPaquetes()
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-16 17:00:43] ERROR: Undefined variable $paquetes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 73
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(73): {closure}()
+--------------------------------
+[2025-06-16 17:00:43] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 73
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(73): {closure}()
+--------------------------------
+[2025-06-16 17:05:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_editar.php
+Línea: 286
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\viajes_editar.php(286): {closure}()
+--------------------------------
+[2025-06-16 17:06:50] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 286
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(286): {closure}()
+--------------------------------
+[2025-06-16 17:10:36] ERROR: Undefined variable $continentes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 137
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(137): {closure}()
+--------------------------------
+[2025-06-16 17:10:36] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 137
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(137): {closure}()
+--------------------------------
+[2025-06-16 17:10:36] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 251
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(251): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "continenteId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 139
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(139): {closure}()
+--------------------------------
+[2025-06-16 17:18:00] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 252
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(252): {closure}()
+--------------------------------
+[2025-06-16 17:18:20] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 252
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(252): {closure}()
+--------------------------------
+[2025-06-16 17:18:50] ERROR: Undefined variable $subrubro
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\deudas_editar.php
+Línea: 154
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\deudas_editar.php(154): {closure}()
+--------------------------------
+[2025-06-16 17:19:18] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 252
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(252): {closure}()
+--------------------------------
+[2025-06-16 17:19:29] ERROR: Undefined variable $monedas
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 216
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(216): {closure}()
+--------------------------------
+[2025-06-16 17:19:29] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 216
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(216): {closure}()
+--------------------------------
+[2025-06-16 17:19:29] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 281
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(281): {closure}()
+--------------------------------
+[2025-06-16 17:19:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 282
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(282): {closure}()
+--------------------------------
+[2025-06-16 17:20:24] ERROR: Undefined variable $subrubro
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\deudas_editar.php
+Línea: 154
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\deudas_editar.php(154): {closure}()
+--------------------------------
+[2025-06-16 17:20:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 282
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(282): {closure}()
+--------------------------------
+[2025-06-16 17:22:33] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 282
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(282): {closure}()
+--------------------------------
+[2025-06-16 17:23:42] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 282
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(282): {closure}()
+--------------------------------
+[2025-06-16 17:25:28] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 282
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(282): {closure}()
+--------------------------------
+[2025-06-16 17:33:10] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:12] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:12] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:13] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:13] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:13] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:13] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:14] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:33:49] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(275): {closure}()
+--------------------------------
+[2025-06-16 17:34:00] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:01] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:01] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:01] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:01] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:02] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:02] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:02] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:05] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:05] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:34:05] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:24] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:24] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:24] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:24] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:25] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:25] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:25] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:26] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:26] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:27] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:40:49] ERROR: Array to string conversion
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 44
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(44): {closure}()
+--------------------------------
+[2025-06-16 17:44:55] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:44:55] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:44:55] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:44:55] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:45:20] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:45:44] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:46:27] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 77
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(77): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 101
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(101): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 107
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(107): {closure}()
+--------------------------------
+[2025-06-16 17:46:42] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 112
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(112): {closure}()
+--------------------------------
+[2025-06-16 17:52:17] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:52:27] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:52:30] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:52:47] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:52:53] EXCEPTION: Call to undefined function editarPaquete()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-16 17:54:32] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:54:36] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:54:48] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $paises
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $continentes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $paises
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $continentes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $paises
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 89
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(89): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: Undefined variable $continentes
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 17:56:22] ERROR: foreach() argument must be of type array|object, null given
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php
+Línea: 98
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(98): {closure}()
+--------------------------------
+[2025-06-16 18:03:19] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 276
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(276): {closure}()
+--------------------------------
+[2025-06-16 18:05:31] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 278
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(278): {closure}()
+--------------------------------
+[2025-06-16 18:05:56] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 278
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(278): {closure}()
+--------------------------------
+[2025-06-16 18:07:05] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-16 18:07:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-16 18:08:25] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-16 18:08:38] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-16 18:08:43] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-16 18:08:47] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_editar.php(303): {closure}()
+--------------------------------
+[2025-06-17 01:09:10] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(5): require_once()
+--------------------------------
+[2025-06-22 17:07:03] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(26): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes.php(5): require_once()
+--------------------------------
+[2025-06-22 17:48:27] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(303): {closure}()
+--------------------------------
+[2025-06-22 17:48:56] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 174
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(174): {closure}()
+--------------------------------
+[2025-06-22 17:49:12] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(303): {closure}()
+--------------------------------
+[2025-06-22 17:50:25] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 195
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(195): {closure}()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $title
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\menu.php
+Línea: 12
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\menu.php(12): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(108): include()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $title
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\navbar.php
+Línea: 9
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\navbar.php(9): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(113): include()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $title
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\navbar.php
+Línea: 11
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\includes\navbar.php(11): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(113): include()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $title
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 120
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(120): {closure}()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $action
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 133
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(133): {closure}()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 185
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(185): {closure}()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $action
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 242
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(242): {closure}()
+--------------------------------
+[2025-06-22 18:08:34] ERROR: Undefined variable $action
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 318
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(318): {closure}()
+--------------------------------
+[2025-06-22 18:08:52] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:52] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:52] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:55] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:55] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:55] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:56] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:57] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:57] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:58] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:08:59] ERROR: Undefined array key "paquetesGaleriaId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 66
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): {closure}()
+--------------------------------
+[2025-06-22 18:08:59] ERROR: Undefined variable $row
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 275
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(275): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(66): getItem()
+--------------------------------
+[2025-06-22 18:08:59] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:09:48] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 183
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(183): {closure}()
+--------------------------------
+[2025-06-22 18:10:09] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 209
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(209): {closure}()
+--------------------------------
+[2025-06-22 18:12:06] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 208
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(208): {closure}()
+--------------------------------
+[2025-06-22 18:12:21] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 205
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(205): {closure}()
+--------------------------------
+[2025-06-22 18:12:25] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 205
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(205): {closure}()
+--------------------------------
+[2025-06-22 18:12:32] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 205
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(205): {closure}()
+--------------------------------
+[2025-06-22 18:14:20] EXCEPTION: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, array given
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(155): mysqli_fetch_assoc(Array)
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 18:16:32] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 234
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(234): {closure}()
+--------------------------------
+[2025-06-22 18:17:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 235
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(235): {closure}()
+--------------------------------
+[2025-06-22 18:18:01] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 235
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(235): {closure}()
+--------------------------------
+[2025-06-22 18:58:57] ERROR: Undefined variable $paquetesId
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 135
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(135): {closure}()
+--------------------------------
+[2025-06-22 18:58:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 248
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(248): {closure}()
+--------------------------------
+[2025-06-22 18:59:11] ERROR: Undefined variable $paquetesId
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 132
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(132): {closure}()
+--------------------------------
+[2025-06-22 18:59:11] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 245
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(245): {closure}()
+--------------------------------
+[2025-06-22 19:00:47] ERROR: Undefined variable $paquetesId
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 132
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(132): {closure}()
+--------------------------------
+[2025-06-22 19:00:47] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 245
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(245): {closure}()
+--------------------------------
+[2025-06-22 19:01:36] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 245
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(245): {closure}()
+--------------------------------
+[2025-06-22 19:01:42] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 245
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(245): {closure}()
+--------------------------------
+[2025-06-22 19:16:52] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:17:05] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:17:19] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:17:37] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:20:14] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:20:55] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 246
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(246): {closure}()
+--------------------------------
+[2025-06-22 19:21:25] ERROR: Undefined array key "fecha_inicio"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 27
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(27): {closure}()
+--------------------------------
+[2025-06-22 19:21:25] ERROR: Undefined array key "fecha_fin"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 27
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(27): {closure}()
+--------------------------------
+[2025-06-22 19:21:25] ERROR: Undefined array key "precio"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 30
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(30): {closure}()
+--------------------------------
+[2025-06-22 19:22:27] ERROR: require_once(servicios.php): Failed to open stream: No such file or directory
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 39
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): require_once()
+--------------------------------
+[2025-06-22 19:22:27] EXCEPTION: Failed opening required 'servicios.php' (include_path='C:\xampp\php\PEAR')
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 19:22:43] EXCEPTION: Call to undefined function guardarGaleria()
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 19:33:50] EXCEPTION: Call to undefined function crearImagenReducida()
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria(Array, Array)
+#1 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 19:34:14] EXCEPTION: Call to undefined function imagecreatefromjpeg()
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4200): crearImagenReducida('../FrontEnd/_re...', '../FrontEnd/_re...', 200)
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria(Array, Array)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 20:03:59] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(30): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(2): require_once()
+--------------------------------
+[2025-06-22 20:03:59] EXCEPTION: Unknown database 'buenbuceo'
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\connect.php(3): mysqli->__construct('localhost', 'root', '', 'BuenBuceo')
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\index.php(3): require_once('C:\\Users\\nican\\...')
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 20:06:23] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:06:29] EXCEPTION: Call to undefined function imagecreatefromjpeg()
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4200): crearImagenReducida('../FrontEnd/_re...', '../FrontEnd/_re...', 200)
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria(Array, Array)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 20:08:23] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:11:08] EXCEPTION: Call to undefined function imagecreatefromjpeg()
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4200): crearImagenReducida('../FrontEnd/_re...', '../FrontEnd/_re...', 200)
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria(Array, Array)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 20:11:49] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:12:16] EXCEPTION: Call to undefined function imagecreatefromjpeg()
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4200): crearImagenReducida('../FrontEnd/_re...', '../FrontEnd/_re...', 200)
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria(Array, Array)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 20:16:49] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:17:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:18:06] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 240
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(240): {closure}()
+--------------------------------
+[2025-06-22 20:19:27] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 239
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(239): {closure}()
+--------------------------------
+[2025-06-22 20:19:27] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 338
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(338): {closure}()
+--------------------------------
+[2025-06-22 20:20:14] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 239
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(239): {closure}()
+--------------------------------
+[2025-06-22 20:20:14] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 338
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(338): {closure}()
+--------------------------------
+[2025-06-22 20:22:47] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 239
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(239): {closure}()
+--------------------------------
+[2025-06-22 20:22:47] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 338
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(338): {closure}()
+--------------------------------
+[2025-06-22 20:26:23] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 257
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(257): {closure}()
+--------------------------------
+[2025-06-22 20:26:23] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 356
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(356): {closure}()
+--------------------------------
+[2025-06-22 20:47:09] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 271
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(271): {closure}()
+--------------------------------
+[2025-06-22 20:47:09] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 370
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(370): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 20:54:26] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 398
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(398): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 213
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(213): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "activo"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 214
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(214): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 222
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(222): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "id"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 232
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(232): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 20:57:55] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 398
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(398): {closure}()
+--------------------------------
+[2025-06-22 20:58:19] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 20:58:19] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 398
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(398): {closure}()
+--------------------------------
+[2025-06-22 21:03:35] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 317
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(317): {closure}()
+--------------------------------
+[2025-06-22 21:03:35] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 416
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(416): {closure}()
+--------------------------------
+[2025-06-22 21:04:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 317
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(317): {closure}()
+--------------------------------
+[2025-06-22 21:04:51] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 471
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(471): {closure}()
+--------------------------------
+[2025-06-22 21:04:59] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 317
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(317): {closure}()
+--------------------------------
+[2025-06-22 21:04:59] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 471
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(471): {closure}()
+--------------------------------
+[2025-06-22 21:06:10] ERROR: require_once(servicios.php): Failed to open stream: No such file or directory
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 58
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(58): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(58): require_once()
+--------------------------------
+[2025-06-22 21:06:10] EXCEPTION: Failed opening required 'servicios.php' (include_path='C:\xampp\php\PEAR')
+Stack trace: #0 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 21:09:06] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:06] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:09:09] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:09] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:09:13] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:13] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:09:16] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:16] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:09:20] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:20] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:09:25] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:09:25] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:10:07] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:10:07] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:10:09] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:10:09] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 453
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(453): {closure}()
+--------------------------------
+[2025-06-22 21:25:04] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:04] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:24] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:24] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:27] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:27] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:30] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:30] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:33] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:33] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:37] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:37] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:41] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:41] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:45] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:48] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:48] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:25:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 299
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(299): {closure}()
+--------------------------------
+[2025-06-22 21:25:51] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 463
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(463): {closure}()
+--------------------------------
+[2025-06-22 21:28:04] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:28:04] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 465
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(465): {closure}()
+--------------------------------
+[2025-06-22 21:28:31] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:28:31] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 465
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(465): {closure}()
+--------------------------------
+[2025-06-22 21:28:45] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:28:45] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:29:18] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:29:18] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:29:22] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:29:22] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:29:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:29:51] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:29:54] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:29:54] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:29:57] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:29:57] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:30:07] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:30:07] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:30:13] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:30:13] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 472
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(472): {closure}()
+--------------------------------
+[2025-06-22 21:32:41] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:32:41] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 479
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(479): {closure}()
+--------------------------------
+[2025-06-22 21:33:16] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 301
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(301): {closure}()
+--------------------------------
+[2025-06-22 21:33:16] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 479
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(479): {closure}()
+--------------------------------
+[2025-06-22 21:33:50] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 304
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(304): {closure}()
+--------------------------------
+[2025-06-22 21:33:50] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 482
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(482): {closure}()
+--------------------------------
+[2025-06-22 21:35:39] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 304
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(304): {closure}()
+--------------------------------
+[2025-06-22 21:35:39] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 484
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(484): {closure}()
+--------------------------------
+[2025-06-22 21:36:05] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 300
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(300): {closure}()
+--------------------------------
+[2025-06-22 21:36:05] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 480
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(480): {closure}()
+--------------------------------
+[2025-06-22 21:44:44] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(303): {closure}()
+--------------------------------
+[2025-06-22 21:44:44] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 483
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(483): {closure}()
+--------------------------------
+[2025-06-22 21:44:48] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 303
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(303): {closure}()
+--------------------------------
+[2025-06-22 21:44:48] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 483
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(483): {closure}()
+--------------------------------
+[2025-06-22 21:51:17] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:51:17] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 474
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(474): {closure}()
+--------------------------------
+[2025-06-22 21:51:22] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:51:22] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 474
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(474): {closure}()
+--------------------------------
+[2025-06-22 21:52:52] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:52:52] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:52:58] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:52:58] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:53:01] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:53:01] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:53:03] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:53:03] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:53:05] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:53:05] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:53:09] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:53:09] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 21:53:14] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 294
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(294): {closure}()
+--------------------------------
+[2025-06-22 21:53:14] ERROR: Undefined variable $redirect
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 488
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(488): {closure}()
+--------------------------------
+[2025-06-22 22:42:49] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 22:42:51] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 22:47:03] ERROR: move_uploaded_file(http://buenbuceo.local/_recursos/paquetes_galeria//img_68586bc7b68b31.75197122.png): Failed to open stream: HTTP wrapper does not support writeable connections
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 4186
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 unknown(0): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4186): move_uploaded_file()
+#3 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria()
+--------------------------------
+[2025-06-22 22:47:03] ERROR: move_uploaded_file(): Unable to move &quot;C:\xampp\tmp\php20DE.tmp&quot; to &quot;http://buenbuceo.local/_recursos/paquetes_galeria//img_68586bc7b68b31.75197122.png&quot;
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 4186
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 unknown(0): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4186): move_uploaded_file()
+#3 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria()
+--------------------------------
+[2025-06-22 22:47:53] ERROR: move_uploaded_file(http://buenbuceo.local/_recursos/paquetes_galeria//img_68586bf9360d59.15326729.png): Failed to open stream: HTTP wrapper does not support writeable connections
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 4186
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 unknown(0): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4186): move_uploaded_file()
+#3 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria()
+--------------------------------
+[2025-06-22 22:47:53] ERROR: move_uploaded_file(): Unable to move &quot;C:\xampp\tmp\phpE22D.tmp&quot; to &quot;http://buenbuceo.local/_recursos/paquetes_galeria//img_68586bf9360d59.15326729.png&quot;
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php
+Línea: 4186
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 unknown(0): {closure}()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(4186): move_uploaded_file()
+#3 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(39): guardarGaleria()
+--------------------------------
+[2025-06-22 23:00:24] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:11:16] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:14:20] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:14:33] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 70
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): {closure}()
+--------------------------------
+[2025-06-22 23:14:33] EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(268): mysqli->query('SELECT * FROM p...')
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): getItem('paquetes', 'paquetesId', NULL)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 23:18:03] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 70
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): {closure}()
+--------------------------------
+[2025-06-22 23:18:03] EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(268): mysqli->query('SELECT * FROM p...')
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): getItem('paquetes', 'paquetesId', NULL)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 23:18:11] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:18:23] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 70
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): {closure}()
+--------------------------------
+[2025-06-22 23:18:23] EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(268): mysqli->query('SELECT * FROM p...')
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): getItem('paquetes', 'paquetesId', NULL)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 23:18:26] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:24:27] ERROR: Undefined array key "paquetesId"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 70
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): {closure}()
+--------------------------------
+[2025-06-22 23:24:27] EXCEPTION: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+Stack trace: #0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\servicios\servicio.php(268): mysqli->query('SELECT * FROM p...')
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(70): getItem('paquetes', 'paquetesId', NULL)
+#2 {main}
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 77
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(77): custom_error_log()
+#1 unknown(0): {closure}()
+--------------------------------
+[2025-06-22 23:24:31] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:25:33] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:25:40] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-22 23:28:16] ERROR: Undefined array key "action"
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php
+Línea: 295
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 64
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(64): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(295): {closure}()
+--------------------------------
+[2025-06-23 00:14:32] INFO: Sistema iniciado
+Archivo: C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php
+Línea: 106
+Stack trace:
+#0 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\error_handler.php(106): custom_error_log()
+#1 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\Connections\config.php(32): require_once()
+#2 C:\Users\nican\Desktop\BuenBuceoSite\BackOffice\paquetes_galeria.php(5): require_once()
+--------------------------------

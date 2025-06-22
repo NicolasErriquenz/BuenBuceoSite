@@ -1,0 +1,575 @@
+﻿<div>
+    <section class="content-header pb-0">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="overlay" ng-if="encabezadoCampanaCtrl.ProcesandoReporte">
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">Detalle de la campaña</h3>
+                    <div class="card-tools">
+                        <button class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;" ng-click="encabezadoCampanaCtrl.volver()">
+                            Volver al listado
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="col-12 mb-2" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+                        <h3 class=""><i class="fa fa-bank"></i> {{encabezadoCampanaCtrl.campana.Nombre}}</h3>
+                    </div>
+                    <div class="col-12 mb-2" style="border-bottom: 1px solid rgba(0,0,0,.125);">
+                        <h5>{{encabezadoCampanaCtrl.campana.Descripcion}}</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 col-sm-10">
+                            <div class="ml-1 mr-1">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item" style="border-top: 0px;">
+                                                <b>Fecha Creación</b> <a class="float-right">{{ encabezadoCampanaCtrl.campana.FechaCreacion | date : 'dd/MM/yyyy'}}</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Fecha de Inicio</b> <a class="float-right">{{ encabezadoCampanaCtrl.campana.FechaInicio | date : 'dd/MM/yyyy'}}</a>
+                                            </li>
+                                            <li class="list-group-item" style="border-bottom: 0px;" ng-if="encabezadoCampanaCtrl.campana.FechaFinalizacion">
+                                                <b>Fecha de Finalización</b> <a class="float-right">{{ encabezadoCampanaCtrl.campana.FechaFinalizacion | date : 'dd/MM/yyyy'}}</a>
+                                            </li>
+                                            <li class="list-group-item" style="border-bottom: 0px;" ng-if="!encabezadoCampanaCtrl.campana.FechaFinalizacion">
+                                                <b>Fecha de Finalización</b> <a class="float-right">NO CARGADO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item" style="border-top: 0px;">
+                                                <b>Carrera</b> <a class="float-right">{{encabezadoCampanaCtrl.campana.Carreras.Descripcion | uppercase}}</a>
+                                            </li>
+                                            <li class="list-group-item" ng-if="encabezadoCampanaCtrl.campana.Escalafon">
+                                                <b>Escalafón</b> <a class="float-right">{{encabezadoCampanaCtrl.campana.Escalafon.Descripcion | uppercase}}</a>
+                                            </li>
+                                            <li class="list-group-item" ng-if="!encabezadoCampanaCtrl.campana.Escalafon">
+                                                <b>Escalafón</b> <a class="float-right">NO CARGADO</a>
+                                            </li>
+                                            <li class="list-group-item" style="border-bottom: 0px;" ng-if="encabezadoCampanaCtrl.campana.SubEscalafon">
+                                                <b>Subescalafón</b> <a class="float-right">{{encabezadoCampanaCtrl.campana.SubEscalafon.Descripcion | uppercase}}</a>
+                                            </li>
+                                            <li class="list-group-item" style="border-bottom: 0px;" ng-if="!encabezadoCampanaCtrl.campana.SubEscalafon">
+                                                <b>Subescalafón</b> <a class="float-right">NO APLICA</a>
+                                            </li>
+                                        </ul>
+
+                                        <ul class="list-unstyled project_files">
+
+                                            <!--<li>
+                                <i class="fa fa-user"></i>
+                                <b>Agente</b>: {{ encabezadoCampanaCtrl.campana.CredencialAgenteCreacion}} - {{ encabezadoCampanaCtrl.campana.NombreAgenteCreacion | uppercase}}
+                            </li>-->
+                                        </ul>
+
+                                        <!--<div class="text-center mtop20">
+                            <a href="javascript:void(0);" ng-click="encabezadoCampanaCtrl.seleccionarRuta('campanaEditar/' + encabezadoCampanaCtrl.campana.Id)" class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit">&nbsp;EDITAR DATOS</i>
+                            </a>
+                        </div>-->
+                                    </div>
+                                </div>
+
+                                <div class="row" style="border-top: 1px solid rgba(0,0,0,.125);">
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block border-right">
+                                            <span class="description-text">SELECCIÓN</span>
+                                            <br />
+                                            <span class="value text-default cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[0].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block border-right">
+                                            <span class="description-text">PSICOTÉCNICO</span>
+                                            <br />
+                                            <span class="value text-success cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[1].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block border-right">
+                                            <span class="description-text">INTELECTUAL</span>
+                                            <br />
+                                            <span class="value text-danger cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[2].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block border-right">
+                                            <span class="description-text">MÉDICO</span>
+                                            <br />
+                                            <span class="value text-info cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[3].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block border-right">
+                                            <span class="description-text">FÍSICO</span>
+                                            <br />
+                                            <span class="value text-info cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[4].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-2 p-0">
+                                        <div class="description-block">
+                                            <span class="description-text">ORDEN MÉRITO</span>
+                                            <br />
+                                            <span class="value text-info cifras_campana">
+                                                {{encabezadoCampanaCtrl.campana.CantPostulantesPorEtapas[5].cantPostulantes}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 mt-1 p-1">
+                                        <div class="alert text-center" style="margin-top: 0.32em !important;"
+                                             ng-class="{1:'alert-success', 2:'alert-info', 3:'alert-warning', 4:'alert-danger'}[encabezadoCampanaCtrl.campana.CampanaEstadosId]">
+                                            <strong>ESTADO DE CAMPAÑA - {{encabezadoCampanaCtrl.campana.CampanaEstados.Descripcion | uppercase}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="row">
+                <div class="col-6">
+                    <div ng-if="encabezadoCampanaCtrl.campana.CampanaEstadosId == 1">
+                        <a href="javascript:void(0);"
+                           ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId ? 'activado' : ''"
+                           ng-click="encabezadoCampanaCtrl.ConfirmarCierreCampana()">
+                            <div class="card shadow card-datos color-activado-azul" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'color-desactivado':'color-activado'">
+                                <div class="card-body text-center" style="color: white; font-weight: bold;">
+                                    <strong>CERRAR CAMPAÑA</strong>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div ng-if="encabezadoCampanaCtrl.campana.CampanaEstadosId == 1 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 3">
+                        <a href="javascript:void(0);"
+                           ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId ? 'activado' : ''"
+                           ng-click="encabezadoCampanaCtrl.ConfirmarCancelarCampana()">
+                            <div class="card shadow card-datos color-activado-rojo" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'color-desactivado':'color-activado'">
+                                <div class="card-body text-center" style="color: white;font-weight: bold;">
+                                    <strong>CANCELAR CAMPAÑA</strong>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>-->
+
+                        </div> <!--Fin col-10-->
+                        <div class="col-md-2">
+
+                            <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                                    ng-click="encabezadoCampanaCtrl.seleccionarRuta('campanaEditar/' + encabezadoCampanaCtrl.campana.Id)">
+                                <h6>Editar <br />Campaña</h6>
+                            </button>
+
+                            <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                                    ng-click="encabezadoCampanaCtrl.ConfirmarDescargarExcelPostulantes()">
+                                <h6>Lista de <br />Postulantes</h6>
+                            </button>
+
+                            <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                                    ng-disabled="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1"
+                                    ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ? 'disabled' : ''"
+                                    ng-click="encabezadoCampanaCtrl.ConfirmarDescargarExcelPostulantes()">
+                                <h6>Cerrar <br />Campaña</h6>
+                            </button>
+
+                            <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                                    ng-disabled="encabezadoCampanaCtrl.campana.CampanaEstadosId == 2 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 4"
+                                    ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId == 2 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 4 ? 'disabled' : ''"
+                                    ng-click="encabezadoCampanaCtrl.ConfirmarDescargarExcelPostulantes()">
+                                <h6>Cancelar <br />Campaña</h6>
+                            </button>
+
+                            <div class="ml-1 mr-1">
+                                <!--<div class="text-center h-90 mt-2">
+                <a href="javascript:void(0);"
+                   data-toggle="collapse"
+                   data-target="#DniPorComas"
+                   aria-expanded="false"
+                   aria-controls="DniPorComas">-->
+                                <!-- class="desactivado" -->
+                                <!--<div class="card shadow card-datos">-->
+                                <!-- color-desactivado -->
+                                <!--<div class="card-body transition contenedor-opcion">
+                                <div class="contenido-opcion">
+                                    <i class="fa fa-edit" style="font-size:30px;"></i>
+                                    <h6>Editar Campaña</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>-->
+                                <!--<div class="text-center h-90 mt-2">
+                    <a href="javascript:void(0);"
+                       ng-click="encabezadoCampanaCtrl.ConfirmarDescargarExcelPostulantes()">
+                        <div class="card shadow card-datos">
+                            <div class="card-body transition contenedor-opcion">
+                                <div class="contenido-opcion">
+                                    <i class="fa fa-file-excel-o" style="font-size:30px;"></i>
+                                    <h6>Descargar listado de postulantes</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>-->
+                                <!--<div class="text-center h-90 mt-2" ng-if="encabezadoCampanaCtrl.campana.CampanaEstadosId == 1">
+                    <a href="javascript:void(0);"
+                       ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId == 1 ? 'activado' : ''"
+                       ng-click="encabezadoCampanaCtrl.ConfirmarCierreCampana()">
+                        <div class="card shadow card-datos" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'color-desactivado':'color-activado'">
+                            <div class="card-body transition contenedor-opcion">
+                                <div class="contenido-opcion">
+                                    <i class="fa fa-calendar-minus-o" style="font-size:30px;"></i>
+                                    <h6>Cerrar Campaña</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="text-center h-90 mt-2" ng-if="encabezadoCampanaCtrl.campana.CampanaEstadosId == 1 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 3">
+                    <a href="javascript:void(0);"
+                       ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId ? 'activado' : ''"
+                       ng-click="encabezadoCampanaCtrl.ConfirmarCancelarCampana()">
+                        <div class="card shadow card-datos" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'color-desactivado':'color-activado'">
+                            <div class="card-body transition contenedor-opcion">
+                                <div class="contenido-opcion">
+                                    <i class="fa fa-calendar-times-o" style="font-size:30px;"></i>
+                                    <h6>Cancelar Campaña</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>-->
+                                <!--<div class="text-center h-90 mt-2">
+                    <a href="javascript:void(0);"
+                       ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'desactivado':'activado'"
+                       ng-click="encabezadoCampanaCtrl.ConfirmarNotificacionUsuarios()">
+                        <div class="card shadow card-datos" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId != 1 ?'color-desactivado':'color-activado'">
+                            <div class="card-body transition contenedor-opcion">
+                                <div class="contenido-opcion">
+                                    <i class="fa fa-retweet" style="font-size:30px;"></i>
+                                    <h6>Notificar usuarios</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>-->
+                            </div>
+                        </div><!--Fin col-2-->
+                    </div><!--fin row-->
+                    <div class="row">
+                        <div class="col-md-12 mt-2"
+                             ng-show="encabezadoCampanaCtrl.EtapaId == 1"
+                             ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId == 4 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 2 ?'desactivado':'activado'">
+                            <div class="card card-dark card-outline collapsed-card" ng-class="encabezadoCampanaCtrl.campana.CampanaEstadosId == 4 || encabezadoCampanaCtrl.campana.CampanaEstadosId == 2 ?'color-desactivado':'color-activado'">
+                                <div class="card-header">
+                                    <h3 class="card-title">Agregar postulantes (Listado de DNI separado por comas)</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="item">
+                                        <textarea class="form-control" style="min-height:112px;" ng-model="encabezadoCampanaCtrl.DniPorComas"></textarea>
+                                    </div>
+                                </div><!-- Fin card-body -->
+                                <div class="card-footer">
+                                    <button type="button"
+                                            class="btn btn-primary float-right"
+                                            ng-click="encabezadoCampanaCtrl.ProcesarDniPorComas();">
+                                        Guardar
+                                    </button>
+
+                                    <!--<button class="btn btn-default float-right"
+                        style="margin-right: 5px;"
+                        type="button"
+                        data-card-widget="collapse">
+                    Cancelar
+                </button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div><!-- Fin card-body -->
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="modalResumenImportacion">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">RESULTADO</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <p class="lead">Resumen de importación de postulantes (Registros: <b>{{encabezadoCampanaCtrl.ResumenImportacion.TotalProcesados}}</b>)</p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th style="width:50%">Importados correctamente</th>
+                                        <td colspan="2">{{encabezadoCampanaCtrl.ResumenImportacion.Insertados}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carrera no seleccionada</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar1 = !mostrar1">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.CarreraNoSeleccionada.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar1">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.CarreraNoSeleccionada">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Postulantes que seleccionaron otra carrera</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar2 = !mostrar2">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.PostulanteNoElegible.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar2">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.PostulanteNoElegible">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Con errores</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar3 = !mostrar3">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.ConErrores.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar3">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.ConErrores track by $index">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Postulantes no encontrados</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar4 = !mostrar4">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.NoEncontrados.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar4">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.NoEncontrados">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Participando de campañana actual</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar5 = !mostrar5">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.ParticipandoCampanaActual.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar5">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.ParticipandoCampanaActual">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Participando de otra campañana</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar6 = !mostrar6">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.ParticipandoDeOtraCampana.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar6">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.ParticipandoDeOtraCampana">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Con perfiles desactivados</th>
+                                        <td>
+                                            <a href="javascript:void(0);" ng-click="mostrar7 = !mostrar7">
+                                                {{encabezadoCampanaCtrl.ResumenImportacion.PerfilDesactivados.length}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="mostrar7">
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-2 divDnisLista" ng-repeat="item in encabezadoCampanaCtrl.ResumenImportacion.PerfilDesactivados">
+                                                    {{item}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" data-dismiss="modal">Terminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade confirm_cancelar_campana" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2">Atención</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-align:center;">¿ESTÁS SEGURO QUE DESEA CANCELAR LA CAMPAÑA?</h4>
+                    <p>
+                        La cancelación implica automaticamente declinar todas las invitaciones pendientes de los postulantes.<br /><br />
+                        Se recomienda proceder a la cancelacion unicamente cuando <b>no se haya enviado</b> ninguna notificacion a los participantes
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" ng-click="encabezadoCampanaCtrl.CancelarCampana()">SI, CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade confirm_cerrar_campana" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2">Atención</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-align:center;">¿ESTÁS SEGURO QUE DESEA CERRAR LA CAMPAÑA?</h4>
+                    <p>
+                        El cierre de la campaña implica:.<br />
+                        <ul>
+                            <li>Todos los postulantes que ACEPTARON, continuarán el proceso en la siguiente etapa. Seguirán viendo la campaña en sus perfiles</li>
+                            <li>Todos los postulantes que RECHAZARON, <b>no</b> continuarán el proceso en la siguiente etapa. </li>
+                            <li>Todos los postulantes PENDIENTES, habrán perdido la oportunidad de aceptar la campaña. Ya no verán la invitación en sus perfiles</li>
+                            <li>
+                                El listado de postulantes descargable se filtrará unicamente por los ACEPTADOS para facilitar el trabajo en las siguientes etapas.
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                    <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" ng-click="encabezadoCampanaCtrl.CerrarCampana()">CERRAR CAMPAÑA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade confirm_descargarExcel_campana" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2">Descargar reporte</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-align:center;">Seleccione el tipo de filtrado de postulantes que desea descargar</h4>
+                    <p>
+                        <ul>
+                            <li><b>DESCARGAR ACTIVOS</b>: Descarga el listado de participantes que aceptaron participar en la campaña</li>
+                            <li><b>DESCARGAR HISTORICO</b>: Descarga el listado TOTAL de participantes que participaron de algun forma en la campaña</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>-->
+                    <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" ng-click="encabezadoCampanaCtrl.DescargarPostulantesCampana(2)">DESCARGAR ACTIVOS</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" ng-click="encabezadoCampanaCtrl.DescargarPostulantesCampana(0)">DESCARGAR HISTORICO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade confirm_dialog_notificar_usuarios" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel2">Atención</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-align:center;">¿ESTÁS SEGURO QUE DESEA NOTIFICAR A LOS POSTULANTES?</h4>
+                    <p>
+                        Esta acción no puede deshacerse, una vez notificados los usuarios podrán aceptar o rechazar la campaña desde su perfil.<br><br>
+                        Se enviarán notificacion <i>únicamente</i> a los participantes que esten <b>PENDIENTES</b> y que no hayan sido notificados anteriormente.<br><br>
+                        Se notificará/n <b>{{encabezadoCampanaCtrl.PostulantesParaNotificar}}</b> postulante/s.
+                    </p>
+                </div>
+                <div class="modal-footer" ng-if="!encabezadoCampanaCtrl.EnviandoNotifiaciones">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="encabezadoCampanaCtrl.NotificarUsuarios()">ESTOY SEGURO, NOTIFICAR</button>
+                </div>
+                <div class="modal-footer" ng-if="encabezadoCampanaCtrl.EnviandoNotifiaciones" style="text-align: center;">
+                    <img src="images/preloader.gif" alt="Procesando" width="30" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

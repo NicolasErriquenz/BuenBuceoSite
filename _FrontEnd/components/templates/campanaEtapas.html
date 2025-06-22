@@ -1,0 +1,357 @@
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-3" style="display: flex;">
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('modificar_estado_postulante')"
+                            data-placement="bottom"
+                            title="Agregar un estado a los postulantes seleccionados"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-cube" style="font-size:30px;"></i>
+                        <h6>Estado</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('modificar_unidad')"
+                            data-placement="bottom"
+                            title="Modificar la unidad elegida por los postulantes seleccionados"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-university" style="font-size:30px;"></i>
+                        <h6>Sede Elegida</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('notificar_postulante')"
+                            data-placement="bottom"
+                            title="Envía un correo personalizado a los postulantes seleccionados"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-envelope-o" style="font-size:30px;"></i>
+                        <h6>Enviar Email</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('modificar_mostrar_front')"
+                            data-placement="bottom"
+                            title="HABILITAR VISIBILIDAD: Los postulantes seleccionados podrán ver la información de la etapa en su perfil"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-eye-slash" style="font-size:30px;"></i>
+                        <h6>Hab. visib.</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('eliminar_postulante_etapa')"
+                            data-placement="bottom"
+                            title="Elimina el postulante de la etapa actual así como todos los estados que se le hayan asignado en la misma. ATENCIÓN: ESTA ACCIÓN NO PUEDE DESHACERSE"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-times" style="font-size:30px;"></i>
+                        <h6>Quitar de Etapa</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0 || campanaEtapasCtrl.query.EtapaId == 6"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('calificar_postulante'); MostrarModalCalificaciones==true"
+                            data-placement="bottom"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-pencil" style="font-size:30px;"></i>
+                        <h6>Calificar</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('aprobar_etapa')"
+                            data-placement="bottom"
+                            title="Si la etapa esta aprobada permite avanazar los postulantes seleccionados a la siguiente etapa"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-check" style="font-size:30px;"></i>
+                        <h6>Aprobar Etapa</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;" ng-show="campanaEtapasCtrl.query.EtapaId != 6">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0 || campanaEtapasCtrl.query.EtapaId == 6"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('avanzar_postulante')"
+                            data-placement="bottom"
+                            title="Avanza los postulantes seleccionados a la siguiente etapa"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-arrow-right" style="font-size:30px;"></i>
+                        <h6>Avanzar Etapa</h6>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 pb-1" style="box-sizing: border-box; display: flex; flex: 1;" ng-show="campanaEtapasCtrl.query.EtapaId == 6">
+                <div class="col p-0" style="box-sizing: border-box; display: flex; flex: 1;">
+                    <button type="button" class="btn btn-block btn-dark btn-flat pt-3"
+                            ng-class="campanaEtapasCtrl.habilitarBoton == false ? 'disabled' : ''"
+                            ng-disabled="campanaEtapasCtrl.habilitarBoton == false || campanaEtapasCtrl.cantidadElementos.length == 0 || campanaEtapasCtrl.query.EtapaId == 6"
+                            ng-click="campanaEtapasCtrl.EjecutarAcciones('definir_cadete')"
+                            data-placement="bottom"
+                            title="Definir a los postulantes seleccionados como cadetes de 1er año"
+                            onmouseenter="$(this).tooltip('show')">
+                        <i class="fa fa-address-card-o" style="font-size:30px;"></i>
+                        <h6>Definir Cadete</h6>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Participantes de la etapa {{campanaEtapasCtrl.PostulantesCampana[0].Etapas.Descripcion | uppercase}} ({{campanaEtapasCtrl.PostulantesCampana.length}})</h3>
+                <div class="card-tools">
+                    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#listadoDNIs">Check desde lista</button>
+                    <!--<button class="btn btn-sm btn-default" ng-click="campanaEtapasCtrl.ExportPostulantesEtapaCSV()">Estructura calificación CSV</button>-->
+                    <!--<button class="btn btn-sm btn-info" ng-click="campanaEtapasCtrl.GotoMapa()">Ver ubicaciones (Mapa)</button>-->
+                </div>
+            </div>
+            <div class="card-body" ng-if="campanaEtapasCtrl.PostulantesCampana.length > 0">
+                <!--table table-striped table-bordered dataTable no-footer-->
+                <table id="myTable" class="display nowrap dataTable" style="width: 100%; border-radius: 0px; border: 0px;" datatable="ng" ng-jq="$" dt-options="campanaEtapasCtrl.dtOptions">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>
+                                <input id="postulanteAll" type="checkbox" ng-model="campanaEtapasCtrl.CheckAll" ng-click="campanaEtapasCtrl.seleccionarItemAll()" />
+                            </th>
+                            <th>DNI</th>
+                            <th>Postulante</th>
+                            <th>Fecha<br />Agregado</th>
+                            <th>%Comp.</th>
+                            <th>Estado</th>
+                            <th>Sede</th>
+                            <th ng-show="campanaEtapasCtrl.query.EtapaId == 1">Corresp.</th>
+                            <th>Dom<br />Dni</th>
+                            <th>Mail<br />Validado</th>
+                            <th>Visible<br />Usuario</th>
+                            <th ng-show="campanaEtapasCtrl.query.EtapaId != 1">Calificación</th>
+                            <th>Etapa<br />Aprobada</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr ng-repeat="PC in campanaEtapasCtrl.PostulantesCampana">
+                            <td>
+                                <input id="postulante{{PC.Id}}" type="checkbox" ng-model="PC.Selected"
+                                       ng-click="campanaEtapasCtrl.seleccionarItem(PC)"
+                                       ng-hide="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio"
+                                       ng-disabled="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio" />
+                                <input disabled type="checkbox" ng-hide="!PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio"/>
+
+                            </td>
+                            <td class="textoBold">
+                                <a href="javascript:void(0);" ng-click="campanaEtapasCtrl.seleccionarRuta('postulanteBuscarPorDni/' + PC.Postulante.Documento)">
+                                    {{PC.Postulante.Documento}}
+                                </a>
+                            </td>
+                            <td>{{PC.Postulante.Apellido | uppercase}} {{PC.Postulante.Nombres.charAt(0)}}.</td>
+                            <td>{{PC.FechaAgregado | date : "dd/MM/yyyy HH:mm"}}</td>
+                            <td>{{PC.Postulante.perfilCompletado}}%</td>
+                            <td class="textoBold">
+                                <a href="javascript:void(0);"
+                                   style="color:black;"
+                                   ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'modificar_estado_postulante')"
+                                   ng-class="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio ? 'dniRechazado desactivado' : (PC.ExisteSiguienteEtapa ? 'desactivado texto-desactivado' : '')">
+                                   {{PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Descripcion}}
+                                </a>
+                                <a href="javascript:void(0);"
+                                   ng-class="PC.ExisteSiguienteEtapa ? 'desactivado texto-desactivado' : 'dniRechazado'"
+                                   ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'eliminar_ultimo_estado')">
+                                   <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                                <a href="javascript:void(0);" ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'mostrar_historial_estados')"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+                            <td class="textoBold">
+                                <span ng-if="PC.Postulante.UnidadesId">
+                                    <a href="javascript:void(0);"
+                                       ng-class="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio ? 'desactivado texto-desactivado' : (PC.ExisteSiguienteEtapa ? 'desactivado texto-desactivado' : '')"
+                                       ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'modificar_unidad')">SI <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                    
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: green;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="{{PC.Postulante.Unidades.Nombre}}"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </span>
+                                <span ng-if="!PC.Postulante.UnidadesId">
+                                    <a href="javascript:void(0);"
+                                       ng-class="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio ? 'desactivado texto-desactivado' : (PC.ExisteSiguienteEtapa ? 'desactivado texto-desactivado' : '')"
+                                       ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'modificar_unidad')">NO <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                </span>
+                            </td>
+                            <td ng-show="campanaEtapasCtrl.query.EtapaId == 1">
+                                <span ng-if="PC.Correspondencia">SI</span>
+                                <span ng-if="!PC.Correspondencia">
+                                    NO
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                       style="color: red;"
+                                       data-placement="right"
+                                       title=""
+                                       data-original-title="{{PC.Postulante.Carrera.Descripcion}}/{{PC.Postulante.Escalafon.Descripcion}}/{{PC.Postulante.SubEscalafon.Descripcion}}"
+                                       data-html="true"
+                                       onmouseenter="$(this).tooltip('show')"></i>
+                                </span>
+                            </td>
+                            <td>
+                                {{PC.Postulante.PostulanteValidaciones.DomiciliosEstadoId == 0 ? 'NO' : 'SI'}}
+                            </td>
+                            <td ng-class="{false:'textoRojo'}[PC.Postulante.PostulanteValidaciones.EmailValido]">
+                                {{PC.Postulante.PostulanteValidaciones.EmailValido ? "SI" : "NO"}}
+                            </td>
+                            <td class="textoBold clickable"
+                                ng-class="{true:'desactivado texto-desactivado'}[PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio]"
+                                ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'modificar_mostrar_front')">
+                                {{PC.PostulanteFrontHabilitado ? "SI" : "NO"}}
+                            </td>
+                            <td ng-show="campanaEtapasCtrl.query.EtapaId != 1">
+                                6.00
+                            </td>
+                            <td class="textoBold clickable"
+                                ng-class="PC.PostulanteCampanasEstados[PC.PostulanteCampanasEstados.length-1].PostulanteCampanasEstadosTipo.Eliminatorio ? 'desactivado texto-desactivado' : (PC.ExisteSiguienteEtapa ? 'desactivado texto-desactivado' : '')"
+                                ng-click="campanaEtapasCtrl.abrirModalIndividual(PC, 'aprobar_etapa')">
+                                {{PC.EtapaAprobada ? "SI" : "NO"}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div><!-- Fin card-body -->
+
+            <div class="card-body" ng-if="campanaEtapasCtrl.PostulantesCampana.length == 0">
+                <h3>NO HAY PARTICIPANTES EN LA ETAPA ACTUAL</h3>
+                <!--Agregue postulantes desde las opciones de la campaña-->
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="modal fade" id="listadoDNIs" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CHECK DE POSTULANTES: ingreso de DNIs separados por coma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form action="/" method="post">
+                <div class="modal-body">
+                    <textarea id="listDNI" class="form-control" style="min-height:112px;" ng-model="campanaEtapasCtrl.DniPorComas"></textarea>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal" ng-click="campanaEtapasCtrl.ClearTextAreaDNIs()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="campanaEtapasCtrl.CheckDNIsFromInputModal()">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="resumenDNIsImportados">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 class="modal-title"> Resumen de DNIs importados</h3>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12">
+                   
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                   
+                                    <th style="width:50%">Importados correctamente</th>
+                                    <td colspan="2">{{campanaEtapasCtrl.vecOcurrencias.length}}</td>
+                                </tr>                              
+                                <tr>
+                                    <th>Con errores</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar3 = !mostrar3">
+                                            {{campanaEtapasCtrl.conErrores.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar3">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in campanaEtapasCtrl.conErrores track by $index">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Postulantes no encontrados</th>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="mostrar4 = !mostrar4">
+                                            
+                                            {{campanaEtapasCtrl.noEncontrados.length}}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="mostrar4">
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-2 divDnisLista" ng-repeat="item in campanaEtapasCtrl.noEncontrados track by $index">
+                                                {{item}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="mb-0 btn btnSPF-sm btnSPF-volver" ng-click="mostrar3=!mostrar3; mostrar4=!mostrar4" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

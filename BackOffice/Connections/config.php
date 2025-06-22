@@ -1,7 +1,7 @@
 <?php
 
 	// Control de entorno y logging
-	define('IS_LOCAL', $_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'buenbuceo');
+	define('IS_LOCAL', $_SERVER['REMOTE_ADDR'] === '127.0.0.1');
 	define('LOGGING_ENABLED', true);
 	define('DISPLAY_ERRORS', true);  // Variable global para control de errores
 	define('SHOW_ERRORS_IN_PROD', true);  // Nueva variable para control en producción
@@ -18,8 +18,14 @@
 	// Configurar ruta de logs
 	if (IS_LOCAL) {
 	    define("RUTA_LOG", $_SERVER['DOCUMENT_ROOT'] . '/_logs/php_errors.log');
+	    define("RUTA_FILE_VIAJES", "../FrontEnd/_recursos/viajes_pdf/");
+	    define("RUTA_PAQUETES_GALERIA", "../FrontEnd/_recursos/paquetes_galeria/");
+	    define("RUTA_PAQUETES_GALERIA_DISPLAY", "http://buenbuceo.local/_recursos/paquetes_galeria/");
 	} else {
 	    define("RUTA_LOG", $_SERVER['DOCUMENT_ROOT'] . '/_AdminBuenBuceo_/_logs/php_errors.log');
+	    define("RUTA_FILE_VIAJES", "_recursos/viajes_pdf/");
+	    define("RUTA_PAQUETES_GALERIA", "../_recursos/paquetes_galeria/");
+	    define("RUTA_PAQUETES_GALERIA_DISPLAY", "../_recursos/paquetes_galeria/");
 	}
 
 	// Incluir manejador de errores
@@ -52,7 +58,7 @@
 	// 5. CONFIGURACIÓN DE LA APLICACIÓN
 	define("SITE_TITLE", "BuenBuceo - Admin");
 	define("MARCA", "BuenBuceo");
-	define("RUTA_FILE_VIAJES", "_recursos/viajes_pdf/");
+	
 
 	// 6. ASSETS Y RECURSOS
 	$FAVICON_32 = "images/icon/bb_favicon_32x32.png";

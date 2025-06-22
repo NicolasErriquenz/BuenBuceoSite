@@ -1,0 +1,437 @@
+﻿<div cg-busy="campanaDetalleCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">PANEL DE CONTROL DE LA CAMPAÑA</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Panel de control de la campaña</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <encabezado-campana campana="campanaDetalleCtrl.Campana"></encabezado-campana>
+
+    <section class="content-header pt-0 pb-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav stepper-wrapper">
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 1 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 1 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(1)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">SELECCIÓN</div>
+                            </a>
+                        </li>
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 2 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 2 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(2)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">PISICOTÉCNICO</div>
+                            </a>
+                        </li>
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 3 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 3 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(3)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">INTELECTUAL</div>
+                            </a>
+                        </li>
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 4 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 4 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(4)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">MÉDICO</div>
+                            </a>
+                        </li>
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 5 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 5 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(5)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">FÍSICO</div>
+                            </a>
+                        </li>
+                        <li class="nav-item stepper-item" ng-class="campanaDetalleCtrl.query.EtapaId == 6 ? 'completed active': campanaDetalleCtrl.query.EtapaId > 6 ? 'completed' :''">
+                            <a class="nav-link clickable" ng-click="campanaDetalleCtrl.GetPostulantesCampana(6)">
+                                <div class="step-counter"><i class="fa fa-minus"></i></div>
+                                <div class="step-name">ORDEN DE MÉRITO</div>
+                            </a>
+                        </li>
+                    </ul> <!--fin stepper-->
+                </div>
+            </div> <!--fin row-->
+        </div>
+    </section>
+
+    <div class="mb-0">
+        <campana-etapas campana="campanaDetalleCtrl.Campana" seccion="campanaDetalleCtrl.Seccion"></campana-etapas>
+    </div>
+
+</div>
+
+<!--inicio modals (YA NO SE USAN)-->
+<div class="modal fade confirm_borrar_postulante" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align:center;">¿ESTÁS SEGURO QUE DESEA ELIMINAR EL POSTULANTE DE LA CAMPAÑA?</h4>
+                <p>
+                    El postulante no formará parte de la campaña. <br />
+                    En caso que ya haya sido notificado por mail puede que el postulante se comunique con ud.<br><br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="campanaDetalleCtrl.BorrarPostulantesCampana()">QUITAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade confirm_notificar_postulante" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align:center;">¿ESTÁS SEGURO QUE DESEA NOTIFICAR AL POSTULANTE DE LA CAMPAÑA?</h4>
+                <p>
+                    Esta acción no puede deshacerse.<br />
+                    Una vez notificado el postulante verá la campaña en "Sus Campañas" pudiendo aceptar la invitación a participar, o bien, rechazarla.<br><br>
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="campanaDetalleCtrl.NotificarPostulanteCampana()">NOTIFICAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal_reporte_envio_notificaciones" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Resultado del envío de notificaciones</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Postulantes notificados: {{campanaDetalleCtrl.ReporteNotifaciones.Enviados}}<br>
+                    Errores: {{campanaDetalleCtrl.ReporteNotifaciones.Errores}}
+                </p>
+                <p>
+                    Fecha: {{campanaDetalleCtrl.ReporteNotifaciones.FechaActual | date : 'dd/MM/yyyy'}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">CERRAR</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade EditarEstadoPostulanteCampana_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Estado Postulante</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align:center;">Seleccione un estado de la postulación para {{campanaDetalleCtrl.PCEditarEstado.Postulante.Nombres}} {{campanaDetalleCtrl.PCEditarEstado.Postulante.Apellido}}</h4>
+                <p>
+                    Esta acción no se notifica al postulante
+                </p>
+                <p>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <select class="form-control"
+                                    ng-model="campanaDetalleCtrl.PCEditarEstado.PostulanteCampanasEstadosId">
+                                <option ng-repeat="CE in campanaDetalleCtrl.PostulanteCampanaEstados"
+                                        ng-value="{{CE.Id}}"
+                                        ng-selected="campanaDetalleCtrl.PCEditarEstado.PostulanteCampanasEstadosId == CE.Id ? 'selected' : ''">
+                                    {{CE.Descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">VOLVER</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="campanaDetalleCtrl.GuardarCambioEstadoPostulanteCampana()">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modales con acciones del datatable (ACTUALES)-->
+<div class="modal fade generic_dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{campanaDetalleCtrl.DataModal.DataModalTitulo}}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered mb-0" style="width: 100%; border-radius: 0px; border: 0px;">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th ng-repeat="item in campanaDetalleCtrl.DataModal.DataModalNombresColumna">{{item}}</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr ng-repeat="PDNI in campanaDetalleCtrl.DataModal.DataModalPostulantesDNI">
+                            <td nowrap class="p-1" ng-repeat="nombreColumn in campanaDetalleCtrl.DataModal.DataModalNombresColumna">{{PDNI[nombreColumn]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div ng-if="campanaDetalleCtrl.DataModal.DataModelListaDatosEstatico.length > 0" class="form-group row">
+                    <label class="col-sm-4 col-form-label">{{campanaDetalleCtrl.DataModal.etiquetaDatoEstatico}}</label>
+                    <div class="col-8">
+                        <select class="form-control content-input" ng-model="campanaDetalleCtrl.PCeditarDato.DatoId">
+                            <option value="">SELECCIONE</option>
+                            <option ng-repeat="item in campanaDetalleCtrl.DataModal.DataModelListaDatosEstatico"
+                                    ng-value="{{item.Id}}">
+                                {{item.Descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-show="campanaDetalleCtrl.DataModal.accionarEvento == 'modificar_estado_postulante'" class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        Fecha (opcional)
+                        <i class="fa fa-question-circle" data-toggle="tooltip"
+                           data-placement="right"
+                           data-original-title="El sistema asignará la fecha de hoy"
+                           data-html="true"
+                           onmouseenter="$(this).tooltip('show')"></i>
+                    </label>
+                    <div class="col-8">
+                        <input class="form-control content-input" type="date" ng-model="campanaDetalleCtrl.query.FechaEdicion" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="campanaDetalleCtrl.ConfirmarAccionModal(campanaDetalleCtrl.DataModal.accionarEvento, campanaDetalleCtrl.DataModal.ListaPostulantesCampana)">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade error_dialog" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" ng-style="campanaDetalleCtrl.DataModal.accionarEvento == 'error' && {'color':'red'}">{{campanaDetalleCtrl.DataModal.DataModalTitulo}}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered mb-0" style="width: 100%; border-radius: 0px; border: 0px;">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th ng-repeat="item in campanaDetalleCtrl.DataModal.DataModalNombresColumna">{{item}}</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr ng-repeat="PDNI in campanaDetalleCtrl.DataModal.DataModalPostulantesDNI">
+                            <td nowrap class="p-1" ng-repeat="nombreColumn in campanaDetalleCtrl.DataModal.DataModalNombresColumna">{{PDNI[nombreColumn]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mt-3">
+                    {{campanaDetalleCtrl.DataModal.etiquetaDatoEstatico}}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade historial_estados" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{campanaDetalleCtrl.DataModal.DataModalTitulo}}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered mb-0" style="width: 100%; border-radius: 0px; border: 0px;">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th ng-repeat="item in campanaDetalleCtrl.DataModal.DataModalNombresColumna | limitTo: 3">{{item}}</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr ng-repeat="PDNI in campanaDetalleCtrl.DataModal.DataModalPostulantesDNI">
+                            <td nowrap class="p-1" ng-repeat="nombreColumn in campanaDetalleCtrl.DataModal.DataModalNombresColumna | limitTo: 3">{{PDNI[nombreColumn]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table class="table table-striped table-bordered mb-0" style="width: 100%; border-radius: 0px; border: 0px;">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th colspan="1">Fecha</th>
+                            <th colspan="2">Estado</th>
+                            <th colspan="2">Agregado por</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;" ng-repeat="PDNI in campanaDetalleCtrl.DataModal.DataModalPostulantesDNI track by $index">
+                        <tr ng-repeat="item in PDNI.Estados">
+                            <td nowrap class="p-1" ng-style="($index+1) == PDNI.Estados.length && campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado' && {'color':'blue'}">{{item.Fecha | date : "dd/MM/yyyy HH:mm"}}</td>
+                            <td nowrap class="p-1" colspan="2" ng-style="($index+1) == PDNI.Estados.length && campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado' && {'color':'blue'}">{{item.PostulanteCampanasEstadosTipo.Descripcion}}</td>
+                            <td nowrap class="p-1" ng-if="item.PostulanteCampanasEstadosTipo.Listado" ng-style="($index+1) == PDNI.Estados.length && campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado' && {'color':'blue'}">AGENTE</td>
+                            <td nowrap class="p-1" ng-if="!item.PostulanteCampanasEstadosTipo.Listado" ng-style="($index+1) == PDNI.Estados.length && campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado' && {'color':'blue'}"> SISTEMA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-show="campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado'">
+                    <p class="mt-2">{{campanaDetalleCtrl.DataModal.etiquetaDatoEstatico}} <br />NO SE PUEDEN ELIMINAR ESTADOS ASIGNADOS POR EL SISTEMA</p>
+                </div>
+            </div>
+            <div class="modal-footer" ng-if="campanaDetalleCtrl.DataModal.accionarEvento == 'mostrar_historial_estados'">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Aceptar</button>
+            </div>
+            <div class="modal-footer" ng-if="campanaDetalleCtrl.DataModal.accionarEvento == 'eliminar_ultimo_estado'">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="campanaDetalleCtrl.ConfirmarAccionModal(campanaDetalleCtrl.DataModal.accionarEvento, campanaDetalleCtrl.DataModal.ListaPostulantesCampana)">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-dark" id="cardCalificaciones" ng-show="campanaDetalleCtrl.showCard">
+    <div class="card-header">
+        <h3 class="card-title">CALIFICACIONES</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="maximize" ng-click="campanaDetalleCtrl.clearInput();">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div>
+            <table class="vertical table tabla-perfil-data table-bordered" style="border: 1px; border-radius: 0px;">
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <td colspan="3">{{campanaDetalleCtrl.Campana.Nombre}}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripción</th>
+                        <td colspan="3">{{campanaDetalleCtrl.Campana.Descripcion}}</td>
+                    </tr>
+                    <tr>
+                        <th>Etapa</th>
+                        <td>{{campanaDetalleCtrl.DataModal.ListaPostulantesCampana[0].Etapas.Descripcion | uppercase}}</td>
+                        <th>Formato de calificación</th>
+                        <td>
+                            <input class="form-control content-input" type="text" value="{{campanaDetalleCtrl.TiposCalificaciones[campanaDetalleCtrl.query.EtapaId].FormatoCalificacion.Descripcion}}" disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="1">Tipo de calificación</th>
+                        <td colspan="1" ng-repeat="item in campanaDetalleCtrl.TiposCalificaciones | filter: {TipoCalificacionEtapaId: campanaDetalleCtrl.DataModal.ListaPostulantesCampana[0].Etapas.Id}">
+                            <select class="form-control content-input" ng-model="campanaDetalleCtrl.TipoCalificacionId">
+                                <option value="">SELECCIONE</option>
+                                <option ng-repeat="tipos in item.ListaTipos"
+                                        ng-value="{{tipos.Id}}">
+                                    {{tipos.Descripcion}}
+                                </option>
+                            </select>
+                        </td>
+                        <th colspan="1">
+                            Fecha (Opcional)
+                            <i class="fa fa-question-circle" data-toggle="tooltip"
+                               data-placement="right"
+                               data-original-title="El sistema asignará la fecha de hoy"
+                               data-html="true"
+                               onmouseenter="$(this).tooltip('show')"></i>
+                        </th>
+                        <td colspan="1">
+                            <input class="form-control content-input" type="date" ng-model="campanaDetalleCtrl.query.FechaEdicion" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Calificación grupal</th>
+                        <td colspan="1">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="CheckNotaGrupal"
+                                       ng-model="campanaDetalleCtrl.CheckNotaGrupal"
+                                       ng-click="campanaDetalleCtrl.CheckNotaGrupal=!campanaDetalleCtrl.CheckNotaGrupal;
+                                                 campanaDetalleCtrl.resetCheckGrupal();">
+                                <label class="custom-control-label" for="CheckNotaGrupal">Si/No</label>
+                            </div>
+                        </td>
+                        <th colspan="1">Valor calificación grupal</th>
+                        <td colspan="1">
+                            <select class="form-control content-input"
+                                    ng-model="campanaDetalleCtrl.ValorCalificacionGrupal"
+                                    ng-show="campanaDetalleCtrl.TiposCalificaciones[campanaDetalleCtrl.query.EtapaId].FormatoCalificacion.Id == 1"
+                                    ng-disabled="!campanaDetalleCtrl.CheckNotaGrupal">
+                                <option value="1">APROBADO</option>
+                                <option value="2">DESAPROBADO</option>
+                            </select>
+                            <input type="number" class="form-control content-input" placeholder="Solo caracteres Numericos" name="notaGrupal"
+                                   ng-model="campanaDetalleCtrl.ValorCalificacionGrupalNumeric"
+                                   ng-show="campanaDetalleCtrl.TiposCalificaciones[campanaDetalleCtrl.query.EtapaId].FormatoCalificacion.Id == 2"
+                                   ng-disabled="!campanaDetalleCtrl.CheckNotaGrupal" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-4">
+            <table class="table table-striped table-bordered mb-0" style="width: 100%; border-radius: 0px; border: 0px;">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th ng-repeat="item in campanaDetalleCtrl.DataModal.DataModalNombresColumna">{{item}}</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr ng-repeat="item in campanaDetalleCtrl.DataModal.ListaPostulantesCampana">
+                        <td nowrap class="p-1">{{item.Postulante.Documento}}</td>
+                        <td nowrap class="p-1">{{item.Postulante.Apellido}}</td>
+                        <td nowrap class="p-1">{{item.Postulante.Nombres}}</td>
+                        <td nowrap class="p-1">
+                            <select class="form-control content-input"
+                                    ng-model="item.Postulante.Nota"
+                                    ng-show="campanaDetalleCtrl.TiposCalificaciones[campanaDetalleCtrl.query.EtapaId].FormatoCalificacion.Id == 1"
+                                    ng-disabled="campanaDetalleCtrl.CheckNotaGrupal">
+                                <option value="1">APROBADO</option>
+                                <option value="2">DESAPROBADO</option>
+                            </select>
+                            <input type="number" class="form-control content-input" placeholder="Solo números"
+                                   name="notaPC_{{item.Postulante.Documento}}"
+                                   ng-model="item.Postulante.NotaNumeric"
+                                   ng-show="campanaDetalleCtrl.TiposCalificaciones[campanaDetalleCtrl.query.EtapaId].FormatoCalificacion.Id == 2"
+                                   ng-disabled="campanaDetalleCtrl.CheckNotaGrupal" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                
+    </div>
+    <div class="card-footer">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-card-widget="maximize" ng-click="campanaDetalleCtrl.clearInput();">Cancelar</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="campanaDetalleCtrl.ConfirmarAccionModal('calificar_postulante');">Confirmar</button>
+        </div>
+    </div>
+</div>

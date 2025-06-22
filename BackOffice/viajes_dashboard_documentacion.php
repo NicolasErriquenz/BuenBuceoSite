@@ -3,7 +3,7 @@
 <div class="row mb-4">
    <div class="col-12">
        <div class="d-flex justify-content-between align-items-center">
-           <h6 class="mb-0">Documentación del Viaje</h6>
+           <h6 class="mb-0"></h6>
            <button class="btn btn-sm btn-primary" onclick="javascript:cargarDocumentacion()">
                <i class="fas fa-plus me-2"></i>Agregar Documento
            </button>

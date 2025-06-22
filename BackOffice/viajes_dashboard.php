@@ -241,15 +241,11 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-end">
-            <a href="viajes_documentacion.php?viajesId=<?php echo $viaje[$idNombre]; ?>" 
-               class="btn btn-sm btn-outline-primary me-2">
-              <i class="fas fa-file-alt"></i> Documentación
-            </a>
-            <span id="badge-<?php echo $viaje[$idNombre]; ?>" class="badge habilitado-checkbox 
-              <?php echo ($viaje["activo"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
-              <?php echo ($viaje["activo"] == 1) ? 'ACTIVO' : 'FINALIZADO'; ?>
-            </span>
+          <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-end me-3 pe-4">
+              <span id="badge-<?php echo $viaje[$idNombre]; ?>" class="badge habilitado-checkbox 
+                  <?php echo ($viaje["activo"] == 1) ? 'bg-gradient-success' : 'bg-gradient-secondary'; ?>">
+                  <?php echo ($viaje["activo"] == 1) ? 'ACTIVO' : 'FINALIZADO'; ?>
+              </span>
           </div>
         </div>
       </div>

@@ -1,0 +1,155 @@
+﻿<div cg-busy="historialCampanaPostulanteCtrl.busy">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">HISTORIAL DE LAS CAMPAÑAS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INCORPORACIONES</a></li>
+                        <li class="breadcrumb-item active">Documentacion del postulante</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Datos del postulante</h3>
+                    <div class="card-tools">
+                        <button type="button"
+                                class="btn btn-block btn-light btn-xs"
+                                style="font-size: .85rem;"
+                                ng-click="historialCampanaPostulanteCtrl.Volver()">
+                            Volver
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body box-profile pt-0 pb-2">
+                    <div class="row">
+                        <div class="col-md-4 text-center mt-4">
+                            <img class="profile-user-img img-fluid img-circle" style="margin: auto; width: 220px; height: 220px;" src="images/NoImageUser.jpg" alt="Avatar">
+                            <p class="profile-username text-center mt-3" style="font-size: 18px; margin-bottom: -5px;">{{historialCampanaPostulanteCtrl.postulanteData.Apellido | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{historialCampanaPostulanteCtrl.postulanteData.Nombres | uppercase}}</p>
+                            <p class="profile-username text-center" style="font-size: 18px; margin-bottom: -5px;">{{historialCampanaPostulanteCtrl.postulanteData.Documento}}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item" style="border-top:0px;">
+                                    <b>Carrera</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.Carrera.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Escalafón</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.Escalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item" ng-if="historialCampanaPostulanteCtrl.postulanteData.SubEscalafon != null">
+                                    <b>Subescalafón</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.SubEscalafon.Descripcion}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de registro</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.FechaRegistro | date: "dd/MM/yyyy"}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Fecha de nacimiento</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.FechaNacimiento | date: "dd/MM/yyyy" }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Edad</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.Edad }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Estado de postulacion</b> <a class="float-right">{{historialCampanaPostulanteCtrl.postulanteData.EstadoPostulacion.Descripcion | uppercase}}</a>
+                                </li>
+                                <li class="list-group-item" ng-if="historialCampanaPostulanteCtrl.postulanteData.CodigoInscripcion == null">
+                                    <b>Código de inscripción</b> <a class="float-right">NO GENERADO</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="card card-dark">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Historial de campaña</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div ng-repeat="PC in historialCampanaPostulanteCtrl.HistorialCampanasPostulante">
+                        <table class="vertical table table-bordered tabla-perfil myBorder">
+                            <tr>
+                                <th colspan="3" class="text-center">
+                                    <h4><i class="fa fa-bank"></i> <a href="javascript:void(0);" ng-click="historialCampanaPostulanteCtrl.seleccionarRuta('CampanaDetalle/' + PC.Campana.Id)">{{PC.Campana.Nombre}}</a></h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">
+                                    <div>
+                                        {{PC.encabezadoCampana.Nombre}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Descripción</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">
+                                    <div>
+                                        {{PC.encabezadoCampana.Descripcion}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fecha de Inicio</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PC.encabezadoCampana.FechaInicio | date : 'dd/MM/yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Carrera</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PC.encabezadoCampana.Carreras.Descripcion | uppercase}}</td>
+                            </tr>
+                            <tr>
+                                <th>Escalafón</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">{{PC.encabezadoCampana.Escalafon.Descripcion | uppercase}}</td>
+                            </tr>
+                            <tr>
+                                <th>Subescalafón</th>
+                                <td colspan="2" style="text-align: left!important; padding-left: 18px;">
+                                    <div ng-if="PC.encabezadoCampana.SubEscalafon.Descripcion">
+                                        {{PC.encabezadoCampana.SubEscalafon.Descripcion | uppercase}}
+                                    </div>
+                                    <div ng-if="!PC.encabezadoCampana.SubEscalafon.Descripcion" style="color: blue;">
+                                        No aplica
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th rowspan="7">Estados</th>
+                            </tr>
+                            <tr ng-repeat="e in PC.etapa">                                
+                                <td>
+                                    <table class="vertical table table-bordered tabla-perfil myBorder" style="margin-top: 0px!important;">
+                                        <tr>
+                                            <th colspan="3">{{e.datosEtapa.Descripcion}}</th>
+                                        </tr>
+                                        <tr ng-repeat="item in e.listaEstados">
+                                            <td colspan="1">{{item.etapa.Descripcion}}</td>
+                                            <td nowrap class="p-1">{{item.infoEtapa.Fecha | date : "dd/MM/yyyy HH:mm"}}</td>
+                                            <td ng-if="!item.etapa.Listado">Asignado por sistema</td>
+                                            <td ng-if="item.etapa.Listado">Asignado por agente</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
